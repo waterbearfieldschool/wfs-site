@@ -42,10 +42,10 @@ footer{padding:24px 0; color:var(--muted); font-size:.95rem}
   .wrap{grid-template-columns: 1fr}
   aside{position:static; height:auto; padding:14px 18px; border-right:none; border-bottom:1px solid var(--hair)}
   .brand{justify-content:space-between}
-  .menu{display:inline-flex; align-items:center; gap:8px; font-weight:600; background:var(--card); border:1px solid var(--hair); border-radius:999px; padding:8px 12px}
-  nav{display:none}
-  nav[aria-expanded="true"]{display:block}
-  nav ul{flex-direction:row; flex-wrap:wrap}
+  .menu{display:none}
+  nav{display:block}
+  nav ul{flex-direction:row; flex-wrap:wrap; justify-content:center; gap:8px; margin:12px 0}
+  nav a{font-size:0.9rem; padding:4px 8px}
   main{padding:26px 18px}
   .grid{grid-template-columns: 1fr 1fr}
 }

@@ -1,10 +1,42 @@
 {% extends "layouts/base.njk" %}
 {% set title = site.title %}
 {% block content %}
-<section id="projects">
-  <h2 class="section-title"><a href="/projects/">Projects</a></h2>
+<section id="events">
+  <h2 class="section-title"><a href="/upcoming-events/">Events</a></h2>
+  <p class="section-description"><!-- Add your events description here --></p>
   <div class="grid">
-    {% for p in collections.projects %}
+    {% for p in collections.allEvents %}
+      {% if loop.index <= 6 %}
+      <article class="card">
+        <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
+          {% if p.data.image %}
+            <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
+          {% else %}
+            4:3 image
+          {% endif %}
+        </a>
+        <div class="card-content">
+          <h3><a href="{{ p.url }}">{% if p.date | isUpcoming %}UPCOMING: {% endif %}{{ p.data.title }}</a></h3>
+          <div class="meta">
+            {% if p.date %}<time datetime="{{ p.date.toISOString() }}">{{ p.date.toDateString() }}</time>{% endif %}
+            {% if p.data.meta and p.date %} • {% endif %}{{ p.data.meta or '' }}
+          </div>
+        </div>
+      </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="read-more">
+    <a href="/upcoming-events/">More events →</a>
+  </div>
+</section>
+
+{% if collections.recentEvents.length > 0 %}
+<section id="recent-events">
+  <h2 class="section-title"><a href="/recent-events/">Projects</a></h2>
+  <p class="section-description"><!-- Add your projects description here --></p>
+  <div class="grid">
+    {% for p in collections.recentEvents %}
       {% if loop.index <= 3 %}
       <article class="card">
         <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
@@ -16,43 +48,18 @@
         </a>
         <div class="card-content">
           <h3><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
-          <div class="meta">{{ p.data.meta or '' }}</div>
+          <div class="meta">
+            {{ p.data.meta or '' }}
+          </div>
         </div>
       </article>
       {% endif %}
     {% endfor %}
   </div>
   <div class="read-more">
-    <a href="/projects/">More projects →</a>
+    <a href="/recent-events/">More projects →</a>
   </div>
 </section>
-
-<section id="news">
-  <h2 class="section-title"><a href="/news/">News</a></h2>
-  <div class="news">
-    {% for post in collections.news %}
-      {% if loop.index <= 3 %}
-      <div class="item"><time datetime="{{ post.date.toISOString() }}">{{ post.date.toDateString() }}</time> • <a href="{{ post.url }}">{{ post.data.title }}</a></div>
-      {% endif %}
-    {% endfor %}
-  </div>
-  <div class="read-more">
-    <a href="/news/">More news →</a>
-  </div>
-</section>
-
-<section id="writing">
-  <h2 class="section-title"><a href="/writing/">Writing</a></h2>
-  <div class="list">
-    {% for post in collections.writing %}
-      {% if loop.index <= 3 %}
-      <div class="post"><time datetime="{{ post.date.toISOString() }}">{{ post.date.toDateString() }}</time> — <a href="{{ post.url }}">{{ post.data.title }}</a></div>
-      {% endif %}
-    {% endfor %}
-  </div>
-  <div class="read-more">
-    <a href="/writing/">More writing →</a>
-  </div>
-</section>
+{% endif %}
 
 {% endblock %}

@@ -1,0 +1,30 @@
+---
+title: Events
+---
+{% extends "layouts/base.njk" %}
+{% block content %}
+<section id="events">
+  <h2 class="section-title">Events</h2>
+  <p class="section-description"><!-- Add your events description here --></p>
+  <div class="grid">
+    {% for p in collections.allEvents %}
+    <article class="card">
+      <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
+        {% if p.data.image %}
+          <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
+        {% else %}
+          4:3 image
+        {% endif %}
+      </a>
+      <div class="card-content">
+        <h3><a href="{{ p.url }}">{% if p.date | isUpcoming %}UPCOMING: {% endif %}{{ p.data.title }}</a></h3>
+        <div class="meta">
+          {% if p.date %}<time datetime="{{ p.date.toISOString() }}">{{ p.date.toDateString() }}</time>{% endif %}
+          {% if p.data.meta and p.date %} • {% endif %}{{ p.data.meta or '' }}
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

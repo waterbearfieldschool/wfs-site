@@ -25,9 +25,8 @@
       <nav id="siteNav" aria-expanded="false">
         <ul>
           <li><a class="{{ 'active' if page.url == '/' else '' }}" href="/">Home</a></li>
-          <li><a class="{{ 'active' if page.url.startsWith('/projects') else '' }}" href="/projects/">Projects</a></li>
-          <li><a class="{{ 'active' if page.url.startsWith('/writing') else '' }}" href="/writing/">Writing</a></li>
-          <li><a class="{{ 'active' if page.url.startsWith('/news') else '' }}" href="/news/">News</a></li>
+          <li><a class="{{ 'active' if page.url.startsWith('/upcoming-events') else '' }}" href="/upcoming-events/">Events</a></li>
+          <li><a class="{{ 'active' if page.url.startsWith('/recent-events') else '' }}" href="/recent-events/">Projects</a></li>
           <li><a class="{{ 'active' if page.url == '/about/' else '' }}" href="/about/">About</a></li>
         </ul>
       </nav>

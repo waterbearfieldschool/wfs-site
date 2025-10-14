@@ -1,6 +1,6 @@
 ---
 title: "Solar 101"
-date: 2025-10-14
+date: 2025-10-18
 meta: Learning about 'medium scale' solar power. 
 image: /assets/images/projects/solar101.jpg
 layout: layouts/post.njk
