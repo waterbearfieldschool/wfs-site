@@ -2,7 +2,7 @@
 {% set title = site.title %}
 {% block content %}
 <section id="projects">
-  <h2 class="section-title">Projects</h2>
+  <h2 class="section-title"><a href="/projects/">Projects</a></h2>
   <div class="grid">
     {% for p in collections.projects %}
       {% if loop.index <= 3 %}
@@ -23,12 +23,12 @@
     {% endfor %}
   </div>
   <div class="read-more">
-    <a href="/projects/">View all projects →</a>
+    <a href="/projects/">More projects →</a>
   </div>
 </section>
 
 <section id="news">
-  <h2 class="section-title">News</h2>
+  <h2 class="section-title"><a href="/news/">News</a></h2>
   <div class="news">
     {% for post in collections.news %}
       {% if loop.index <= 3 %}
@@ -37,12 +37,12 @@
     {% endfor %}
   </div>
   <div class="read-more">
-    <a href="/news/">View all news →</a>
+    <a href="/news/">More news →</a>
   </div>
 </section>
 
 <section id="writing">
-  <h2 class="section-title">Writing</h2>
+  <h2 class="section-title"><a href="/writing/">Writing</a></h2>
   <div class="list">
     {% for post in collections.writing %}
       {% if loop.index <= 3 %}
@@ -51,7 +51,7 @@
     {% endfor %}
   </div>
   <div class="read-more">
-    <a href="/writing/">View all writing →</a>
+    <a href="/writing/">More writing →</a>
   </div>
 </section>
 
