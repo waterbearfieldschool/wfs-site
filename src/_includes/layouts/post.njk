@@ -1,0 +1,9 @@
+{% extends "layouts/base.njk" %}
+{% set title = title + ' — ' + site.name %}
+{% block content %}
+<article class="prose">
+  <h1>{{ title }}</h1>
+  <div class="meta">{{ date.toDateString() }}</div>
+  {{ content | safe }}
+</article>
+{% endblock %}

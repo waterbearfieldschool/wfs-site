@@ -1,0 +1,57 @@
+:root{
+  --bg:#f7f7f5; --fg:#1f1f1f; --muted:#6b6b6b; --accent:#1c4d3a; --link:#0b6b50; --card:#ffffff; --hair:#e6e6e3;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0; font:16px/1.55 Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:var(--fg); background:var(--bg)}
+a{color:var(--link); text-decoration-color: color-mix(in oklab, var(--link) 40%, transparent); text-underline-offset:2px}
+a:hover{color:var(--accent)}
+.wrap{display:grid; grid-template-columns: 320px 1fr; min-height:100vh; max-width:1200px; margin:0 auto}
+aside{position:sticky; top:0; align-self:start; height:100dvh; padding:32px 24px; border-right:1px solid var(--hair); background:linear-gradient(180deg, #fafaf8, #f4f4f1)}
+main{padding:40px 28px}
+.brand{display:flex; align-items:center; gap:14px; margin-bottom:22px}
+.brand .dot{width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px color-mix(in oklab, var(--accent) 12%, transparent)}
+h1{font-size:1.35rem; margin:0}
+.brand-link{color:inherit; text-decoration:none}
+.tag{color:var(--muted); margin:6px 0 18px}
+nav ul{list-style:none; padding:0; margin:18px 0; display:flex; flex-direction:column; gap:10px}
+nav a{display:inline-block; padding:6px 10px; border-radius:12px; color:var(--fg)}
+nav a.active, nav a:hover{background:var(--card); box-shadow:var(--shadow)}
+.contact{margin-top:18px; display:flex; flex-wrap:wrap; gap:8px}
+.chip{font-size:.9rem; padding:6px 10px; border:1px solid var(--hair); border-radius:999px; background:var(--card)}
+section{margin:0 0 48px}
+.section-title{font-weight:700; font-size:1.05rem; text-transform:uppercase; letter-spacing:.06em; color:var(--accent); margin:0 0 14px}
+.hair{border-top:1px solid var(--hair); margin:18px 0 24px}
+.news{display:flex; flex-direction:column; gap:14px}
+.news .item{display:flex; gap:10px}
+.news time{white-space:nowrap; color:var(--muted); font-variant-numeric:tabular-nums}
+.grid{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px}
+.card{background:var(--card); border:1px solid var(--hair); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column}
+.thumb{aspect-ratio: 4/3; background:#dcdcd7; display:flex; align-items:center; justify-content:center; color:#666; font-size:.9rem; text-decoration:none; overflow:hidden}
+.thumb img{width:100%; height:100%; object-fit:cover}
+.card-content{padding:14px}
+.card h3{margin:0 0 6px; font-size:1rem}
+.meta{color:var(--muted); font-size:.9rem}
+.list{display:flex; flex-direction:column; gap:10px}
+.list .post{display:flex; gap:10px}
+.read-more{margin-top:10px; padding-left:16px}
+footer{padding:24px 0; color:var(--muted); font-size:.95rem}
+.menu{display:none}
+@media (max-width: 880px){
+  .wrap{grid-template-columns: 1fr}
+  aside{position:static; height:auto; padding:14px 18px; border-right:none; border-bottom:1px solid var(--hair)}
+  .brand{justify-content:space-between}
+  .menu{display:inline-flex; align-items:center; gap:8px; font-weight:600; background:var(--card); border:1px solid var(--hair); border-radius:999px; padding:8px 12px}
+  nav{display:none}
+  nav[aria-expanded="true"]{display:block}
+  nav ul{flex-direction:row; flex-wrap:wrap}
+  main{padding:26px 18px}
+  .grid{grid-template-columns: 1fr 1fr}
+}
+@media (max-width:560px){
+  .grid{grid-template-columns: 1fr}
+  .news .item, .list .post{flex-direction:column}
+}
+.prose h1{font-size:1.6rem; margin:0 0 8px}
+.prose .meta{margin-bottom:18px; color:var(--muted)}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or site.title }}</title>
+  <meta name="description" content="{{ description or site.description }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div>
+          <h1><a class="brand-link" href="/">{{ site.name }}</a></h1>
+          <div class="tag">{{ site.tagline }}</div>
+        </div>
+        <button class="menu" id="menuBtn" aria-controls="siteNav" aria-expanded="false">Menu ▾</button>
+      </div>
+
+      <nav id="siteNav" aria-expanded="false">
+        <ul>
+          <li><a class="{{ 'active' if page.url == '/' else '' }}" href="/">Home</a></li>
+          <li><a class="{{ 'active' if page.url.startsWith('/projects') else '' }}" href="/projects/">Projects</a></li>
+          <li><a class="{{ 'active' if page.url.startsWith('/writing') else '' }}" href="/writing/">Writing</a></li>
+          <li><a class="{{ 'active' if page.url.startsWith('/news') else '' }}" href="/news/">News</a></li>
+          <li><a class="{{ 'active' if page.url == '/about/' else '' }}" href="/about/">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="hair"></div>
+
+      <div class="contact">
+        {% if site.links.email %}<a class="chip" href="mailto:{{ site.links.email }}">email</a>{% endif %}
+        {% if site.links.waterbear %}<a class="chip" href="{{ site.links.waterbear }}" target="_blank" rel="noopener">waterbear</a>{% endif %}
+        {% if site.links.github %}<a class="chip" href="{{ site.links.github }}" target="_blank" rel="noopener">github</a>{% endif %}
+        {% if site.links.bluesky %}<a class="chip" href="{{ site.links.bluesky }}" target="_blank" rel="noopener">bluesky</a>{% endif %}
+      </div>
+    </aside>
+
+    <main>
+      {% block content %}{% endblock %}
+      <footer>
+        © <span id="y"></span> {{ site.name }} • Built with Eleventy
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const btn = document.getElementById('menuBtn');
+    const nav = document.getElementById('siteNav');
+    btn?.addEventListener('click', () => {
+      const open = nav.getAttribute('aria-expanded') === 'true';
+      nav.setAttribute('aria-expanded', String(!open));
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.textContent = !open ? 'Close ✕' : 'Menu ▾';
+    });
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
