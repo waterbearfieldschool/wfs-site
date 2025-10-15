@@ -27,7 +27,7 @@
         <ul>
           <li><a class="{{ 'active' if page.url == '/' else '' }}" href="/">Home</a></li>
           <li><a class="{{ 'active' if page.url.startsWith('/events') else '' }}" href="/events/">Events</a></li>
-          <li><a class="{{ 'active' if page.url.startsWith('/projects') else '' }}" href="/projects/">Projects</a></li>
+          {% if collections.recentEvents.length > 0 %}<li><a class="{{ 'active' if page.url.startsWith('/projects') else '' }}" href="/projects/">Projects</a></li>{% endif %}
           <li><a class="{{ 'active' if page.url == '/about/' else '' }}" href="/about/">About</a></li>
         </ul>
       </nav>
@@ -35,9 +35,6 @@
 
     <main>
       {% block content %}{% endblock %}
-      <footer>
-        Contact: <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a>
-      </footer>
     </main>
   </div>
 

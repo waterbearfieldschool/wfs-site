@@ -2,7 +2,7 @@
 {% block content %}
 <article class="prose">
   <h1>{{ title }}</h1>
-  <div class="meta">{{ date.toDateString() }}</div>
+  {% if not hideDate %}<div class="meta">{{ date.toDateString() }}</div>{% endif %}
   {{ content | safe }}
 </article>
 {% endblock %}

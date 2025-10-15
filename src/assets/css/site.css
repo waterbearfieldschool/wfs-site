@@ -31,7 +31,7 @@ section{margin:0 0 48px}
 .news time{white-space:nowrap; color:var(--muted); font-variant-numeric:tabular-nums}
 .grid{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px}
 .card{background:var(--card); border:1px solid var(--hair); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column}
-.thumb{aspect-ratio: 4/3; background:#dcdcd7; display:flex; align-items:center; justify-content:center; color:#666; font-size:.9rem; text-decoration:none; overflow:hidden}
+.thumb{aspect-ratio: 4/3; background:#dcdcd7; display:flex; align-items:center; justify-content:center; color:#666; font-size:.9rem; text-decoration:none; overflow:hidden; position:relative}
 .thumb img{width:100%; height:100%; object-fit:cover}
 .card-content{padding:14px}
 .card h3{margin:0 0 6px; font-size:1rem}
@@ -43,7 +43,23 @@ section{margin:0 0 48px}
 footer{padding:24px 0; color:var(--muted); font-size:.8rem; border-top:1px solid var(--hair); margin-top:24px}
 .activity-bubbles{display:flex; flex-wrap:wrap; gap:.5rem; margin:12px 0}
 .bubble{font-size:.9rem; padding:.35rem .6rem; background:rgba(28,77,58,.08); border:1px solid rgba(28,77,58,.2); border-radius:999px; color:var(--accent)}
-.upcoming-label{font-size:.8rem; font-weight:700; color:var(--accent); margin-bottom:6px; text-transform:uppercase}
+.upcoming-label{font-size:.75rem; font-weight:700; color:var(--accent); text-transform:uppercase}
+.corner-flag{position:absolute; top:0; right:0; width:0; height:0; border-style:solid; border-width:0 65px 65px 0; border-color:transparent var(--accent) transparent transparent}
+.corner-flag::after{content:'UPCOMING'; position:absolute; top:19px; right:-70px; transform:rotate(45deg); font-size:.6rem; font-weight:700; color:white; text-transform:uppercase; letter-spacing:.3px}
+.section-separator{border-top:1px solid var(--hair); margin:48px 0}
+.about-hero{text-align:center; margin:40px 0 60px; padding:40px 20px; background:var(--card); border-radius:16px; box-shadow:var(--shadow)}
+.about-hero h1{font-size:2.5rem; margin:0 0 16px; color:var(--accent)}
+.hero-subtitle{font-size:1.2rem; color:var(--muted); margin:0}
+.hero-topics{font-size:1.1rem; color:#8B6914; margin:8px 0 16px; font-weight:500}
+.about-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; margin:40px 0}
+.about-card{background:var(--card); border:1px solid var(--hair); border-radius:16px; padding:24px; box-shadow:var(--shadow)}
+.about-card h3{margin:0 0 16px; color:var(--accent); font-size:1.2rem; text-align:center}
+.what-we-do{background:var(--card); border:1px solid var(--hair); border-radius:16px; padding:32px; box-shadow:var(--shadow); margin:40px 0}
+.what-we-do h2{margin:0 0 24px; color:var(--accent); font-size:1.8rem; text-align:center}
+.activities-list{list-style:none; padding:0; margin:0}
+.activities-list li{margin:0 0 16px; padding:12px 16px; background:rgba(28,77,58,.03); border-radius:8px; line-height:1.5}
+.activities-list li:last-child{margin-bottom:0}
+.activities-list strong{color:var(--accent)}
 @media (max-width: 880px){
   .wrap{grid-template-columns: 1fr}
   aside{position:static; height:auto; padding:14px 18px; border-right:none; border-bottom:1px solid var(--hair)}

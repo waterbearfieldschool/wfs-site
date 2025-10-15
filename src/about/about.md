@@ -1,53 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About</title>
-  <meta name="description" content="Learning to live well, off-the-grid." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/site.css">
-</head>
-<body>
-  <div class="wrap">
-    <aside>
-      <div class="brand">
-        <!--<div class="dot" aria-hidden="true"></div>-->
-        <div>
-          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
-          <div class="contact-top">
-            <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a>
-          </div>
-        </div>
-      </div>
+---
+title: "About"
+date: 2025-01-01
+permalink: "/about/"
+layout: layouts/post.njk
+hideDate: true
+---
 
-      <nav>
-        <ul>
-          <li><a class="" href="/">Home</a></li>
-          <li><a class="" href="/events/">Events</a></li>
-          
-          <li><a class="active" href="/about/">About</a></li>
-        </ul>
-      </nav>
-    </aside>
-
-    <main>
-      
-<article class="prose">
-  <h1>About</h1>
-  
-  <div class="about-hero">
+<div class="about-hero">
   <h1>Waterbear Field School</h1>
   <p class="hero-topics">Nature • Science • Music • History • Art • Storytelling</p>
   <p class="hero-subtitle">Nature exploration, hands-on learning, and skill sharing</p>
 </div>
+
 <div class="about-grid">
   <div class="about-card">
     <h3>Mission</h3>
     <p>Waterbear Field School is an outdoor educational program focused on nature exploration, hands-on learning, and skill sharing for kids and adults.</p>
   </div>
+
   <div class="about-card">
     <h3>Core Activities</h3>
     <div class="activity-bubbles">
@@ -66,6 +36,7 @@
     </div>
   </div>
 </div>
+
 <div class="what-we-do">
   <h2>What we'll do</h2>
   <ul class="activities-list">
@@ -76,6 +47,7 @@
     <li><strong>Make art & music</strong> — crafting instruments, creating art from natural materials, and enjoying outdoor sessions</li>
   </ul>
 </div>
+
 <div class="about-grid">
   <div class="about-card">
     <h3>Example Projects</h3>
@@ -90,23 +62,14 @@
       <span class="bubble">Small-scale solar power</span>
     </div>
   </div>
+
   <div class="about-card">
     <h3>Location</h3>
     <p>Greater Boston area in Massachusetts, USA, with networked locations beyond.</p>
   </div>
+
   <div class="about-card">
     <h3>Contact</h3>
     <p>Email: <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a></p>
   </div>
 </div>
-
-</article>
-
-    </main>
-  </div>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>

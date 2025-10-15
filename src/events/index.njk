@@ -17,7 +17,6 @@ title: Events
         {% endif %}
       </a>
       <div class="card-content">
-        {% if p.date | isUpcoming %}<div class="upcoming-label">**UPCOMING**</div>{% endif %}
         <h3><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
         <div class="meta">
           {% if p.date %}<time datetime="{{ p.date.toISOString() }}">{{ p.date.toDateString() }}</time>{% endif %}
