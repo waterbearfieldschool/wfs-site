@@ -2,7 +2,7 @@
 {% set title = site.title %}
 {% block content %}
 <section id="events">
-  <h2 class="section-title"><a href="/upcoming-events/">Events</a></h2>
+  <h2 class="section-title"><a href="/events/">Events</a></h2>
   <p class="section-description"><!-- Add your events description here --></p>
   <div class="grid">
     {% for p in collections.allEvents %}
@@ -16,24 +16,23 @@
           {% endif %}
         </a>
         <div class="card-content">
-          <h3><a href="{{ p.url }}">{% if p.date | isUpcoming %}UPCOMING: {% endif %}{{ p.data.title }}</a></h3>
+          {% if p.date | isUpcoming %}<div class="upcoming-label">**UPCOMING**</div>{% endif %}
+          <h3><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
           <div class="meta">
             {% if p.date %}<time datetime="{{ p.date.toISOString() }}">{{ p.date.toDateString() }}</time>{% endif %}
-            {% if p.data.meta and p.date %} • {% endif %}{{ p.data.meta or '' }}
+            {% if p.data.location and p.date %} • {% endif %}{{ p.data.location or '' }}
           </div>
+          {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
         </div>
       </article>
       {% endif %}
     {% endfor %}
   </div>
-  <div class="read-more">
-    <a href="/upcoming-events/">More events →</a>
-  </div>
 </section>
 
 {% if collections.recentEvents.length > 0 %}
 <section id="recent-events">
-  <h2 class="section-title"><a href="/recent-events/">Projects</a></h2>
+  <h2 class="section-title"><a href="/projects/">Projects</a></h2>
   <p class="section-description"><!-- Add your projects description here --></p>
   <div class="grid">
     {% for p in collections.recentEvents %}
@@ -55,9 +54,6 @@
       </article>
       {% endif %}
     {% endfor %}
-  </div>
-  <div class="read-more">
-    <a href="/recent-events/">More projects →</a>
   </div>
 </section>
 {% endif %}

@@ -17,11 +17,13 @@ title: Events
         {% endif %}
       </a>
       <div class="card-content">
-        <h3><a href="{{ p.url }}">{% if p.date | isUpcoming %}UPCOMING: {% endif %}{{ p.data.title }}</a></h3>
+        {% if p.date | isUpcoming %}<div class="upcoming-label">**UPCOMING**</div>{% endif %}
+        <h3><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
         <div class="meta">
           {% if p.date %}<time datetime="{{ p.date.toISOString() }}">{{ p.date.toDateString() }}</time>{% endif %}
-          {% if p.data.meta and p.date %} • {% endif %}{{ p.data.meta or '' }}
+          {% if p.data.location and p.date %} • {% endif %}{{ p.data.location or '' }}
         </div>
+        {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
       </div>
     </article>
     {% endfor %}

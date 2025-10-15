@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About — Don Blair</title>
+  <title>About</title>
   <meta name="description" content="Learning to live well, off-the-grid." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,52 +17,75 @@
         <!--<div class="dot" aria-hidden="true"></div>-->
         <div>
           <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
-          <div class="tag">Nature • Science • Music • History • Art • Storytelling</div>
+          <div class="contact-top">
+            <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a>
+          </div>
         </div>
-        <button class="menu" id="menuBtn" aria-controls="siteNav" aria-expanded="false">Menu ▾</button>
       </div>
 
-      <nav id="siteNav" aria-expanded="false">
+      <nav>
         <ul>
           <li><a class="" href="/">Home</a></li>
-          <li><a class="" href="/upcoming-events/">Events</a></li>
-          <li><a class="" href="/recent-events/">Projects</a></li>
+          <li><a class="" href="/events/">Events</a></li>
+          <li><a class="" href="/projects/">Projects</a></li>
           <li><a class="active" href="/about/">About</a></li>
         </ul>
       </nav>
-
-      <div class="hair"></div>
-
-      <div class="contact">
-        <a class="chip" href="mailto:info@waterbearfieldschool.org">email</a>
-        <a class="chip" href="https://waterbearfieldschool.org/" target="_blank" rel="noopener">waterbear</a>
-        <a class="chip" href="https://github.com/waterbearfieldschool" target="_blank" rel="noopener">github</a>
-        
-      </div>
     </aside>
 
     <main>
       
 <section id="about">
-  <h2 class="section-title">About</h2>
-<p>Waterbear Field School is an informal network of folks interested in learning and teaching useful and fun projects in the outdoors.</p> 
+  <h2 class="section-title">About Waterbear Field School</h2>
+  
+  <h3>Mission</h3>
+  <p>Waterbear Field School is an outdoor educational program focused on nature exploration, hands-on learning, and skill sharing for kids and adults.</p>
+  
+  <h3>Core Activities</h3>
+  <div class="activity-bubbles">
+    <span class="bubble">Nature exploration</span>
+    <span class="bubble">Hiking local trails</span>
+    <span class="bubble">Wildlife observation</span>
+    <span class="bubble">Hands-on project building</span>
+    <span class="bubble">STEM learning</span>
+    <span class="bubble">Local history research</span>
+    <span class="bubble">Arts and crafts</span>
+    <span class="bubble">Music making</span>
+    <span class="bubble">Electronics</span>
+    <span class="bubble">Radio</span>
+    <span class="bubble">Maps</span>
+    <span class="bubble">Shelter making</span>
+  </div>
+  
+  <h3>Example Projects</h3>
+  <div class="activity-bubbles">
+    <span class="bubble">Cold frames & hoop houses</span>
+    <span class="bubble">Rainwater capture systems</span>
+    <span class="bubble">Garden carts</span>
+    <span class="bubble">DIY farm tools</span>
+    <span class="bubble">Sewing projects</span>
+    <span class="bubble">Musical instrument creation</span>
+    <span class="bubble">Low-power radio experiments</span>
+    <span class="bubble">Small-scale solar power</span>
+  </div>
+  
+  
+  <h3>Location</h3>
+  <p>Greater Boston area in Massachusetts, USA, with networked locations beyond.</p>
+  
+  <h3>Contact</h3>
+  <p>Email: <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a></p>
+  
+<!--  <p><em>Note: Program is currently in the brainstorming phase and planning for Fall 2025.</em></p> -->
 </section>
 
       <footer>
-        © <span id="y"></span> Waterbear Field School • Built with Eleventy
+        Contact: <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a>
       </footer>
     </main>
   </div>
 
   <script>
-    const btn = document.getElementById('menuBtn');
-    const nav = document.getElementById('siteNav');
-    btn?.addEventListener('click', () => {
-      const open = nav.getAttribute('aria-expanded') === 'true';
-      nav.setAttribute('aria-expanded', String(!open));
-      btn.setAttribute('aria-expanded', String(!open));
-      btn.textContent = !open ? 'Close ✕' : 'Menu ▾';
-    });
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>

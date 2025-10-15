@@ -17,28 +17,20 @@
         <!--<div class="dot" aria-hidden="true"></div>-->
         <div>
           <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
-          <div class="tag">Nature • Science • Music • History • Art • Storytelling</div>
+          <div class="contact-top">
+            <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a>
+          </div>
         </div>
-        <button class="menu" id="menuBtn" aria-controls="siteNav" aria-expanded="false">Menu ▾</button>
       </div>
 
-      <nav id="siteNav" aria-expanded="false">
+      <nav>
         <ul>
           <li><a class="" href="/">Home</a></li>
-          <li><a class="" href="/upcoming-events/">Events</a></li>
-          <li><a class="" href="/recent-events/">Projects</a></li>
+          <li><a class="active" href="/events/">Events</a></li>
+          <li><a class="" href="/projects/">Projects</a></li>
           <li><a class="" href="/about/">About</a></li>
         </ul>
       </nav>
-
-      <div class="hair"></div>
-
-      <div class="contact">
-        <a class="chip" href="mailto:info@waterbearfieldschool.org">email</a>
-        <a class="chip" href="https://waterbearfieldschool.org/" target="_blank" rel="noopener">waterbear</a>
-        <a class="chip" href="https://github.com/waterbearfieldschool" target="_blank" rel="noopener">github</a>
-        
-      </div>
     </aside>
 
     <main>
@@ -49,32 +41,36 @@
   <div class="grid">
     
     <article class="card">
-      <a href="/projects/solar/" class="thumb" aria-label="Solar 101">
+      <a href="/events/farmday/" class="thumb" aria-label="WFCF Farm Day">
         
-          <img src="/assets/images/projects/solar101.jpg" alt="Solar 101" />
+          <img src="/assets/images/farmday/Farm_Day_2025_Square.jpg" alt="WFCF Farm Day" />
         
       </a>
       <div class="card-content">
-        <h3><a href="/projects/solar/">UPCOMING: Solar 101</a></h3>
+        <div class="upcoming-label">**UPCOMING**</div>
+        <h3><a href="/events/farmday/">WFCF Farm Day</a></h3>
         <div class="meta">
           <time datetime="2025-10-18T00:00:00.000Z">Fri Oct 17 2025</time>
-           • Learning about &#39;medium scale&#39; solar power.
+           • Waltham Fields Community Farm
         </div>
+        <div class="meta-description">Community farm day with hands-on activities</div>
       </div>
     </article>
     
     <article class="card">
-      <a href="/events/waterbear-field-school/" class="thumb" aria-label="Waterbear Field School">
+      <a href="/events/solar/" class="thumb" aria-label="Workshop: Solar 101">
         
-          <img src="/assets/images/projects/waterbear-field-school.png" alt="Waterbear Field School" />
+          <img src="/assets/images/projects/solar101.jpg" alt="Workshop: Solar 101" />
         
       </a>
       <div class="card-content">
-        <h3><a href="/events/waterbear-field-school/">Waterbear Field School</a></h3>
+        
+        <h3><a href="/events/solar/">Workshop: Solar 101</a></h3>
         <div class="meta">
-          <time datetime="2025-08-14T00:00:00.000Z">Wed Aug 13 2025</time>
-           • outdoor learning • fabrication • 2025
+          <time datetime="2025-10-12T00:00:00.000Z">Sat Oct 11 2025</time>
+           • Beaver Brook Reservation in Belmont, MA
         </div>
+        <div class="meta-description">Learning about &#39;medium scale&#39; solar power.</div>
       </div>
     </article>
     
@@ -85,26 +81,13 @@
         
       </a>
       <div class="card-content">
+        
         <h3><a href="/events/sail-tracker/">Sail Tracker: GPS + IMU for Youth Sailing</a></h3>
         <div class="meta">
           <time datetime="2025-08-01T00:00:00.000Z">Thu Jul 31 2025</time>
-           • hardware • python • 2025
+           • Charles River, Cambridge, MA
         </div>
-      </div>
-    </article>
-    
-    <article class="card">
-      <a href="/events/soft-latching-switches/" class="thumb" aria-label="Soft‑Latching Power Switches">
-        
-          <img src="/assets/images/projects/soft-latching-switches.png" alt="Soft‑Latching Power Switches" />
-        
-      </a>
-      <div class="card-content">
-        <h3><a href="/events/soft-latching-switches/">Soft‑Latching Power Switches</a></h3>
-        <div class="meta">
-          <time datetime="2025-07-12T00:00:00.000Z">Fri Jul 11 2025</time>
-           • electronics • mosfet • 2025
-        </div>
+        <div class="meta-description">hardware • python • 2025</div>
       </div>
     </article>
     
@@ -112,20 +95,12 @@
 </section>
 
       <footer>
-        © <span id="y"></span> Waterbear Field School • Built with Eleventy
+        Contact: <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a>
       </footer>
     </main>
   </div>
 
   <script>
-    const btn = document.getElementById('menuBtn');
-    const nav = document.getElementById('siteNav');
-    btn?.addEventListener('click', () => {
-      const open = nav.getAttribute('aria-expanded') === 'true';
-      nav.setAttribute('aria-expanded', String(!open));
-      btn.setAttribute('aria-expanded', String(!open));
-      btn.textContent = !open ? 'Close ✕' : 'Menu ▾';
-    });
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>

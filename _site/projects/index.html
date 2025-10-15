@@ -17,55 +17,39 @@
         <!--<div class="dot" aria-hidden="true"></div>-->
         <div>
           <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
-          <div class="tag">Off-grid art &amp; science.  We work to develop pedagogy for all sorts of folks.  Example projects include cob ovens.</div>
+          <div class="contact-top">
+            <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a>
+          </div>
         </div>
-        <button class="menu" id="menuBtn" aria-controls="siteNav" aria-expanded="false">Menu ▾</button>
       </div>
 
-      <nav id="siteNav" aria-expanded="false">
+      <nav>
         <ul>
           <li><a class="" href="/">Home</a></li>
+          <li><a class="" href="/events/">Events</a></li>
           <li><a class="active" href="/projects/">Projects</a></li>
-          <li><a class="" href="/writing/">Writing</a></li>
-          <li><a class="" href="/news/">News</a></li>
           <li><a class="" href="/about/">About</a></li>
         </ul>
       </nav>
-
-      <div class="hair"></div>
-
-      <div class="contact">
-        <a class="chip" href="mailto:info@waterbearfieldschool.org">email</a>
-        <a class="chip" href="https://waterbearfieldschool.org/" target="_blank" rel="noopener">waterbear</a>
-        <a class="chip" href="https://github.com/waterbearfieldschool" target="_blank" rel="noopener">github</a>
-        
-      </div>
     </aside>
 
     <main>
       
 <section id="projects">
   <h2 class="section-title">Projects</h2>
+  <p class="section-description"><!-- Add your projects description here --></p>
   <div class="grid">
     
   </div>
 </section>
 
       <footer>
-        © <span id="y"></span> Waterbear Field School • Built with Eleventy
+        Contact: <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a>
       </footer>
     </main>
   </div>
 
   <script>
-    const btn = document.getElementById('menuBtn');
-    const nav = document.getElementById('siteNav');
-    btn?.addEventListener('click', () => {
-      const open = nav.getAttribute('aria-expanded') === 'true';
-      nav.setAttribute('aria-expanded', String(!open));
-      btn.setAttribute('aria-expanded', String(!open));
-      btn.textContent = !open ? 'Close ✕' : 'Menu ▾';
-    });
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>

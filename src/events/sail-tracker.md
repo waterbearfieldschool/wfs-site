@@ -1,6 +1,7 @@
 ---
 title: "Sail Tracker: GPS + IMU for Youth Sailing"
 date: 2025-08-01
+location: "Charles River, Cambridge, MA"
 meta: hardware • python • 2025
 image: /assets/images/projects/sail-tracker.png
 layout: layouts/post.njk
