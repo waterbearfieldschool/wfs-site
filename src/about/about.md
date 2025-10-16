@@ -38,7 +38,7 @@ hideDate: true
 </div>
 
 <div class="what-we-do">
-  <h2>What we'll do</h2>
+  <h2>What we do</h2>
   <ul class="activities-list">
     <li><strong>Explore nature together</strong> — hiking local trails, observing wildlife, and learning to read the landscape</li>
     <li><strong>Build useful things</strong> — creating practical projects for homes, gardens, and community spaces</li>
