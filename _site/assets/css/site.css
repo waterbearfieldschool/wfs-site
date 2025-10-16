@@ -10,8 +10,8 @@ a:hover{color:var(--accent)}
 .wrap{display:grid; grid-template-columns: 320px 1fr; min-height:100vh; max-width:1200px; margin:0 auto}
 aside{position:sticky; top:0; align-self:start; height:100dvh; padding:32px 24px; border-right:1px solid var(--hair); background:linear-gradient(180deg, #fafaf8, #f4f4f1)}
 .contact-top{font-size:1rem; color:var(--muted); margin-bottom:2px; text-align:center}
-.contact-button{display:inline-block; background:var(--accent); color:white; padding:8px 16px; border-radius:20px; text-decoration:none; font-weight:500; font-size:0.9rem; transition:background 0.2s ease}
-.contact-button:hover{background:var(--link); color:white}
+.contact-button{color:var(--accent); text-decoration:none; font-weight:bold}
+.contact-button:hover{color:var(--link)}
 main{padding:40px 28px}
 .brand{display:flex; align-items:center; gap:14px; margin-bottom:22px}
 .brand .dot{width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px color-mix(in oklab, var(--accent) 12%, transparent)}
