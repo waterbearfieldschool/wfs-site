@@ -4,7 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ title or site.title }}</title>
-  <meta name="description" content="{{ description or site.description }}" />
+  <meta name="description" content="{{ meta or description or site.description }}" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:title" content="{{ title or site.title }}">
+  <meta property="og:description" content="{{ meta or description or site.description }}">
+  <meta property="og:site_name" content="Waterbear Field School">
+  {% if image %}<meta property="og:image" content="{{ site.url }}{{ image }}">{% endif %}
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="twitter:title" content="{{ title or site.title }}">
+  <meta property="twitter:description" content="{{ meta or description or site.description }}">
+  {% if image %}<meta property="twitter:image" content="{{ site.url }}{{ image }}">{% endif %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
