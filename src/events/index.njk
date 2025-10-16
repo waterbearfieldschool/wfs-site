@@ -15,6 +15,7 @@ title: Events
         {% else %}
           4:3 image
         {% endif %}
+        {% if p.date | isUpcoming %}<div class="corner-flag">UPCOMING</div>{% endif %}
       </a>
       <div class="card-content">
         <h3><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
