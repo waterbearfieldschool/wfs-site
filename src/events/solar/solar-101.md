@@ -8,9 +8,9 @@ layout: layouts/post.njk
 permalink: /events/solar/
 ---
 
-Even though it was cloudy and a bit rainy, we had a great time at the 'Solar 101' workshop.  Greg Nelson (our friend via [OtherWise](https://otherwise.one/)), Mike Beach (our friend via [Artisan's Asylum](https://www.artisansasylum.com/)), and some other local folks helped make it a very productive and fun gathering!
+We had a great time at the 'Solar 101' workshop -- despite the weather! Greg Nelson (our friend via [OtherWise](https://otherwise.one/)), Mike Beach (our friend via [Artisan's Asylum](https://www.artisansasylum.com/)), and some other local folks (both kids and adults) helped to make it a very productive and fun gathering.
 
-Although we weren't able to get any useful current from the panels on such a cloudy day, we used batteries to drive a bunch of motors (toy wheels, drills, greenhouse side rollers), and learned a bit about current, voltage, and power requirements for various DC applications. 
+Although we weren't able to get a useful current from the panels on such a cloudy day, we were able to use batteries to drive a bunch of motors (toy wheels, drills, greenhouse side rollers), and used some low-cost voltage and current metres to learn a bit about current, voltage, and power requirements for various DC applications. 
 
 <div class="float-figure float-left">
   <img src="/assets/images/solar/solar_panel_examples.jpeg" alt="Mike and Greg testing solar panel performance on a cloudy day">
