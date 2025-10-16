@@ -8,7 +8,7 @@ layout: layouts/post.njk
 permalink: /events/solar/
 ---
 
-We had a great time at the 'Solar 101' workshop -- despite the weather! Greg Nelson (our good friend, via [otherWise](https://otherwise.one/)), Mike Beach (our good friend, via [Artisan's Asylum](https://www.artisansasylum.com/)), and some other local folks (both kids and adults) helped to make it a very productive and fun gathering.
+We had a great time at the 'Solar 101' workshop -- despite the weather! Greg Nelson (our friend, and one of the crew at [otherWise](https://otherwise.one/)), Mike Beach (our friend, and one of the crew at [Artisan's Asylum](https://www.artisansasylum.com/)), and some other local folks (both kids and adults) helped to make it a very productive and fun gathering.
 
 Although we weren't able to get a useful current from the panels on such a cloudy day, we were able to use batteries to drive a bunch of motors (toy wheels, drills, greenhouse side rollers), and used some low-cost voltage and current metres to learn a bit about current, voltage, and power requirements for various DC applications. 
 
