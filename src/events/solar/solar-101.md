@@ -2,7 +2,7 @@
 title: "Workshop: Solar 101"
 date: 2025-10-12
 location: "Beaver Brook Reservation in Belmont, MA"
-meta: Learning about 'medium scale' solar power. 
+meta: What scale of solar power might be useful for various applications?
 image: /assets/images/projects/solar101.jpg
 layout: layouts/post.njk
 permalink: /events/solar/

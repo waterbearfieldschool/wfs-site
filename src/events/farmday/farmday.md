@@ -2,7 +2,7 @@
 title: "WFCF Farm Day"
 date: 2025-10-18
 location: "Waltham Fields Community Farm"
-meta: Community farm day with hands-on activities
+meta: We'll be tabling at a well-loved local farm event!
 image: /assets/images/farmday/Farm_Day_2025_Square.jpg
 layout: layouts/post.njk
 permalink: /events/farmday/
