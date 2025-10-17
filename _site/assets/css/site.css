@@ -108,7 +108,7 @@ footer{padding:24px 0; color:var(--muted); font-size:.8rem; border-top:1px solid
 .float-figure.float-left{display:block; margin:19px auto !important; max-width:70%; clear:both; float:none !important}
 .float-figure.float-right{display:block; margin:19px auto !important; max-width:70%; clear:both; float:none !important}
 .float-figure img{width:100% !important; max-width:100% !important; height:auto; display:block; border-radius:0; margin:0 !important}
-.float-figure .float-caption{padding:8px 12px; font-size:0.85rem; color:var(--muted); text-align:left; background:var(--card)}
+.float-figure .float-caption{padding:8px 12px; font-size:0.95rem; color:var(--muted); text-align:left; background:var(--card)}
 @media (max-width:560px){
   .prose .float-left, .prose .float-right{float:none !important; margin:16px auto !important; max-width:80%; display:block}
   .float-figure.float-left, .float-figure.float-right{float:none !important; margin:16px auto !important; max-width:80%; display:block}
