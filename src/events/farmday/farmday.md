@@ -13,16 +13,118 @@ permalink: /events/farmday/
   <!--<div class="float-caption">The flyer we put out for the workshop!</div>-->
 </div>
 
-We'll have a booth at [Farm Day](https://communityfarms.org/calendar/event/farm-day-2025#!prettyPhoto) at [Waltham Fields Community Farm](https://communityfarms.org/) in Waltham, MA.  
+We had a great time at [Farm Day](https://communityfarms.org/calendar/event/farm-day-2025#!prettyPhoto), hosted by [Waltham Fields Community Farm](https://communityfarms.org/) in Waltham, MA!  Some pics of the event below:
 
-We're still working on demos and games, but some items on our list are:
-- the basics of a small solar-powered system
-- how to cheaply measure voltage and current for DC appliances
-- off-grid radios you can use with your phone
-- water level and water quality sensors
-- hand tools
-- a bike trailer and garden cart design
-- and more!
+<div class="float-figure float-right">
+  <img src="/assets/images/farmday/thechair.png" alt="thechair.png">
+  <div class="float-caption">thechair.png</div>
+</div>
 
-Come stop by and say hello!
+<div class="float-figure float-left float-small">
+  <video controls playsinline preload="metadata" webkit-playsinline muted>
+    <source src="/assets/images/farmday/IMG_1395.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="float-caption">Img 1395</div>
+</div>
+
+<div class="float-figure float-right">
+  <img src="/assets/images/farmday/IMG_1396.jpg" alt="Img 1396">
+  <div class="float-caption">Img 1396</div>
+</div>
+
+<div class="float-figure float-left">
+  <img src="/assets/images/farmday/IMG_1397.jpg" alt="Img 1397">
+  <div class="float-caption">Img 1397</div>
+</div>
+
+<div class="float-figure float-right">
+  <img src="/assets/images/farmday/IMG_1398.jpg" alt="Img 1398">
+  <div class="float-caption">Img 1398</div>
+</div>
+
+<div class="float-figure float-right float-small">
+  <video controls playsinline preload="metadata" webkit-playsinline muted>
+    <source src="/assets/images/farmday/IMG_1401.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="float-caption">Img 1401</div>
+</div>
+
+<div class="float-figure float-left">
+  <img src="/assets/images/farmday/IMG_1402.jpg" alt="Img 1402">
+  <div class="float-caption">Img 1402</div>
+</div>
+
+<div class="float-figure float-right">
+  <img src="/assets/images/farmday/IMG_1403.jpg" alt="Img 1403">
+  <div class="float-caption">Img 1403</div>
+</div>
+
+<div class="float-figure float-left">
+  <video controls playsinline preload="metadata" webkit-playsinline muted>
+    <source src="/assets/images/farmday/IMG_1405.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="float-caption">Img 1405</div>
+</div>
+
+<div class="float-figure float-right">
+  <img src="/assets/images/farmday/IMG_1410.jpg" alt="Img 1410">
+  <div class="float-caption">Img 1410</div>
+</div>
+
+<div class="float-figure float-left float-small">
+  <img src="/assets/images/farmday/IMG_1414.jpg" alt="Img 1414">
+  <div class="float-caption">Img 1414</div>
+</div>
+
+<div class="float-figure float-right">
+  <img src="/assets/images/farmday/IMG_1415.jpg" alt="Img 1415">
+  <div class="float-caption">Img 1415</div>
+</div>
+
+<div class="float-figure float-left">
+  <img src="/assets/images/farmday/IMG_1421.jpg" alt="Img 1421">
+  <div class="float-caption">Img 1421</div>
+</div>
+    
+
+<div class="float-figure float-left">
+  <img src="/assets/images/farmday/IMG_1423.jpg" alt="Img 1423">
+  <div class="float-caption">Img 1423</div>
+</div>
+
+<div class="float-figure float-right">
+  <video controls playsinline preload="metadata" webkit-playsinline muted>
+    <source src="/assets/images/farmday/IMG_1426.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="float-caption">Img 1426</div>
+</div>
+
+<div class="float-figure float-left">
+  <img src="/assets/images/farmday/IMG_1427.jpg" alt="Img 1427">
+  <div class="float-caption">Img 1427</div>
+</div>
+
+<div class="float-figure float-right">
+  <img src="/assets/images/farmday/IMG_1428.jpg" alt="Img 1428">
+  <div class="float-caption">Img 1428</div>
+</div>
+
+<div class="float-figure float-left float-small">
+  <img src="/assets/images/farmday/IMG_1429.jpg" alt="Img 1429">
+  <div class="float-caption">Img 1429</div>
+</div>
+
+<div class="float-figure float-right">
+  <img src="/assets/images/farmday/IMG_1430.jpg" alt="Img 1430">
+  <div class="float-caption">Img 1430</div>
+</div>
+
+<div class="float-figure float-left">
+  <img src="/assets/images/farmday/IMG_1431.jpg" alt="Img 1431">
+  <div class="float-caption">Img 1431</div>
+</div>
 
