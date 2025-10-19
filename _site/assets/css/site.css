@@ -108,7 +108,49 @@ footer{padding:24px 0; color:var(--muted); font-size:.8rem; border-top:1px solid
 .float-figure.float-left{display:block; margin:19px auto !important; max-width:70%; clear:both; float:none !important}
 .float-figure.float-right{display:block; margin:19px auto !important; max-width:70%; clear:both; float:none !important}
 .float-figure img{width:100% !important; max-width:100% !important; height:auto; display:block; border-radius:0; margin:0 !important}
+.float-figure video{width:100% !important; max-width:100% !important; height:auto; display:block; border-radius:0; margin:0 !important}
 .float-figure .float-caption{padding:8px 12px; font-size:0.95rem; color:var(--muted); text-align:left; background:var(--card)}
+/* Desktop: limit vertical image height to viewport */
+@media (min-width:768px){
+  /* Force container to exactly fit content - absolute positioning approach */
+  .float-figure,
+  div.float-figure,
+  .float-figure.float-left, 
+  .float-figure.float-right,
+  .prose .float-figure,
+  .prose .float-figure.float-left, 
+  .prose .float-figure.float-right,
+  article .float-figure,
+  main .float-figure,
+  body .float-figure {
+    display: inline-block !important;
+    position: relative !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    float: none !important;
+    overflow: visible !important;
+  }
+  
+  .float-figure img{max-height:70vh; width:auto !important; object-fit:contain; display:block !important}
+  .float-figure video{max-height:70vh; width:auto !important; object-fit:contain; display:block !important}
+  
+  /* Position caption absolutely so it doesn't affect container width */
+  .float-figure .float-caption{
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+    margin: 0 !important;
+  }
+}
+
 @media (max-width:560px){
   .prose .float-left, .prose .float-right{float:none !important; margin:16px auto !important; max-width:80%; display:block}
   .float-figure.float-left, .float-figure.float-right{float:none !important; margin:16px auto !important; max-width:80%; display:block}

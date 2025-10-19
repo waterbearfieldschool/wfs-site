@@ -40,7 +40,7 @@ def generate_video_thumbnail(video_path, output_path):
         ]
         result = subprocess.run(cmd, capture_output=True, text=True)
         if result.returncode == 0:
-            print(f"Generated thumbnail: {output_path}")
+            print(f"Generated video thumbnail: {output_path}")
             return True
         else:
             print(f"Warning: Could not generate thumbnail for {video_path}")
@@ -50,6 +50,27 @@ def generate_video_thumbnail(video_path, output_path):
         return False
     except Exception as e:
         print(f"Error generating thumbnail for {video_path}: {e}")
+        return False
+
+def generate_image_thumbnail(image_path, output_path, size="400x400"):
+    """Generate a thumbnail image from an image file using ffmpeg."""
+    try:
+        cmd = [
+            'ffmpeg', '-i', str(image_path), '-vf', f'scale={size}:force_original_aspect_ratio=decrease',
+            '-y', str(output_path)
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode == 0:
+            print(f"Generated image thumbnail: {output_path}")
+            return True
+        else:
+            print(f"Warning: Could not generate thumbnail for {image_path}")
+            return False
+    except FileNotFoundError:
+        print("Warning: ffmpeg not found. Image thumbnails will not be generated.")
+        return False
+    except Exception as e:
+        print(f"Error generating thumbnail for {image_path}: {e}")
         return False
 
 def generate_markdown_gallery(image_files, image_folder, base_path="/assets/images/"):
@@ -93,8 +114,13 @@ def generate_markdown_gallery(image_files, image_folder, base_path="/assets/imag
             markdown_content.append(f'  <div class="float-caption">{caption}</div>')
             markdown_content.append(f'</div>')
         else:
+            # Generate thumbnail path for images
+            thumbnail_path = f"{base_path}{folder_name}/{image_file.stem}_thumb{image_file.suffix}"
+            
             markdown_content.append(f'<div class="float-figure {float_class}">')
-            markdown_content.append(f'  <img src="{image_path}" alt="{caption}">')
+            markdown_content.append(f'  <a href="{image_path}" target="_blank">')
+            markdown_content.append(f'    <img src="{thumbnail_path}" alt="{caption}">')
+            markdown_content.append(f'  </a>')
             markdown_content.append(f'  <div class="float-caption">{caption}</div>')
             markdown_content.append(f'</div>')
         
@@ -143,14 +169,20 @@ def main():
     
     print(f"Found {len(image_files)} image files")
     
-    # Generate video thumbnails if requested
+    # Generate thumbnails if requested
     if args.generate_thumbnails:
-        print("Generating video thumbnails...")
+        print("Generating thumbnails...")
         for image_file in image_files:
             if image_file.suffix.lower() in {'.mp4', '.mov'}:
+                # Video thumbnails
                 thumbnail_path = image_file.parent / f"{image_file.stem}_thumb.jpg"
                 if not thumbnail_path.exists():
                     generate_video_thumbnail(image_file, thumbnail_path)
+            elif image_file.suffix.lower() in {'.jpg', '.jpeg', '.png', '.gif', '.webp'}:
+                # Image thumbnails
+                thumbnail_path = image_file.parent / f"{image_file.stem}_thumb{image_file.suffix}"
+                if not thumbnail_path.exists():
+                    generate_image_thumbnail(image_file, thumbnail_path)
     
     # Generate output filename if not provided
     if not args.output_file:
@@ -173,7 +205,8 @@ def main():
     
     if args.generate_thumbnails:
         video_count = len([f for f in image_files if f.suffix.lower() in {'.mp4', '.mov'}])
-        print(f"Generated thumbnails for {video_count} video files")
+        image_count = len([f for f in image_files if f.suffix.lower() in {'.jpg', '.jpeg', '.png', '.gif', '.webp'}])
+        print(f"Generated thumbnails for {video_count} video files and {image_count} image files")
 
 if __name__ == "__main__":
     main()
