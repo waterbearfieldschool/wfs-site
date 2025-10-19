@@ -30,6 +30,13 @@ We had a great time at [Farm Day](https://communityfarms.org/calendar/event/farm
   <div class="float-caption">It was fun to find WFS on a chair!</div>
 </div>
 
+<div class="float-figure float-right">
+  <a href="/assets/images/farmday/energies_compared.png" target="_blank">
+    <img src="/assets/images/farmday/diesel_compared_thumb.png" alt="Energy comparison diagram">
+  </a>
+  <div class="float-caption">I redid the 'energy comparison' poster from the previous Waterbear workshop to include a more reasonable amount of diesel (5 gallons, rather than 1/2 cup).  Really gets across the relative energy densities!  A PDF of the poster is <a href="/assets/images/farmday/energies.pdf">here</a>.</div>
+</div>
+
 <div class="float-figure float-left float-small">
   <video controls playsinline preload="metadata" webkit-playsinline muted poster="/assets/images/farmday/IMG_1395_thumb.jpg">
     <source src="/assets/images/farmday/IMG_1395.mp4" type="video/mp4">
@@ -44,6 +51,7 @@ We had a great time at [Farm Day](https://communityfarms.org/calendar/event/farm
   </a>
   <div class="float-caption">Folks really liked playing with the 'solar-powered car' (left of picture).  You can also see the 'electric wheelbarrow' prototype next to the chalkboard. More on that soon!</div>
 </div>
+
 
 <div class="float-figure float-left">
   <a href="/assets/images/farmday/IMG_1397.jpg" target="_blank">
@@ -140,6 +148,8 @@ We had a great time at [Farm Day](https://communityfarms.org/calendar/event/farm
   </a>
   <div class="float-caption">'Join our skill-share co-op'!</div>
 </div>
+
+
 
 
 <div class="float-figure float-left">
