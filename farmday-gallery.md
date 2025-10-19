@@ -1,71 +1,24 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WFCF Farm Day</title>
-  <meta name="description" content="We&#39;ll be tabling at a well-loved local farm event!" />
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://waterbearfieldschool.org/events/farmday/">
-  <meta property="og:title" content="WFCF Farm Day">
-  <meta property="og:description" content="We&#39;ll be tabling at a well-loved local farm event!">
-  <meta property="og:site_name" content="Waterbear Field School">
-  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/farmday/Farm_Day_2025_Square.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/jpeg">
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://waterbearfieldschool.org/events/farmday/">
-  <meta property="twitter:title" content="WFCF Farm Day">
-  <meta property="twitter:description" content="We&#39;ll be tabling at a well-loved local farm event!">
-  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/farmday/Farm_Day_2025_Square.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/site.css">
-</head>
-<body>
-  <div class="wrap">
-    <aside>
-      <div class="brand">
-        <!--<div class="dot" aria-hidden="true"></div>-->
-        <div class="brand-hero">
-          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
-          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
-          <div class="contact-top">
-            <a class="contact-button" href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a>
-          </div>
-        </div>
-      </div>
+---
+title: "Farmday"
+date: 2025-10-18
+location: "Waterbeaar Field School"
+meta: Photo gallery for Farmday
+layout: layouts/post.njk
+permalink: /events/farmday/
+---
 
-      <nav>
-        <ul>
-          <li><a class="" href="/">Home</a></li>
-          <li><a class="active" href="/events/">Events</a></li>
-          
-          <li><a class="" href="/about/">About</a></li>
-        </ul>
-      </nav>
-    </aside>
+# Farmday
 
-    <main>
-      
-<article class="prose">
-  <h1>WFCF Farm Day</h1>
-  <div class="meta">Sat Oct 18 2025</div>
-  <div class="float-figure float-left">
-  <a href="https://communityfarms.org/calendar/event/farm-day-2025#!prettyPhoto"><img src="/assets/images/farmday/Farm_Day_2025_Square.jpg" alt="Mike and Greg testing solar panel performance on a cloudy day"></a>
-  <!--<div class="float-caption">The flyer we put out for the workshop!</div>-->
+<div class="float-figure float-left">
+  <img src="/assets/images/farmday/Farm_Day_2025_Square.jpg" alt="Farm day 2025 square">
+  <div class="float-caption">Farm day 2025 square</div>
 </div>
-<p>We had a great time at <a href="https://communityfarms.org/calendar/event/farm-day-2025#!prettyPhoto">Farm Day</a>, hosted by <a href="https://communityfarms.org/">Waltham Fields Community Farm</a> in Waltham, MA!  Some pics of the event below:</p>
+
 <div class="float-figure float-right">
-  <img src="/assets/images/farmday/thechair.png" alt="thechair.png">
-  <div class="float-caption">thechair.png</div>
+  <img src="/assets/images/farmday/IMG_1394.jpg" alt="Img 1394">
+  <div class="float-caption">Img 1394</div>
 </div>
+
 <div class="float-figure float-left float-small">
   <video controls playsinline preload="metadata" webkit-playsinline muted poster="/assets/images/farmday/IMG_1395_thumb.jpg">
     <source src="/assets/images/farmday/IMG_1395.mp4" type="video/mp4">
@@ -73,18 +26,30 @@
   </video>
   <div class="float-caption">Img 1395</div>
 </div>
+
 <div class="float-figure float-right">
   <img src="/assets/images/farmday/IMG_1396.jpg" alt="Img 1396">
   <div class="float-caption">Img 1396</div>
 </div>
+
 <div class="float-figure float-left">
   <img src="/assets/images/farmday/IMG_1397.jpg" alt="Img 1397">
   <div class="float-caption">Img 1397</div>
 </div>
+
 <div class="float-figure float-right">
   <img src="/assets/images/farmday/IMG_1398.jpg" alt="Img 1398">
   <div class="float-caption">Img 1398</div>
 </div>
+
+<div class="float-figure float-left">
+  <video controls playsinline preload="metadata" webkit-playsinline muted poster="/assets/images/farmday/IMG_1399_thumb.jpg">
+    <source src="/assets/images/farmday/IMG_1399.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="float-caption">Img 1399</div>
+</div>
+
 <div class="float-figure float-right float-small">
   <video controls playsinline preload="metadata" webkit-playsinline muted poster="/assets/images/farmday/IMG_1401_thumb.jpg">
     <source src="/assets/images/farmday/IMG_1401.mp4" type="video/mp4">
@@ -92,14 +57,17 @@
   </video>
   <div class="float-caption">Img 1401</div>
 </div>
+
 <div class="float-figure float-left">
   <img src="/assets/images/farmday/IMG_1402.jpg" alt="Img 1402">
   <div class="float-caption">Img 1402</div>
 </div>
+
 <div class="float-figure float-right">
   <img src="/assets/images/farmday/IMG_1403.jpg" alt="Img 1403">
   <div class="float-caption">Img 1403</div>
 </div>
+
 <div class="float-figure float-left">
   <video controls playsinline preload="metadata" webkit-playsinline muted poster="/assets/images/farmday/IMG_1405_thumb.jpg">
     <source src="/assets/images/farmday/IMG_1405.mp4" type="video/mp4">
@@ -107,26 +75,47 @@
   </video>
   <div class="float-caption">Img 1405</div>
 </div>
+
 <div class="float-figure float-right">
   <img src="/assets/images/farmday/IMG_1410.jpg" alt="Img 1410">
   <div class="float-caption">Img 1410</div>
 </div>
+
 <div class="float-figure float-left float-small">
   <img src="/assets/images/farmday/IMG_1414.jpg" alt="Img 1414">
   <div class="float-caption">Img 1414</div>
 </div>
+
 <div class="float-figure float-right">
   <img src="/assets/images/farmday/IMG_1415.jpg" alt="Img 1415">
   <div class="float-caption">Img 1415</div>
 </div>
+
 <div class="float-figure float-left">
   <img src="/assets/images/farmday/IMG_1421.jpg" alt="Img 1421">
   <div class="float-caption">Img 1421</div>
 </div>
+
+<div class="float-figure float-right">
+  <img src="/assets/images/farmday/IMG_1422.jpg" alt="Img 1422">
+  <div class="float-caption">Img 1422</div>
+</div>
+
 <div class="float-figure float-left">
   <img src="/assets/images/farmday/IMG_1423.jpg" alt="Img 1423">
   <div class="float-caption">Img 1423</div>
 </div>
+
+<div class="float-figure float-right float-small">
+  <img src="/assets/images/farmday/IMG_1424.jpg" alt="Img 1424">
+  <div class="float-caption">Img 1424</div>
+</div>
+
+<div class="float-figure float-left">
+  <img src="/assets/images/farmday/IMG_1425.jpg" alt="Img 1425">
+  <div class="float-caption">Img 1425</div>
+</div>
+
 <div class="float-figure float-right">
   <video controls playsinline preload="metadata" webkit-playsinline muted poster="/assets/images/farmday/IMG_1426_thumb.jpg">
     <source src="/assets/images/farmday/IMG_1426.mp4" type="video/mp4">
@@ -134,34 +123,38 @@
   </video>
   <div class="float-caption">Img 1426</div>
 </div>
+
 <div class="float-figure float-left">
   <img src="/assets/images/farmday/IMG_1427.jpg" alt="Img 1427">
   <div class="float-caption">Img 1427</div>
 </div>
+
 <div class="float-figure float-right">
   <img src="/assets/images/farmday/IMG_1428.jpg" alt="Img 1428">
   <div class="float-caption">Img 1428</div>
 </div>
+
 <div class="float-figure float-left float-small">
   <img src="/assets/images/farmday/IMG_1429.jpg" alt="Img 1429">
   <div class="float-caption">Img 1429</div>
 </div>
+
 <div class="float-figure float-right">
   <img src="/assets/images/farmday/IMG_1430.jpg" alt="Img 1430">
   <div class="float-caption">Img 1430</div>
 </div>
+
 <div class="float-figure float-left">
   <img src="/assets/images/farmday/IMG_1431.jpg" alt="Img 1431">
   <div class="float-caption">Img 1431</div>
 </div>
 
-</article>
+<div class="float-figure float-right">
+  <img src="/assets/images/farmday/IMG_1432.jpg" alt="Img 1432">
+  <div class="float-caption">Img 1432</div>
+</div>
 
-    </main>
-  </div>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+<div class="float-figure float-left">
+  <img src="/assets/images/farmday/thechair.png" alt="Thechair">
+  <div class="float-caption">Thechair</div>
+</div>

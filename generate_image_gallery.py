@@ -7,6 +7,7 @@ Usage: python generate_image_gallery.py <image_folder> [output_file]
 import os
 import sys
 import argparse
+import subprocess
 from pathlib import Path
 
 def get_image_files(folder_path):
@@ -29,6 +30,28 @@ def generate_caption_from_filename(filename):
     caption = caption.capitalize()
     return caption
 
+def generate_video_thumbnail(video_path, output_path):
+    """Generate a thumbnail image from a video file using ffmpeg."""
+    try:
+        # Extract frame at 1 second mark
+        cmd = [
+            'ffmpeg', '-i', str(video_path), '-ss', '00:00:01.000',
+            '-vframes', '1', '-y', str(output_path)
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode == 0:
+            print(f"Generated thumbnail: {output_path}")
+            return True
+        else:
+            print(f"Warning: Could not generate thumbnail for {video_path}")
+            return False
+    except FileNotFoundError:
+        print("Warning: ffmpeg not found. Video thumbnails will not be generated.")
+        return False
+    except Exception as e:
+        print(f"Error generating thumbnail for {video_path}: {e}")
+        return False
+
 def generate_markdown_gallery(image_files, image_folder, base_path="/assets/images/"):
     """Generate markdown content for the image gallery."""
     markdown_content = []
@@ -50,8 +73,11 @@ def generate_markdown_gallery(image_files, image_folder, base_path="/assets/imag
         
         # Handle video files differently
         if image_file.suffix.lower() in {'.mp4', '.mov'}:
+            # Generate poster image path (thumbnail)
+            poster_path = f"{base_path}{folder_name}/{image_file.stem}_thumb.jpg"
+            
             markdown_content.append(f'<div class="float-figure {float_class}">')
-            markdown_content.append(f'  <video controls playsinline preload="metadata" webkit-playsinline muted autoplay="false">')
+            markdown_content.append(f'  <video controls playsinline preload="metadata" webkit-playsinline muted poster="{poster_path}">')
             
             # Add appropriate MIME type based on extension
             if image_file.suffix.lower() == '.mp4':
@@ -100,6 +126,8 @@ def main():
     parser.add_argument('output_file', nargs='?', help='Output markdown file (optional)')
     parser.add_argument('--base-path', default='/assets/images/', 
                        help='Base path for image URLs (default: /assets/images/)')
+    parser.add_argument('--generate-thumbnails', action='store_true',
+                       help='Generate video thumbnails using ffmpeg')
     
     args = parser.parse_args()
     
@@ -114,6 +142,15 @@ def main():
         sys.exit(1)
     
     print(f"Found {len(image_files)} image files")
+    
+    # Generate video thumbnails if requested
+    if args.generate_thumbnails:
+        print("Generating video thumbnails...")
+        for image_file in image_files:
+            if image_file.suffix.lower() in {'.mp4', '.mov'}:
+                thumbnail_path = image_file.parent / f"{image_file.stem}_thumb.jpg"
+                if not thumbnail_path.exists():
+                    generate_video_thumbnail(image_file, thumbnail_path)
     
     # Generate output filename if not provided
     if not args.output_file:
@@ -133,6 +170,10 @@ def main():
     
     print(f"Generated markdown gallery: {args.output_file}")
     print(f"Processed {len(image_files)} images from {args.image_folder}")
+    
+    if args.generate_thumbnails:
+        video_count = len([f for f in image_files if f.suffix.lower() in {'.mp4', '.mov'}])
+        print(f"Generated thumbnails for {video_count} video files")
 
 if __name__ == "__main__":
     main()
