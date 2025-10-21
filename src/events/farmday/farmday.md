@@ -52,13 +52,14 @@ We had a great time at [Farm Day](https://communityfarms.org/calendar/event/farm
   <div class="float-caption">Folks really liked playing with the 'solar-powered car' (left of picture).  You can also see the 'electric wheelbarrow' prototype next to the chalkboard. More on that soon!</div>
 </div>
 
-
+<!--
 <div class="float-figure float-left">
   <a href="/assets/images/farmday/IMG_1397.jpg" target="_blank">
     <img src="/assets/images/farmday/IMG_1397_thumb.jpg" alt="Img 1397">
   </a>
   <div class="float-caption">Folks really got into making solar-powered vehicles.</div>
 </div>
+-->
 
 <div class="float-figure float-right">
   <a href="/assets/images/farmday/IMG_1398.jpg" target="_blank">
