@@ -1,0 +1,34 @@
+radio research
+
+position of nissa's 44.40214370620821, -72.21318996782283
+1:37 PM
+
+nicole's hill 44.405556 -72.195833
+
+murphy's 44.41269705277755, -72.56662739325412
+2:07 PM
+
+mountain near murphy's: 44.41277752258454, -72.56667567301382
+mountain near nicole's: 44.430628, -72.611602
+
+better mountain near murphy's: 44.441046, -72.595294
+
+better mountain near nicole's: 44.40031146, -72.25192850
+
+even better mountain near nicole's 44.40129262, -72.25192850
+
+-----
+
+better mountain near murphy's: "W1": 44.441046, -72.595294
+
+even better mountain near nicole's: "D1": 44.40129262, -72.25192850
+
+murphy's land: 99 upper Hancock Brook rd, Worcester, VT:  "M1": 44.41254907908097, -72.56668695160761
+
+position of nissa's:  "N1":  44.40214370620821, -72.21318996782283
+
+nicole's hill 44.405556 -72.195833 -- 
+
+
+
+

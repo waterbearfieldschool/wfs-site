@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Setting up a DIY Radio Network in Vermont</title>
+  <meta name="description" content="Can we provide mountaintop-to-mountaintop, off-grid communications to communities in rural Vermont?" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/projects/radio/">
+  <meta property="og:title" content="Setting up a DIY Radio Network in Vermont">
+  <meta property="og:description" content="Can we provide mountaintop-to-mountaintop, off-grid communications to communities in rural Vermont?">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/radio/w1_to_d1.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/projects/radio/">
+  <meta property="twitter:title" content="Setting up a DIY Radio Network in Vermont">
+  <meta property="twitter:description" content="Can we provide mountaintop-to-mountaintop, off-grid communications to communities in rural Vermont?">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/radio/w1_to_d1.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <div class="contact-top">
+            <a class="contact-button" href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a>
+          </div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a class="" href="/">Home</a></li>
+          <li><a class="" href="/events/">Events</a></li>
+          <li><a class="active" href="/projects/">Projects</a></li>
+          <li><a class="" href="/about/">About</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Setting up a DIY Radio Network in Vermont</h1>
+  <div class="meta">Mon Oct 20 2025</div>
+  <h1>Overview</h1>
+<h2>The relay points</h2>
+<div id="map" style="height: 400px; width: 100%; margin: 20px 0;"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+.marker-tooltip {
+    background-color: lightblue !important;
+    border: 1px solid #007acc !important;
+    color: black !important;
+}
+
+.line-tooltip {
+    background-color: #ffcccc !important;
+    border: 1px solid #cc0000 !important;
+    color: black !important;
+}
+</style>
+<script>
+var map = L.map('map').setView([44.44111491175958, -72.59472537504577], 15);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Add markers for each relay point with permanent tooltips (light blue background)
+var w1 = L.marker([44.441046, -72.595294]).addTo(map)
+    .bindTooltip('W1', {
+        permanent: true, 
+        direction: 'top',
+        className: 'marker-tooltip'
+    });
+
+var d1 = L.marker([44.40129262, -72.25192850]).addTo(map)
+    .bindTooltip('D1', {
+        permanent: true, 
+        direction: 'top',
+        className: 'marker-tooltip'
+    });
+
+var m1 = L.marker([44.41254907908097, -72.56668695160761]).addTo(map)
+    .bindTooltip('M1', {
+        permanent: true, 
+        direction: 'top',
+        className: 'marker-tooltip'
+    });
+
+var n1 = L.marker([44.40214370620821, -72.21318996782283]).addTo(map)
+    .bindTooltip('N1', {
+        permanent: true, 
+        direction: 'top',
+        className: 'marker-tooltip'
+    });
+
+// Add red lines connecting the relay points with labels (light red background)
+var w1ToM1 = L.polyline([
+    [44.441046, -72.595294],      // W1
+    [44.41254907908097, -72.56668695160761]  // M1
+], {color: 'red'}).addTo(map)
+    .bindTooltip('W1 → M1', {
+        permanent: true, 
+        direction: 'center',
+        className: 'line-tooltip'
+    });
+
+var m1ToD1 = L.polyline([
+    [44.41254907908097, -72.56668695160761], // M1
+    [44.40129262, -72.25192850]             // D1
+], {color: 'red'}).addTo(map)
+    .bindTooltip('M1 → D1', {
+        permanent: true, 
+        direction: 'center',
+        className: 'line-tooltip'
+    });
+
+var d1ToN1 = L.polyline([
+    [44.40129262, -72.25192850],            // D1
+    [44.40214370620821, -72.21318996782283] // N1
+], {color: 'red'}).addTo(map)
+    .bindTooltip('D1 → N1', {
+        permanent: true, 
+        direction: 'center',
+        className: 'line-tooltip'
+    });
+
+// Fit map to show all markers
+var group = new L.featureGroup([w1, d1, m1, n1]);
+map.fitBounds(group.getBounds().pad(0.1));
+</script>
+<div class="float-figure float-left">
+  <a href="/assets/images/radio/w1_to_d1.png" target="_blank">
+    <img src="/assets/images/radio/w1_to_d1.png" alt="Mike and Greg testing solar panel performance on a cloudy day">
+  </a>
+  <div class="float-caption">W1 to D1.
+</div>
+</div>
+<div class="float-figure float-left">
+  <a href="/assets/images/radio/w1_to_d1.png" target="_blank">
+    <img src="/assets/images/radio/w1_to_m1.png" alt="Mike and Greg testing solar panel performance on a cloudy day">
+  </a>
+  <div class="float-caption">W1 to M1.
+</div>
+</div>
+<div class="float-figure float-left">
+  <a href="/assets/images/radio/d1_to_n1.png" target="_blank">
+    <img src="/assets/images/radio/d1_to_n1.png" alt="Mike and Greg testing solar panel performance on a cloudy day">
+  </a>
+  <div class="float-caption">D1 to N1.
+</div>
+</div>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
