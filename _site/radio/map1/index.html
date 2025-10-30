@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line of Sight Analysis Tool - Enhanced</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        #map {
+            flex: 1;
+            height: 100vh;
+        }
+        
+        #sidebar {
+            width: 420px;
+            background: #f5f5f5;
+            border-left: 1px solid #ddd;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        #elevation-profile {
+            width: 100%;
+            height: 300px;
+            margin: 20px 0 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        #hover-info {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f8f9fa;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        
+        #hover-info h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 1em;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        
+        #hover-info .info-line {
+            margin: 6px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        #hover-info .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        #hover-info .info-column {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #hover-info .info-label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        #hover-info .info-value {
+            color: #333;
+            text-align: right;
+        }
+        
+        #hover-info .no-hover {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .info-section h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        
+        .status {
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .status.clear { background: #d4edda; color: #155724; }
+        .status.blocked { background: #f8d7da; color: #721c24; }
+        .status.pending { background: #fff3cd; color: #856404; }
+        
+        .controls {
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .btn.clear {
+            background: #6c757d;
+        }
+        
+        .antenna-controls {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .antenna-input {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+        }
+        
+        .antenna-input label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .antenna-input input {
+            width: 80px;
+            padding: 4px 8px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            text-align: right;
+        }
+        
+        .antenna-input span {
+            margin-left: 5px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="map"></div>
+        <div id="sidebar">
+            <div class="info-section">
+                <h3>Line of Sight Analysis</h3>
+                <div class="controls">
+                    <button class="btn" onclick="clearPoints()">Clear Points</button>
+                    <button class="btn" onclick="analyzeLineOfSight()">Analyze</button>
+                </div>
+                <div id="status" class="status pending">Click two points on the map</div>
+            </div>
+            
+            <div class="info-section">
+                <h3>Antenna Heights</h3>
+                <div class="antenna-controls">
+                    <div class="antenna-input">
+                        <label for="antenna1-height">Point 1:</label>
+                        <input type="number" id="antenna1-height" value="10" min="0" max="200" step="0.1" onchange="updateAnalysis()">
+                        <span>meters</span>
+                    </div>
+                    <div class="antenna-input">
+                        <label for="antenna2-height">Point 2:</label>
+                        <input type="number" id="antenna2-height" value="10" min="0" max="200" step="0.1" onchange="updateAnalysis()">
+                        <span>meters</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h3>Point Information</h3>
+                <div id="point-info">
+                    <div>Point 1: Not selected</div>
+                    <div>Point 2: Not selected</div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h3>Distance & Elevation</h3>
+                <div id="distance-info">
+                    <div>Distance: --</div>
+                    <div>Point 1 Elevation: --</div>
+                    <div>Point 2 Elevation: --</div>
+                    <div>Elevation Difference: --</div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h3>Elevation Profile</h3>
+                <div id="elevation-profile"></div>
+                <div id="hover-info">
+                    <h4>Profile Data</h4>
+                    <div class="no-hover">Hover over chart to see details</div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h3>Map Legend</h3>
+                <div id="legend">
+                    <div style="margin: 5px 0;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #ff0000; border: 2px solid white; border-radius: 50%; margin-right: 8px;"></span>
+                        Highest Point
+                    </div>
+                    <div style="margin: 5px 0;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #ff8c00; border: 2px solid white; border-radius: 50%; margin-right: 8px;"></span>
+                        Elevation Peak
+                    </div>
+                    <div style="margin: 5px 0;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #8b0000; border: 2px solid white; border-radius: 50%; margin-right: 8px;"></span>
+                        Obstruction Point
+                    </div>
+                    <div style="margin: 5px 0;">
+                        <span style="display: inline-block; width: 12px; height: 3px; background: #28a745; margin-right: 8px;"></span>
+                        Clear Path (Green)
+                    </div>
+                    <div style="margin: 5px 0;">
+                        <span style="display: inline-block; width: 12px; height: 3px; background: red; margin-right: 8px;"></span>
+                        Blocked Path (Red)
+                    </div>
+                    <div style="margin: 5px 0;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #0066ff; border: 2px solid white; border-radius: 50%; margin-right: 8px;"></span>
+                        Chart Hover Position
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Global variables
+        let selectedPoints = [];
+        let markers = [];
+        let pathLine = null;
+        let elevationData = [];
+        let elevationMarkers = [];
+        let isAnalyzing = false;
+        let lineOfSightClear = false;
+        let hoverMarker = null;
+        
+        // Initialize the map
+        var map = L.map('map').setView([44.422633, -72.396017], 11);
+
+        // Define base layers
+        var topoLayer = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Map data: &copy; <a href="https://www.usgs.gov/">USGS</a>',
+            maxZoom: 16
+        });
+
+        var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        });
+
+        // Add default layer
+        topoLayer.addTo(map);
+
+        // Define base layers for layer control
+        var baseLayers = {
+            "Topographic": topoLayer,
+            "Satellite": satelliteLayer
+        };
+
+        // Add layer control
+        L.control.layers(baseLayers).addTo(map);
+
+        // Map click handler
+        map.on('click', function(e) {
+            if (selectedPoints.length < 2) {
+                addPoint(e.latlng);
+            }
+        });
+
+        function addPoint(latlng) {
+            selectedPoints.push(latlng);
+            
+            // Create draggable marker
+            const marker = L.marker(latlng, {
+                title: `Point ${selectedPoints.length}`,
+                draggable: true
+            }).addTo(map);
+            
+            marker.bindPopup(`Point ${selectedPoints.length}<br>Lat: ${latlng.lat.toFixed(6)}<br>Lng: ${latlng.lng.toFixed(6)}`);
+            
+            // Add drag event listener
+            const pointIndex = selectedPoints.length - 1;
+            marker.on('dragstart', function(e) {
+                // Disable map dragging and zoom during marker drag
+                map.dragging.disable();
+                map.touchZoom.disable();
+                map.doubleClickZoom.disable();
+                map.scrollWheelZoom.disable();
+                map.boxZoom.disable();
+                map.keyboard.disable();
+            });
+            
+            marker.on('drag', function(e) {
+                selectedPoints[pointIndex] = e.target.getLatLng();
+                updatePointInfo();
+                if (selectedPoints.length === 2) {
+                    drawPath(); // Don't auto-fit during drag
+                }
+            });
+            
+            marker.on('dragend', function(e) {
+                // Re-enable map interactions
+                map.dragging.enable();
+                map.touchZoom.enable();
+                map.doubleClickZoom.enable();
+                map.scrollWheelZoom.enable();
+                map.boxZoom.enable();
+                map.keyboard.enable();
+                
+                selectedPoints[pointIndex] = e.target.getLatLng();
+                updatePointInfo();
+                marker.setPopupContent(`Point ${pointIndex + 1}<br>Lat: ${e.target.getLatLng().lat.toFixed(6)}<br>Lng: ${e.target.getLatLng().lng.toFixed(6)}`);
+                
+                if (selectedPoints.length === 2) {
+                    drawPath(); // Still don't auto-fit after drag
+                    // Auto-analyze after drag
+                    setTimeout(() => {
+                        if (!isAnalyzing) {
+                            analyzeLineOfSight();
+                        }
+                    }, 500);
+                }
+            });
+            
+            markers.push(marker);
+            
+            updatePointInfo();
+            
+            if (selectedPoints.length === 2) {
+                drawPath(true); // Auto-fit when first placing points
+                updateStatus('Two points selected. Adjust antenna heights and drag markers as needed.', 'pending');
+            }
+        }
+
+        function drawPath(autoFit = false) {
+            if (pathLine) {
+                map.removeLayer(pathLine);
+            }
+            
+            // Choose color based on line of sight status
+            const pathColor = lineOfSightClear ? '#28a745' : '#dc3545'; // Green if clear, red if blocked
+            
+            pathLine = L.polyline(selectedPoints, {
+                color: pathColor,
+                weight: 3,
+                opacity: 0.8,
+                dashArray: lineOfSightClear ? null : '10, 5' // Solid if clear, dashed if blocked
+            }).addTo(map);
+            
+            // Only auto-fit when explicitly requested (not during drag)
+            if (autoFit) {
+                const group = new L.featureGroup(markers.concat([pathLine]));
+                map.fitBounds(group.getBounds().pad(0.1));
+            }
+        }
+
+        function updatePointInfo() {
+            const infoDiv = document.getElementById('point-info');
+            let html = '';
+            
+            for (let i = 0; i < 2; i++) {
+                if (selectedPoints[i]) {
+                    html += `<div>Point ${i + 1}: ${selectedPoints[i].lat.toFixed(6)}, ${selectedPoints[i].lng.toFixed(6)}</div>`;
+                } else {
+                    html += `<div>Point ${i + 1}: Not selected</div>`;
+                }
+            }
+            
+            infoDiv.innerHTML = html;
+        }
+
+        function clearPoints() {
+            selectedPoints = [];
+            elevationData = [];
+            lineOfSightClear = false;
+            
+            // Remove markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+            
+            // Remove elevation markers
+            clearElevationMarkers();
+            
+            // Remove hover marker
+            clearHoverMarker();
+            
+            // Remove path line
+            if (pathLine) {
+                map.removeLayer(pathLine);
+                pathLine = null;
+            }
+            
+            updatePointInfo();
+            updateDistanceInfo();
+            clearElevationProfile();
+            updateStatus('Click two points on the map', 'pending');
+        }
+
+        function clearElevationMarkers() {
+            elevationMarkers.forEach(marker => map.removeLayer(marker));
+            elevationMarkers = [];
+        }
+
+        function clearHoverMarker() {
+            if (hoverMarker) {
+                map.removeLayer(hoverMarker);
+                hoverMarker = null;
+            }
+        }
+
+        function updateHoverMarker(distance) {
+            // Calculate position along the line based on distance
+            if (selectedPoints.length !== 2 || elevationData.length === 0) {
+                clearHoverMarker();
+                return;
+            }
+
+            // Find the closest elevation data point
+            let closestPoint = elevationData[0];
+            let minDiff = Math.abs(elevationData[0].distance - distance);
+            
+            for (let i = 1; i < elevationData.length; i++) {
+                const diff = Math.abs(elevationData[i].distance - distance);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestPoint = elevationData[i];
+                }
+            }
+
+            // Remove existing hover marker
+            clearHoverMarker();
+
+            // Create new hover marker
+            hoverMarker = L.circleMarker([closestPoint.lat, closestPoint.lng], {
+                radius: 8,
+                fillColor: '#0066ff',
+                color: '#ffffff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8,
+                zIndexOffset: 1000 // Keep it on top
+            }).addTo(map);
+
+            // Add popup with elevation info
+            const popupContent = `
+                <strong>Profile Position</strong><br>
+                Distance: ${(closestPoint.distance / 1000).toFixed(2)} km<br>
+                Elevation: ${closestPoint.elevation.toFixed(1)} m (${(closestPoint.elevation * 3.28084).toFixed(0)} ft)
+            `;
+            hoverMarker.bindPopup(popupContent);
+        }
+
+        function updateHoverInfo(distanceM, plotlyPoints) {
+            const hoverInfoDiv = document.getElementById('hover-info');
+            
+            // Find the closest elevation data point
+            let closestPoint = elevationData[0];
+            let minDiff = Math.abs(elevationData[0].distance - distanceM);
+            
+            for (let i = 1; i < elevationData.length; i++) {
+                const diff = Math.abs(elevationData[i].distance - distanceM);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestPoint = elevationData[i];
+                }
+            }
+
+            // Get antenna heights and calculate line-of-sight info
+            const { antenna1Height, antenna2Height } = getAntennaHeights();
+            const startPoint = elevationData[0];
+            const endPoint = elevationData[elevationData.length - 1];
+            const totalDistance = endPoint.distance;
+            const ratio = closestPoint.distance / totalDistance;
+            
+            const startHeight = startPoint.elevation + antenna1Height;
+            const endHeight = endPoint.elevation + antenna2Height;
+            const losHeight = startHeight + (endHeight - startHeight) * ratio;
+            
+            // Calculate Fresnel zone info
+            const fresnelRadius = calculateFresnelRadius(closestPoint.distance, totalDistance, 2400);
+            const clearance = losHeight - closestPoint.elevation;
+            const fresnelClearance = clearance - (fresnelRadius * 0.6);
+            
+            // Create the info display with two-column layout
+            hoverInfoDiv.innerHTML = `
+                <h4>Profile Data</h4>
+                <div class="info-grid">
+                    <div class="info-column">
+                        <div class="info-line">
+                            <span class="info-label">Distance:</span>
+                            <span class="info-value">${(closestPoint.distance / 1000).toFixed(2)} km</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">Ground Elev:</span>
+                            <span class="info-value">${closestPoint.elevation.toFixed(1)} m</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">LOS Height:</span>
+                            <span class="info-value">${losHeight.toFixed(1)} m</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">Clearance:</span>
+                            <span class="info-value" style="color: ${clearance > 0 ? '#28a745' : '#dc3545'}">${clearance.toFixed(1)} m</span>
+                        </div>
+                    </div>
+                    <div class="info-column">
+                        <div class="info-line">
+                            <span class="info-label">Fresnel Zone:</span>
+                            <span class="info-value">${fresnelRadius.toFixed(1)} m</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">60% Fresnel:</span>
+                            <span class="info-value" style="color: ${fresnelClearance > 0 ? '#28a745' : '#dc3545'}">${fresnelClearance > 0 ? 'Clear' : 'Blocked'}</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">Coordinates:</span>
+                            <span class="info-value">${closestPoint.lat.toFixed(4)}, ${closestPoint.lng.toFixed(4)}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function clearHoverInfo() {
+            const hoverInfoDiv = document.getElementById('hover-info');
+            hoverInfoDiv.innerHTML = `
+                <h4>Profile Data</h4>
+                <div class="no-hover">Hover over chart to see details</div>
+            `;
+        }
+
+        function updateStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+        }
+
+        function updateDistanceInfo() {
+            const infoDiv = document.getElementById('distance-info');
+            
+            if (selectedPoints.length === 2) {
+                const distance = calculateDistance(selectedPoints[0], selectedPoints[1]);
+                infoDiv.innerHTML = `
+                    <div>Distance: ${(distance / 1000).toFixed(2)} km (${(distance / 1609.34).toFixed(2)} miles)</div>
+                    <div>Point 1 Elevation: Loading...</div>
+                    <div>Point 2 Elevation: Loading...</div>
+                    <div>Elevation Difference: Loading...</div>
+                `;
+            } else {
+                infoDiv.innerHTML = `
+                    <div>Distance: --</div>
+                    <div>Point 1 Elevation: --</div>
+                    <div>Point 2 Elevation: --</div>
+                    <div>Elevation Difference: --</div>
+                `;
+            }
+        }
+
+        function calculateDistance(latlng1, latlng2) {
+            const R = 6371000; // Earth's radius in meters
+            const lat1Rad = latlng1.lat * Math.PI / 180;
+            const lat2Rad = latlng2.lat * Math.PI / 180;
+            const deltaLatRad = (latlng2.lat - latlng1.lat) * Math.PI / 180;
+            const deltaLngRad = (latlng2.lng - latlng1.lng) * Math.PI / 180;
+
+            const a = Math.sin(deltaLatRad / 2) * Math.sin(deltaLatRad / 2) +
+                    Math.cos(lat1Rad) * Math.cos(lat2Rad) *
+                    Math.sin(deltaLngRad / 2) * Math.sin(deltaLngRad / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            return R * c;
+        }
+
+        function updateAnalysis() {
+            // Called when antenna heights change
+            if (selectedPoints.length === 2 && elevationData.length > 0 && !isAnalyzing) {
+                // Recalculate with new antenna heights
+                setTimeout(() => {
+                    const hasLineOfSight = calculateLineOfSight();
+                    lineOfSightClear = hasLineOfSight;
+                    
+                    drawPath(); // Update path color
+                    plotElevationProfile(); // Update profile with new antenna heights
+                    addElevationMarkers(); // Update obstruction markers
+                    
+                    if (hasLineOfSight) {
+                        updateStatus('✓ Line of sight is CLEAR', 'clear');
+                    } else {
+                        updateStatus('✗ Line of sight is BLOCKED', 'blocked');
+                    }
+                }, 100);
+            }
+        }
+
+        async function analyzeLineOfSight() {
+            if (selectedPoints.length !== 2) {
+                updateStatus('Please select two points first', 'pending');
+                return;
+            }
+            
+            if (isAnalyzing) {
+                return; // Prevent multiple simultaneous analyses
+            }
+            
+            isAnalyzing = true;
+            updateStatus('Fetching elevation data...', 'pending');
+            
+            try {
+                await getElevationProfile();
+                const hasLineOfSight = calculateLineOfSight();
+                lineOfSightClear = hasLineOfSight;
+                
+                updateDistanceInfoWithElevation();
+                plotElevationProfile();
+                addElevationMarkers();
+                drawPath(); // Update path color based on result
+                
+                if (hasLineOfSight) {
+                    updateStatus('✓ Line of sight is CLEAR', 'clear');
+                } else {
+                    updateStatus('✗ Line of sight is BLOCKED', 'blocked');
+                }
+            } catch (error) {
+                console.error('Error during analysis:', error);
+                updateStatus('Error fetching elevation data', 'blocked');
+            } finally {
+                isAnalyzing = false;
+            }
+        }
+
+        function getAntennaHeights() {
+            const antenna1Height = parseFloat(document.getElementById('antenna1-height').value) || 10;
+            const antenna2Height = parseFloat(document.getElementById('antenna2-height').value) || 10;
+            return { antenna1Height, antenna2Height };
+        }
+
+        async function getElevationProfile() {
+            const numPoints = 30; // Reduced for better performance
+            elevationData = [];
+            
+            // Prepare all coordinates for batch request
+            const coordinates = [];
+            for (let i = 0; i <= numPoints; i++) {
+                const ratio = i / numPoints;
+                const lat = selectedPoints[0].lat + (selectedPoints[1].lat - selectedPoints[0].lat) * ratio;
+                const lng = selectedPoints[0].lng + (selectedPoints[1].lng - selectedPoints[0].lng) * ratio;
+                coordinates.push({lat, lng, ratio, index: i});
+            }
+            
+            // Try batch request first, fallback to individual requests
+            try {
+                const batchElevations = await getBatchElevations(coordinates);
+                
+                for (let i = 0; i < coordinates.length; i++) {
+                    const coord = coordinates[i];
+                    const distance = calculateDistance(selectedPoints[0], {lat: coord.lat, lng: coord.lng});
+                    
+                    elevationData.push({
+                        distance: distance,
+                        elevation: batchElevations[i] || 0,
+                        lat: coord.lat,
+                        lng: coord.lng
+                    });
+                }
+            } catch (error) {
+                // Fallback to individual requests with delay
+                for (let i = 0; i < coordinates.length; i++) {
+                    const coord = coordinates[i];
+                    const elevation = await getElevation(coord.lat, coord.lng);
+                    const distance = calculateDistance(selectedPoints[0], {lat: coord.lat, lng: coord.lng});
+                    
+                    elevationData.push({
+                        distance: distance,
+                        elevation: elevation,
+                        lat: coord.lat,
+                        lng: coord.lng
+                    });
+                    
+                    // Small delay to avoid overwhelming the API
+                    if (i < coordinates.length - 1) {
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                    }
+                }
+            }
+        }
+
+        async function getBatchElevations(coordinates) {
+            // Batch request for Open-Elevation API
+            const locations = coordinates.map(c => `${c.lat},${c.lng}`).join('|');
+            
+            try {
+                const response = await fetch(
+                    `https://api.open-elevation.com/api/v1/lookup?locations=${locations}`
+                );
+                const data = await response.json();
+                
+                if (data.results && data.results.length > 0) {
+                    return data.results.map(result => result.elevation);
+                }
+                throw new Error('No batch results');
+            } catch (error) {
+                console.error('Batch elevation request failed:', error);
+                throw error;
+            }
+        }
+
+        async function getElevation(lat, lng) {
+            // Using Open-Elevation API (CORS-enabled)
+            try {
+                const response = await fetch(
+                    `https://api.open-elevation.com/api/v1/lookup?locations=${lat},${lng}`
+                );
+                const data = await response.json();
+                
+                if (data.results && data.results.length > 0) {
+                    return data.results[0].elevation;
+                }
+                return 0;
+            } catch (error) {
+                console.error('Error fetching elevation:', error);
+                // Fallback to basic terrain estimation if API fails
+                return estimateElevationFromTerrain(lat, lng);
+            }
+        }
+
+        function estimateElevationFromTerrain(lat, lng) {
+            // Simple terrain estimation based on Vermont topography
+            // This is a fallback when elevation APIs are unavailable
+            const baseElevation = 300; // Base elevation for Vermont in meters
+            const latVariation = Math.sin((lat - 44) * 20) * 200;
+            const lngVariation = Math.cos((lng + 72) * 15) * 150;
+            return Math.max(0, baseElevation + latVariation + lngVariation + Math.random() * 50);
+        }
+
+        function calculateLineOfSight() {
+            if (elevationData.length < 2) return false;
+            
+            const startPoint = elevationData[0];
+            const endPoint = elevationData[elevationData.length - 1];
+            
+            // Get custom antenna heights
+            const { antenna1Height, antenna2Height } = getAntennaHeights();
+            const startHeight = startPoint.elevation + antenna1Height;
+            const endHeight = endPoint.elevation + antenna2Height;
+            
+            // Calculate line of sight for each intermediate point
+            for (let i = 1; i < elevationData.length - 1; i++) {
+                const point = elevationData[i];
+                const ratio = point.distance / elevationData[elevationData.length - 1].distance;
+                
+                // Calculate expected height along direct line of sight
+                const expectedHeight = startHeight + (endHeight - startHeight) * ratio;
+                
+                // Check if terrain blocks the line (with 60% Fresnel zone clearance)
+                const fresnelRadius = calculateFresnelRadius(point.distance, elevationData[elevationData.length - 1].distance, 2400); // 2.4 GHz
+                const requiredClearance = expectedHeight - (fresnelRadius * 0.6);
+                
+                if (point.elevation > requiredClearance) {
+                    return false; // Line of sight is blocked
+                }
+            }
+            
+            return true; // Line of sight is clear
+        }
+
+        function calculateFresnelRadius(d1, d2, frequencyMHz) {
+            // Calculate first Fresnel zone radius at a point
+            // d1: distance from transmitter to point (meters)
+            // d2: total distance (meters)
+            // frequencyMHz: frequency in MHz
+            
+            const d2_minus_d1 = d2 - d1;
+            const lambda = 300 / frequencyMHz; // wavelength in meters
+            
+            return Math.sqrt((lambda * d1 * d2_minus_d1) / d2);
+        }
+
+        function updateDistanceInfoWithElevation() {
+            if (elevationData.length >= 2) {
+                const startElevation = elevationData[0].elevation;
+                const endElevation = elevationData[elevationData.length - 1].elevation;
+                const elevationDiff = endElevation - startElevation;
+                const distance = elevationData[elevationData.length - 1].distance;
+                
+                const { antenna1Height, antenna2Height } = getAntennaHeights();
+                
+                const infoDiv = document.getElementById('distance-info');
+                infoDiv.innerHTML = `
+                    <div>Distance: ${(distance / 1000).toFixed(2)} km (${(distance / 1609.34).toFixed(2)} miles)</div>
+                    <div>Point 1 Elevation: ${startElevation.toFixed(1)} m + ${antenna1Height.toFixed(1)} m antenna = ${(startElevation + antenna1Height).toFixed(1)} m</div>
+                    <div>Point 2 Elevation: ${endElevation.toFixed(1)} m + ${antenna2Height.toFixed(1)} m antenna = ${(endElevation + antenna2Height).toFixed(1)} m</div>
+                    <div>Elevation Difference: ${elevationDiff.toFixed(1)} m (${(elevationDiff * 3.28084).toFixed(0)} ft)</div>
+                `;
+            }
+        }
+
+        function plotElevationProfile() {
+            if (elevationData.length === 0) return;
+            
+            const distances = elevationData.map(d => d.distance / 1000); // Convert to km
+            const elevations = elevationData.map(d => d.elevation);
+            
+            // Calculate line of sight line with custom antenna heights
+            const { antenna1Height, antenna2Height } = getAntennaHeights();
+            const startHeight = elevations[0] + antenna1Height;
+            const endHeight = elevations[elevations.length - 1] + antenna2Height;
+            const losLine = distances.map((d, i) => {
+                const ratio = i / (distances.length - 1);
+                return startHeight + (endHeight - startHeight) * ratio;
+            });
+            
+            const trace1 = {
+                x: distances,
+                y: elevations,
+                type: 'scatter',
+                mode: 'lines',
+                fill: 'tonexty',
+                name: 'Terrain',
+                line: {color: 'brown'},
+                hovertemplate: '<extra></extra>' // Hide default hover tooltip
+            };
+            
+            const trace2 = {
+                x: distances,
+                y: losLine,
+                type: 'scatter',
+                mode: 'lines',
+                name: 'Line of Sight',
+                line: {color: lineOfSightClear ? '#28a745' : '#dc3545', dash: 'dash'},
+                hovertemplate: '<extra></extra>' // Hide default hover tooltip
+            };
+            
+            const layout = {
+                title: 'Elevation Profile',
+                xaxis: {title: 'Distance (km)'},
+                yaxis: {title: 'Elevation (m)'},
+                showlegend: true,
+                margin: {l: 50, r: 50, t: 50, b: 50},
+                hovermode: 'x unified'
+            };
+            
+            const config = {
+                responsive: true,
+                displayModeBar: false
+            };
+            
+            Plotly.newPlot('elevation-profile', [trace1, trace2], layout, config);
+            
+            // Add hover event listeners
+            document.getElementById('elevation-profile').on('plotly_hover', function(data) {
+                if (data.points && data.points.length > 0) {
+                    const distanceKm = data.points[0].x;
+                    const distanceM = distanceKm * 1000; // Convert back to meters
+                    updateHoverMarker(distanceM);
+                    updateHoverInfo(distanceM, data.points);
+                }
+            });
+            
+            document.getElementById('elevation-profile').on('plotly_unhover', function(data) {
+                clearHoverMarker();
+                clearHoverInfo();
+            });
+        }
+
+        function clearElevationProfile() {
+            document.getElementById('elevation-profile').innerHTML = '';
+        }
+
+        function addElevationMarkers() {
+            // Clear existing elevation markers
+            clearElevationMarkers();
+            
+            if (elevationData.length === 0) return;
+            
+            // Find the highest elevation points
+            const elevations = elevationData.map(d => d.elevation);
+            const maxElevation = Math.max(...elevations);
+            const highThreshold = maxElevation * 0.9; // Points within 90% of max elevation
+            
+            // Find peaks (local maxima)
+            const peaks = [];
+            for (let i = 1; i < elevationData.length - 1; i++) {
+                const current = elevationData[i];
+                const prev = elevationData[i - 1];
+                const next = elevationData[i + 1];
+                
+                // Check if it's a local maximum above threshold
+                if (current.elevation > prev.elevation && 
+                    current.elevation > next.elevation && 
+                    current.elevation > highThreshold) {
+                    peaks.push(current);
+                }
+            }
+            
+            // Always include the absolute highest point
+            const absoluteHighest = elevationData.find(d => d.elevation === maxElevation);
+            if (absoluteHighest && !peaks.some(p => p.lat === absoluteHighest.lat && p.lng === absoluteHighest.lng)) {
+                peaks.push(absoluteHighest);
+            }
+            
+            // Add markers for peaks
+            peaks.forEach((peak, index) => {
+                const isHighest = peak.elevation === maxElevation;
+                
+                const elevationMarker = L.circleMarker([peak.lat, peak.lng], {
+                    radius: isHighest ? 10 : 7,
+                    fillColor: isHighest ? '#ff0000' : '#ff8c00',
+                    color: '#ffffff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+                
+                const popupContent = `
+                    <strong>${isHighest ? 'Highest Point' : 'Peak'}</strong><br>
+                    Elevation: ${peak.elevation.toFixed(1)} m (${(peak.elevation * 3.28084).toFixed(0)} ft)<br>
+                    Distance: ${(peak.distance / 1000).toFixed(2)} km from start
+                `;
+                
+                elevationMarker.bindPopup(popupContent);
+                elevationMarkers.push(elevationMarker);
+            });
+            
+            // Add potential obstruction markers (points that might block line of sight)
+            const obstructions = findObstructions();
+            obstructions.forEach(obstruction => {
+                const obstructionMarker = L.circleMarker([obstruction.lat, obstruction.lng], {
+                    radius: 6,
+                    fillColor: '#8b0000',
+                    color: '#ffffff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.9
+                }).addTo(map);
+                
+                const popupContent = `
+                    <strong>⚠️ Potential Obstruction</strong><br>
+                    Elevation: ${obstruction.elevation.toFixed(1)} m (${(obstruction.elevation * 3.28084).toFixed(0)} ft)<br>
+                    Distance: ${(obstruction.distance / 1000).toFixed(2)} km from start<br>
+                    Clearance needed: ${obstruction.clearanceNeeded.toFixed(1)} m
+                `;
+                
+                obstructionMarker.bindPopup(popupContent);
+                elevationMarkers.push(obstructionMarker);
+            });
+        }
+
+        function findObstructions() {
+            if (elevationData.length < 3) return [];
+            
+            const obstructions = [];
+            const startPoint = elevationData[0];
+            const endPoint = elevationData[elevationData.length - 1];
+            
+            // Get custom antenna heights
+            const { antenna1Height, antenna2Height } = getAntennaHeights();
+            const startHeight = startPoint.elevation + antenna1Height;
+            const endHeight = endPoint.elevation + antenna2Height;
+            
+            for (let i = 1; i < elevationData.length - 1; i++) {
+                const point = elevationData[i];
+                const ratio = point.distance / elevationData[elevationData.length - 1].distance;
+                
+                // Calculate expected height along direct line of sight
+                const expectedHeight = startHeight + (endHeight - startHeight) * ratio;
+                
+                // Calculate Fresnel zone clearance
+                const fresnelRadius = calculateFresnelRadius(point.distance, elevationData[elevationData.length - 1].distance, 2400);
+                const requiredClearance = expectedHeight - (fresnelRadius * 0.6);
+                
+                // Check if this point blocks the line of sight
+                if (point.elevation > requiredClearance) {
+                    obstructions.push({
+                        ...point,
+                        clearanceNeeded: point.elevation - requiredClearance,
+                        expectedHeight: expectedHeight,
+                        fresnelRadius: fresnelRadius
+                    });
+                }
+            }
+            
+            return obstructions;
+        }
+    </script>
+</body>
+</html>

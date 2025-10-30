@@ -3,6 +3,7 @@
   --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
 }
 *{box-sizing:border-box}
+body{overflow-x:hidden}
 html,body{height:100%}
 body{margin:0; font:16px/1.55 Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:var(--fg); background:var(--bg)}
 a{color:var(--link); text-decoration-color: color-mix(in oklab, var(--link) 40%, transparent); text-underline-offset:2px}
@@ -12,14 +13,20 @@ aside{position:sticky; top:0; align-self:start; height:100dvh; padding:32px 24px
 .contact-top{font-size:1rem; color:var(--muted); margin-bottom:2px; text-align:center}
 .contact-button{color:var(--accent); text-decoration:none; font-weight:bold}
 .contact-button:hover{color:var(--link)}
-main{padding:40px 28px}
+main{padding:20px 28px}
 .brand{display:flex; align-items:center; gap:14px; margin-bottom:22px}
 .brand .dot{width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px color-mix(in oklab, var(--accent) 12%, transparent)}
 h1{font-size:1.35rem; margin:0}
 .brand-link{color:inherit; text-decoration:none}
 .brand-hero{text-align:center; padding:20px 16px; background:var(--card); border-radius:16px; box-shadow:var(--shadow)}
-.brand-hero h1{font-size:1.8rem; margin:0 0 12px; color:var(--accent)}
+.brand-hero h1{font-size:1.4rem; margin:0 0 10px; color:var(--accent)}
 .brand-topics{font-size:0.9rem; color:#8B6914; margin:6px 0 12px; font-weight:500}
+.brand-nav{margin-top:14px}
+.brand-nav ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:row; flex-wrap:wrap; gap:8px; justify-content:center}
+@media (min-width:768px){.brand-nav ul{flex-wrap:nowrap}}
+.brand-nav li{margin:0}
+.brand-nav a{display:inline-block; padding:6px 12px; border-radius:20px; color:var(--fg); text-decoration:none; font-size:0.9rem; transition:all 0.2s ease}
+.brand-nav a.active, .brand-nav a:hover{background:rgba(28,77,58,0.1); color:var(--accent)}
 .brand-subtitle{font-size:1rem; color:var(--muted); margin:0 0 16px}
 .tag{color:var(--muted); margin:6px 0 2px}
 nav ul{list-style:none; padding:0; margin:0 0 18px; display:flex; flex-direction:column; gap:10px}
@@ -48,10 +55,30 @@ footer{padding:24px 0; color:var(--muted); font-size:.8rem; border-top:1px solid
 .activity-bubbles{display:flex; flex-wrap:wrap; gap:.5rem; margin:12px 0}
 .bubble{font-size:.9rem; padding:.35rem .6rem; background:rgba(28,77,58,.08); border:1px solid rgba(28,77,58,.2); border-radius:999px; color:var(--accent)}
 .upcoming-label{font-size:.75rem; font-weight:700; color:var(--accent); text-transform:uppercase}
+.slideshow-container{margin-top:16px; background:var(--card); border-radius:12px; overflow:hidden; box-shadow:var(--shadow)}
+.slideshow{position:relative; max-width:100%; margin:auto}
+.slide{display:none; position:relative}
+.slide.active{display:block}
+.slide img{width:100%; aspect-ratio:1/1; object-fit:cover}
+.slideshow-dots{text-align:center; padding:8px; background:var(--card)}
+.dot{cursor:pointer; height:10px; width:10px; margin:0 3px; background-color:var(--hair); border-radius:50%; display:inline-block; transition:background-color 0.3s ease}
+.dot.active, .dot:hover{background-color:var(--accent)}
 .corner-flag{position:absolute; top:0; right:0; width:0; height:0; border-style:solid; border-width:0 65px 65px 0; border-color:transparent var(--accent) transparent transparent}
 .corner-flag::after{content:'UPCOMING'; position:absolute; top:19px; right:-70px; transform:rotate(45deg); font-size:.6rem; font-weight:700; color:white; text-transform:uppercase; letter-spacing:.3px}
 .section-separator{border-top:1px solid var(--hair); margin:48px 0}
 .about-hero{text-align:center; margin:40px 0 60px; padding:40px 20px; background:var(--card); border-radius:16px; box-shadow:var(--shadow)}
+.contact-hero{text-align:center; margin:0 0 40px; padding:20px 16px; background:var(--card); border-radius:16px; box-shadow:var(--shadow)}
+.contact-hero h2{margin:0 0 16px; color:var(--accent); font-size:clamp(1.4rem, 4vw, 1.8rem)}
+.contact-grid{display:grid; gap:20px; grid-template-columns:1fr; width:100%; max-width:100%}
+@media (min-width:768px){.contact-grid{grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px}}
+.contact-card{background:var(--card); border:1px solid var(--hair); border-radius:16px; padding:20px; box-shadow:var(--shadow); width:100%; max-width:100%; overflow-wrap:break-word}
+.contact-card h3{margin:0 0 16px; color:var(--accent); font-size:clamp(1.1rem, 3vw, 1.3rem)}
+.contact-email{font-size:clamp(1rem, 3vw, 1.2rem); margin:16px 0}
+.contact-email a{color:var(--accent); font-weight:600; text-decoration:none; padding:8px 12px; border:2px solid var(--accent); border-radius:8px; display:inline-block; transition:all 0.2s ease; word-break:break-all; max-width:100%}
+.contact-email a:hover{background:var(--accent); color:white}
+.contact-note{font-size:0.9rem; color:var(--muted); font-style:italic}
+.contact-list{margin:16px 0 0 16px; line-height:1.6; padding-right:8px}
+.contact-list li{margin:8px 0; word-wrap:break-word}
 .about-hero h1{font-size:2.5rem; margin:0 0 16px; color:var(--accent)}
 .hero-subtitle{font-size:1.2rem; color:var(--muted); margin:0}
 .hero-topics{font-size:1.1rem; color:#8B6914; margin:8px 0 16px; font-weight:500}

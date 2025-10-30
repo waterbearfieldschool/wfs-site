@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waterbear Field School - Join Our Brainstorm!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            //background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .invitation-card {
+            width: 900px;
+            height: 700px   ;
+            background: white;
+            //linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 50%, #fef3c7 100%);
+            //border-radius: 30px;
+            //border: 2px solid black;
+            //box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 40px;
+            max-width: 900px;
+        }
+        
+        /*
+        .decorative-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .leaf {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .leaf1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .leaf2 { top: 70%; right: 8%; animation-delay: 2s; }
+        .leaf3 { bottom: 15%; left: 10%; animation-delay: 4s; }
+        .leaf4 { top: 20%; right: 15%; animation-delay: 1s; }
+        
+        .tool {
+            position: absolute;
+            font-size: 35px;
+            opacity: 0.25;
+            animation: rotate 8s linear infinite;
+        }
+        
+        .tool1 { top: 15%; right: 10%; }
+        .tool2 { bottom: 20%; left: 15%; animation-direction: reverse; }
+        .tool3 { top: 60%; left: 8%; animation-delay: 3s; }
+        */
+        
+        /*
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }   
+        }
+        */
+        
+        h1 {
+            font-size: 56px;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-weight: 800;
+            //text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            //animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .tagline {
+            font-size: 45px;
+            color: #059629;
+            //color: blue;
+            font-weight: 600;
+            margin-bottom: 30px;
+            background: green;
+            //linear-gradient(90deg, #059669, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .description {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 10px;
+            margin-bottom: 30px;
+            //box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid black;
+            //backdrop-filter: blur(10px);
+        }
+        
+        .description p {
+            font-size: 40px;
+            color: #374151;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .feature {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-icon {
+            font-size: 50px;
+        }
+        
+        .feature-text {
+            font-size: 35px;
+            color: #1f2937;
+            font-weight: 600;
+            text-align: left;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            //linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: black;
+            font-size: 35px;
+            font-weight: 700;
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            border: 2px solid black;
+            //box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+            transition: all 0.3s ease;
+            //animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.4);
+        }
+        
+        .footer-text {
+            margin-top: 20px;
+            font-size: 30px;
+            //color: #6b7280;
+            color: black;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-card">
+    <!--
+        <div class="decorative-elements">
+            <div class="leaf leaf1">🍃</div>
+            <div class="leaf leaf2">🌿</div>
+            <div class="leaf leaf3">🍂</div>
+            <div class="leaf leaf4">🌱</div>
+            <div class="tool tool1">🔨</div>
+            <div class="tool tool2">🔧</div>
+            <div class="tool tool3">⚙️</div>
+        </div>
+        -->
+        
+        <div class="content-wrapper">
+            <h1>🌲 Waterbear Field School 🌲</h1>
+            <p class="tagline">Outdoor Exploration & Skill Sharing</p>
+            
+            <div class="description">
+                <p><strong>Nature • Science • Music • Storytelling</strong></p>
+                <!--<p>We're building a homeschool community where families explore nature, create with their hands, and learn STEM through real-world projects.</p>-->
+                
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">🥾</span>
+                        <span class="feature-text">Outdoor<br>adventures</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🛠️</span>
+                        <span class="feature-text">Hands-on<br>building</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🪡</span>
+                        <span class="feature-text">Creative<br>play</span>
+                    </div>
+                </div>
+                
+                <br>
+                
+                <div class="features">
+                <p><strong>Lincoln & Waltham, MA</strong> • <strong>Fall 2025</strong></p>
+                </div>
+            </div>
+            
+
+            
+            <a href="#" class="cta-button">info@waterbearfieldschool.org 💡</a>
+            
+            <p class="footer-text">For homeschoolers, after-schoolers, youth, adults -- <br>anyone excited about resilience & community</p>
+        </div>
+    </div>
+</body>
+</html>

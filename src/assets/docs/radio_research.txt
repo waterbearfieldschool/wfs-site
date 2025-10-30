@@ -36,6 +36,14 @@ mt mansfield: "F1": 44.53977851, -72.81652298
 "D2": 44.378446, -72.220858 -- near radio tower, cow hill 
 https://radio-locator.com/info/WDOT-FM
 
+
+@Don Blair Let me give you some additional coordinates to work with:
+44.40422, -72.19674 - I think this is about the highest point on Nicole's property, and it (just barely) appears to have LOS to Worcester.
+44.40051, -72.20872 - this is the highest point on friendly-neighbor Drew's property above Nissa's. He might be willing to work with us on setting up a node there. It still can't see Worcester.
+44.40196, -72-21402 - my best estimate of where the new cabin is on Nissa's property
+
+Here's another one. 
+44.53185, -72.81706 - This peak is actually on the long trail and only ~1200 feet from the Mt. Mansfield visitor center along the Long Trail. It's very steep (22% grade). Does appear to have LOS to both Worcester and Nicole
 "D3": 44.385991, -72.215322
 "D4": 44.423435, -72.206796
 "D5": 44.438067, -72.233875

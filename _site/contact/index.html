@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waterbear Field School</title>
+  <meta name="description" content="Learning to live well, off-the-grid." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/contact/">
+  <meta property="og:title" content="Waterbear Field School">
+  <meta property="og:description" content="Learning to live well, off-the-grid.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/contact/">
+  <meta property="twitter:title" content="Waterbear Field School">
+  <meta property="twitter:description" content="Learning to live well, off-the-grid.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a class="" href="/events/">Events</a></li>
+              
+              <li><a class="active" href="/contact/">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1></h1>
+  
+  <div class="contact-hero">
+  <h2>Get in Touch</h2>
+  <p>We'd love to hear from you! Whether you're interested in joining our outdoor activities, have ideas to share, or want to volunteer as a skill workshop leader.</p>
+  <p class="contact-email">
+    <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">
+      info@waterbearfieldschool.org
+    </a>
+  </p>
+  <p class="contact-note">This is the best way to reach us. We typically respond within 24 hours.</p>
+</div>
+<div class="contact-grid">
+  <div class="contact-card">
+    <h3>What to Include</h3>
+    <ul class="contact-list">
+      <li>Your interests and what you'd like to explore</li>
+      <li>Your availability (weekdays work best for us)</li>
+      <li>Any skills or tools you'd like to share</li>
+      <li>Ages of participants in your group</li>
+      <li>Location preferences within the Greater Boston area</li>
+    </ul>
+  </div>
+  <div class="contact-card">
+    <h3>Join Our Community</h3>
+    <p>We're a cooperative skill-sharing group focused on outdoor learning. Help us build our fall schedule by volunteering to offer a workshop or simply join us for our regular meetups!</p>
+  </div>
+</div>
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+    
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+    
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+    
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

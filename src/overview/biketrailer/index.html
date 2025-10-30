@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Build a Bike Trailer — One‑Day Workshop</title>
+  <style>
+    /* ===== Editable Details ===== */
+    :root{
+      /* Palette: deep forest + warm neutral */
+      --green-900:#0e3b2e; /* header bg */
+      --green-700:#16624d; /* accents */
+      --green-500:#2a8c72; /* buttons */
+      --sand-50:#faf7f2;   /* page bg */
+      --ink:#102018;       /* body text */
+      --muted:#3d534a;     /* secondary text */
+      --accent:#ffbf3c;    /* highlight */
+
+      --page-max: 900px;
+    }
+
+    /* ===== Base Reset & Typography ===== */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{ margin:0; font: 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color:var(--ink); background:var(--sand-50); }
+    h1,h2,h3{line-height:1.15;margin:0 0 .5rem 0}
+    h1{font-size:clamp(28px, 5.2vw, 46px); letter-spacing:.2px}
+    h2{font-size:clamp(18px, 2.6vw, 24px); color:var(--green-700)}
+    p{margin:.35rem 0 .85rem}
+    ul{margin:.25rem 0 1rem 1.2rem}
+    li{margin:.25rem 0}
+    .muted{color:var(--muted)}
+
+    /* ===== Layout ===== */
+    .page{ max-width:var(--page-max); margin:0 auto; background:white; box-shadow:0 8px 24px rgba(0,0,0,.08); }
+    .stripe{height:10px;background:linear-gradient(90deg,var(--green-900),var(--green-500));}
+
+    header{ background:var(--green-900); color:#fff; padding:28px 28px 18px; position:relative; overflow:hidden; }
+    header .tagline{font-size:clamp(14px,1.9vw,16px); opacity:.95}
+    header .details{display:flex; flex-wrap:wrap; gap:12px; margin-top:12px; font-weight:600}
+    header .pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.15); backdrop-filter:saturate(130%) blur(2px); border:1px solid rgba(255,255,255,.25); white-space:nowrap; }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+
+    .hero{ display:grid; grid-template-columns: 1.35fr 1fr; gap:28px; align-items:center; padding:26px 28px 12px; }
+    .hero .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:12px}
+    .btn{ display:inline-block; text-decoration:none; font-weight:700; padding:10px 14px; border-radius:12px; border:2px solid var(--green-700); background:var(--accent); color:#1a190f; }
+    .btn.ghost{background:transparent; color:var(--green-700)}
+
+    .icon-card{ background: #f4fbf8; border:1px solid #d6eee5; border-radius:14px; padding:14px 16px; }
+
+    .grid{display:grid; gap:18px; grid-template-columns: repeat(3,1fr); padding:10px 28px 24px}
+    .grid section{background:#fff; border:1px solid #ebefe9; border-radius:14px; padding:16px}
+
+    .checklist{list-style:none; padding-left:0}
+    .checklist li{position:relative; padding-left:28px}
+    .checklist li:before{ content:""; position:absolute; left:0; top:.35em; width:18px; height:18px; border-radius:4px; border:2px solid var(--green-500); }
+    .checklist li:after{ content:""; position:absolute; left:4px; top:.55em; width:10px; height:6px; border-left:3px solid var(--green-500); border-bottom:3px solid var(--green-500); transform:rotate(-45deg); }
+
+    .footer{ padding:16px 28px 28px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:space-between; border-top:1px dashed #e5ece7; background:#fff; }
+    .hosts{display:flex; gap:12px; align-items:center}
+    .host-badge{padding:6px 10px; border-radius:999px; background:#f2f7f5; border:1px solid #dbe9e2; font-weight:600; color:var(--green-700)}
+
+    svg{max-width:100%; height:auto}
+    .svg-wrap{display:flex; align-items:center; justify-content:center}
+    .svg-wrap .caption{font-size:.85rem; color:var(--muted); text-align:center; margin-top:6px}
+
+    /* ===== Carousel Styles ===== */
+    .carousel{position:relative; margin-top:16px; border-radius:14px; overflow:hidden; background:#0b3026; border:1px solid #0b3026}
+    .carousel-viewport{position:relative; width:100%; height: clamp(180px, 32vw, 800px)}
+    .carousel-slide{position:absolute; inset:0; opacity:0; transition:opacity .6s ease-in-out}
+    .carousel-slide[data-active]{opacity:1}
+    .carousel img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02)}
+    .carousel .caption{position:absolute; left:10px; bottom:10px; background:rgba(0,0,0,.85); padding:6px 10px; border-radius:10px; font-weight:600}
+    .carousel-prev,.carousel-next{ position:absolute; top:50%; transform:translateY(-50%); border:none; background:rgba(255,255,255,.9); width:40px; height:40px; border-radius:999px; font-size:24px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.15); }
+    .carousel-prev{left:10px}
+    .carousel-next{right:10px}
+    .carousel-prev:focus,.carousel-next:focus{outline:3px solid var(--accent)}
+    .carousel-dots{position:absolute; left:0; right:0; bottom:10px; display:flex; gap:8px; justify-content:center; align-items:center;}
+    .carousel-dots button{width:10px; height:10px; border-radius:999px; border:2px solid #fff; background:transparent; padding:0; cursor:pointer}
+    .carousel-dots button[aria-selected="true"]{background:#fff}
+    @media (prefers-reduced-motion: reduce){ .carousel-slide{transition:none} }
+
+    /* ===== Print Styles ===== */
+    @media print{
+      body{background:#fff}
+      .page{box-shadow:none; max-width:7.5in}
+      .btn{border:2px solid var(--green-700)}
+      a[href]:after{content:" (" attr(href) ")"; font-weight:normal}
+    }
+
+    /* ===== Small screens ===== */
+    @media (max-width:840px){ .hero{grid-template-columns: 1fr;} .grid{grid-template-columns: 1fr;} }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="stripe" aria-hidden="true"></div>
+
+    <header>
+      <h1>Build a Bike Trailer — One‑Day Workshop</h1>
+      <p class="tagline">Kids & adults team up to bend, bolt, and build a <strong>ready‑to‑ride bicycle trailer</strong> you can customize!</p>
+      <div class="details" role="list">
+        <span class="pill" role="listitem"><span class="dot" aria-hidden="true"></span> <span><strong>Date:</strong> <span contenteditable>Sat/Sun, [Add Date]</span></span></span>
+        <span class="pill" role="listitem"><span class="dot" aria-hidden="true"></span> <span><strong>Time:</strong> <span contenteditable>10:00 AM – 4:00 PM</span></span></span>
+        <span class="pill" role="listitem"><span class="dot" aria-hidden="true"></span> <span><strong>Location:</strong> <span contenteditable>[Your Venue / City]</span></span></span>
+        <span class="pill" role="listitem"><span class="dot" aria-hidden="true"></span> <span><strong>Ages:</strong> 8+ with adult</span></span>
+      </div>
+
+      <!-- Rotating slideshow: replace image src values with your own links -->
+      <div class="carousel" aria-label="Workshop photos">
+        <div class="carousel-viewport" role="group" aria-roledescription="carousel">
+        <figure class="carousel-slide">
+            <img src="images/fall_trailer.jpeg" alt="Family working together on a frame">
+            <figcaption class="caption" contenteditable>Useful for towing cargo!</figcaption>
+          </figure>
+          <figure class="carousel-slide" data-active>
+            <img src="images/dropouts.jpg" alt="Bike trailer build in progress">
+            <figcaption class="caption" contenteditable>Laser-cut steel dropouts</figcaption>
+          </figure>
+          
+          <figure class="carousel-slide">
+            <img src="images/hitch.jpg" alt="Finished bike trailer ready to roll">
+            <figcaption class="caption" contenteditable>Custom bike attachments</figcaption>
+          </figure>
+           <figure class="carousel-slide">
+            <img src="images/kids_trailer.jpeg" alt="Finished bike trailer ready to roll">
+            <figcaption class="caption" contenteditable>Sized for adults or kids</figcaption>
+          </figure>
+           <figure class="carousel-slide">
+            <img src="images/wheel_closeup.jpg" alt="Finished bike trailer ready to roll">
+            <figcaption class="caption" contenteditable>Learn basic assembly skills</figcaption>
+          </figure>
+        </div>
+        <button class="carousel-prev" aria-label="Previous slide">‹</button>
+        <button class="carousel-next" aria-label="Next slide">›</button>
+        <div class="carousel-dots" role="tablist" aria-label="Choose slide"></div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h2>Make something useful, learn real skills, roll out the same day.</h2>
+        <p>In this friendly, guided workshop, families and neighbors co‑create a sturdy, versatile trailer using affordable materials (EMT conduit, recycled wheels, and simple hardware). No prior experience needed.</p>
+        <div class="cta">
+          <a class="btn" href="#register"><span aria-hidden>→ </span>Register now</a>
+          <a class="btn ghost" href="https://edgecollective.io/projects/biketrailer/" target="_blank" rel="noopener">Project overview</a>
+        </div>
+        <div class="icon-card" style="margin-top:14px">
+          <strong>Leave with:</strong>
+          <ul class="checklist">
+            <li>A working bike trailer</li>
+            <li>Hands‑on know‑how: measuring, bending, drilling, safe assembly</li>
+            <li>Plans to customize — racks, boxes, canopies, and more</li>
+          </ul>
+        </div>
+      </div>
+      <div class="svg-wrap">
+        <figure style="margin:0">
+          <img src="images/stick_trailer.png" width=300>
+          <figcaption class="caption">You’ll build a sturdy, modular trailer you can adapt to many uses.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section>
+        <h3>What you’ll learn</h3>
+        <ul>
+          <li>How to safely measure, cut, and bend EMT conduit</li>
+          <li>Wheel mounting (“dropouts”) and frame layout</li>
+          <li>Hitch basics and safe bike‑trailer handling</li>
+          <li>Design for different uses: cargo, hospitality</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Who it’s for</h3>
+        <ul>
+          <li>Families seeking a collaborative, hands‑on build</li>
+          <li>DIYers & educators looking for a practical STEM project</li>
+          <li>Community groups building local mobility & resilience</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>What to bring</h3>
+        <ul>
+          <li>Closed‑toe shoes & water/snacks</li>
+          <li>Optional: a pair of matching 16–20″ wheels to reuse</li>
+          <li>We provide tools & core materials; add‑ons welcome</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="grid">
+      <section>
+        <h3>Schedule</h3>
+        <ul>
+          <li>10:00 — Welcome, safety, design overview</li>
+          <li>10:30 — Frame bending & drilling</li>
+          <li>12:30 — Lunch break</li>
+          <li>1:15 — Wheel mounts, hitch fitting</li>
+          <li>3:00 — Finishing touches, test ride!</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Cost</h3>
+        <p><strong contenteditable>$[Workshop Fee]</strong> per build team (1–2 adults + up to 2 kids). Materials included for a basic trailer.</p>
+        <p class="muted">Need‑based scholarships available. Limited spots.</p>
+      </section>
+
+      <section id="register">
+        <h3>Register</h3>
+        <p>Save your spot at <a href="#" contenteditable>[your‑registration‑link]</a> or scan the QR code.</p>
+        <div style="border:2px dashed #cfded7; border-radius:12px; padding:22px; text-align:center; font-weight:700; color:var(--muted)">QR CODE HERE</div>
+      </section>
+    </div>
+
+    <div class="footer">
+      <div class="hosts">
+        <span class="host-badge">Hosted by <span contenteditable>Waterbear Field School</span></span>
+        <span class="host-badge">In partnership with <span contenteditable>Edge Collective</span></span>
+      </div>
+      <div class="muted">
+        Questions? <span contenteditable>[your@email.org]</span> · <span contenteditable>(123) 456‑7890</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Minimal, accessible carousel w/ auto-rotate + pause on hover
+    (function(){
+      const root = document.querySelector('.carousel');
+      if(!root) return;
+      const slides = Array.from(root.querySelectorAll('.carousel-slide'));
+      const prev = root.querySelector('.carousel-prev');
+      const next = root.querySelector('.carousel-next');
+      const dotsWrap = root.querySelector('.carousel-dots');
+      let index = slides.findIndex(s=>s.hasAttribute('data-active'));
+      if(index < 0) { index = 0; slides[0]?.setAttribute('data-active',''); }
+      let timer = null;
+
+      // Build dots
+      slides.forEach((_,i)=>{
+        const b = document.createElement('button');
+        b.type = 'button'; b.setAttribute('role','tab'); b.setAttribute('aria-label', 'Slide '+(i+1));
+        if(i===index) b.setAttribute('aria-selected','true');
+        b.addEventListener('click',()=>go(i,true));
+        dotsWrap.appendChild(b);
+      });
+
+      function go(i, user){
+        slides[index]?.removeAttribute('data-active');
+        dotsWrap.children[index]?.setAttribute('aria-selected','false');
+        index = (i + slides.length) % slides.length;
+        slides[index]?.setAttribute('data-active','');
+        dotsWrap.children[index]?.setAttribute('aria-selected','true');
+        if(user) restart();
+      }
+      function nextSlide(){ go(index+1); }
+      function prevSlide(){ go(index-1, true); }
+
+      next.addEventListener('click', ()=>go(index+1, true));
+      prev.addEventListener('click', prevSlide);
+
+      function start(){ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; timer = setInterval(nextSlide, 4500); }
+      function stop(){ if(timer) clearInterval(timer); timer = null; }
+      function restart(){ stop(); start(); }
+
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+      document.addEventListener('visibilitychange', ()=>{ document.hidden ? stop() : start(); });
+
+      start();
+    })();
+  </script>
+
+  <!--
+  QUICK EDIT NOTES
+  • Replace image paths in the slideshow (images/slide1.jpg, slide2.jpg, slide3.jpg) with your links.
+  • You can add more slides by duplicating a <figure class="carousel-slide"> block.
+  • Captions are editable inline; select and type to change.
+  • To print: Ctrl/Cmd+P — designed for 8.5×11in (letter). Margins 0.5in recommended.
+  • Project inspiration & build details: https://edgecollective.io/projects/biketrailer/
+  -->
+</body>
+</html>
