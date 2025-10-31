@@ -14,7 +14,6 @@ hideDate: true
       info@waterbearfieldschool.org
     </a>
   </p>
-  <p class="contact-note">This is the best way to reach us. We typically respond within 24 hours.</p>
 </div>
 
 <div class="contact-grid">

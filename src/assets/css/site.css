@@ -60,6 +60,9 @@ footer{padding:24px 0; color:var(--muted); font-size:.8rem; border-top:1px solid
 .slide{display:none; position:relative}
 .slide.active{display:block}
 .slide img{width:100%; aspect-ratio:1/1; object-fit:cover}
+main .slideshow-container{margin-top:0; max-width:600px; margin-left:auto; margin-right:auto}
+main .slide img{aspect-ratio:1/1}
+@media (max-width:768px){main .slideshow-container{max-width:100%; width:100%} main .slide img{aspect-ratio:1/1}}
 .slideshow-dots{text-align:center; padding:8px; background:var(--card)}
 .dot{cursor:pointer; height:10px; width:10px; margin:0 3px; background-color:var(--hair); border-radius:50%; display:inline-block; transition:background-color 0.3s ease}
 .dot.active, .dot:hover{background-color:var(--accent)}
