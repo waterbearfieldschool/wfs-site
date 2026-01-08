@@ -32,7 +32,13 @@ Archiving, sharing, and contributing knowledge.
 
 -------------------
 
-notes:  https://ecocentre-tregor.fr/event
+notes:  
+
+Links from don:  
+- https://edgecollective.io/
+- https://waterbearfieldschool.org/
+- https://ecocentre-tregor.fr/event
+- https://www.google.com/maps/d/edit?mid=11l9FEKCUaLrndRxAdyEBkwmOGN7kYgw&usp=sharing
 
 
 
