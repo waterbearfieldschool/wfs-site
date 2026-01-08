@@ -3,26 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ title or site.title }}</title>
-  <meta name="description" content="{{ meta or description or site.description }}" />
+  <title>Metal Fabrication</title>
+  <meta name="description" content="Cutting, welding, blacksmithing, CNC." />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-  <meta property="og:title" content="{{ title or site.title }}">
-  <meta property="og:description" content="{{ meta or description or site.description }}">
+  <meta property="og:url" content="https://waterbearfieldschool.org/bootcamp/metal-fabrication/">
+  <meta property="og:title" content="Metal Fabrication">
+  <meta property="og:description" content="Cutting, welding, blacksmithing, CNC.">
   <meta property="og:site_name" content="Waterbear Field School">
-  {% if image %}<meta property="og:image" content="{{ site.url }}{{ image }}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/jpeg">{% endif %}
+  
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="{{ site.url }}{{ page.url }}">
-  <meta property="twitter:title" content="{{ title or site.title }}">
-  <meta property="twitter:description" content="{{ meta or description or site.description }}">
-  {% if image %}<meta property="twitter:image" content="{{ site.url }}{{ image }}">{% endif %}
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/bootcamp/metal-fabrication/">
+  <meta property="twitter:title" content="Metal Fabrication">
+  <meta property="twitter:description" content="Cutting, welding, blacksmithing, CNC.">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -34,16 +31,16 @@
       <div class="brand">
         <!--<div class="dot" aria-hidden="true"></div>-->
         <div class="brand-hero">
-          <h1><a class="brand-link" href="/">{{ site.name }}</a></h1>
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
           <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
           <nav class="brand-nav">
             <ul>
-              <li><a class="{{ 'active' if page.url == '/' else '' }}" href="/">Home</a></li>
-              <li><a class="{{ 'active' if page.url.startsWith('/events') else '' }}" href="/events/">Events</a></li>
-              <li><a class="{{ 'active' if page.url.startsWith('/workshops') else '' }}" href="/workshops/">Workshops</a></li>
-              <li><a class="{{ 'active' if page.url.startsWith('/bootcamp') else '' }}" href="/bootcamp/">Bootcamp</a></li>
-              {% if collections.recentEvents.length > 0 %}<li><a class="{{ 'active' if page.url.startsWith('/projects') else '' }}" href="/projects/">Projects</a></li>{% endif %}
-              <li><a class="{{ 'active' if page.url == '/contact/' else '' }}" href="/contact/">Contact</a></li>
+              <li><a class="" href="/">Home</a></li>
+              <li><a class="" href="/events/">Events</a></li>
+              <li><a class="" href="/workshops/">Workshops</a></li>
+              <li><a class="active" href="/bootcamp/">Bootcamp</a></li>
+              
+              <li><a class="" href="/contact/">Contact</a></li>
             </ul>
           </nav>
         </div>
@@ -52,7 +49,24 @@
     </aside>
 
     <main>
-      {% block content %}{% endblock %}
+      
+<article class="prose">
+  <h1>Metal Fabrication</h1>
+  
+  <h2>Metal Fabrication</h2>
+<p>Master the art of working with metal through traditional and modern techniques. Learn cutting, welding, blacksmithing, and CNC machining for diverse metalworking projects.</p>
+<h3>What You'll Learn</h3>
+<ul>
+<li>Metal cutting techniques and tools</li>
+<li>Welding fundamentals and advanced techniques</li>
+<li>Traditional blacksmithing and forge work</li>
+<li>CNC machining and computer-controlled fabrication</li>
+</ul>
+<h3>Module Details</h3>
+<p>This comprehensive bootcamp module covers the full spectrum of metalworking skills, from ancient blacksmithing techniques to modern CNC fabrication. Build practical skills through hands-on projects.</p>
+
+</article>
+
     </main>
   </div>
 

@@ -3,26 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ title or site.title }}</title>
-  <meta name="description" content="{{ meta or description or site.description }}" />
+  <title>Bicycle Mechanics Basics</title>
+  <meta name="description" content="Learn essential bike maintenance and repair skills for keeping your bicycle in top condition" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-  <meta property="og:title" content="{{ title or site.title }}">
-  <meta property="og:description" content="{{ meta or description or site.description }}">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/bicycle-mechanics/">
+  <meta property="og:title" content="Bicycle Mechanics Basics">
+  <meta property="og:description" content="Learn essential bike maintenance and repair skills for keeping your bicycle in top condition">
   <meta property="og:site_name" content="Waterbear Field School">
-  {% if image %}<meta property="og:image" content="{{ site.url }}{{ image }}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/jpeg">{% endif %}
+  
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="{{ site.url }}{{ page.url }}">
-  <meta property="twitter:title" content="{{ title or site.title }}">
-  <meta property="twitter:description" content="{{ meta or description or site.description }}">
-  {% if image %}<meta property="twitter:image" content="{{ site.url }}{{ image }}">{% endif %}
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/bicycle-mechanics/">
+  <meta property="twitter:title" content="Bicycle Mechanics Basics">
+  <meta property="twitter:description" content="Learn essential bike maintenance and repair skills for keeping your bicycle in top condition">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -34,16 +31,16 @@
       <div class="brand">
         <!--<div class="dot" aria-hidden="true"></div>-->
         <div class="brand-hero">
-          <h1><a class="brand-link" href="/">{{ site.name }}</a></h1>
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
           <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
           <nav class="brand-nav">
             <ul>
-              <li><a class="{{ 'active' if page.url == '/' else '' }}" href="/">Home</a></li>
-              <li><a class="{{ 'active' if page.url.startsWith('/events') else '' }}" href="/events/">Events</a></li>
-              <li><a class="{{ 'active' if page.url.startsWith('/workshops') else '' }}" href="/workshops/">Workshops</a></li>
-              <li><a class="{{ 'active' if page.url.startsWith('/bootcamp') else '' }}" href="/bootcamp/">Bootcamp</a></li>
-              {% if collections.recentEvents.length > 0 %}<li><a class="{{ 'active' if page.url.startsWith('/projects') else '' }}" href="/projects/">Projects</a></li>{% endif %}
-              <li><a class="{{ 'active' if page.url == '/contact/' else '' }}" href="/contact/">Contact</a></li>
+              <li><a class="" href="/">Home</a></li>
+              <li><a class="" href="/events/">Events</a></li>
+              <li><a class="active" href="/workshops/">Workshops</a></li>
+              <li><a class="" href="/bootcamp/">Bootcamp</a></li>
+              
+              <li><a class="" href="/contact/">Contact</a></li>
             </ul>
           </nav>
         </div>
@@ -52,7 +49,24 @@
     </aside>
 
     <main>
-      {% block content %}{% endblock %}
+      
+<article class="prose">
+  <h1>Bicycle Mechanics Basics</h1>
+  
+  <h2>Bicycle Mechanics Workshop</h2>
+<p>Master the fundamentals of bicycle maintenance and repair. Learn how to service your bike and perform common repairs to keep it running smoothly and safely.</p>
+<h3>What You'll Learn</h3>
+<ul>
+<li>Basic bicycle anatomy and components</li>
+<li>Essential maintenance procedures</li>
+<li>Common repair techniques</li>
+<li>Tool usage and safety practices</li>
+</ul>
+<h3>Workshop Details</h3>
+<p>Perfect for cyclists of all levels who want to maintain their own bikes, save money on repairs, and develop mechanical confidence. Bring your bike if you'd like to work on it during the session.</p>
+
+</article>
+
     </main>
   </div>
 
