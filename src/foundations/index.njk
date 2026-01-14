@@ -1,13 +1,13 @@
 ---
-title: Bootcamp
+title: Foundations
 ---
 {% extends "layouts/base.njk" %}
 {% block content %}
-<section id="bootcamp">
-  <h1 style="font-size: 2.2rem; line-height: 1.15; margin: 0; color: var(--accent); text-align: center;">Bootcamp</h1>
-  <p class="section-description"><!-- Add your bootcamp description here --></p>
+<section id="foundations">
+  <h1 style="font-size: 2.2rem; line-height: 1.15; margin: 0; color: var(--accent); text-align: center;">Foundations</h1>
+  <p class="section-description"><!-- Add your foundations description here --></p>
   <div class="grid">
-    {% for p in collections.allBootcamp %}
+    {% for p in collections.allFoundations %}
     <article class="card">
       <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
         {% if p.data.image %}

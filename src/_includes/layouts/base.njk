@@ -41,7 +41,7 @@
               <li><a class="{{ 'active' if page.url == '/' else '' }}" href="/">Home</a></li>
               <li><a class="{{ 'active' if page.url.startsWith('/events') else '' }}" href="/events/">Events</a></li>
               <li><a class="{{ 'active' if page.url.startsWith('/workshops') else '' }}" href="/workshops/">Workshops</a></li>
-              <li><a class="{{ 'active' if page.url.startsWith('/bootcamp') else '' }}" href="/bootcamp/">Bootcamp</a></li>
+              <li><a class="{{ 'active' if page.url.startsWith('/foundations') else '' }}" href="/foundations/">Foundations</a></li>
               {% if collections.recentEvents.length > 0 %}<li><a class="{{ 'active' if page.url.startsWith('/projects') else '' }}" href="/projects/">Projects</a></li>{% endif %}
               <li><a class="{{ 'active' if page.url == '/contact/' else '' }}" href="/contact/">Contact</a></li>
             </ul>

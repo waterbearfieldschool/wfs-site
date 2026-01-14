@@ -2,7 +2,7 @@
 title: "Woodworking: Sheds and Shelters"
 meta: Carpentry skills developed in the context of designing and building sheds, tiny houses, mobile trailers, and cold frames.
 layout: layouts/post.njk
-permalink: /bootcamp/woodworking-sheds-shelters/
+permalink: /foundations/woodworking-sheds-shelters/
 ---
 
 ## Woodworking: Sheds and Shelters
@@ -16,4 +16,4 @@ Develop essential carpentry skills through practical building projects. Learn to
 - Cold frame and greenhouse building
 
 ### Module Details
-This hands-on bootcamp module combines traditional woodworking skills with modern building techniques. Learn through actual construction projects that result in useful structures.
+This hands-on foundations module combines traditional woodworking skills with modern building techniques. Learn through actual construction projects that result in useful structures.

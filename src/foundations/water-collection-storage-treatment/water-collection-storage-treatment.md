@@ -2,7 +2,7 @@
 title: "Water Collection, Storage, Treatment"
 meta: The basics of DIY water collection, storage, and treatment.
 layout: layouts/post.njk
-permalink: /bootcamp/water-collection-storage-treatment/
+permalink: /foundations/water-collection-storage-treatment/
 ---
 
 ## Water Collection, Storage, Treatment
@@ -16,4 +16,4 @@ Learn the fundamental skills for managing water resources sustainably and indepe
 - System maintenance and water quality testing
 
 ### Module Details
-This hands-on bootcamp module provides practical knowledge for water independence, covering both emergency preparedness and long-term sustainable water management strategies.
+This hands-on foundations module provides practical knowledge for water independence, covering both emergency preparedness and long-term sustainable water management strategies.
