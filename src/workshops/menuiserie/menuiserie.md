@@ -3,6 +3,7 @@ title: "Woodworking Techniques"
 meta: Learn traditional woodworking techniques to create unique small furniture pieces
 layout: layouts/post.njk
 permalink: /workshops/menuiserie/
+image: /assets/images/main/wfs_filler.png
 ---
 
 ## Menuiserie Workshop: Woodworking Techniques

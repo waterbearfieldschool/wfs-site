@@ -3,6 +3,7 @@ title: "Leather Sandal Making"
 meta: Craft your own custom leather sandals from scratch using traditional techniques
 layout: layouts/post.njk
 permalink: /workshops/leather-sandals/
+image: /assets/images/main/wfs_filler.png
 ---
 
 ## Leather Sandal Workshop

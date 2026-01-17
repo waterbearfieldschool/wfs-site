@@ -3,6 +3,7 @@ title: "Rocket Stove Building"
 meta: Build your own high-efficiency portable rocket stove for clean, efficient cooking
 layout: layouts/post.njk
 permalink: /workshops/rocket-stove/
+image: /assets/images/main/wfs_filler.png
 ---
 
 ## Rocket Stove Workshop

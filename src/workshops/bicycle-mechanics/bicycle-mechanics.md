@@ -3,6 +3,7 @@ title: "Bicycle Mechanics Basics"
 meta: Learn essential bike maintenance and repair skills for keeping your bicycle in top condition
 layout: layouts/post.njk
 permalink: /workshops/bicycle-mechanics/
+image: /assets/images/main/wfs_filler.png
 ---
 
 ## Bicycle Mechanics Workshop
