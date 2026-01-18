@@ -6,9 +6,14 @@ layout: layouts/post.njk
 hideDate: true
 ---
 
-<video autoplay loop muted playsinline style="width: 100%; max-width: 100%; margin-bottom: 16px; border-radius: 8px;">
-  <source src="/assets/images/farmday/field_day.mp4" type="video/mp4">
-</video>
+<div style="text-align: center;">
+<div class="float-figure" style="margin: 0 auto 16px auto;">
+  <video autoplay loop muted playsinline style="width: 100%; max-width: 100%;">
+    <source src="/assets/images/farmday/field_day.mp4" type="video/mp4">
+  </video>
+  <div class="float-caption">Waterbear Field School demos solar power, motors, radios, and hand tools to kids and adults at Waltham Fields Community Farm's Farm Day 2025</div>
+</div>
+</div>
 
 <div class="contact-hero">
   <h2>About Waterbear Field School</h2>
