@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wire Sculpture</title>
+  <meta name="description" content="Create 3D forms from wire using techniques inspired by artists like Ruth Asawa and Ariel Matisse. (Image: Wikipedia)" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/wire-sculpture/">
+  <meta property="og:title" content="Wire Sculpture">
+  <meta property="og:description" content="Create 3D forms from wire using techniques inspired by artists like Ruth Asawa and Ariel Matisse. (Image: Wikipedia)">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/wire-sculpture/asawa_1967.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/wire-sculpture/">
+  <meta property="twitter:title" content="Wire Sculpture">
+  <meta property="twitter:description" content="Create 3D forms from wire using techniques inspired by artists like Ruth Asawa and Ariel Matisse. (Image: Wikipedia)">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/wire-sculpture/asawa_1967.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#current-workshops">Workshops</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#upcoming-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p class="contact-email" style="margin: 16px 0 0 0; font-size: 0.8rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Wire Sculpture</h1>
+  
+  <h2>Wire Sculpture Workshop</h2>
+<p><em>Image: <a href="https://en.wikipedia.org/wiki/Ruth_Asawa">Ruth Asawa</a>, Wikipedia</em></p>
+<p>Learn to create three-dimensional forms from metal wire through twisting, coiling, and weaving. This accessible art form, popularized by modern artists like Alexander Calder and Ruth Asawa, transforms simple wire into expressive sculptures ranging from figurative pieces to abstract shapes.</p>
+<h3>What You'll Learn</h3>
+<ul>
+<li><strong>Continuous line technique</strong> - Creating sculptures from a single, unbroken wire like a 3D drawing in space</li>
+<li><strong>Armature building</strong> - Constructing strong wire skeletons for structure, then adding volume and detail</li>
+<li><strong>Looping and wrapping</strong> - Joining parts and creating stable connections at joints</li>
+<li><strong>Material selection</strong> - Choosing the right wire gauge and type for your project</li>
+</ul>
+<h3>Techniques</h3>
+<ul>
+<li>Start with a sketch to plan proportions</li>
+<li>Use thick wire for the main body contour (head, torso, pelvis)</li>
+<li>Loop wire at joints (neck, shoulders, hips, knees) for stability</li>
+<li>Attach arms and legs with secure multiple wraps</li>
+<li>Build volume by wrapping additional wire around the main structure</li>
+<li>Refine shapes for a neat, structured appearance</li>
+</ul>
+<h3>Tools and Materials</h3>
+<ul>
+<li><strong>Wire</strong> - Copper or aluminum (18-gauge/1mm recommended for beginners), steel for outdoor pieces</li>
+<li><strong>Pliers</strong> - Needle-nose pliers for bending, shaping, and cutting</li>
+<li><strong>Base</strong> - Wood block for freestanding sculptures</li>
+<li><strong>Reference</strong> - Sketch paper and pencils for planning</li>
+</ul>
+<h3>Workshop Details</h3>
+<p>Perfect for anyone interested in sculpture, crafts, or three-dimensional art. No prior experience necessary - we'll start with basic techniques and work up to more complex forms.</p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+    
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+    
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+    
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>
