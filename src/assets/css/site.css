@@ -53,6 +53,7 @@ section{margin:0 0 48px}
 footer{padding:24px 0; color:var(--muted); font-size:.8rem; border-top:1px solid var(--hair); margin-top:24px}
 .activity-bubbles{display:flex; flex-wrap:wrap; gap:.5rem; margin:12px 0}
 .bubble{font-size:.9rem; padding:.35rem .6rem; background:rgba(28,77,58,.08); border:1px solid rgba(28,77,58,.2); border-radius:999px; color:var(--accent)}
+.section-header{margin:16px 0; background:rgba(28,77,58,0.06); border:1px solid rgba(28,77,58,0.15); border-radius:16px; padding:20px}
 .upcoming-label{font-size:.75rem; font-weight:700; color:var(--accent); text-transform:uppercase}
 .slideshow-container{margin-top:16px; margin-bottom:16px; max-width:50%; margin-left:auto; margin-right:auto; background:var(--card); border-radius:12px; overflow:hidden; box-shadow:var(--shadow)}
 .slideshow{position:relative; max-width:100%; margin:auto}
