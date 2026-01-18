@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DIY CO2 Monitoring</title>
+  <meta name="description" content="Building a low-cost DIY CO2 monitor with graphing and local storage" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/co2-monitor/">
+  <meta property="og:title" content="DIY CO2 Monitoring">
+  <meta property="og:description" content="Building a low-cost DIY CO2 monitor with graphing and local storage">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/co2-monitor/co2-monitor.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/co2-monitor/">
+  <meta property="twitter:title" content="DIY CO2 Monitoring">
+  <meta property="twitter:description" content="Building a low-cost DIY CO2 monitor with graphing and local storage">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/co2-monitor/co2-monitor.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#current-workshops">Workshops</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#upcoming-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>DIY CO2 Monitoring</h1>
+  
+  <h2>DIY CO2 Monitoring Workshop</h2>
+<p>Build your own inexpensive, open-source CO2 monitor for indoor air quality assessment. Indoor CO2 levels serve as a practical indicator of ventilation effectiveness and potential airborne disease transmission risk.</p>
+<h3>Why CO2 Monitoring Matters</h3>
+<p>Higher CO2 concentrations suggest poor air circulation and increased exposure to airborne pathogens. Schools, offices, and public spaces benefit from monitoring to optimize ventilation and ensure occupant safety.</p>
+<h3>What You'll Learn</h3>
+<ul>
+<li><strong>Sensor basics</strong> - Working with the Sensirion SCD30 CO2 module</li>
+<li><strong>Microcontroller programming</strong> - Using ESP32 or similar boards</li>
+<li><strong>Data logging</strong> - Storing readings to microSD cards</li>
+<li><strong>Display options</strong> - OLED screens for real-time readings</li>
+<li><strong>Calibration techniques</strong> - Ensuring accurate measurements</li>
+</ul>
+<h3>Key Features</h3>
+<ul>
+<li>Real-time CO2 concentration display</li>
+<li>Local data storage with graphing capability</li>
+<li>Optional WiFi connectivity for remote monitoring</li>
+<li>Battery-powered operation for flexible deployment</li>
+<li>Air-change-rate (ACH) calculation through decay analysis</li>
+</ul>
+<h3>Workshop Details</h3>
+<p>Perfect for anyone interested in indoor air quality, electronics, or environmental monitoring. No prior experience necessary - we'll guide you through assembly and programming.</p>
+<p><strong>Learn more:</strong> <a href="https://edgecollective.io/notes/co2/">edgecollective.io/notes/co2</a></p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+    
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+    
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+    
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

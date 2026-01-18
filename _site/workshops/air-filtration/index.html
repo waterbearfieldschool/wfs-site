@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DIY Air Filtration</title>
+  <meta name="description" content="Build your own affordable, effective air purifier using the Corsi-Rosenthal box design" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/air-filtration/">
+  <meta property="og:title" content="DIY Air Filtration">
+  <meta property="og:description" content="Build your own affordable, effective air purifier using the Corsi-Rosenthal box design">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/air-filtration/airbox.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/air-filtration/">
+  <meta property="twitter:title" content="DIY Air Filtration">
+  <meta property="twitter:description" content="Build your own affordable, effective air purifier using the Corsi-Rosenthal box design">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/air-filtration/airbox.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#current-workshops">Workshops</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#upcoming-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>DIY Air Filtration</h1>
+  
+  <h2>DIY Air Filtration Workshop</h2>
+<p>Learn to build your own affordable, effective air purifier. We'll explore several designs, including the well-known Corsi-Rosenthal-Comparetto box - a collaborative open-source design that costs less than $200 and requires no specialized tools.</p>
+<h3>How It Works</h3>
+<p>The basic design uses four MERV-13 filters forming the sides of a box, with a box fan on top and cardboard as the base. Air flows in through the filter sides, removing particulates, and exits through the fan at the top. MERV-13 filters remove approximately 85% of viral-laden particulates.</p>
+<h3>What You'll Learn</h3>
+<ul>
+<li><strong>Understanding MERV ratings</strong> - How different filter ratings affect particle removal</li>
+<li><strong>Sizing for your space</strong> - Calculating air changes per hour (ACH) for your room</li>
+<li><strong>Building techniques</strong> - Assembling effective, durable filter boxes</li>
+<li><strong>Design variations</strong> - Choosing from multiple configurations with varying filter quantities and airflow</li>
+</ul>
+<h3>Performance</h3>
+<p>These devices deliver approximately 600 cubic feet per minute (CFM) of filtered air. For a typical 20'×20'×10' room, one unit adds about 3 air changes per hour; two units provide 6 ACH - matching Harvard School of Public Health's recommended minimum for COVID-19 mitigation.</p>
+<h3>Workshop Details</h3>
+<p>Perfect for anyone interested in improving indoor air quality at home, school, or workplace. No specialized tools or prior experience required.</p>
+<p><strong>Learn more:</strong> <a href="https://edgecollective.io/airbox/">edgecollective.io/airbox</a></p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+    
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+    
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+    
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

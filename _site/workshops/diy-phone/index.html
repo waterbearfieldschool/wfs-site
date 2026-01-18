@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Building a DIY 4G Phone</title>
+  <meta name="description" content="Build your own open-source mobile phone with calls, texts, and only the features you choose" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/diy-phone/">
+  <meta property="og:title" content="Building a DIY 4G Phone">
+  <meta property="og:description" content="Build your own open-source mobile phone with calls, texts, and only the features you choose">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/diy-phone/diy-phone.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/diy-phone/">
+  <meta property="twitter:title" content="Building a DIY 4G Phone">
+  <meta property="twitter:description" content="Build your own open-source mobile phone with calls, texts, and only the features you choose">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/diy-phone/diy-phone.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#current-workshops">Workshops</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#upcoming-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Building a DIY 4G Phone</h1>
+  
+  <h2>DIY 4G Phone Workshop</h2>
+<p>Build your own open-source 4G mobile phone from scratch. This project prioritizes mindful technology - no app stores, no infinite scrolling, just calls, texts, and the features you choose to add.</p>
+<h3>What You'll Learn</h3>
+<ul>
+<li><strong>Electronics assembly</strong> - Connecting modules and understanding how they communicate</li>
+<li><strong>Arduino programming</strong> - Writing and modifying firmware for your phone</li>
+<li><strong>Open source hardware</strong> - Working with hackable, customizable designs</li>
+<li><strong>Intentional technology</strong> - Building devices that respect your attention</li>
+</ul>
+<h3>Components</h3>
+<ul>
+<li><strong>SIM7600 4G Module</strong> - Global LTE connectivity for calls and texts</li>
+<li><strong>ItsyBitsy Microcontroller</strong> - Arduino-compatible programmable brain</li>
+<li><strong>240x240 TFT Display</strong> - Compact visual output</li>
+<li><strong>CardKB Keyboard</strong> - Physical typing without touchscreen dependence</li>
+</ul>
+<h3>Expandability</h3>
+<p>The modular design allows you to add GPS, environmental sensors, solar charging, and more. Design your own case - from minimalist wood to creative custom designs.</p>
+<h3>Workshop Details</h3>
+<p>Perfect for anyone interested in electronics, open-source hardware, or reclaiming control over their technology. No prior experience necessary.</p>
+<p><strong>Learn more:</strong> <a href="https://diy-phone.github.io/">diy-phone.github.io</a></p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+    
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+    
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+    
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>
