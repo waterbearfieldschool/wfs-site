@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heating Small Spaces</title>
+  <meta name="description" content="Learn to estimate energy needs for heating tiny homes, animal shelters, and off-grid spaces using hands-on experiments and basic heat transfer principles." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/heating-small-spaces/">
+  <meta property="og:title" content="Heating Small Spaces">
+  <meta property="og:description" content="Learn to estimate energy needs for heating tiny homes, animal shelters, and off-grid spaces using hands-on experiments and basic heat transfer principles.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/heat-transfer/heat-pump.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/heating-small-spaces/">
+  <meta property="twitter:title" content="Heating Small Spaces">
+  <meta property="twitter:description" content="Learn to estimate energy needs for heating tiny homes, animal shelters, and off-grid spaces using hands-on experiments and basic heat transfer principles.">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/heat-transfer/heat-pump.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#current-workshops">Workshops</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#upcoming-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p class="contact-email" style="margin: 16px 0 0 0; font-size: 0.8rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Heating Small Spaces</h1>
+  
+  <h2>Heating Small Spaces Workshop</h2>
+<p>How much energy does it take to keep a goat shed warm? A tiny home? An off-grid water tank from freezing? In this workshop, we'll explore the physics of heat loss and learn practical methods for estimating heating requirements for small spaces.</p>
+<h3>What You'll Learn</h3>
+<ul>
+<li>The fundamental heat transfer equation (Q = U × A × ΔT) and what it means in practice</li>
+<li>How insulation works: understanding R-values and U-values</li>
+<li>Calculating heat loss through walls, roofs, floors, and air leaks</li>
+<li>Comparing heat sources: wood, propane, electric, and heat pumps</li>
+<li>How to right-size a heating system for your space</li>
+</ul>
+<h3>Hands-On Activities</h3>
+<p>We'll build small insulated boxes (about 2' square) and run experiments:</p>
+<ul>
+<li>Install incandescent bulbs as heat sources and temperature sensors inside and out</li>
+<li>Test different insulation materials and thicknesses</li>
+<li>Measure real temperature differences and compare to our calculations</li>
+<li>Explore the effects of air movement with small fans</li>
+<li>Discuss how heat pumps work and consider building a small demonstration model</li>
+</ul>
+<h3>Practical Applications</h3>
+<p>The principles we cover apply to many real-world scenarios:</p>
+<ul>
+<li>Keeping livestock water from freezing off-grid</li>
+<li>Heating animal shelters (goat sheds, chicken coops)</li>
+<li>Sizing heaters for tiny homes and cabins</li>
+<li>Understanding when insulation improvements pay off</li>
+<li>Evaluating different heating technologies for off-grid use</li>
+</ul>
+<h3>Workshop Details</h3>
+<p>Ideal for homesteaders, tiny home builders, and anyone curious about the physics of staying warm. We'll combine hands-on experiments with practical calculations you can apply to your own projects.</p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+    
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+    
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+    
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>
