@@ -1,5 +1,5 @@
 ---
-title: "Bicycle Mechanics Basics"
+title: "Bike Maintenance Basics"
 meta: Learn essential bike maintenance and repair skills for keeping your bicycle in top condition
 layout: layouts/post.njk
 permalink: /workshops/bicycle-mechanics/
