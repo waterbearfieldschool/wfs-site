@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A Gentle Introduction to Off-Grid Power</title>
+  <meta name="description" content="Learn the basics of making, storing and using electrical energy at home - for kids and adults. (Image: Taufik 2022)" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/off-grid-power/">
+  <meta property="og:title" content="A Gentle Introduction to Off-Grid Power">
+  <meta property="og:description" content="Learn the basics of making, storing and using electrical energy at home - for kids and adults. (Image: Taufik 2022)">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/off-grid-power/bike-generator.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/off-grid-power/">
+  <meta property="twitter:title" content="A Gentle Introduction to Off-Grid Power">
+  <meta property="twitter:description" content="Learn the basics of making, storing and using electrical energy at home - for kids and adults. (Image: Taufik 2022)">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/off-grid-power/bike-generator.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#current-workshops">Workshops</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#upcoming-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>A Gentle Introduction to Off-Grid Power</h1>
+  
+  <h2>DIY Energy Resilience</h2>
+<p><em>Image: <a href="https://www.researchgate.net/publication/369082036_The_House_Project_A_Sustainable_Alternative_For_Rural_Electrification">Taufik 2022</a></em></p>
+<p>A hands-on introduction to making, storing and using electrical energy at home. This workshop is designed for kids and adults alike - no prior experience necessary!</p>
+<h3>What We'll Learn</h3>
+<ul>
+<li><strong>Assessing your electrical needs</strong> - How to power your devices for a specified duration without grid access</li>
+<li><strong>Battery storage options</strong> - Affordable solutions for storing energy</li>
+<li><strong>Generation methods</strong> - Solar panels, pedal-powered systems, and wind turbines</li>
+<li><strong>Measurement techniques</strong> - Using multimeters to measure voltage and current</li>
+</ul>
+<h3>Hands-On Demonstrations</h3>
+<ul>
+<li>Small-scale solar power systems with battery storage and inverters</li>
+<li>Human-powered bicycle generators</li>
+<li>Gravity-based lighting solutions</li>
+</ul>
+<h3>Additional Resources</h3>
+<p>Participants will gain access to live monitoring data from a residential solar installation and opportunities to contribute to community solar charging infrastructure projects.</p>
+<h3>Workshop Details</h3>
+<p>This is a free, beginner-friendly workshop. Come ready to ask questions and learn together!</p>
+<p><strong>Contact:</strong> <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a></p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+    
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+    
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+    
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

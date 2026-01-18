@@ -1,5 +1,5 @@
 ---
-title: "WFCF Farm Day"
+title: "Waltham Fields Community Farm: Farm Day 2025"
 date: 2025-10-18T12:00:00
 location: "Waltham Fields Community Farm"
 meta: We'll be tabling at a well-loved local farm event!

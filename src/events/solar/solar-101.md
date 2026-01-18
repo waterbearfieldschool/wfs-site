@@ -1,5 +1,5 @@
 ---
-title: "Workshop: Solar 101"
+title: "Solar 101 at Beaver Brook"
 date: 2025-10-12
 location: "Beaver Brook Reservation in Belmont, MA"
 meta: What scale of solar power might be useful for various applications?

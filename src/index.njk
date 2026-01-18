@@ -63,17 +63,18 @@ description: "Hands-on outdoor homeschool meetup near Lincoln & Waltham, MA. Hik
 <section class="hero" style="margin-top: 0;" id="current-workshops">
 
   <div style="margin: 16px 0; background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 20px; box-shadow: var(--shadow);">
-    <h2 style="margin: 0 0 12px; color: var(--accent); font-size: 1.4rem; text-align: center;">Workshops</h2>
-    <p style="font-size: 1.1rem; color: var(--muted); text-align: center; margin: 0 0 16px 0;"><strong>Greater Boston Area</strong> • <strong>Winter 2026</strong></p>
-    <p style="font-size: 0.95rem; margin: 8px 0 0 0;">We're a cooperative skill-sharing group, focused on the outdoors. We tend to meet at local parks, farms, and town lands.  Help us to build out our fall schedule by volunteering to offer teach something you know how to do -- or just faciliate at group investigation into a topic!</p>
+    <h2 style="margin: 0 0 12px; color: var(--accent); font-size: 1.4rem; text-align: center;">Upcoming Workshops</h2>
+    <p style="font-size: 1.1rem; color: var(--muted); text-align: center; margin: 0 0 16px 0;"><strong>Winter 2026</strong></p>
+    <p style="font-size: 0.95rem; margin: 8px 0 0 0;">Our workshops are held outdoors, in all weather. Pricing, format, and location vary by workshop and by teacher. Click on a workshop below to find out more!</p>
   </div>
 
   <div class="grid">
     {% for p in collections.allWorkshops %}{% if p.data.current %}
     <article class="card">
-      {% if p.data.workshopDate %}<div style="background: white; color: var(--link); text-align: center; padding: 8px 14px; font-weight: 600; font-size: 1rem;">
+      {% if p.data.workshopDate %}<a href="{{ p.url }}" style="display: block; background: white; color: var(--link); text-align: center; padding: 8px 14px; font-weight: 600; font-size: 1rem; text-decoration: none;">
         {{ p.data.workshopDate }}
-      </div>{% endif %}
+        {% if p.data.location %}<div style="font-weight: 400; font-size: 0.9rem;">{{ p.data.location }}</div>{% endif %}
+      </a>{% endif %}
       <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
         {% if p.data.image %}
           <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
@@ -91,10 +92,74 @@ description: "Hands-on outdoor homeschool meetup near Lincoln & Waltham, MA. Hik
 
 </section>
 
+<section class="hero" style="margin-top: 32px;" id="recent-workshops">
+
+  <div style="margin: 16px 0; background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 20px; box-shadow: var(--shadow);">
+    <h2 style="margin: 0 0 12px; color: var(--accent); font-size: 1.4rem; text-align: center;">Recent Workshops</h2>
+    <p style="font-size: 0.95rem; margin: 8px 0 0 0;">Here are some workshops we've held recently. Click to see photos and details from each event!</p>
+  </div>
+
+  <div class="grid">
+    <article class="card">
+      <a href="/events/farmday/" style="display: block; background: white; color: var(--link); text-align: center; padding: 8px 14px; font-weight: 600; font-size: 1rem; text-decoration: none;">
+        October 2025
+        <div style="font-weight: 400; font-size: 0.9rem;">Waltham, MA</div>
+      </a>
+      <a href="/events/farmday/" class="thumb" aria-label="Waltham Fields Community Farm: Farm Day 2025">
+        <img src="/assets/images/farmday/Farm_Day_2025_Square.jpg" alt="Waltham Fields Community Farm: Farm Day 2025" />
+      </a>
+      <div class="card-content">
+        <h3 style="text-align: center;"><a href="/events/farmday/">Waltham Fields Community Farm: Farm Day 2025</a></h3>
+        <div class="meta-description">Hands-on solar demos, hand drills, and DIY fun at Waltham Fields Community Farm</div>
+      </div>
+    </article>
+    <article class="card">
+      <a href="/events/solar/" style="display: block; background: white; color: var(--link); text-align: center; padding: 8px 14px; font-weight: 600; font-size: 1rem; text-decoration: none;">
+        October 2025
+        <div style="font-weight: 400; font-size: 0.9rem;">Belmont, MA</div>
+      </a>
+      <a href="/events/solar/" class="thumb" aria-label="Solar 101 at Beaver Brook">
+        <img src="/assets/images/projects/solar101.jpg" alt="Solar 101 at Beaver Brook" />
+      </a>
+      <div class="card-content">
+        <h3 style="text-align: center;"><a href="/events/solar/">Solar 101 at Beaver Brook</a></h3>
+        <div class="meta-description">Introduction to off-grid solar power - experimenting with panels, batteries, and motors</div>
+      </div>
+    </article>
+    <article class="card">
+      <a href="/events/edgewood/" style="display: block; background: white; color: var(--link); text-align: center; padding: 8px 14px; font-weight: 600; font-size: 1rem; text-decoration: none;">
+        August 2025
+        <div style="font-weight: 400; font-size: 0.9rem;">Cranston, RI</div>
+      </a>
+      <a href="/events/edgewood/" class="thumb" aria-label="Edgewood Sailing School: Salinity Workshop">
+        <img src="/assets/images/edgewood/boats.webp" alt="Edgewood Sailing School: Salinity Workshop" />
+      </a>
+      <div class="card-content">
+        <h3 style="text-align: center;"><a href="/events/edgewood/">Edgewood Sailing School: Salinity Workshop</a></h3>
+        <div class="meta-description">Intro to salinity measurement and telemetry techniques</div>
+      </div>
+    </article>
+    <article class="card">
+      <a href="/events/edgewood-telemetry/" style="display: block; background: white; color: var(--link); text-align: center; padding: 8px 14px; font-weight: 600; font-size: 1rem; text-decoration: none;">
+        July 2025
+        <div style="font-weight: 400; font-size: 0.9rem;">Cranston, RI</div>
+      </a>
+      <a href="/events/edgewood-telemetry/" class="thumb" aria-label="Edgewood Sailing School: Telemetry Workshop">
+        <img src="/assets/images/edgewood-telemetry/IMG_20250805_153104810_HDR.webp" alt="Edgewood Sailing School: Telemetry Workshop" />
+      </a>
+      <div class="card-content">
+        <h3 style="text-align: center;"><a href="/events/edgewood-telemetry/">Edgewood Sailing School: Telemetry Workshop</a></h3>
+        <div class="meta-description">DIY local radio telemetry workshop</div>
+      </div>
+    </article>
+  </div>
+
+</section>
+
 <section class="hero" style="margin-top: 32px;" id="upcoming-workshops">
 
   <div style="margin: 16px 0; background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 20px; box-shadow: var(--shadow);">
-    <h2 style="margin: 0 0 12px; color: var(--accent); font-size: 1.4rem; text-align: center;">Upcoming</h2>
+    <h2 style="margin: 0 0 12px; color: var(--accent); font-size: 1.4rem; text-align: center;">Ideas for Future Workshops</h2>
     <div class="activity-bubbles" style="justify-content: center;">
       <span class="bubble">Farming</span>
       <span class="bubble">Gardening</span>

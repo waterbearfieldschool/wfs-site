@@ -3,7 +3,7 @@ title: "Introduction to Welding"
 meta: Learn basic welding skills while creating a musical Butaphone instrument from a gas bottle
 layout: layouts/post.njk
 permalink: /workshops/welding/
-image: /assets/images/main/wfs_filler.png
+image: /assets/images/welding/welding.png
 ---
 
 ## Welding Workshop: Build Your Butaphone
