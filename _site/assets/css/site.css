@@ -54,7 +54,7 @@ footer{padding:24px 0; color:var(--muted); font-size:.8rem; border-top:1px solid
 .activity-bubbles{display:flex; flex-wrap:wrap; gap:.5rem; margin:12px 0}
 .bubble{font-size:.9rem; padding:.35rem .6rem; background:rgba(28,77,58,.08); border:1px solid rgba(28,77,58,.2); border-radius:999px; color:var(--accent)}
 .upcoming-label{font-size:.75rem; font-weight:700; color:var(--accent); text-transform:uppercase}
-.slideshow-container{margin-top:16px; background:var(--card); border-radius:12px; overflow:hidden; box-shadow:var(--shadow)}
+.slideshow-container{margin-top:16px; margin-bottom:16px; max-width:50%; margin-left:auto; margin-right:auto; background:var(--card); border-radius:12px; overflow:hidden; box-shadow:var(--shadow)}
 .slideshow{position:relative; max-width:100%; margin:auto}
 .slide{display:none; position:relative}
 .slide.active{display:block}
@@ -109,6 +109,7 @@ main .slide img{aspect-ratio:1/1}
   .news .item, .list .post{flex-direction:column}
   .prose img{max-width:100%}
   .prose table{width:100%; margin:16px 0}
+  .slideshow-container{max-width:100%; width:100%}
 }
 .prose h1{font-size:1.6rem; margin:0 0 8px}
 .prose .meta{margin-bottom:18px; color:var(--muted)}
