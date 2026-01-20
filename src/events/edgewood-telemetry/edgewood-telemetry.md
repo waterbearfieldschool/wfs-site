@@ -72,3 +72,10 @@ We had a great time running a DIY local radio telemetry workshop at the Edgewood
   </a>
   <div class="float-caption">Wrapping up a successful workshop!</div>
 </div>
+
+<div class="float-figure float-right">
+  <a href="/assets/images/edgewood-telemetry/tilt_demo.mp4" target="_blank">
+    <img src="/assets/images/edgewood-telemetry/tilt_demo_thumb.webp" alt="Tilt sensor demo video thumbnail">
+  </a>
+  <div class="float-caption">Click to watch a video demo of the tilt sensor in action!</div>
+</div>
