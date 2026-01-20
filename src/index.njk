@@ -67,7 +67,7 @@ image: /assets/images/biketrailer/full_system.webp
     <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">Our workshops are typically held outdoors, in most weather. Pricing, format, and location vary by workshop and by teacher. Click on a workshop below to find out more!</p>
     <div class="grid">
     {% for p in collections.allWorkshops %}{% if p.data.current %}
-    <article class="card">
+    <article class="card workshop-card" data-foundation="{{ p.data.foundations[0] if p.data.foundations else '' }}">
       {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
       <div class="workshop-foundation-band" data-foundation="{{ f }}">
         {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
@@ -103,7 +103,7 @@ image: /assets/images/biketrailer/full_system.webp
     <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
     <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">Here are some workshops we've held in the past, and may offer again soon. Click through to see photos and details!</p>
     <div class="grid">
-    <article class="card">
+    <article class="card workshop-card" data-foundation="energy">
       <div class="workshop-foundation-band" data-foundation="energy">
         {{ foundationInfo.energy.emoji }} {{ foundationInfo.energy.name }}
       </div>
@@ -119,7 +119,7 @@ image: /assets/images/biketrailer/full_system.webp
         <div class="meta-description">Hands-on solar demos, hand drills, and DIY fun at Waltham Fields Community Farm</div>
       </div>
     </article>
-    <article class="card">
+    <article class="card workshop-card" data-foundation="communication">
       <div class="workshop-foundation-band" data-foundation="communication">
         {{ foundationInfo.communication.emoji }} {{ foundationInfo.communication.name }}
       </div>
@@ -135,7 +135,7 @@ image: /assets/images/biketrailer/full_system.webp
         <div class="meta-description">Hands-on workshop building mesh radio communicators at Otherwise Summer Camp</div>
       </div>
     </article>
-    <article class="card">
+    <article class="card workshop-card" data-foundation="energy">
       <div class="workshop-foundation-band" data-foundation="energy">
         {{ foundationInfo.energy.emoji }} {{ foundationInfo.energy.name }}
       </div>
@@ -151,7 +151,7 @@ image: /assets/images/biketrailer/full_system.webp
         <div class="meta-description">Introduction to off-grid solar power - experimenting with panels, batteries, and motors</div>
       </div>
     </article>
-    <article class="card">
+    <article class="card workshop-card" data-foundation="communication">
       <div class="workshop-foundation-band" data-foundation="communication">
         {{ foundationInfo.communication.emoji }} {{ foundationInfo.communication.name }}
       </div>
@@ -167,7 +167,7 @@ image: /assets/images/biketrailer/full_system.webp
         <div class="meta-description">DIY local radio telemetry workshop</div>
       </div>
     </article>
-    <article class="card">
+    <article class="card workshop-card" data-foundation="water">
       <div class="workshop-foundation-band" data-foundation="water">
         {{ foundationInfo.water.emoji }} {{ foundationInfo.water.name }}
       </div>
@@ -197,7 +197,7 @@ image: /assets/images/biketrailer/full_system.webp
     </p>
     <div class="grid">
     {% for p in collections.allWorkshops %}{% if not p.data.current %}
-    <article class="card">
+    <article class="card workshop-card" data-foundation="{{ p.data.foundations[0] if p.data.foundations else '' }}">
       {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
       <div class="workshop-foundation-band" data-foundation="{{ f }}">
         {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
@@ -227,7 +227,7 @@ image: /assets/images/biketrailer/full_system.webp
     <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">We're building a comprehensive curriculum for practical resilience - eight foundations covering the essential systems that sustain households and communities.</p>
     <div class="grid foundations-grid" style="gap: 10px;">
       {% for p in collections.allFoundations %}
-      <a href="{{ p.url }}" class="foundation-card{% if foundationInfo[p.data.foundation].inWinter2026 %} highlighted{% endif %}" data-foundation="{{ p.data.foundation }}" style="display: block; background: var(--card); border: 1px solid var(--hair); border-top: 10px solid; border-radius: 12px; padding: 1rem; text-decoration: none; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+      <a href="{{ p.url }}" class="foundation-card foundation-mini-card{% if foundationInfo[p.data.foundation].inWinter2026 %} highlighted{% endif %}" data-foundation="{{ p.data.foundation }}" style="display: block; background: var(--card); border-radius: 12px; padding: 1rem; text-decoration: none; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease;">
         <div class="foundation-emoji" style="font-size: 1.5rem; margin-bottom: 4px;">{{ foundationInfo[p.data.foundation].emoji }}</div>
         <div class="foundation-title" style="font-weight: 600; color: var(--fg); font-size: 0.9rem;">{{ p.data.title }}</div>
       </a>
@@ -248,7 +248,7 @@ image: /assets/images/biketrailer/full_system.webp
       {% for slug in ['off-grid-power', 'air-filtration', 'mesh-radio', 'biketrailer'] %}
       {% for p in collections.allWorkshops %}
       {% if p.fileSlug == slug %}
-      <article class="card">
+      <article class="card workshop-card" data-foundation="{{ p.data.foundations[0] if p.data.foundations else '' }}">
         {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
         <div class="workshop-foundation-band" data-foundation="{{ f }}">
           {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}

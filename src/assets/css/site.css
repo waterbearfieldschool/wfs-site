@@ -247,3 +247,30 @@ main .slide img{aspect-ratio:1/1}
 .workshop-foundation-band[data-foundation="fabrication"]{background:var(--foundation-fabrication); color:white}
 .workshop-foundation-band[data-foundation="transport"]{background:var(--foundation-transport); color:white}
 .workshop-foundation-band[data-foundation="craft"]{background:var(--foundation-craft); color:white}
+.workshop-foundation-band[data-foundation="air"]{background:var(--foundation-air); color:white}
+
+/* Workshop card borders - match foundation color */
+.workshop-card{border-width:3px}
+.workshop-card[data-foundation="air"]{border-color:var(--foundation-air)}
+.workshop-card[data-foundation="energy"]{border-color:var(--foundation-energy)}
+.workshop-card[data-foundation="water"]{border-color:var(--foundation-water)}
+.workshop-card[data-foundation="food"]{border-color:var(--foundation-food)}
+.workshop-card[data-foundation="shelter"]{border-color:var(--foundation-shelter)}
+.workshop-card[data-foundation="heating-cooling"]{border-color:var(--foundation-heating-cooling)}
+.workshop-card[data-foundation="communication"]{border-color:var(--foundation-communication)}
+.workshop-card[data-foundation="fabrication"]{border-color:var(--foundation-fabrication)}
+.workshop-card[data-foundation="transport"]{border-color:var(--foundation-transport)}
+.workshop-card[data-foundation="craft"]{border-color:var(--foundation-craft)}
+
+/* Foundation mini-card borders - match foundation color */
+.foundation-mini-card{border:3px solid var(--hair)}
+.foundation-mini-card[data-foundation="air"]{border-color:var(--foundation-air)}
+.foundation-mini-card[data-foundation="energy"]{border-color:var(--foundation-energy)}
+.foundation-mini-card[data-foundation="water"]{border-color:var(--foundation-water)}
+.foundation-mini-card[data-foundation="food"]{border-color:var(--foundation-food)}
+.foundation-mini-card[data-foundation="shelter"]{border-color:var(--foundation-shelter)}
+.foundation-mini-card[data-foundation="heating-cooling"]{border-color:var(--foundation-heating-cooling)}
+.foundation-mini-card[data-foundation="communication"]{border-color:var(--foundation-communication)}
+.foundation-mini-card[data-foundation="fabrication"]{border-color:var(--foundation-fabrication)}
+.foundation-mini-card[data-foundation="transport"]{border-color:var(--foundation-transport)}
+.foundation-mini-card[data-foundation="craft"]{border-color:var(--foundation-craft)}
