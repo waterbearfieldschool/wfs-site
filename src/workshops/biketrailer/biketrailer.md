@@ -23,3 +23,7 @@ Learn to build your own cargo bike trailer using inexpensive, readily-available 
 ### Workshop Details
 
 Great for cyclists looking to haul gear, groceries, or supplies without a car. The design uses common hardware store materials and recycled 16" or 26" bike wheels. No welding required - just basic hand tools and a pipe bender.
+
+### Additional Resources
+
+- [DIY Bike Trailer Project](https://edgecollective.io/projects/biketrailer/) - Detailed build guide and design notes
