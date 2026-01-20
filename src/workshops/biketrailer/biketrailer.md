@@ -8,8 +8,8 @@ current: true
 workshopDate: "February 2026"
 location: "Greater Boston"
 foundations:
-  - shelter
   - transport
+  - shelter
 level: intro
 ---
 
