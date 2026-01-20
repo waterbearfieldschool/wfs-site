@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E-Bike Conversion</title>
+  <meta name="description" content="Learn to transform a regular bicycle into an electric-assisted e-bike by installing motor kits, batteries, and controllers" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/ebike-conversion/">
+  <meta property="og:title" content="E-Bike Conversion">
+  <meta property="og:description" content="Learn to transform a regular bicycle into an electric-assisted e-bike by installing motor kits, batteries, and controllers">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/ebike-conversion/placeholder.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/ebike-conversion/">
+  <meta property="twitter:title" content="E-Bike Conversion">
+  <meta property="twitter:description" content="Learn to transform a regular bicycle into an electric-assisted e-bike by installing motor kits, batteries, and controllers">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/ebike-conversion/placeholder.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#current-workshops">Workshops</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#future-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p class="contact-email" style="margin: 16px 0 0 0; font-size: 0.8rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>E-Bike Conversion</h1>
+  
+  <h2>E-Bike Conversion Workshop</h2>
+<p>Transform your regular bicycle into an electric-assisted bike (e-bike) by installing an electrification kit. This hands-on workshop covers the complete process from understanding e-bike components to diagnosing common issues, giving you the skills to electrify bikes and maintain them long-term.</p>
+<h3>What You'll Learn</h3>
+<ul>
+<li>How e-bike motors work: hub motors vs. mid-drive systems</li>
+<li>Battery technology: types, capacity measurement, and care</li>
+<li>Controllers and sensors: how they communicate</li>
+<li>E-bike regulations and legal considerations</li>
+<li>Installing electrification kits on different bike frames</li>
+<li>Diagnosing faults in e-bike electrical systems</li>
+<li>Assessing and reconditioning used batteries</li>
+<li>Regenerative braking technology</li>
+</ul>
+<h3>Workshop Details</h3>
+<p>Participants will work hands-on with e-bike components and have the opportunity to test bikes with different motor types and power levels. We'll cover both the theory behind electric propulsion and practical installation techniques.</p>
+<p>This workshop is suitable for anyone comfortable with basic bicycle mechanics. No prior electrical experience required.</p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+    
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+    
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+    
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>
