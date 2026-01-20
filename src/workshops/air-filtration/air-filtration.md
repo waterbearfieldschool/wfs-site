@@ -4,6 +4,9 @@ meta: Build your own affordable, effective air purifier using the Corsi-Rosentha
 layout: layouts/post.njk
 permalink: /workshops/air-filtration/
 image: /assets/images/air-filtration/airbox.webp
+current: true
+workshopDate: "February 2026"
+location: "Greater Boston"
 ---
 
 ## DIY Air Filtration Workshop
