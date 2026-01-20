@@ -1,12 +1,12 @@
 ---
-title: "Easy Off-Grid Mesh Radio"
-meta: Build long-range wireless networks that work without internet or cell service
+title: "Texting When the Grid Isn't Available"
+meta: Learn how to set up and use off-grid communications tools locally using inexpensive new tools that don't require a license.
 layout: layouts/post.njk
 permalink: /workshops/mesh-radio/
 current: true
 workshopDate: "February 2026"
 location: "Greater Boston"
-image: /assets/images/mesh-radio/rook.webp
+image: /assets/images/mesh-radio/simple_mesh.png
 foundations:
   - communication
 level: intro

@@ -1,6 +1,6 @@
 ---
-title: "Off-Grid Monitoring"
-meta: Using low-power radios to collect telemetry data (temperature, voltage, etc)
+title: "Off-Grid Monitoring of Temperature (and other things!) using local, low-power radios"
+meta: Tracking e.g. the temperature of a hoop house, or the water level in a tank, without using cellular or wifi networks.
 layout: layouts/post.njk
 permalink: /workshops/off-grid-telemetry/
 image: /assets/images/off-grid-telemetry/main.webp

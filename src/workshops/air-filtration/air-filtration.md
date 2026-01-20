@@ -1,6 +1,6 @@
 ---
 title: "DIY Air Filtration"
-meta: Build your own affordable, effective air purifier using the Corsi-Rosenthal box design
+meta: Learn how to build and assess simple, low-cost, effective DIY air purifiers.
 layout: layouts/post.njk
 permalink: /workshops/air-filtration/
 image: /assets/images/air-filtration/airbox.webp

@@ -1,6 +1,6 @@
 ---
-title: "A Gentle Introduction to Off-Grid Power"
-meta: "Learn the basics of making, storing and using electrical energy at home - for kids and adults. (Image: Taufik 2022)"
+title: "Resilient Small-Scale Electrical Power"
+meta: "Learn how to assess your local electrical needs, and approaches to producing and using small-scale electrical power without the grid."
 layout: layouts/post.njk
 permalink: /workshops/off-grid-power/
 current: true
