@@ -4,6 +4,9 @@ meta: Using low-power radios to collect telemetry data (temperature, voltage, et
 layout: layouts/post.njk
 permalink: /workshops/off-grid-telemetry/
 image: /assets/images/off-grid-telemetry/main.webp
+current: true
+workshopDate: "February 2026"
+location: "Greater Boston"
 ---
 
 ## Off-Grid Monitoring Workshop

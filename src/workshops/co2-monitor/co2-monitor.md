@@ -4,6 +4,9 @@ meta: Building a low-cost DIY CO2 monitor with graphing and local storage
 layout: layouts/post.njk
 permalink: /workshops/co2-monitor/
 image: /assets/images/co2-monitor/co2-monitor.webp
+current: true
+workshopDate: "February 2026"
+location: "Greater Boston"
 ---
 
 ## DIY CO2 Monitoring Workshop
