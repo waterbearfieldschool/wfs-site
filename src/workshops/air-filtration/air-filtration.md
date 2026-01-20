@@ -7,6 +7,9 @@ image: /assets/images/air-filtration/airbox.webp
 current: true
 workshopDate: "February 2026"
 location: "Greater Boston"
+foundations:
+  - climate
+level: intro
 ---
 
 ## DIY Air Filtration Workshop

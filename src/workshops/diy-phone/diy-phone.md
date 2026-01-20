@@ -4,6 +4,9 @@ meta: Build your own open-source mobile phone with calls, texts, and only the fe
 layout: layouts/post.njk
 permalink: /workshops/diy-phone/
 image: /assets/images/diy-phone/diy-phone.webp
+foundations:
+  - communication
+level: advanced
 ---
 
 ## DIY 4G Phone Workshop

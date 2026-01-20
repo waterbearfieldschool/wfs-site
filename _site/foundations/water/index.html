@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Water</title>
+  <meta name="description" content="How do we collect, store, and purify water? DIY approaches to water independence." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/foundations/water/">
+  <meta property="og:title" content="Water">
+  <meta property="og:description" content="How do we collect, store, and purify water? DIY approaches to water independence.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/foundations/water/">
+  <meta property="twitter:title" content="Water">
+  <meta property="twitter:description" content="How do we collect, store, and purify water? DIY approaches to water independence.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/#current-workshops">Current</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#future-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.8rem; font-style: italic; color: var(--muted); text-align: center;">
+            Want to take a class? Or teach a class? Reach out!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.8rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Water</h1>
+  
+  <h2>Water: How do we collect, store, and purify water?</h2>
+<p>Water is life. When municipal systems fail or wells run dry, how do you ensure safe drinking water for your household? How do you collect rain, filter contaminants, and store water safely?</p>
+<p>Our water workshops teach practical skills for water independence—from simple rainwater collection systems to biochar filtration that can remove pesticides and other contaminants. You'll learn to test water quality, build treatment systems, and design storage appropriate for your needs.</p>
+<h3>Why This Matters</h3>
+<p>Access to clean water is the most fundamental resilience need. Even short-term disruptions to water supply create serious problems. Understanding how to collect, store, and purify water gives you options when infrastructure fails—and can reduce your ongoing water costs and environmental impact.</p>
+<h3>Learning Pathway</h3>
+<p><strong>Intro</strong> → Rainwater Capture basics
+<strong>Applied</strong> → Biochar Water Filtration
+<strong>Future</strong> → Water Level Monitoring, Hand Pumps</p>
+<h3>Current Workshops</h3>
+<ul>
+<li><a href="/workshops/off-grid-water-monitoring/">Off-Grid Water Monitoring</a> - Monitor water levels and quality using low-power sensors</li>
+</ul>
+<h3>Coming Soon</h3>
+<ul>
+<li>Biochar Water Filtration - Build household and community-scale filtration systems</li>
+<li>Rainwater Capture - Collection, storage, and first-flush systems</li>
+</ul>
+<h3>Related Foundations</h3>
+<ul>
+<li><a href="/foundations/food/">Food</a> - Water for irrigation and food processing</li>
+<li><a href="/foundations/energy/">Energy</a> - Powering pumps and monitoring systems</li>
+</ul>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

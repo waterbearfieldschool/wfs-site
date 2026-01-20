@@ -3,6 +3,7 @@ title: "Libraries and Learning"
 meta: Archiving, sharing, and contributing knowledge.
 layout: layouts/post.njk
 permalink: /foundations/libraries-learning/
+archived: true
 ---
 
 ## Libraries and Learning

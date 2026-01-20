@@ -4,6 +4,9 @@ meta: Learn essential bike maintenance and repair skills for keeping your bicycl
 layout: layouts/post.njk
 permalink: /workshops/bicycle-mechanics/
 image: /assets/images/bike-repair/bike_repair.png
+foundations:
+  - transport
+level: intro
 ---
 
 ## Bicycle Mechanics Workshop

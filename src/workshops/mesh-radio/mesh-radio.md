@@ -7,6 +7,9 @@ current: true
 workshopDate: "February 2026"
 location: "Greater Boston"
 image: /assets/images/mesh-radio/rook.webp
+foundations:
+  - communication
+level: intro
 ---
 
 ## Off-Grid Mesh Radio Workshop

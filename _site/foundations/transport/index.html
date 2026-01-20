@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transport</title>
+  <meta name="description" content="How do we move people and goods? Bikes, trailers, and human-scale transportation." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/foundations/transport/">
+  <meta property="og:title" content="Transport">
+  <meta property="og:description" content="How do we move people and goods? Bikes, trailers, and human-scale transportation.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/foundations/transport/">
+  <meta property="twitter:title" content="Transport">
+  <meta property="twitter:description" content="How do we move people and goods? Bikes, trailers, and human-scale transportation.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/#current-workshops">Current</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#future-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.8rem; font-style: italic; color: var(--muted); text-align: center;">
+            Want to take a class? Or teach a class? Reach out!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.8rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Transport</h1>
+  
+  <h2>Transport: How do we move people and goods?</h2>
+<p>How do you get around when gas is scarce or roads are blocked? How do you haul supplies, tools, or materials without a truck? What does resilient transportation look like?</p>
+<p>Our transport workshops focus on human-scale solutions—bikes, cargo trailers, and electric assist systems. Learn to build trailers that can haul hundreds of pounds, maintain and repair bicycles, and convert bikes to electric assist for extended range and heavy loads.</p>
+<h3>Why This Matters</h3>
+<p>Transportation is often overlooked in resilience planning, but it's essential. The ability to move yourself and cargo without relying on gasoline or functioning roads provides flexibility in any situation. Bicycles and human-powered transport are also healthier, cheaper, and more sustainable than car-dependent alternatives.</p>
+<h3>Learning Pathway</h3>
+<p><strong>Intro</strong> → DIY Bike Trailers
+<strong>Applied</strong> → Bicycle Mechanics, E-Bike Conversion
+<strong>Future</strong> → Cargo Bike Conversion, Bike Maintenance Basics</p>
+<h3>Current Workshops</h3>
+<ul>
+<li><a href="/workshops/biketrailer/">DIY Bike Trailers</a> - Build a cargo trailer that can haul hundreds of pounds</li>
+<li><a href="/workshops/bicycle-mechanics/">Bicycle Mechanics</a> - Learn to maintain and repair bicycles</li>
+<li><a href="/workshops/ebike-conversion/">E-Bike Conversion</a> - Convert a standard bike to electric assist</li>
+</ul>
+<h3>Coming Soon</h3>
+<ul>
+<li>Cargo Bike Conversion</li>
+<li>Bike Maintenance Basics</li>
+</ul>
+<h3>Related Foundations</h3>
+<ul>
+<li><a href="/foundations/shelter/">Shelter</a> - Mobile structures and trailer design</li>
+<li><a href="/foundations/fabrication/">Fabrication</a> - Welding and metalwork for bike modifications</li>
+<li><a href="/foundations/energy/">Energy</a> - Battery systems for e-bikes</li>
+</ul>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

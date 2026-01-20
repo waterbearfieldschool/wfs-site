@@ -4,6 +4,10 @@ meta: "Build an outdoor clay oven for baking bread, pizza, and more using ancien
 layout: layouts/post.njk
 permalink: /workshops/cob-oven/
 image: /assets/images/cob-oven/cob-oven.webp
+foundations:
+  - food
+  - climate
+level: applied
 ---
 
 ## Cob Oven Workshop

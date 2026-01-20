@@ -4,6 +4,9 @@ meta: "Build a low-cost water filtration system using locally-produced biochar. 
 layout: layouts/post.njk
 permalink: /workshops/biochar-water/
 image: /assets/images/biochar-water/biochar_filter.webp
+foundations:
+  - water
+level: applied
 ---
 
 ## Biochar Water Filter Workshop

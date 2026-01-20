@@ -7,6 +7,9 @@ current: true
 workshopDate: "February 2026"
 location: "Greater Boston"
 image: /assets/images/off-grid-power/bike-generator.png
+foundations:
+  - energy
+level: intro
 ---
 
 ## DIY Energy Resilience

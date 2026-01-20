@@ -2,9 +2,13 @@
 title: "E-Bike Conversion"
 meta: Learn to transform a regular bicycle into an electric-assisted e-bike by installing motor kits, batteries, and controllers
 layout: layouts/post.njk
-permalink: false
+permalink: /workshops/ebike-conversion/
 image: /assets/images/ebike-conversion/placeholder.png
 draft: true
+foundations:
+  - transport
+  - energy
+level: applied
 ---
 
 ## E-Bike Conversion Workshop

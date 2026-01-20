@@ -1,0 +1,72 @@
+---
+title: "Winter 2026 Resilience Sequence"
+meta: Four weeks of hands-on resilience workshops - energy, climate, communication, and transport
+layout: layouts/post.njk
+permalink: /resilience-sequence/winter-2026/
+---
+
+<p>Four consecutive weeks of hands-on workshops covering energy, climate, communication, and transport. Join a cohort of fellow learners and build practical skills for resilience.</p>
+
+<p><strong>Location:</strong> Greater Boston Area<br>
+<strong>Dates:</strong> February 2026 (specific dates TBD)<br>
+<strong>Price:</strong> $275 ($250 early bird)</p>
+
+<h3>The Workshops</h3>
+
+<div class="grid" style="margin: 2rem 0;">
+{% for slug in ['off-grid-power', 'air-filtration', 'mesh-radio', 'biketrailer'] %}
+{% for p in collections.allWorkshops %}
+{% if p.fileSlug == slug %}
+<article class="card">
+  {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
+  <div class="workshop-foundation-band" data-foundation="{{ f }}">
+    {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+  </div>
+  {% endif %}{% endfor %}{% endif %}
+  <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
+    {% if p.data.image %}
+      <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
+    {% else %}
+      [FIELD SCHOOL]
+    {% endif %}
+  </a>
+  <div class="card-content">
+    <h3 style="text-align: center;"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
+    {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
+  </div>
+</article>
+{% endif %}
+{% endfor %}
+{% endfor %}
+</div>
+
+<h3>What's Included</h3>
+
+<ul>
+  <li>All four workshops (normally ~$320 if taken separately)</li>
+  <li>Materials for all projects</li>
+  <li>Take-home: solar charger, air filter, mesh radio, bike trailer</li>
+  <li>Certificate of completion for the Resilience Foundations credential</li>
+</ul>
+
+<h3>Pricing</h3>
+
+<table>
+  <thead>
+    <tr><th>Option</th><th>Price</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Full Sequence</td><td>$275</td></tr>
+    <tr><td>Early Bird (register by Jan 15)</td><td>$250</td></tr>
+  </tbody>
+</table>
+
+<h3>Register</h3>
+
+<p>Registration opens late January 2026.</p>
+
+<p><em>Have questions? <a href="/contact/">Contact us</a> to learn more.</em></p>
+
+<hr>
+
+<p><a href="/resilience-sequence/">Back to Resilience Sequence overview</a></p>

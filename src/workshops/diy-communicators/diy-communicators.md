@@ -7,6 +7,9 @@ image: /assets/images/diy-communicators/main.webp
 layout: layouts/post.njk
 permalink: /workshops/diy-communicators/
 draft: true
+foundations:
+  - communication
+level: intro
 ---
 
 We had a fantastic time at Otherwise Summer Camp in Danville, VT building off-grid mesh radio communicators! Participants assembled custom "MeshBot" devices using LoRa radio modules, OLED displays, and mini keyboards - creating handheld text messengers that work without cell service or internet.

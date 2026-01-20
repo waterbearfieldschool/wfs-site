@@ -4,6 +4,10 @@ meta: Build solar-powered sensors to track water levels in wells, streams, and t
 layout: layouts/post.njk
 permalink: /workshops/off-grid-water-monitoring/
 image: /assets/images/off-grid-water-monitoring/main.jpeg
+foundations:
+  - water
+  - communication
+level: applied
 ---
 
 ## Off-Grid Water Level Monitoring Workshop

@@ -2,9 +2,12 @@
 title: "Leather Sandal Making"
 meta: Create custom leather sandals from your own foot measurements using traditional leatherworking techniques
 layout: layouts/post.njk
-permalink: false
+permalink: /workshops/leather-sandals/
 image: /assets/images/leather-sandals/placeholder.png
 draft: true
+foundations:
+  - fabrication
+level: intro
 ---
 
 ## Leather Sandal Making Workshop

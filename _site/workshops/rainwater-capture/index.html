@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainwater Capture</title>
+  <meta name="description" content="Learn to design and build rainwater collection systems for household and garden use" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/rainwater-capture/">
+  <meta property="og:title" content="Rainwater Capture">
+  <meta property="og:description" content="Learn to design and build rainwater collection systems for household and garden use">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/rainwater-capture/placeholder.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/rainwater-capture/">
+  <meta property="twitter:title" content="Rainwater Capture">
+  <meta property="twitter:description" content="Learn to design and build rainwater collection systems for household and garden use">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/rainwater-capture/placeholder.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/#current-workshops">Current</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#future-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.8rem; font-style: italic; color: var(--muted); text-align: center;">
+            Want to take a class? Or teach a class? Reach out!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.8rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Rainwater Capture</h1>
+  
+  <h2>Rainwater Capture Workshop</h2>
+<p>Learn to design and build effective rainwater collection systems for household and garden use. This workshop covers the fundamentals of harvesting rain from rooftops, calculating potential yield, and building reliable storage and distribution systems.</p>
+<h3>What You'll Learn</h3>
+<ul>
+<li><strong>Catchment calculation</strong> - Estimating rainfall potential from your roof area</li>
+<li><strong>First-flush diverters</strong> - Keeping debris and contaminants out of your storage</li>
+<li><strong>Storage options</strong> - From rain barrels to larger cistern systems</li>
+<li><strong>Distribution systems</strong> - Gravity-fed and pumped options for gardens and household use</li>
+<li><strong>Filtration basics</strong> - When and how to treat collected rainwater</li>
+<li><strong>Legal considerations</strong> - Understanding rainwater harvesting regulations in your area</li>
+</ul>
+<h3>Why Rainwater?</h3>
+<p>Rainwater collection reduces dependence on municipal water supplies, cuts costs, and provides a backup water source during droughts or infrastructure failures. Even modest rooftop catchment can provide significant water for irrigation, and with proper treatment, for household use.</p>
+<h3>Workshop Details</h3>
+<p>This introductory workshop covers system design principles through a hands-on build of a first-flush diverter and rain barrel setup. Participants will leave with the knowledge to design and install systems appropriate for their own homes.</p>
+<p><strong>Duration:</strong> 2 hours
+<strong>Materials included:</strong> First-flush diverter kit, connections
+<strong>Take home:</strong> Your completed diverter assembly and design calculations</p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

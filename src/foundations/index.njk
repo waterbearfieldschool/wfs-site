@@ -1,19 +1,22 @@
 ---
 title: Foundations
+meta: Eight essential systems that sustain households and communities
 ---
 {% extends "layouts/base.njk" %}
 {% block content %}
 <section id="foundations">
   <h1 style="font-size: 2.2rem; line-height: 1.15; margin: 0; color: var(--accent); text-align: center;">Foundations</h1>
-  <p class="section-description"><!-- Add your foundations description here --></p>
-  <div class="grid">
+  <p class="section-description" style="text-align: center; max-width: 700px; margin: 1rem auto 2rem; color: var(--muted);">
+    Waterbear Field School organizes learning around eight foundations - the essential systems that sustain households and communities. Each foundation contains workshops ranging from accessible introductions to advanced builds. Take them individually, or join a <a href="/resilience-sequence/">Resilience Sequence</a> to work through multiple foundations with a cohort.
+  </p>
+  <div class="grid foundations-grid">
     {% for p in collections.allFoundations %}
-    <article class="card">
+    <article class="card foundation-card" data-foundation="{{ p.data.foundation }}">
       <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
         {% if p.data.image %}
           <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
         {% else %}
-          4:3 image
+          <div class="foundation-placeholder foundation-{{ p.data.foundation }}">{{ p.data.title | slice(0, 1) }}</div>
         {% endif %}
       </a>
       <div class="card-content">
@@ -22,6 +25,12 @@ title: Foundations
       </div>
     </article>
     {% endfor %}
+  </div>
+
+  <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--card); border-radius: 8px; border: 1px solid var(--hair);">
+    <h2 style="color: var(--accent); margin-bottom: 0.5rem;">Ready to dive deeper?</h2>
+    <p style="color: var(--muted); margin-bottom: 1rem;">The Resilience Sequence is a 4-week cohort program covering energy, climate, communication, and making.</p>
+    <a href="/resilience-sequence/" class="button" style="display: inline-block; background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none;">Learn about the Sequence</a>
   </div>
 </section>
 {% endblock %}

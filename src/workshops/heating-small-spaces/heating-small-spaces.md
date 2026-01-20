@@ -4,6 +4,9 @@ meta: "Learn to estimate energy needs for heating tiny homes, animal shelters, a
 layout: layouts/post.njk
 permalink: /workshops/heating-small-spaces/
 image: /assets/images/heat-transfer/stove.webp
+foundations:
+  - climate
+level: advanced
 ---
 
 ## Heating Small Spaces Workshop

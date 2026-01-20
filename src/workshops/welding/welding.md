@@ -4,6 +4,9 @@ meta: Learn basic welding skills while creating a musical Butaphone instrument f
 layout: layouts/post.njk
 permalink: /workshops/welding/
 image: /assets/images/welding/welding.png
+foundations:
+  - fabrication
+level: applied
 ---
 
 ## Welding Workshop: Build Your Butaphone

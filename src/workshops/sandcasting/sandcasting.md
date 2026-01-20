@@ -4,6 +4,9 @@ meta: "Learn the ancient art of casting metal objects using sand molds. (Image: 
 layout: layouts/post.njk
 permalink: /workshops/sandcasting/
 image: /assets/images/sandcasting/sandmold.webp
+foundations:
+  - fabrication
+level: applied
 ---
 
 ## Sandcasting Workshop

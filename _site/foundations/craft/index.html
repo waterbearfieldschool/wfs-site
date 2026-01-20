@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arts &amp; Crafts</title>
+  <meta name="description" content="Creative expression through hands-on making. Wire sculpture, textiles, and artistic projects." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/foundations/craft/">
+  <meta property="og:title" content="Arts &amp; Crafts">
+  <meta property="og:description" content="Creative expression through hands-on making. Wire sculpture, textiles, and artistic projects.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/foundations/craft/">
+  <meta property="twitter:title" content="Arts &amp; Crafts">
+  <meta property="twitter:description" content="Creative expression through hands-on making. Wire sculpture, textiles, and artistic projects.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/#current-workshops">Current</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#future-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.8rem; font-style: italic; color: var(--muted); text-align: center;">
+            Want to take a class? Or teach a class? Reach out!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.8rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Arts &amp; Crafts</h1>
+  
+  <h2>Arts &amp; Crafts: How do we create and express?</h2>
+<p>Creativity and hands-on making are essential to resilient living. Our arts and crafts workshops teach techniques for creating beautiful, functional objects while developing patience, dexterity, and artistic vision.</p>
+<h3>Why This Matters</h3>
+<p>Making things by hand connects us to materials and processes in ways that mass production cannot. These skills provide creative outlets, produce unique functional items, and preserve traditional crafts.</p>
+<h3>Learning Pathway</h3>
+<p><strong>Intro</strong> → Wire Sculpture
+<strong>Future</strong> → Basketry, Textile Arts, Pottery</p>
+<h3>Current Workshops</h3>
+<ul>
+<li><a href="/workshops/wire-sculpture/">Wire Sculpture</a> - Create 3D forms from wire</li>
+</ul>
+<h3>Coming Soon</h3>
+<ul>
+<li>Bamboo Basketry</li>
+<li>Leather Sandals</li>
+</ul>
+<h3>Related Foundations</h3>
+<ul>
+<li><a href="/foundations/fabrication/">Fabrication</a> - Metalworking and repair</li>
+<li><a href="/foundations/shelter/">Shelter</a> - Decorative and functional home items</li>
+</ul>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

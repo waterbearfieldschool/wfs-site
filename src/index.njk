@@ -5,9 +5,14 @@ description: "Outdoor Resilience Skill-Share for Kids and Adults"
 image: /assets/images/biketrailer/full_system.webp
 ---
 
+<!-- Hero Section -->
+<section style="text-align: center; margin: 0 0 2rem; padding: 1.5rem; background: var(--card); border-radius: 16px; box-shadow: var(--shadow);">
+  <h2 style="color: var(--accent); margin: 0 0 0.5rem; font-size: 1.6rem;">Learn Practical Resilience Skills</h2>
+  <p style="color: var(--muted); margin: 0; max-width: 600px; margin: 0 auto;">Hands-on workshops teaching energy, water, food, shelter, climate, communication, fabrication, transport, arts & crafts.</p>
+</section>
+
 <div class="slideshow-container">
   <div class="slideshow">
-    
     <div class="slide active">
       <img src="/assets/images/main/wfs1.jpg" alt="Solar Workshop" />
     </div>
@@ -61,6 +66,30 @@ image: /assets/images/biketrailer/full_system.webp
   </div>
 </div>
 
+<!-- Foundations + Winter 2026 Sequence -->
+<section style="margin-bottom: 2rem;" id="foundations">
+  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
+    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">The Foundations</h2>
+    <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">We're building a comprehensive curriculum for practical resilience - eight foundations covering the essential systems that sustain households and communities.</p>
+    <div class="grid foundations-grid" style="gap: 10px;">
+      {% for p in collections.allFoundations %}
+      <a href="{{ p.url }}" class="foundation-card{% if foundationInfo[p.data.foundation].inWinter2026 %} highlighted{% endif %}" data-foundation="{{ p.data.foundation }}" style="display: block; background: var(--card); border: 1px solid var(--hair); border-radius: 12px; padding: 1rem; text-decoration: none; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+        <div style="font-size: 1.5rem; margin-bottom: 4px;">{{ foundationInfo[p.data.foundation].emoji }}</div>
+        <div style="font-weight: 600; color: var(--fg); font-size: 0.9rem;">{{ p.data.title }}</div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--hair); text-align: center;">
+      <h3 style="color: var(--accent); margin: 0 0 0.5rem; font-size: 1.4rem;">The Winter 2026 Foundations Sequence</h3>
+      <p style="color: var(--muted); margin: 0 0 1rem; max-width: 500px; margin-left: auto; margin-right: auto;">A 4-week cohort program covering Energy, Climate, Communication, and Transport. Four workshops, four take-home projects.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/resilience-sequence/winter-2026/" style="display: inline-block; background: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Register for the Winter 2026 Sequence</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="hero" style="margin-top: 0;" id="current-workshops">
 
   <div class="section-header">
@@ -71,6 +100,11 @@ image: /assets/images/biketrailer/full_system.webp
   <div class="grid">
     {% for p in collections.allWorkshops %}{% if p.data.current %}
     <article class="card">
+      {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
+      <div class="workshop-foundation-band" data-foundation="{{ f }}">
+        {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+      </div>
+      {% endif %}{% endfor %}{% endif %}
       {% if p.data.workshopDate %}<div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
         {{ p.data.workshopDate }}
       </div>{% endif %}
@@ -85,6 +119,9 @@ image: /assets/images/biketrailer/full_system.webp
       <div class="card-content">
         <h3 style="text-align: center;"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
         {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
+        <div style="text-align: center; margin-top: auto; padding-top: 12px;">
+          <a href="{{ p.url }}" style="display: inline-block; background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Register</a>
+        </div>
       </div>
     </article>
     {% endif %}{% endfor %}
@@ -101,6 +138,9 @@ image: /assets/images/biketrailer/full_system.webp
 
   <div class="grid">
     <article class="card">
+      <div class="workshop-foundation-band" data-foundation="energy">
+        {{ foundationInfo.energy.emoji }} {{ foundationInfo.energy.name }}
+      </div>
       <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
         October 2025
       </div>
@@ -114,6 +154,9 @@ image: /assets/images/biketrailer/full_system.webp
       </div>
     </article>
     <article class="card">
+      <div class="workshop-foundation-band" data-foundation="communication">
+        {{ foundationInfo.communication.emoji }} {{ foundationInfo.communication.name }}
+      </div>
       <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
         July 2025
       </div>
@@ -127,6 +170,9 @@ image: /assets/images/biketrailer/full_system.webp
       </div>
     </article>
     <article class="card">
+      <div class="workshop-foundation-band" data-foundation="energy">
+        {{ foundationInfo.energy.emoji }} {{ foundationInfo.energy.name }}
+      </div>
       <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
         October 2025
       </div>
@@ -139,32 +185,6 @@ image: /assets/images/biketrailer/full_system.webp
         <div class="meta-description">Introduction to off-grid solar power - experimenting with panels, batteries, and motors</div>
       </div>
     </article>
-    <article class="card">
-      <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
-        August 2025
-      </div>
-      <div style="background: var(--card); text-align: center; font-size: 0.9rem; color: var(--link); padding: 0 14px 8px 14px;">Cranston, RI</div>
-      <a href="/events/edgewood/" class="thumb" aria-label="Edgewood Sailing School: Salinity Workshop">
-        <img src="/assets/images/edgewood/boats.webp" alt="Edgewood Sailing School: Salinity Workshop" />
-      </a>
-      <div class="card-content">
-        <h3 style="text-align: center;"><a href="/events/edgewood/">Edgewood Sailing School: Salinity Workshop</a></h3>
-        <div class="meta-description">Intro to salinity measurement and telemetry techniques</div>
-      </div>
-    </article>
-    <article class="card">
-      <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
-        July 2025
-      </div>
-      <div style="background: var(--card); text-align: center; font-size: 0.9rem; color: var(--link); padding: 0 14px 8px 14px;">Cranston, RI</div>
-      <a href="/events/edgewood-telemetry/" class="thumb" aria-label="Edgewood Sailing School: Telemetry Workshop">
-        <img src="/assets/images/edgewood-telemetry/IMG_20250805_153104810_HDR.webp" alt="Edgewood Sailing School: Telemetry Workshop" />
-      </a>
-      <div class="card-content">
-        <h3 style="text-align: center;"><a href="/events/edgewood-telemetry/">Edgewood Sailing School: Telemetry Workshop</a></h3>
-        <div class="meta-description">DIY local radio telemetry workshop</div>
-      </div>
-    </article>
   </div>
 
 </section>
@@ -174,18 +194,14 @@ image: /assets/images/biketrailer/full_system.webp
   <div class="section-header">
     <h2 style="margin: 0 0 12px; color: var(--accent); font-size: 1.4rem; text-align: center;">Future Workshops</h2>
     <div class="activity-bubbles" style="justify-content: center;">
-      <span class="bubble">Farming</span>
-      <span class="bubble">Gardening</span>
-      <span class="bubble">Water Collection</span>
-      <span class="bubble">Water Filtering</span>
-      <span class="bubble">Water Testing</span>
+      <span class="bubble">Energy</span>
+      <span class="bubble">Water</span>
+      <span class="bubble">Food</span>
       <span class="bubble">Shelter</span>
-      <span class="bubble">Radio</span>
-      <span class="bubble">Electronics</span>
-      <span class="bubble">STEM</span>
-      <span class="bubble">Arts & Crafts</span>
-      <span class="bubble">Woodworking</span>
-      <span class="bubble">Metalworking</span>
+      <span class="bubble">Climate</span>
+      <span class="bubble">Communication</span>
+      <span class="bubble">Fabrication</span>
+      <span class="bubble">Transport</span>
     </div>
     <p style="font-size: 0.95rem; margin: 8px 0 0 0;">Below are some workshops we are considering offering soon. If you'd be interested to attend (or teach) any of them -- or have an ideas for other workshops we might offer -- please reach out!</p>
     <p class="contact-email" style="text-align: center; margin: 16px 0 0 0;">
@@ -196,6 +212,11 @@ image: /assets/images/biketrailer/full_system.webp
   <div class="grid">
     {% for p in collections.allWorkshops %}{% if not p.data.current %}
     <article class="card">
+      {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
+      <div class="workshop-foundation-band" data-foundation="{{ f }}">
+        {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+      </div>
+      {% endif %}{% endfor %}{% endif %}
       <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
         {% if p.data.image %}
           <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
@@ -212,3 +233,4 @@ image: /assets/images/biketrailer/full_system.webp
   </div>
 
 </section>
+

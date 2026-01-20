@@ -39,14 +39,18 @@
           <nav class="brand-nav">
             <ul>
               <li><a class="" href="/">Home</a></li>
-              <li><a href="/#current-workshops">Workshops</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/#current-workshops">Current</a></li>
               <li><a href="/#recent-workshops">Recent</a></li>
               <li><a href="/#future-workshops">Future</a></li>
               
               <li><a class="" href="/about/">About</a></li>
             </ul>
           </nav>
-          <p class="contact-email" style="margin: 16px 0 0 0; font-size: 0.8rem;">
+          <p style="margin: 12px 0 4px 0; font-size: 0.8rem; font-style: italic; color: var(--muted); text-align: center;">
+            Want to take a class? Or teach a class? Reach out!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.8rem;">
             <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
           </p>
         </div>
@@ -90,11 +94,11 @@
   <script>
     // Slideshow functionality
     var slideIndex = 1;
-    
+
     function currentSlide(n) {
       showSlide(slideIndex = n);
     }
-    
+
     function showSlide(n) {
       var slides = document.getElementsByClassName("slide");
       var dots = document.getElementsByClassName("dot");
@@ -109,7 +113,7 @@
       if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
       if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
     }
-    
+
     // Auto advance slides every 4 seconds
     setInterval(function() {
       slideIndex++;

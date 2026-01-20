@@ -4,6 +4,9 @@ meta: "Create 3D forms from wire using techniques inspired by artists like Ruth 
 layout: layouts/post.njk
 permalink: /workshops/wire-sculpture/
 image: /assets/images/wire-sculpture/asawa_1967.jpg
+foundations:
+  - craft
+level: intro
 ---
 
 ## Wire Sculpture Workshop

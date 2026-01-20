@@ -7,6 +7,10 @@ image: /assets/images/off-grid-telemetry/main.webp
 current: true
 workshopDate: "February 2026"
 location: "Greater Boston"
+foundations:
+  - energy
+  - communication
+level: applied
 ---
 
 ## Off-Grid Monitoring Workshop

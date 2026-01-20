@@ -7,6 +7,9 @@ image: /assets/images/co2-monitor/co2-monitor.webp
 current: true
 workshopDate: "February 2026"
 location: "Greater Boston"
+foundations:
+  - climate
+level: applied
 ---
 
 ## DIY CO2 Monitoring Workshop

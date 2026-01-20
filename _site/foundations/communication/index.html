@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Communication</title>
+  <meta name="description" content="How do we stay connected off-grid? Mesh networks, radio, and infrastructure-independent communication." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/foundations/communication/">
+  <meta property="og:title" content="Communication">
+  <meta property="og:description" content="How do we stay connected off-grid? Mesh networks, radio, and infrastructure-independent communication.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/foundations/communication/">
+  <meta property="twitter:title" content="Communication">
+  <meta property="twitter:description" content="How do we stay connected off-grid? Mesh networks, radio, and infrastructure-independent communication.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/#current-workshops">Current</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#future-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.8rem; font-style: italic; color: var(--muted); text-align: center;">
+            Want to take a class? Or teach a class? Reach out!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.8rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Communication</h1>
+  
+  <h2>Communication: How do we stay connected off-grid?</h2>
+<p>When the internet goes down or cell towers fail, how do you reach your neighbors? Your family across town? Emergency services?</p>
+<p>Our communication workshops teach you to build and operate independent radio networks—mesh systems that work without infrastructure, license-free options for local coordination, and amateur radio for long-distance resilience. You'll leave with working hardware and the knowledge to deploy it.</p>
+<h3>Why This Matters</h3>
+<p>Communication is the nervous system of community resilience. During emergencies, cell networks become overloaded or fail entirely. Having alternative communication methods—and knowing how to use them—can be the difference between isolation and coordination. These skills also open up fascinating technical territory, from software-defined radio to satellite communication.</p>
+<h3>Learning Pathway</h3>
+<p><strong>Intro</strong> → Easy Off-Grid Mesh Radio (Meshtastic)
+<strong>Applied</strong> → Off-Grid Telemetry
+<strong>Advanced</strong> → Building a DIY 4G Phone
+<strong>Future</strong> → GMRS Basics, Ham Radio Intro, SDR Listening, Satellite Communication</p>
+<h3>Current Workshops</h3>
+<ul>
+<li><a href="/workshops/mesh-radio/">Easy Off-Grid Mesh Radio</a> - Build a Meshtastic mesh radio network for infrastructure-free communication</li>
+<li><a href="/workshops/off-grid-telemetry/">Off-Grid Telemetry</a> - Send sensor data over mesh networks</li>
+<li><a href="/workshops/diy-phone/">Building a DIY 4G Phone</a> - Advanced project building your own cellular device</li>
+<li><a href="/workshops/diy-communicators/">DIY Communicators</a> - Simple radio communication devices</li>
+</ul>
+<h3>Coming Soon</h3>
+<ul>
+<li>GMRS Basics - License-free radio for local coordination</li>
+<li>Ham Radio Intro - Long-distance amateur radio</li>
+<li>SDR Listening - Software-defined radio exploration</li>
+<li>Satellite Communication</li>
+</ul>
+<h3>Related Foundations</h3>
+<ul>
+<li><a href="/foundations/energy/">Energy</a> - Powering radios and communication devices</li>
+<li><a href="/foundations/fabrication/">Fabrication</a> - Building enclosures and antennas</li>
+</ul>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

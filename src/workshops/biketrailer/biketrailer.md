@@ -7,6 +7,10 @@ image: /assets/images/biketrailer/full_system.webp
 current: true
 workshopDate: "February 2026"
 location: "Greater Boston"
+foundations:
+  - shelter
+  - transport
+level: intro
 ---
 
 ## DIY Bike Trailer Workshop

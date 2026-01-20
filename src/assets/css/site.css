@@ -1,6 +1,9 @@
 :root{
   --bg:#f7f7f5; --fg:#1f1f1f; --muted:#6b6b6b; --accent:#1c4d3a; --link:#0b6b50; --card:#ffffff; --hair:#e6e6e3;
   --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+  /* Foundation colors */
+  --foundation-energy:#d4a574; --foundation-water:#5b8fd4; --foundation-food:#6b9b4d; --foundation-shelter:#8b7355;
+  --foundation-climate:#4da6a6; --foundation-communication:#9370db; --foundation-fabrication:#cd853f; --foundation-transport:#cd5c5c; --foundation-craft:#e6a4b4;
 }
 *{box-sizing:border-box}
 body{overflow-x:hidden}
@@ -42,8 +45,10 @@ section{margin:0 0 48px}
 .grid{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px}
 .card{background:var(--card); border:1px solid var(--hair); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column}
 .thumb{aspect-ratio: 4/3; background:#dcdcd7; display:flex; align-items:center; justify-content:center; color:#666; font-size:.9rem; text-decoration:none; overflow:hidden; position:relative}
-.thumb img{width:100%; height:100%; object-fit:cover}
-.card-content{padding:14px}
+.thumb p{margin:0; padding:0; position:absolute; top:0; left:0; width:100%; height:100%}
+.thumb img{position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover}
+.prose .thumb img{max-width:100%; height:100%; border-radius:0; margin:0}
+.card-content{padding:14px; flex:1; display:flex; flex-direction:column}
 .card h3{margin:0 0 6px; font-size:1rem}
 .meta{color:var(--muted); font-size:.9rem; font-weight:600}
 .meta-description{color:var(--muted); font-size:.85rem; margin-top:4px; line-height:1.4}
@@ -186,3 +191,52 @@ main .slide img{aspect-ratio:1/1}
   .prose .float-left, .prose .float-right{float:none !important; margin:16px auto !important; max-width:80%; display:block}
   .float-figure.float-left, .float-figure.float-right{float:none !important; margin:16px auto !important; max-width:80%; display:block}
 }
+
+/* Foundation styles */
+.foundation-placeholder{display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-weight:700; color:white; width:100%; height:100%}
+.foundation-energy{background:var(--foundation-energy)}
+.foundation-water{background:var(--foundation-water)}
+.foundation-food{background:var(--foundation-food)}
+.foundation-shelter{background:var(--foundation-shelter)}
+.foundation-climate{background:var(--foundation-climate)}
+.foundation-communication{background:var(--foundation-communication)}
+.foundation-fabrication{background:var(--foundation-fabrication)}
+.foundation-transport{background:var(--foundation-transport)}
+.foundation-craft{background:var(--foundation-craft)}
+.foundation-card{transition:transform 0.2s ease, box-shadow 0.2s ease}
+.foundation-card:hover{transform:translateY(-4px); box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.foundation-card[data-foundation="energy"]{border-top:3px solid var(--foundation-energy)}
+.foundation-card[data-foundation="water"]{border-top:3px solid var(--foundation-water)}
+.foundation-card[data-foundation="food"]{border-top:3px solid var(--foundation-food)}
+.foundation-card[data-foundation="shelter"]{border-top:3px solid var(--foundation-shelter)}
+.foundation-card[data-foundation="climate"]{border-top:3px solid var(--foundation-climate)}
+.foundation-card[data-foundation="communication"]{border-top:3px solid var(--foundation-communication)}
+.foundation-card[data-foundation="fabrication"]{border-top:3px solid var(--foundation-fabrication)}
+.foundation-card[data-foundation="transport"]{border-top:3px solid var(--foundation-transport)}
+.foundation-card[data-foundation="craft"]{border-top:3px solid var(--foundation-craft)}
+.foundations-grid{grid-template-columns:repeat(4, minmax(0,1fr))}
+@media (max-width:880px){.foundations-grid{grid-template-columns:repeat(2, minmax(0,1fr))}}
+@media (max-width:560px){.foundations-grid{grid-template-columns:1fr}}
+
+/* Highlighted foundation cards (in current sequence) */
+.foundation-card.highlighted[data-foundation="energy"]{background:rgba(212,165,116,0.15); border:2px solid var(--foundation-energy); border-top-width:3px}
+.foundation-card.highlighted[data-foundation="water"]{background:rgba(91,143,212,0.15); border:2px solid var(--foundation-water); border-top-width:3px}
+.foundation-card.highlighted[data-foundation="food"]{background:rgba(107,155,77,0.15); border:2px solid var(--foundation-food); border-top-width:3px}
+.foundation-card.highlighted[data-foundation="shelter"]{background:rgba(139,115,85,0.15); border:2px solid var(--foundation-shelter); border-top-width:3px}
+.foundation-card.highlighted[data-foundation="climate"]{background:rgba(77,166,166,0.15); border:2px solid var(--foundation-climate); border-top-width:3px}
+.foundation-card.highlighted[data-foundation="communication"]{background:rgba(147,112,219,0.15); border:2px solid var(--foundation-communication); border-top-width:3px}
+.foundation-card.highlighted[data-foundation="fabrication"]{background:rgba(205,133,63,0.15); border:2px solid var(--foundation-fabrication); border-top-width:3px}
+.foundation-card.highlighted[data-foundation="transport"]{background:rgba(205,92,92,0.15); border:2px solid var(--foundation-transport); border-top-width:3px}
+.foundation-card.highlighted[data-foundation="craft"]{background:rgba(230,164,180,0.15); border:2px solid var(--foundation-craft); border-top-width:3px}
+
+/* Workshop foundation band */
+.workshop-foundation-band{padding:6px 14px; font-size:0.85rem; font-weight:600; text-align:center; border-radius:16px 16px 0 0}
+.workshop-foundation-band[data-foundation="energy"]{background:var(--foundation-energy); color:white}
+.workshop-foundation-band[data-foundation="water"]{background:var(--foundation-water); color:white}
+.workshop-foundation-band[data-foundation="food"]{background:var(--foundation-food); color:white}
+.workshop-foundation-band[data-foundation="shelter"]{background:var(--foundation-shelter); color:white}
+.workshop-foundation-band[data-foundation="climate"]{background:var(--foundation-climate); color:white}
+.workshop-foundation-band[data-foundation="communication"]{background:var(--foundation-communication); color:white}
+.workshop-foundation-band[data-foundation="fabrication"]{background:var(--foundation-fabrication); color:white}
+.workshop-foundation-band[data-foundation="transport"]{background:var(--foundation-transport); color:white}
+.workshop-foundation-band[data-foundation="craft"]{background:var(--foundation-craft); color:white}

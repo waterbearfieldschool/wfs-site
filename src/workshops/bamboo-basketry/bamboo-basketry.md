@@ -2,9 +2,12 @@
 title: "Bamboo Basketry"
 meta: Create a hexagonal weave bamboo basket using traditional techniques and specialized tools
 layout: layouts/post.njk
-permalink: false
+permalink: /workshops/bamboo-basketry/
 image: /assets/images/bamboo-basketry/placeholder.png
 draft: true
+foundations:
+  - fabrication
+level: intro
 ---
 
 ## Bamboo Basketry Workshop

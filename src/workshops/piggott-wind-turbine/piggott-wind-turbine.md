@@ -2,9 +2,13 @@
 title: "Piggott Wind Turbine"
 meta: Build a complete small-scale wind turbine using Hugh Piggott's open-source design for off-grid power
 layout: layouts/post.njk
-permalink: false
+permalink: /workshops/piggott-wind-turbine/
 image: /assets/images/piggott-wind-turbine/placeholder.png
 draft: true
+foundations:
+  - energy
+  - fabrication
+level: advanced
 ---
 
 ## Piggott Wind Turbine Workshop

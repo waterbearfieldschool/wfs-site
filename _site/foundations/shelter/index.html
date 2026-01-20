@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shelter</title>
+  <meta name="description" content="How do we build and maintain structures? Carpentry, framing, and DIY construction." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/foundations/shelter/">
+  <meta property="og:title" content="Shelter">
+  <meta property="og:description" content="How do we build and maintain structures? Carpentry, framing, and DIY construction.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/foundations/shelter/">
+  <meta property="twitter:title" content="Shelter">
+  <meta property="twitter:description" content="How do we build and maintain structures? Carpentry, framing, and DIY construction.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics">Nature • Science • Music • History • Art • Storytelling</p>
+          <nav class="brand-nav">
+            <ul>
+              <li><a class="" href="/">Home</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/#current-workshops">Current</a></li>
+              <li><a href="/#recent-workshops">Recent</a></li>
+              <li><a href="/#future-workshops">Future</a></li>
+              
+              <li><a class="" href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.8rem; font-style: italic; color: var(--muted); text-align: center;">
+            Want to take a class? Or teach a class? Reach out!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.8rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Shelter</h1>
+  
+  <h2>Shelter: How do we build and maintain structures?</h2>
+<p>Can you repair your own home? Build a shed, a cold frame, a tiny house? What structural principles do you need to understand to create safe, durable buildings?</p>
+<p>Our shelter workshops teach fundamental carpentry and construction skills through practical projects. Learn framing principles by building bike trailers, understand joinery through shed construction, and develop the confidence to tackle building projects of increasing complexity.</p>
+<h3>Why This Matters</h3>
+<p>Building skills are increasingly rare, but endlessly useful. Understanding how structures work—loads, joints, materials—lets you maintain your home, build outbuildings, and create the infrastructure that supports other resilience activities. A well-built shed can house your workshop; a cold frame extends your growing season; a bike trailer expands your transportation options.</p>
+<h3>Learning Pathway</h3>
+<p><strong>Intro</strong> → DIY Bike Trailers (structural framing principles)
+<strong>Applied</strong> → Shed Framing, Cold Frames
+<strong>Future</strong> → Tiny House Basics, Insulation Techniques</p>
+<h3>Current Workshops</h3>
+<ul>
+<li><a href="/workshops/biketrailer/">DIY Bike Trailers</a> - Learn structural framing principles while building a functional cargo trailer</li>
+</ul>
+<h3>Coming Soon</h3>
+<ul>
+<li>Shed Framing</li>
+<li>Tiny House Basics</li>
+<li>Insulation Techniques</li>
+</ul>
+<h3>Related Foundations</h3>
+<ul>
+<li><a href="/foundations/climate/">Climate</a> - Insulation and thermal design</li>
+<li><a href="/foundations/food/">Food</a> - Building cold frames and greenhouses</li>
+<li><a href="/foundations/transport/">Transport</a> - Mobile shelters and trailers</li>
+</ul>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

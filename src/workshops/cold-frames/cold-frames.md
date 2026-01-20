@@ -4,6 +4,10 @@ meta: Build a cold frame from reclaimed windows for season extension gardening
 layout: layouts/post.njk
 permalink: /workshops/cold-frames/
 image: /assets/images/cold-frames/cold-frame.webp
+foundations:
+  - food
+  - shelter
+level: intro
 ---
 
 ## DIY Cold Frames Workshop
