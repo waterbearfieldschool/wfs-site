@@ -36,3 +36,13 @@ These devices deliver approximately 600 cubic feet per minute (CFM) of filtered 
 Perfect for anyone interested in improving indoor air quality at home, school, or workplace. No specialized tools or prior experience required.
 
 **Learn more:** [edgecollective.io/airbox](https://edgecollective.io/airbox/)
+
+### Register
+
+Registration opens late January 2026.
+
+*Have questions? Contact us to learn more.*
+
+<p class="contact-email" style="text-align: center; margin: 12px 0;">
+  <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+</p>

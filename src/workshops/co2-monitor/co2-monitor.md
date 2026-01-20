@@ -41,3 +41,13 @@ Higher CO2 concentrations suggest poor air circulation and increased exposure to
 Perfect for anyone interested in indoor air quality, electronics, or environmental monitoring. No prior experience necessary - we'll guide you through assembly and programming.
 
 **Learn more:** [edgecollective.io/notes/co2](https://edgecollective.io/notes/co2/)
+
+### Register
+
+Registration opens late January 2026.
+
+*Have questions? Contact us to learn more.*
+
+<p class="contact-email" style="text-align: center; margin: 12px 0;">
+  <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+</p>

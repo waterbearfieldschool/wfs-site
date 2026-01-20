@@ -42,3 +42,13 @@ Learn to build solar-powered environmental monitoring systems that collect and t
 ### Workshop Details
 
 Perfect for farmers, gardeners, land managers, and anyone interested in remote environmental monitoring. No prior electronics experience necessary - we'll cover everything from wiring sensors to viewing your data online.
+
+### Register
+
+Registration opens late January 2026.
+
+*Have questions? Contact us to learn more.*
+
+<p class="contact-email" style="text-align: center; margin: 12px 0;">
+  <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+</p>

@@ -31,3 +31,13 @@ Great for cyclists looking to haul gear, groceries, or supplies without a car. T
 ### Additional Resources
 
 - [DIY Bike Trailer Project](https://edgecollective.io/projects/biketrailer/) - Detailed build guide and design notes
+
+### Register
+
+Registration opens late January 2026.
+
+*Have questions? Contact us to learn more.*
+
+<p class="contact-email" style="text-align: center; margin: 12px 0;">
+  <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+</p>

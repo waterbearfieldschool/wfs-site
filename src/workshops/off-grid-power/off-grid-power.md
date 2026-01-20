@@ -39,4 +39,12 @@ Participants will gain access to live monitoring data from a residential solar i
 
 This is a free, beginner-friendly workshop. Come ready to ask questions and learn together!
 
-**Contact:** [info@waterbearfieldschool.org](mailto:info@waterbearfieldschool.org)
+### Register
+
+Registration opens late January 2026.
+
+*Have questions? Contact us to learn more.*
+
+<p class="contact-email" style="text-align: center; margin: 12px 0;">
+  <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+</p>

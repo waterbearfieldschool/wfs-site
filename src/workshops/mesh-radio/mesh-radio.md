@@ -39,3 +39,13 @@ LoRa (Long Range) radio technology enables communication over several miles usin
 ### Workshop Details
 
 Perfect for farmers, homesteaders, emergency preparedness enthusiasts, and anyone interested in resilient communications. No prior radio or electronics experience necessary - we'll start from the basics and have you sending messages by the end of the session.
+
+### Register
+
+Registration opens late January 2026.
+
+*Have questions? Contact us to learn more.*
+
+<p class="contact-email" style="text-align: center; margin: 12px 0;">
+  <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+</p>
