@@ -1,4 +1,9 @@
 {
+  "air": {
+    "name": "Air",
+    "emoji": "🌬️",
+    "inWinter2026": true
+  },
   "energy": {
     "name": "Energy",
     "emoji": "⚡",
@@ -19,10 +24,10 @@
     "emoji": "🏠",
     "inWinter2026": false
   },
-  "climate": {
-    "name": "Climate",
+  "heating-cooling": {
+    "name": "Heating/Cooling",
     "emoji": "🌡️",
-    "inWinter2026": true
+    "inWinter2026": false
   },
   "communication": {
     "name": "Communication",

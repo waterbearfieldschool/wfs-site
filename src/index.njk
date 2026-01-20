@@ -5,12 +5,6 @@ description: "Outdoor Resilience Skill-Share for Kids and Adults"
 image: /assets/images/biketrailer/full_system.webp
 ---
 
-<!-- Hero Section -->
-<section style="text-align: center; margin: 0 0 2rem; padding: 1.5rem; background: var(--card); border-radius: 16px; box-shadow: var(--shadow);">
-  <h2 style="color: var(--accent); margin: 0 0 0.5rem; font-size: 1.6rem;">Learn and Teach Resilience Skills</h2>
-  <p style="color: var(--muted); margin: 0; max-width: 600px; margin: 0 auto;">Hands-on community workshops teaching energy, water, food, shelter, climate, communication, fabrication, transport, arts & crafts.</p>
-</section>
-
 <div class="slideshow-container">
   <div class="slideshow">
     <div class="slide active">
@@ -66,61 +60,10 @@ image: /assets/images/biketrailer/full_system.webp
   </div>
 </div>
 
-<!-- Foundations + Winter 2026 Sequence -->
-<section style="margin-bottom: 2rem;" id="foundations">
-  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
-    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Resilience Foundations</h2>
-    <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">We're building a comprehensive curriculum for practical resilience - eight foundations covering the essential systems that sustain households and communities.</p>
-    <div class="grid foundations-grid" style="gap: 10px;">
-      {% for p in collections.allFoundations %}
-      <a href="{{ p.url }}" class="foundation-card{% if foundationInfo[p.data.foundation].inWinter2026 %} highlighted{% endif %}" data-foundation="{{ p.data.foundation }}" style="display: block; background: var(--card); border: 1px solid var(--hair); border-top: 10px solid; border-radius: 12px; padding: 1rem; text-decoration: none; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease;">
-        <div style="font-size: 1.5rem; margin-bottom: 4px;">{{ foundationInfo[p.data.foundation].emoji }}</div>
-        <div style="font-weight: 600; color: var(--fg); font-size: 0.9rem;">{{ p.data.title }}</div>
-      </a>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section style="margin-bottom: 2rem;" id="winter-2026-sequence">
-  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
-    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Winter 2026 Foundations Sequence</h2>
-    <p style="color: var(--muted); text-align: center; max-width: 500px; margin: 0 auto 1rem;">A 4-week cohort program covering Energy, Climate, Communication, and Transport.</p>
-    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
-      <a href="/resilience-sequence/winter-2026/" style="display: inline-block; background: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Register for the Winter 2026 Sequence</a>
-    </div>
-    <div class="grid" style="margin: 1rem 0;">
-      {% for slug in ['off-grid-power', 'air-filtration', 'mesh-radio', 'biketrailer'] %}
-      {% for p in collections.allWorkshops %}
-      {% if p.fileSlug == slug %}
-      <article class="card">
-        {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
-        <div class="workshop-foundation-band" data-foundation="{{ f }}">
-          {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
-        </div>
-        {% endif %}{% endfor %}{% endif %}
-        <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
-          {% if p.data.image %}
-            <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
-          {% else %}
-            [FIELD SCHOOL]
-          {% endif %}
-        </a>
-        <div class="card-content">
-          <h3 style="text-align: center;"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
-          {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
-        </div>
-      </article>
-      {% endif %}
-      {% endfor %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
 <section style="margin-bottom: 2rem;" id="current-workshops">
   <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
-    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">All Current Workshops</h2>
+    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Current Workshops</h2>
+    <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
     <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">Our workshops are typically held outdoors, in most weather. Pricing, format, and location vary by workshop and by teacher. Click on a workshop below to find out more!</p>
     <div class="grid">
     {% for p in collections.allWorkshops %}{% if p.data.current %}
@@ -157,6 +100,7 @@ image: /assets/images/biketrailer/full_system.webp
 <section style="margin-bottom: 2rem;" id="recent-workshops">
   <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
     <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Recent Workshops</h2>
+    <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
     <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">Here are some workshops we've held in the past, and may offer again soon. Click through to see photos and details!</p>
     <div class="grid">
     <article class="card">
@@ -246,6 +190,7 @@ image: /assets/images/biketrailer/full_system.webp
 <section style="margin-bottom: 2rem;" id="future-workshops">
   <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
     <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Future Workshops</h2>
+    <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
     <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">Below are some workshops we are considering offering soon. If you'd be interested to attend (or teach) any of them — or have ideas for other workshops we might offer — please reach out!</p>
     <p class="contact-email" style="text-align: center; margin: 0 auto 1rem;">
       <a href="mailto:info@waterbearfieldschool.org?subject=Workshop%20Inquiry">info@waterbearfieldschool.org</a>
@@ -271,6 +216,59 @@ image: /assets/images/biketrailer/full_system.webp
       </div>
     </article>
     {% endif %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section style="margin-bottom: 2rem;" id="foundations">
+  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
+    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Foundations</h2>
+    <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
+    <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">We're building a comprehensive curriculum for practical resilience - eight foundations covering the essential systems that sustain households and communities.</p>
+    <div class="grid foundations-grid" style="gap: 10px;">
+      {% for p in collections.allFoundations %}
+      <a href="{{ p.url }}" class="foundation-card{% if foundationInfo[p.data.foundation].inWinter2026 %} highlighted{% endif %}" data-foundation="{{ p.data.foundation }}" style="display: block; background: var(--card); border: 1px solid var(--hair); border-top: 10px solid; border-radius: 12px; padding: 1rem; text-decoration: none; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+        <div class="foundation-emoji" style="font-size: 1.5rem; margin-bottom: 4px;">{{ foundationInfo[p.data.foundation].emoji }}</div>
+        <div class="foundation-title" style="font-weight: 600; color: var(--fg); font-size: 0.9rem;">{{ p.data.title }}</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section style="margin-bottom: 2rem;" id="winter-2026-sequence">
+  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
+    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Winter 2026 Foundations Sequence</h2>
+    <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
+    <p style="color: var(--muted); text-align: center; max-width: 500px; margin: 0 auto 1rem;">A 4-week cohort program covering Energy, Climate, Communication, and Transport.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
+      <a href="/resilience-sequence/winter-2026/" style="display: inline-block; background: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Register for the Winter 2026 Sequence</a>
+    </div>
+    <div class="grid" style="margin: 1rem 0;">
+      {% for slug in ['off-grid-power', 'air-filtration', 'mesh-radio', 'biketrailer'] %}
+      {% for p in collections.allWorkshops %}
+      {% if p.fileSlug == slug %}
+      <article class="card">
+        {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
+        <div class="workshop-foundation-band" data-foundation="{{ f }}">
+          {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+        </div>
+        {% endif %}{% endfor %}{% endif %}
+        <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
+          {% if p.data.image %}
+            <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
+          {% else %}
+            [FIELD SCHOOL]
+          {% endif %}
+        </a>
+        <div class="card-content">
+          <h3 style="text-align: center;"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
+          {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
+        </div>
+      </article>
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
     </div>
   </div>
 </section>
