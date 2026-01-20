@@ -1,7 +1,8 @@
 ---
 title: "Hospitality"
 meta: Skills and structures to facilitate social interaction across difference.
-layout: layouts/post.njk
+layout: layouts/foundation.njk
+foundation: hospitality
 permalink: /foundations/hospitality/
 archived: true
 ---

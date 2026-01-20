@@ -1,7 +1,7 @@
 ---
 title: "Fabrication"
 meta: "How do we make and repair things? Welding, casting, metalwork, and repair skills."
-layout: layouts/post.njk
+layout: layouts/foundation.njk
 permalink: /foundations/fabrication/
 foundation: fabrication
 color: orange
@@ -16,21 +16,6 @@ Our fabrication workshops teach fundamental making and repair skills. Learn to w
 ### Why This Matters
 
 The ability to make and repair is becoming rare—and increasingly valuable. When you can weld a broken bracket, cast a replacement part, or fabricate a custom solution, you're not dependent on supply chains or service technicians. Fabrication skills are force multipliers for all other resilience work.
-
-### Learning Pathway
-
-**Intro** → Introduction to Welding, Intro to Sandcasting
-**Future** → Soldering Basics, Tool Sharpening
-
-### Current Workshops
-
-- [Introduction to Welding](/workshops/welding/) - Learn MIG welding fundamentals
-- [Intro to Sandcasting](/workshops/sandcasting/) - Cast aluminum parts using sand molds
-
-### Coming Soon
-
-- Soldering Basics
-- Tool Sharpening
 
 ### Related Foundations
 

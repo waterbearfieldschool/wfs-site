@@ -1,7 +1,7 @@
 ---
 title: "Water"
 meta: "How do we collect, store, and purify water? DIY approaches to water independence."
-layout: layouts/post.njk
+layout: layouts/foundation.njk
 permalink: /foundations/water/
 foundation: water
 color: blue
@@ -16,21 +16,6 @@ Our water workshops teach practical skills for water independence—from simple 
 ### Why This Matters
 
 Access to clean water is the most fundamental resilience need. Even short-term disruptions to water supply create serious problems. Understanding how to collect, store, and purify water gives you options when infrastructure fails—and can reduce your ongoing water costs and environmental impact.
-
-### Learning Pathway
-
-**Intro** → Rainwater Capture basics
-**Applied** → Biochar Water Filtration
-**Future** → Water Level Monitoring, Hand Pumps
-
-### Current Workshops
-
-- [Off-Grid Water Monitoring](/workshops/off-grid-water-monitoring/) - Monitor water levels and quality using low-power sensors
-
-### Coming Soon
-
-- Biochar Water Filtration - Build household and community-scale filtration systems
-- Rainwater Capture - Collection, storage, and first-flush systems
 
 ### Related Foundations
 

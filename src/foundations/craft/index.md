@@ -1,7 +1,7 @@
 ---
 title: "Arts & Crafts"
 meta: "Creative expression through hands-on making. Wire sculpture, textiles, and artistic projects."
-layout: layouts/post.njk
+layout: layouts/foundation.njk
 permalink: /foundations/craft/
 foundation: craft
 color: pink
@@ -14,20 +14,6 @@ Creativity and hands-on making are essential to resilient living. Our arts and c
 ### Why This Matters
 
 Making things by hand connects us to materials and processes in ways that mass production cannot. These skills provide creative outlets, produce unique functional items, and preserve traditional crafts.
-
-### Learning Pathway
-
-**Intro** → Wire Sculpture
-**Future** → Basketry, Textile Arts, Pottery
-
-### Current Workshops
-
-- [Wire Sculpture](/workshops/wire-sculpture/) - Create 3D forms from wire
-
-### Coming Soon
-
-- Bamboo Basketry
-- Leather Sandals
 
 ### Related Foundations
 

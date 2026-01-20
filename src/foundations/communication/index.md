@@ -1,7 +1,7 @@
 ---
 title: "Communication"
 meta: "How do we stay connected off-grid? Mesh networks, radio, and infrastructure-independent communication."
-layout: layouts/post.njk
+layout: layouts/foundation.njk
 permalink: /foundations/communication/
 foundation: communication
 color: purple
@@ -16,27 +16,6 @@ Our communication workshops teach you to build and operate independent radio net
 ### Why This Matters
 
 Communication is the nervous system of community resilience. During emergencies, cell networks become overloaded or fail entirely. Having alternative communication methods—and knowing how to use them—can be the difference between isolation and coordination. These skills also open up fascinating technical territory, from software-defined radio to satellite communication.
-
-### Learning Pathway
-
-**Intro** → Easy Off-Grid Mesh Radio (Meshtastic)
-**Applied** → Off-Grid Telemetry
-**Advanced** → Building a DIY 4G Phone
-**Future** → GMRS Basics, Ham Radio Intro, SDR Listening, Satellite Communication
-
-### Current Workshops
-
-- [Easy Off-Grid Mesh Radio](/workshops/mesh-radio/) - Build a Meshtastic mesh radio network for infrastructure-free communication
-- [Off-Grid Telemetry](/workshops/off-grid-telemetry/) - Send sensor data over mesh networks
-- [Building a DIY 4G Phone](/workshops/diy-phone/) - Advanced project building your own cellular device
-- [DIY Communicators](/workshops/diy-communicators/) - Simple radio communication devices
-
-### Coming Soon
-
-- GMRS Basics - License-free radio for local coordination
-- Ham Radio Intro - Long-distance amateur radio
-- SDR Listening - Software-defined radio exploration
-- Satellite Communication
 
 ### Related Foundations
 

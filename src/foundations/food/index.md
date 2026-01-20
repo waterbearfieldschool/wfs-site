@@ -1,7 +1,7 @@
 ---
 title: "Food"
 meta: "How do we grow, preserve, and cook food? Small-scale gardening, season extension, and preservation."
-layout: layouts/post.njk
+layout: layouts/foundation.njk
 permalink: /foundations/food/
 foundation: food
 color: green
@@ -16,22 +16,6 @@ Our food workshops cover the full cycle—from soil to table. Learn to grow food
 ### Why This Matters
 
 Food security is about more than stockpiling—it's about skills. Knowing how to grow even a portion of your food, extend the season with cold frames, and preserve the harvest gives you resilience that no amount of stored food can match. These are skills that connect you to your land and community.
-
-### Learning Pathway
-
-**Intro** → Cold Frames and Season Extension
-**Applied** → Fermentation Basics, Solar Dehydrator
-**Future** → Building a Cob Oven, Intensive Gardening
-
-### Current Workshops
-
-- [Cold Frames](/workshops/cold-frames/) - Build simple structures to extend your growing season
-
-### Coming Soon
-
-- Building a Cob Oven
-- Fermentation Basics
-- Solar Dehydrator
 
 ### Related Foundations
 

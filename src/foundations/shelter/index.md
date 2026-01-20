@@ -1,7 +1,7 @@
 ---
 title: "Shelter"
 meta: "How do we build and maintain structures? Carpentry, framing, and DIY construction."
-layout: layouts/post.njk
+layout: layouts/foundation.njk
 permalink: /foundations/shelter/
 foundation: shelter
 color: brown
@@ -16,22 +16,6 @@ Our shelter workshops teach fundamental carpentry and construction skills throug
 ### Why This Matters
 
 Building skills are increasingly rare, but endlessly useful. Understanding how structures work—loads, joints, materials—lets you maintain your home, build outbuildings, and create the infrastructure that supports other resilience activities. A well-built shed can house your workshop; a cold frame extends your growing season; a bike trailer expands your transportation options.
-
-### Learning Pathway
-
-**Intro** → DIY Bike Trailers (structural framing principles)
-**Applied** → Shed Framing, Cold Frames
-**Future** → Tiny House Basics, Insulation Techniques
-
-### Current Workshops
-
-- [DIY Bike Trailers](/workshops/biketrailer/) - Learn structural framing principles while building a functional cargo trailer
-
-### Coming Soon
-
-- Shed Framing
-- Tiny House Basics
-- Insulation Techniques
 
 ### Related Foundations
 

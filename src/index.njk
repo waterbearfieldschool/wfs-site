@@ -79,39 +79,41 @@ image: /assets/images/biketrailer/full_system.webp
       </a>
       {% endfor %}
     </div>
+  </div>
+</section>
 
-    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--hair); text-align: center;">
-      <h3 style="color: var(--accent); margin: 0 0 0.5rem; font-size: 1.4rem;">The Winter 2026 Foundations Sequence</h3>
-      <p style="color: var(--muted); margin: 0 0 1rem; max-width: 500px; margin-left: auto; margin-right: auto;">A 4-week cohort program covering Energy, Climate, Communication, and Transport. Four workshops, four take-home projects.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
-        <a href="/resilience-sequence/winter-2026/" style="display: inline-block; background: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Register for the Winter 2026 Sequence</a>
-      </div>
-      <div class="grid" style="margin: 1rem 0;">
-        {% for slug in ['off-grid-power', 'air-filtration', 'mesh-radio', 'biketrailer'] %}
-        {% for p in collections.allWorkshops %}
-        {% if p.fileSlug == slug %}
-        <article class="card">
-          {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
-          <div class="workshop-foundation-band" data-foundation="{{ f }}">
-            {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
-          </div>
-          {% endif %}{% endfor %}{% endif %}
-          <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
-            {% if p.data.image %}
-              <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
-            {% else %}
-              [FIELD SCHOOL]
-            {% endif %}
-          </a>
-          <div class="card-content">
-            <h3 style="text-align: center;"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
-            {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
-          </div>
-        </article>
-        {% endif %}
-        {% endfor %}
-        {% endfor %}
-      </div>
+<section style="margin-bottom: 2rem;" id="winter-2026-sequence">
+  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
+    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">The Winter 2026 Foundations Sequence</h2>
+    <p style="color: var(--muted); text-align: center; max-width: 500px; margin: 0 auto 1rem;">A 4-week cohort program covering Energy, Climate, Communication, and Transport. Four workshops, four take-home projects.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
+      <a href="/resilience-sequence/winter-2026/" style="display: inline-block; background: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Register for the Winter 2026 Sequence</a>
+    </div>
+    <div class="grid" style="margin: 1rem 0;">
+      {% for slug in ['off-grid-power', 'air-filtration', 'mesh-radio', 'biketrailer'] %}
+      {% for p in collections.allWorkshops %}
+      {% if p.fileSlug == slug %}
+      <article class="card">
+        {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
+        <div class="workshop-foundation-band" data-foundation="{{ f }}">
+          {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+        </div>
+        {% endif %}{% endfor %}{% endif %}
+        <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
+          {% if p.data.image %}
+            <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
+          {% else %}
+            [FIELD SCHOOL]
+          {% endif %}
+        </a>
+        <div class="card-content">
+          <h3 style="text-align: center;"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
+          {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
+        </div>
+      </article>
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
     </div>
   </div>
 </section>

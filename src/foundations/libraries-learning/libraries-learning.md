@@ -1,7 +1,8 @@
 ---
 title: "Libraries and Learning"
 meta: Archiving, sharing, and contributing knowledge.
-layout: layouts/post.njk
+layout: layouts/foundation.njk
+foundation: libraries-learning
 permalink: /foundations/libraries-learning/
 archived: true
 ---

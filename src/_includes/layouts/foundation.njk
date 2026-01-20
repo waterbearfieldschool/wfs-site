@@ -1,0 +1,33 @@
+{% extends "layouts/base.njk" %}
+{% block content %}
+<article class="prose">
+  <h1>{{ title }}</h1>
+  {{ content | safe }}
+
+  <h3>Related Workshops</h3>
+  <div class="grid" style="margin: 1rem 0;">
+    {% for p in collections.allWorkshops %}
+    {% if p.data.foundations and foundation in p.data.foundations %}
+    <article class="card">
+      {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
+      <div class="workshop-foundation-band" data-foundation="{{ f }}">
+        {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+      </div>
+      {% endif %}{% endfor %}{% endif %}
+      <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
+        {% if p.data.image %}
+          <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
+        {% else %}
+          [FIELD SCHOOL]
+        {% endif %}
+      </a>
+      <div class="card-content">
+        <h3 style="text-align: center;"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
+        {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
+      </div>
+    </article>
+    {% endif %}
+    {% endfor %}
+  </div>
+</article>
+{% endblock %}
