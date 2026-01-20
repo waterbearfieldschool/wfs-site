@@ -205,15 +205,15 @@ main .slide img{aspect-ratio:1/1}
 .foundation-craft{background:var(--foundation-craft)}
 .foundation-card{transition:transform 0.2s ease, box-shadow 0.2s ease}
 .foundation-card:hover{transform:translateY(-4px); box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.foundation-card[data-foundation="energy"]{border-top:3px solid var(--foundation-energy)}
-.foundation-card[data-foundation="water"]{border-top:3px solid var(--foundation-water)}
-.foundation-card[data-foundation="food"]{border-top:3px solid var(--foundation-food)}
-.foundation-card[data-foundation="shelter"]{border-top:3px solid var(--foundation-shelter)}
-.foundation-card[data-foundation="climate"]{border-top:3px solid var(--foundation-climate)}
-.foundation-card[data-foundation="communication"]{border-top:3px solid var(--foundation-communication)}
-.foundation-card[data-foundation="fabrication"]{border-top:3px solid var(--foundation-fabrication)}
-.foundation-card[data-foundation="transport"]{border-top:3px solid var(--foundation-transport)}
-.foundation-card[data-foundation="craft"]{border-top:3px solid var(--foundation-craft)}
+.foundation-card[data-foundation="energy"]{border-top-color:var(--foundation-energy) !important}
+.foundation-card[data-foundation="water"]{border-top-color:var(--foundation-water) !important}
+.foundation-card[data-foundation="food"]{border-top-color:var(--foundation-food) !important}
+.foundation-card[data-foundation="shelter"]{border-top-color:var(--foundation-shelter) !important}
+.foundation-card[data-foundation="climate"]{border-top-color:var(--foundation-climate) !important}
+.foundation-card[data-foundation="communication"]{border-top-color:var(--foundation-communication) !important}
+.foundation-card[data-foundation="fabrication"]{border-top-color:var(--foundation-fabrication) !important}
+.foundation-card[data-foundation="transport"]{border-top-color:var(--foundation-transport) !important}
+.foundation-card[data-foundation="craft"]{border-top-color:var(--foundation-craft) !important}
 .foundations-grid{grid-template-columns:repeat(4, minmax(0,1fr))}
 @media (max-width:880px){.foundations-grid{grid-template-columns:repeat(2, minmax(0,1fr))}}
 @media (max-width:560px){.foundations-grid{grid-template-columns:1fr}}
