@@ -8,8 +8,8 @@ current: true
 workshopDate: "February 2026"
 location: "Greater Boston"
 foundations:
-  - energy
   - communication
+  - energy
 level: applied
 ---
 
