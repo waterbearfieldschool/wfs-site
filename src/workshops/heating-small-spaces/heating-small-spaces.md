@@ -3,7 +3,7 @@ title: "Heating Small Spaces"
 meta: "Learn to estimate energy needs for heating tiny homes, animal shelters, and off-grid spaces using hands-on experiments and basic heat transfer principles."
 layout: layouts/post.njk
 permalink: /workshops/heating-small-spaces/
-image: /assets/images/heat-transfer/heat-pump.webp
+image: /assets/images/heat-transfer/stove.webp
 ---
 
 ## Heating Small Spaces Workshop
