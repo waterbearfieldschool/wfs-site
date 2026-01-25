@@ -10,7 +10,7 @@ permalink: /journal/
   <p class="meta" style="margin-bottom: 2rem;">News, updates, and stories from Waterbear Field School</p>
 
   <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
-    {% for post in collections.blog %}
+    {% for post in collections.journal %}
     <article class="card" style="overflow: hidden;">
       {% if post.data.image %}
       <a href="{{ post.url }}" class="thumb" aria-label="{{ post.data.title }}">

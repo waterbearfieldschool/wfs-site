@@ -2,7 +2,7 @@
 title: "Winter 2026 Foundations Sequence Now Open"
 date: 2026-01-20
 layout: layouts/post.njk
-tags: blog
+tags: journal
 image: /assets/images/solar/solar_workshop_ad.jpeg
 excerpt: "Registration is now open for our 4-week cohort program covering Energy, Climate, Communication, and Transport."
 ---

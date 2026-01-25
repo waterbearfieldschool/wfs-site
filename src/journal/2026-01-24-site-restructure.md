@@ -2,7 +2,7 @@
 title: "Site Restructure: New Projects Section"
 date: 2026-01-24
 layout: layouts/post.njk
-tags: blog
+tags: journal
 image: /assets/images/projects/uvf.png
 excerpt: "We've reorganized the Waterbear Field School website with a new Projects section featuring ongoing research and development work."
 ---
