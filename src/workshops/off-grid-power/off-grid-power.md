@@ -35,6 +35,11 @@ A hands-on introduction to making, storing and using electrical energy at home. 
 
 Participants will gain access to live monitoring data from a residential solar installation and opportunities to contribute to community solar charging infrastructure projects.
 
+### Take-home projects
+
+- A DIY multimeter
+- A 'gravity light' or 'crank light'
+
 ### Workshop Details
 
 This is a free, beginner-friendly workshop. Come ready to ask questions and learn together!
