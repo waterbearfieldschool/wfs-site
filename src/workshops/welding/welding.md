@@ -7,6 +7,7 @@ image: /assets/images/welding/welding.png
 foundations:
   - fabrication
 level: applied
+category: "Future Workshop"
 ---
 
 ## Welding Workshop: Build Your Butaphone

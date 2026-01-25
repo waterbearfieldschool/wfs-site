@@ -249,6 +249,9 @@ main .slide img{aspect-ratio:1/1}
 .workshop-foundation-band[data-foundation="craft"]{background:var(--foundation-craft); color:white}
 .workshop-foundation-band[data-foundation="air"]{background:var(--foundation-air); color:white}
 
+/* Upcoming workshop label */
+.upcoming-workshop-label{background:var(--bg); color:var(--accent); text-align:center; padding:4px 10px; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--hair)}
+
 /* Workshop and project card borders - match foundation color */
 .workshop-card, .project-card{border-width:3px}
 .workshop-card[data-foundation="air"], .project-card[data-foundation="air"]{border-color:var(--foundation-air)}

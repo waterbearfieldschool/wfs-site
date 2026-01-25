@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crate Carts for Small Farms</title>
+  <meta name="description" content="Low-cost DIY carts for transporting vegetable crates" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/projects/cratecart/">
+  <meta property="og:title" content="Crate Carts for Small Farms">
+  <meta property="og:description" content="Low-cost DIY carts for transporting vegetable crates">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/projects/cratecart.jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/projects/cratecart/">
+  <meta property="twitter:title" content="Crate Carts for Small Farms">
+  <meta property="twitter:description" content="Low-cost DIY carts for transporting vegetable crates">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/projects/cratecart.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics" style="color: #8B6914; font-size: 0.95rem;">Hands-on community workshops teaching energy, water, food, shelter, climate, communication, fabrication, transport, arts & crafts.</p>
+          <nav class="brand-nav brand-nav-vertical">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/#journal">Journal</a></li>
+              <li><a href="/#workshops">Workshops</a></li>
+              <li><a href="/#recently">Recently</a></li>
+              <li><a href="/#projects">Projects</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.95rem; font-style: italic; color: var(--muted); text-align: center;">
+            We'd love to hear from you!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.95rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Crate Carts for Small Farms</h1>
+  
+  <img src="/assets/images/projects/cratecart.jpeg" alt="Crate Cart" class="float-right float-medium" style="max-width: 300px; margin: 0 0 1rem 1rem;" />
+<h2>Overview</h2>
+<p>This project develops an easy-to-assemble cart for transporting standard vegetable containers on small farms, created in collaboration with the Young Farmer Network.</p>
+<h2>The Problem with Commercial Carts</h2>
+<p>Typical garden carts are:</p>
+<ul>
+<li>Expensive (often $500+)</li>
+<li>Too small for multiple crates</li>
+<li>Unnecessarily heavy wood construction</li>
+<li>Too narrow to straddle 30&quot; vegetable beds</li>
+</ul>
+<h2>Our Design</h2>
+<p>The DIY crate cart addresses all these issues:</p>
+<ul>
+<li><strong>Cost</strong>: Approximately $120 in materials (less than 1/3 commercial price)</li>
+<li><strong>Capacity</strong>: Holds 4-8 standard farm crates</li>
+<li><strong>Construction</strong>: Lightweight electrical conduit frame</li>
+<li><strong>Width</strong>: Straddles common 30&quot; vegetable beds</li>
+</ul>
+<h2>Materials</h2>
+<ul>
+<li>Recycled 26&quot; bicycle wheels</li>
+<li>1/2&quot; and 3/4&quot; electrical conduit</li>
+<li>Welded wire fencing</li>
+<li>Custom laser-cut dropouts (open source design)</li>
+<li>U-bolts and hardware</li>
+</ul>
+<h2>Skills You'll Learn</h2>
+<p>Building a crate cart teaches transferable skills for farm infrastructure:</p>
+<ul>
+<li>Working with metal tubing</li>
+<li>Bending and cutting conduit</li>
+<li>Fabricating small metal parts</li>
+<li>Skills applicable to low tunnels, hoop houses, and chicken coops</li>
+</ul>
+<hr>
+<p><strong>To find out more, visit:</strong> <a href="https://edgecollective.io/projects/cratecart">Edge Collective - Crate Carts</a></p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

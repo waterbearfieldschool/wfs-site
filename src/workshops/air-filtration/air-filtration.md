@@ -4,12 +4,10 @@ meta: Learn how to build and assess simple, low-cost, effective DIY air purifier
 layout: layouts/post.njk
 permalink: /workshops/air-filtration/
 image: /assets/images/air-filtration/airbox.webp
-current: true
-workshopDate: "February 2026"
-location: "Greater Boston"
 foundations:
   - air
 level: intro
+category: "Future Workshop"
 ---
 
 ## DIY Air Filtration Workshop

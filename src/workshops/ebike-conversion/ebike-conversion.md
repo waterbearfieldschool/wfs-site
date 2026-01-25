@@ -9,6 +9,7 @@ foundations:
   - transport
   - energy
 level: applied
+category: "Future Workshop"
 ---
 
 ## E-Bike Conversion Workshop

@@ -8,6 +8,7 @@ foundations:
   - water
   - communication
 level: applied
+category: "Future Workshop"
 ---
 
 ## Off-Grid Water Level Monitoring Workshop

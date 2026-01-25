@@ -138,6 +138,7 @@ image: /assets/images/biketrailer/full_system.webp
       <div class="workshop-foundation-band" data-foundation="energy">
         {{ foundationInfo.energy.emoji }} {{ foundationInfo.energy.name }}
       </div>
+      <div class="upcoming-workshop-label">Event</div>
       <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
         October 2025
       </div>
@@ -154,6 +155,7 @@ image: /assets/images/biketrailer/full_system.webp
       <div class="workshop-foundation-band" data-foundation="communication">
         {{ foundationInfo.communication.emoji }} {{ foundationInfo.communication.name }}
       </div>
+      <div class="upcoming-workshop-label">Camp</div>
       <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
         July 2025
       </div>
@@ -170,6 +172,7 @@ image: /assets/images/biketrailer/full_system.webp
       <div class="workshop-foundation-band" data-foundation="energy">
         {{ foundationInfo.energy.emoji }} {{ foundationInfo.energy.name }}
       </div>
+      <div class="upcoming-workshop-label">Workshop</div>
       <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
         October 2025
       </div>
@@ -186,6 +189,7 @@ image: /assets/images/biketrailer/full_system.webp
       <div class="workshop-foundation-band" data-foundation="communication">
         {{ foundationInfo.communication.emoji }} {{ foundationInfo.communication.name }}
       </div>
+      <div class="upcoming-workshop-label">Workshop</div>
       <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
         July 2025
       </div>
@@ -202,6 +206,7 @@ image: /assets/images/biketrailer/full_system.webp
       <div class="workshop-foundation-band" data-foundation="water">
         {{ foundationInfo.water.emoji }} {{ foundationInfo.water.name }}
       </div>
+      <div class="upcoming-workshop-label">Workshop</div>
       <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
         August 2025
       </div>
@@ -236,6 +241,7 @@ image: /assets/images/biketrailer/full_system.webp
           {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
         </div>
         {% endif %}{% endfor %}{% endif %}
+        {% if p.data.category %}<div class="upcoming-workshop-label">{{ p.data.category }}</div>{% endif %}
         <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
           {% if p.data.image %}<img src="{{ p.data.image }}" alt="{{ p.data.title }}" />{% else %}[FIELD SCHOOL]{% endif %}
         </a>
@@ -252,11 +258,11 @@ image: /assets/images/biketrailer/full_system.webp
         <div class="workshop-foundation-band" data-foundation="{{ proj.foundation }}">
           {{ foundationInfo[proj.foundation].emoji }} {{ foundationInfo[proj.foundation].name }}
         </div>
-        <a href="{{ proj.url }}" class="thumb" aria-label="{{ proj.title }}" target="_blank" rel="noopener">
+        <a href="{{ proj.url }}" class="thumb" aria-label="{{ proj.title }}">
           <img src="{{ proj.image }}" alt="{{ proj.title }}" />
         </a>
         <div class="card-content">
-          <h3 style="text-align: center;"><a href="{{ proj.url }}" target="_blank" rel="noopener">{{ proj.title }} <span style="font-size: 0.8em;">↗</span></a></h3>
+          <h3 style="text-align: center;"><a href="{{ proj.url }}">{{ proj.title }}</a></h3>
           <div class="meta-description">{{ proj.blurb }}</div>
         </div>
       </article>

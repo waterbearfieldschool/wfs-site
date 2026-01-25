@@ -4,13 +4,11 @@ meta: Build a low-cost cargo bike trailer from readily-available hardware store 
 layout: layouts/post.njk
 permalink: /workshops/biketrailer/
 image: /assets/images/biketrailer/full_system.webp
-current: true
-workshopDate: "February 2026"
-location: "Greater Boston"
 foundations:
   - transport
   - shelter
 level: intro
+category: "Future Workshop"
 ---
 
 ## DIY Bike Trailer Workshop

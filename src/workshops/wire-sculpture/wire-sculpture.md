@@ -7,6 +7,7 @@ image: /assets/images/wire-sculpture/asawa_1967.jpg
 foundations:
   - craft
 level: intro
+category: "Future Workshop"
 ---
 
 ## Wire Sculpture Workshop

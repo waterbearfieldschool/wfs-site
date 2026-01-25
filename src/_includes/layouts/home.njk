@@ -2,33 +2,4 @@
 {% set title = site.title %}
 {% block content %}
 {{ content | safe }}
-
-{% if collections.recentEvents.length > 0 %}
-<section id="recent-events">
-  <h2 class="section-title"><a href="/projects/">Projects</a></h2>
-  <p class="section-description"><!-- Add your projects description here --></p>
-  <div class="grid">
-    {% for p in collections.recentEvents %}
-      {% if loop.index <= 3 %}
-      <article class="card">
-        <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
-          {% if p.data.image %}
-            <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
-          {% else %}
-            4:3 image
-          {% endif %}
-        </a>
-        <div class="card-content">
-          <h3><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
-          <div class="meta">
-            {{ p.data.meta or '' }}
-          </div>
-        </div>
-      </article>
-      {% endif %}
-    {% endfor %}
-  </div>
-</section>
-{% endif %}
-
 {% endblock %}

@@ -4,13 +4,11 @@ meta: Tracking e.g. the temperature of a hoop house, or the water level in a tan
 layout: layouts/post.njk
 permalink: /workshops/off-grid-telemetry/
 image: /assets/images/off-grid-telemetry/main.webp
-current: true
-workshopDate: "February 2026"
-location: "Greater Boston"
 foundations:
   - communication
   - energy
 level: applied
+category: "Future Workshop"
 ---
 
 ## Off-Grid Monitoring Workshop

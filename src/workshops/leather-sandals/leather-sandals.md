@@ -8,6 +8,7 @@ draft: true
 foundations:
   - fabrication
 level: intro
+category: "Future Workshop"
 ---
 
 ## Leather Sandal Making Workshop

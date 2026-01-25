@@ -7,6 +7,7 @@ image: /assets/images/sandcasting/sandmold.webp
 foundations:
   - fabrication
 level: applied
+category: "Future Workshop"
 ---
 
 ## Sandcasting Workshop

@@ -9,6 +9,7 @@ foundations:
   - energy
   - fabrication
 level: advanced
+category: "Future Workshop"
 ---
 
 ## Piggott Wind Turbine Workshop

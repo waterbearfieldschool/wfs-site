@@ -8,6 +8,7 @@ foundations:
   - food
   - shelter
 level: intro
+category: "Future Workshop"
 ---
 
 ## DIY Cold Frames Workshop

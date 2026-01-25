@@ -8,6 +8,7 @@ draft: true
 foundations:
   - water
 level: intro
+category: "Future Workshop"
 ---
 
 ## Rainwater Capture Workshop

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Water Storage Monitoring</title>
+  <meta name="description" content="Satellite-based water level monitoring for remote ranch tanks" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/projects/grassnomads/">
+  <meta property="og:title" content="Water Storage Monitoring">
+  <meta property="og:description" content="Satellite-based water level monitoring for remote ranch tanks">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/projects/grassnomads.jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/projects/grassnomads/">
+  <meta property="twitter:title" content="Water Storage Monitoring">
+  <meta property="twitter:description" content="Satellite-based water level monitoring for remote ranch tanks">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/projects/grassnomads.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics" style="color: #8B6914; font-size: 0.95rem;">Hands-on community workshops teaching energy, water, food, shelter, climate, communication, fabrication, transport, arts & crafts.</p>
+          <nav class="brand-nav brand-nav-vertical">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/#journal">Journal</a></li>
+              <li><a href="/#workshops">Workshops</a></li>
+              <li><a href="/#recently">Recently</a></li>
+              <li><a href="/#projects">Projects</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.95rem; font-style: italic; color: var(--muted); text-align: center;">
+            We'd love to hear from you!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.95rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Water Storage Monitoring</h1>
+  
+  <img src="/assets/images/projects/grassnomads.jpeg" alt="Water Storage Tank" class="float-right float-medium" style="max-width: 300px; margin: 0 0 1rem 1rem;" />
+<h2>Overview</h2>
+<p>This project develops a satellite modem-based water level monitoring system for remote ranch water storage tanks, created in collaboration with Grass Nomads LLC and supported by the LOR Foundation.</p>
+<h2>The Challenge</h2>
+<p>Ojo Feliz Ranch in New Mexico spans 127,000 acres with over 30 miles of pipeline and dozens of wells, drinkers, and storage tanks. Checking water levels in remote storage tanks can add dozens of miles and many hours to the work week. Remote monitoring saves time, vehicle wear, and water - while enabling better range management through higher herd density.</p>
+<h2>The Solution</h2>
+<p>Because of the remote location and uncertain cellular coverage, we developed a satellite modem-based system featuring:</p>
+<ul>
+<li><strong>LoRa sensor nodes</strong> with ultrasonic depth sensors mounted on tanks</li>
+<li><strong>LoRa-to-satellite gateway</strong> relaying data via Iridium satellite network</li>
+<li><strong>Online database</strong> accessible via internet or phone from anywhere</li>
+</ul>
+<h2>Hardware Components</h2>
+<p>The system uses off-the-shelf components including:</p>
+<ul>
+<li>Rockblock 9602 Satellite Modem</li>
+<li>Maxbotix ultrasonic water sensors</li>
+<li>Feather M0 LoRa microcontrollers</li>
+<li>Solar panels and battery charging circuits</li>
+</ul>
+<hr>
+<p><strong>To find out more, visit:</strong> <a href="https://edgecollective.io/projects/grassnomads">Edge Collective - Grassnomads Water Monitoring</a></p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

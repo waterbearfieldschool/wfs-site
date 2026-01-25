@@ -8,6 +8,7 @@ foundations:
   - food
   - climate
 level: applied
+category: "Future Workshop"
 ---
 
 ## Cob Oven Workshop

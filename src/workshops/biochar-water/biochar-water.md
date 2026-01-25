@@ -7,6 +7,7 @@ image: /assets/images/biochar-water/biochar_filter.webp
 foundations:
   - water
 level: applied
+category: "Future Workshop"
 ---
 
 ## Biochar Water Filter Workshop

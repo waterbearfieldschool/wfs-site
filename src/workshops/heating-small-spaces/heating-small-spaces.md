@@ -7,6 +7,7 @@ image: /assets/images/heat-transfer/stove.webp
 foundations:
   - heating-cooling
 level: advanced
+category: "Future Workshop"
 ---
 
 ## Heating Small Spaces Workshop

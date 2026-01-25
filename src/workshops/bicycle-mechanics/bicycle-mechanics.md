@@ -7,6 +7,7 @@ image: /assets/images/bike-repair/bike_repair.png
 foundations:
   - transport
 level: intro
+category: "Future Workshop"
 ---
 
 ## Bicycle Mechanics Workshop
