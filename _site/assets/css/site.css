@@ -249,18 +249,18 @@ main .slide img{aspect-ratio:1/1}
 .workshop-foundation-band[data-foundation="craft"]{background:var(--foundation-craft); color:white}
 .workshop-foundation-band[data-foundation="air"]{background:var(--foundation-air); color:white}
 
-/* Workshop card borders - match foundation color */
-.workshop-card{border-width:3px}
-.workshop-card[data-foundation="air"]{border-color:var(--foundation-air)}
-.workshop-card[data-foundation="energy"]{border-color:var(--foundation-energy)}
-.workshop-card[data-foundation="water"]{border-color:var(--foundation-water)}
-.workshop-card[data-foundation="food"]{border-color:var(--foundation-food)}
-.workshop-card[data-foundation="shelter"]{border-color:var(--foundation-shelter)}
-.workshop-card[data-foundation="heating-cooling"]{border-color:var(--foundation-heating-cooling)}
-.workshop-card[data-foundation="communication"]{border-color:var(--foundation-communication)}
-.workshop-card[data-foundation="fabrication"]{border-color:var(--foundation-fabrication)}
-.workshop-card[data-foundation="transport"]{border-color:var(--foundation-transport)}
-.workshop-card[data-foundation="craft"]{border-color:var(--foundation-craft)}
+/* Workshop and project card borders - match foundation color */
+.workshop-card, .project-card{border-width:3px}
+.workshop-card[data-foundation="air"], .project-card[data-foundation="air"]{border-color:var(--foundation-air)}
+.workshop-card[data-foundation="energy"], .project-card[data-foundation="energy"]{border-color:var(--foundation-energy)}
+.workshop-card[data-foundation="water"], .project-card[data-foundation="water"]{border-color:var(--foundation-water)}
+.workshop-card[data-foundation="food"], .project-card[data-foundation="food"]{border-color:var(--foundation-food)}
+.workshop-card[data-foundation="shelter"], .project-card[data-foundation="shelter"]{border-color:var(--foundation-shelter)}
+.workshop-card[data-foundation="heating-cooling"], .project-card[data-foundation="heating-cooling"]{border-color:var(--foundation-heating-cooling)}
+.workshop-card[data-foundation="communication"], .project-card[data-foundation="communication"]{border-color:var(--foundation-communication)}
+.workshop-card[data-foundation="fabrication"], .project-card[data-foundation="fabrication"]{border-color:var(--foundation-fabrication)}
+.workshop-card[data-foundation="transport"], .project-card[data-foundation="transport"]{border-color:var(--foundation-transport)}
+.workshop-card[data-foundation="craft"], .project-card[data-foundation="craft"]{border-color:var(--foundation-craft)}
 
 /* Foundation mini-card borders - match foundation color */
 .foundation-mini-card{border:3px solid var(--hair)}

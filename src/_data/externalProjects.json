@@ -1,0 +1,51 @@
+[
+  {
+    "title": "UV254 Spectrophotometer",
+    "blurb": "Building a low-cost UV spectrophotometer for assessing water filter effectiveness and dissolved organic matter in drinking water.",
+    "foundation": "water",
+    "url": "https://edgecollective.io/notes/uvf",
+    "image": "/assets/images/projects/uvf.png"
+  },
+  {
+    "title": "Water Storage Monitoring",
+    "blurb": "Satellite modem-based water level monitoring for remote ranch tanks using LoRa sensors and ultrasonic depth measurement.",
+    "foundation": "water",
+    "url": "https://edgecollective.io/projects/grassnomads",
+    "image": "/assets/images/projects/grassnomads.jpeg"
+  },
+  {
+    "title": "Biochar Water Filters",
+    "blurb": "DIY water filtration systems using locally-produced biochar, based on designs by Aqueous Solutions and Dr. Josh Kearns.",
+    "foundation": "water",
+    "url": "https://edgecollective.io/projects/water_biochar",
+    "image": "/assets/images/projects/biochar.jpeg"
+  },
+  {
+    "title": "Crate Carts for Small Farms",
+    "blurb": "Low-cost DIY carts for transporting vegetable crates, using recycled bicycle wheels and electrical conduit.",
+    "foundation": "transport",
+    "url": "https://edgecollective.io/projects/cratecart",
+    "image": "/assets/images/projects/cratecart.jpeg"
+  },
+  {
+    "title": "CO2 Ventilation Assessment",
+    "blurb": "Using CO2 monitors to assess indoor ventilation rates and air quality for healthier indoor spaces.",
+    "foundation": "air",
+    "url": "https://edgecollective.io/co2",
+    "image": "/assets/images/projects/co2.png"
+  },
+  {
+    "title": "DIY Air Purifiers",
+    "blurb": "Building effective, low-cost air purifiers using box fans and MERV-13 filters - the Corsi-Rosenthal box design.",
+    "foundation": "air",
+    "url": "https://edgecollective.io/airbox",
+    "image": "/assets/images/projects/airbox.png"
+  },
+  {
+    "title": "Flood Sensing",
+    "blurb": "Designing DIY flood alert and mapping systems using ultrasonic sensors and LoRa radio networks.",
+    "foundation": "water",
+    "url": "https://edgecollective.io/notes/floodsense",
+    "image": "/assets/images/projects/floodsense.png"
+  }
+]
