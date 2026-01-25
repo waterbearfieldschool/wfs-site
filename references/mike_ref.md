@@ -1,0 +1,1 @@
+Mike Beach is an Electrical Engineer with experience designing and debugging electro-optical and analog systems. He has held low-noise analog design classes for IEEE, co-taught a robotic design course based on a hybrid Raspberry Pi/Arduino platform at the Asylum, and is an active participant and mentor at the Circuit Hacking night held at the Asylum every Wednesday.

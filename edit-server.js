@@ -82,10 +82,12 @@ function findMarkdownFiles(dir, category = null) {
 
       const content = fs.readFileSync(fullPath, 'utf8');
       const { title, body } = parseFrontMatter(content);
+      const parentDir = path.relative(SRC_DIR, dir);
 
       files.push({
         path: fullPath,
         relativePath,
+        parentDir, // Directory containing this file (for grouping related files)
         category: category || 'root',
         title: title || entry.name.replace(/\.(md|njk)$/, ''),
         excerpt: getExcerpt(body),
