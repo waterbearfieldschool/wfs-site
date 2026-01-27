@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LiFePO4 Battery Testing for Grass Nomads</title>
+  <meta name="description" content="Learning to live well, off-the-grid." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/journal/2026-01-26-lifepo4-grassnomads/">
+  <meta property="og:title" content="LiFePO4 Battery Testing for Grass Nomads">
+  <meta property="og:description" content="Learning to live well, off-the-grid.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/grassnomads/lifepo4.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/journal/2026-01-26-lifepo4-grassnomads/">
+  <meta property="twitter:title" content="LiFePO4 Battery Testing for Grass Nomads">
+  <meta property="twitter:description" content="Learning to live well, off-the-grid.">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/grassnomads/lifepo4.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics" style="color: #8B6914; font-size: 0.95rem;">Hands-on community workshops teaching energy, water, food, shelter, climate, communication, fabrication, transport, arts & crafts.</p>
+          <nav class="brand-nav brand-nav-inline">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/#journal">Journal</a></li>
+              <li><a href="/#workshops">Workshops</a></li>
+              <li><a href="/#recently">Recently</a></li>
+              <li><a href="/#projects">Projects</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.95rem; font-style: italic; color: var(--muted); text-align: center;">
+            We'd love to hear from you!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.95rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>LiFePO4 Battery Testing for Grass Nomads</h1>
+  <div class="meta">Sun Jan 25 2026</div>
+  <h2>Choosing LiFePO4 for Winter in New Mexico</h2>
+<p>I've been working on improving the power system for the <a href="https://www.grassnomads.com/">Grass Nomads</a> water monitoring project. The key challenge: finding a battery chemistry that will perform reliably in the cold temperatures of winter in New Mexico. After some research, I've landed on lithium iron phosphate (LiFePO4), which handles cold weather significantly better than lithium-ion or lead acid alternatives.</p>
+<h2>Finding the Right Components</h2>
+<p>I found some nice integrated circuits that will charge a single-cell LiFePO4 battery, along with a relatively inexpensive 7,000 mAh single-cell battery that seems appropriate for our setup.</p>
+<p>To verify this capacity would work, I went back and made careful measurements of the power draw of the satellite modem transmitter system—including the new submersible pressure-based depth sensor—both during satellite transmission and during sleep mode.</p>
+<h2>Power Consumption Results</h2>
+<p>The results are promising: after the satellite modem has been put in sleep mode, the overall system draws around <strong>2 milliamps</strong>. This is likely the combined current draw of:</p>
+<ul>
+<li>The boost converter supplying 5V from the 3.2V nominal single-cell LiFePO4 to the satellite modem (which needs power even while asleep)</li>
+<li>The sleep current of the satellite modem itself</li>
+</ul>
+<p>A 2 mA draw seems very compatible with a resilient solar-powered system that needs to persist through periods of cloudy weather.</p>
+<h2>Current Testing</h2>
+<p>I'm currently measuring battery drain overnight without any solar charging to verify the draw isn't too large. So far it's going well.</p>
+<h2>Next Steps</h2>
+<p>My current next step is to redesign the overall circuit to integrate the new solar charging chip and boost converter. There are existing products from Adafruit that use these chips, but they're configured for lithium-ion batteries, and the boost chip I've identified as most appropriate isn't combined with my preferred solar charging chip.</p>
+<p>I think I need to design a new board that combines these chips in the right configuration.</p>
+<p>I'm also considering redesigning the circuitry for measuring the submersible probe, which uses a 4-20 mA current loop sensor. While I'm assessing battery drain, I might look into that redesign as well.</p>
+<hr>
+<p>For more details on the Grass Nomads water monitoring project, see the <a href="https://edgecollective.io/projects/grassnomads/">Edge Collective project page</a>.</p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

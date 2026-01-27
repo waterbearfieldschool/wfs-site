@@ -1,10 +1,10 @@
 ---
-title: "Texting When the Grid Isn't Available"
-meta: Learn how to set up and use off-grid communications tools locally using inexpensive new tools that don't require a license.
+title: "Mesh Radio (Winter Lunchtime Edition)"
+meta: Hands-on introduction to decentralized radio communication that works without cellular service or internet.
 layout: layouts/post.njk
 permalink: /workshops/mesh-radio/
 current: true
-workshopDate: "February 2026"
+workshopDate: "Winter 2026"
 location: "Greater Boston"
 image: /assets/images/mesh-radio/simple_mesh.png
 foundations:
@@ -12,33 +12,63 @@ foundations:
 level: intro
 ---
 
-## Off-Grid Mesh Radio Workshop
+## Local, inexpensive, DIY radio networking that doesn't rely on cellular or internet infrastructure
 
-Learn to build and deploy LoRa mesh radio networks that work without internet or cell service. These low-power devices communicate over miles of range, automatically relaying messages through the network to extend coverage across farms, forests, and neighborhoods.
+Most modern communication depends on distant infrastructure we rarely see. Mesh radio flips that model.
 
-### What You'll Learn
+This winter lunchtime workshop is a compact, hands-on introduction to decentralized radio communication, held outdoors during the warmest part of the day. In a small group setting (max 6 participants), we'll use real radios to build a simple mesh network and watch how messages move from device to device.
 
-- **Hardware setup** - Working with affordable microcontrollers like ESP32 and Raspberry Pi Pico
-- **Firmware flashing** - Installing and updating mesh radio software on your devices
-- **Network configuration** - Setting up channels, encryption, and multi-device networks
-- **Sensor integration** - Connecting environmental sensors and sending data over the mesh
-- **Custom functionality** - Building modules for your specific monitoring needs
-
-### Applications
-
-- **Farm monitoring** - Track soil moisture, weather stations, and livestock across large properties without cellular coverage
-- **Grid-down communications** - Maintain text messaging and location sharing when power and internet are unavailable
-- **Remote sensing** - Monitor water levels, temperature, and other conditions in areas without infrastructure
-- **Asset tracking** - Keep tabs on equipment, vehicles, or animals across wide areas
-- **Community networks** - Build neighborhood communication systems independent of commercial infrastructure
+Cold weather isn't an obstacle here—it's part of the lesson. Winter conditions make questions of power, placement, and reliability more visible and more real.
 
 ### How It Works
 
-LoRa (Long Range) radio technology enables communication over several miles using minimal power. When multiple devices form a mesh network, messages automatically hop from node to node, extending range far beyond what a single radio could achieve. Each device can act as both an endpoint and a relay.
+LoRa (Long Range) radio technology enables communication over several miles using minimal power. When multiple devices form a mesh network, messages automatically hop from node to node, extending range far beyond what a single radio could achieve.
+
+### What We'll Explore
+
+- What mesh radio is and how it differs from cellular and Wi-Fi
+- How messages hop between radios in a mesh network
+- The role of antennas, placement, and terrain
+- Working with affordable hardware
+- Real-world use cases: farms, neighborhoods, events, field work, and protests
+
+### Applications
+
+- **Farm monitoring** - Track conditions across large properties without cellular coverage
+- **Grid-down communications** - Maintain text messaging when power and internet are unavailable
+- **Remote sensing** - Monitor water levels, temperature, and other conditions in areas without infrastructure
+- **Community networks** - Build neighborhood communication systems independent of commercial infrastructure
+
+### You'll Leave With
+
+- A clear mental model of how mesh networks function
+- Experience sending messages across a live mesh
+- Practical insight into deploying radios in the field
+- Better questions about range, reliability, and power
 
 ### Workshop Details
 
-Perfect for farmers, homesteaders, emergency preparedness enthusiasts, and anyone interested in resilient communications. No prior radio or electronics experience necessary - we'll start from the basics and have you sending messages by the end of the session.
+- **When:** Winter lunchtime (11:30 AM – 1:00 PM or 12:00 – 1:30 PM)
+- **Where:** Outdoors in Greater Boston, MA
+- **Duration:** ~90 minutes
+- **Group size:** Limited to 6 participants
+- **Cost:** $45 | $65 | $85 (Sliding scale)
+- **Equipment:** Radios provided for use during the workshop (also available for purchase)
+
+### What to Bring
+
+- Warm layers
+- Gloves that allow dexterity
+- A charged phone (for radio pairing, if applicable)
+- A mug with a warm drink (encouraged)
+
+### Who This Is For
+
+Curious beginners, farmers, organizers, educators, outdoor workers—anyone interested in resilient or off-grid communication. No technical background or prior radio experience required.
+
+### How This Connects
+
+Off-grid power and mesh radio are deeply connected systems. Radios need energy to function, and the way that energy is generated, stored, and managed shapes how reliable a radio network can be. If you're curious about powering radios and designing reliable solar-powered repeaters, see our [Winter Lunchtime Off-Grid Power workshop](/workshops/off-grid-power/).
 
 ### Register
 
@@ -47,5 +77,5 @@ Registration opens late January 2026.
 *Have questions? Contact us to learn more.*
 
 <p class="contact-email" style="text-align: center; margin: 12px 0;">
-  <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+  <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a>
 </p>

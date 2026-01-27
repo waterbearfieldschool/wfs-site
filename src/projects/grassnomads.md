@@ -37,4 +37,10 @@ The system uses off-the-shelf components including:
 
 ---
 
+## Updates
+
+- **2026-01-26**: [LiFePO4 Battery Testing](/journal/2026-01-26-lifepo4-grassnomads/) - Testing lithium iron phosphate batteries for cold-weather solar power
+
+---
+
 **To find out more, visit:** [Edge Collective - Grassnomads Water Monitoring](https://edgecollective.io/projects/grassnomads)
