@@ -1,5 +1,5 @@
 ---
-title: "Mesh Radio (Winter Lunchtime Edition)"
+title: "Mesh Radio"
 meta: Hands-on introduction to decentralized radio communication that works without cellular service or internet.
 layout: layouts/post.njk
 permalink: /workshops/mesh-radio/
@@ -16,7 +16,7 @@ level: intro
 
 Most modern communication depends on distant infrastructure we rarely see and can't access. Mesh radio flips that model.
 
-This winter lunchtime workshop is a compact, hands-on introduction to decentralized radio communication, held outdoors during the warmest part of the day. In a small group setting (max 6 participants), we'll use real radios to build a simple mesh network, and watch how messages move from device to device. We'll learn the basics of setting up repeaters in useful locations, enabling participants to begin to develop resilient, secure communications networks in their own neighborhoods (and beyond).
+This workshop is a compact, hands-on introduction to decentralized radio communication, held outdoors. In a small group setting (max 6 participants), we'll use real radios to build a simple mesh network, and watch how messages move from device to device. We'll learn the basics of setting up repeaters in useful locations, enabling participants to begin to develop resilient, secure communications networks in their own neighborhoods (and beyond).
 
 ## Background
 
@@ -46,7 +46,7 @@ Recently developed, open source radio projects now allow people to communicate o
 
 ### Workshop Details
 
-- **When:** Winter lunchtime (11:30 AM – 1:00 PM or 12:00 – 1:30 PM)
+- **When:** Winter 2026
 - **Where:** Outdoors in Greater Boston, MA
 - **Duration:** ~90 minutes
 - **Group size:** Limited to 6 participants
@@ -66,7 +66,7 @@ Curious beginners, farmers, organizers, educators, outdoor workers—anyone inte
 
 ### How This Connects
 
-Off-grid power and mesh radio are deeply connected systems. Radios need energy to function, and the way that energy is generated, stored, and managed shapes how reliable a radio network can be. If you're curious about powering radios and designing reliable solar-powered repeaters, see our [Winter Lunchtime Off-Grid Power workshop](/workshops/off-grid-power/).
+Off-grid power and mesh radio are deeply connected systems. Radios need energy to function, and the way that energy is generated, stored, and managed shapes how reliable a radio network can be. If you're curious about powering radios and designing reliable solar-powered repeaters, see our [Off-Grid Power workshop](/workshops/off-grid-power/).
 
 ### Register
 
