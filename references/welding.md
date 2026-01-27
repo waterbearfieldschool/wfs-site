@@ -1,0 +1,1 @@
+This workshop was a hands-on beginners introduction to MIG welding participants were given an overview of the welding process and welding tools and materials and were able to practice small pieces and create their own metal garden trellis. People had a lot of fun.
