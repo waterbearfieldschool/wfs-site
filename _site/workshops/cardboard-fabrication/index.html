@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cardboard Fabrication</title>
+  <meta name="description" content="Build creative structures from cardboard using a solar-powered nibbler and kid-safe tools" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/cardboard-fabrication/">
+  <meta property="og:title" content="Cardboard Fabrication">
+  <meta property="og:description" content="Build creative structures from cardboard using a solar-powered nibbler and kid-safe tools">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/cardboard/cardboard-fabrication.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/cardboard-fabrication/">
+  <meta property="twitter:title" content="Cardboard Fabrication">
+  <meta property="twitter:description" content="Build creative structures from cardboard using a solar-powered nibbler and kid-safe tools">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/cardboard/cardboard-fabrication.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics" style="color: #8B6914; font-size: 0.95rem;">Hands-on community workshops teaching energy, water, food, shelter, climate, communication, fabrication, transport, arts & crafts.</p>
+          <nav class="brand-nav brand-nav-inline">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/#journal">Journal</a></li>
+              <li><a href="/#workshops">Workshops</a></li>
+              <li><a href="/#recently">Recently</a></li>
+              <li><a href="/#projects">Projects</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.95rem; font-style: italic; color: var(--muted); text-align: center;">
+            We'd love to hear from you!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.95rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Cardboard Fabrication</h1>
+  
+  <h2>Cardboard Fabrication Workshop</h2>
+<p>Learn to transform cardboard into sturdy, creative structures using a nibbler tool, plastic fasteners, and simple cutting techniques—all completely safe for kids while still engaging for adults.</p>
+<h3>What You'll Learn</h3>
+<ul>
+<li>Operating a nibbler—a drill attachment that works like a mini table saw but is completely safe with cardboard</li>
+<li>Using plastic fasteners and cutting tools for clean, precise construction</li>
+<li>Design principles for building durable cardboard structures</li>
+<li>Powering tools directly from a battery or solar panel</li>
+</ul>
+<h3>Workshop Details</h3>
+<p>The nibbler is operated by a foot pedal, making it easy and safe to use. We'll set up outdoors in a park setting where participants of all ages can design and build their own creations. We'll have interesting design templates for both kids and adults, plus encourage original designs.</p>
+<p>This workshop demonstrates how simple, low-power tools can enable creative fabrication anywhere—no outlet required.</p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+I'd like to redo the navigation card on this site so that the current navigation button links are actually just text links that are similar in size to paragraph that says hands-on community workshops etc but are colored green and are all on the same line which will wrap perhaps they change color when they are hovered over.

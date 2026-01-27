@@ -33,6 +33,11 @@ h1{font-size:1.35rem; margin:0}
 .brand-nav-vertical li{width:100%; max-width:200px}
 .brand-nav-vertical a{display:block; padding:8px 12px; border-radius:8px; background:var(--bg); border:1px solid var(--hair); font-size:0.9rem; font-weight:500; text-align:center; color:var(--accent)}
 .brand-nav-vertical a:hover{background:var(--accent); color:white; border-color:var(--accent)}
+.brand-nav-inline ul{flex-direction:row; flex-wrap:wrap; gap:0; align-items:baseline; justify-content:center}
+.brand-nav-inline li{display:inline}
+.brand-nav-inline li:not(:last-child)::after{content:" · "; color:var(--muted)}
+.brand-nav-inline a{display:inline; padding:0; border:none; background:transparent; font-size:0.95rem; font-weight:500; color:var(--accent)}
+.brand-nav-inline a:hover{color:var(--accent); background:transparent; text-decoration:underline}
 .brand-subtitle{font-size:1rem; color:var(--muted); margin:0 0 16px}
 .tag{color:var(--muted); margin:6px 0 2px}
 nav ul{list-style:none; padding:0; margin:0 0 18px; display:flex; flex-direction:column; gap:10px}
