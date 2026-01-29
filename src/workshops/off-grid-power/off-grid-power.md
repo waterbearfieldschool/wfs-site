@@ -29,7 +29,7 @@ This workshop meets once per session. Please check the schedule above for upcomi
 
 **Mike Beach** is an Electrical Engineer with experience designing and debugging electro-optical and analog systems. He has held low-noise analog design classes for IEEE, co-taught a robotic design course based on a hybrid Raspberry Pi/Arduino platform at Artisan's Asylum, and is an active participant and mentor at Circuit Hacking night held at the Asylum every Wednesday.
 
-**Don Blair** is a researcher, educator, and tinkerer with a background in physics and environmental monitoring. He has built off-grid solar systems for remote sensing applications and enjoys exploring low-cost, accessible approaches to energy independence.
+**Don Blair** is a researcher, educator, and tinkerer with a background in physics and philosophy. He has built off-grid systems for remote monitoring, and enjoys exploring ways of helping folks to gain greater control over the technologies on which they depend.
 
 ### Class Description
 
@@ -72,6 +72,10 @@ Warm layers appropriate for an outdoor workshop. Comfortable clothes you don't m
 ### Prerequisites
 
 None! This class is designed for kids and adults alike—no prior experience necessary.
+
+### Group Size
+
+Limited to 10 participants.
 
 ### Additional Resources
 
