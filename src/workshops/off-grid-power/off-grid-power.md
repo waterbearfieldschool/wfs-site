@@ -73,9 +73,13 @@ Warm layers appropriate for an outdoor workshop. Comfortable clothes you don't m
 
 None! This class is designed for kids and adults alike—no prior experience necessary.
 
-### Group Size
+### Workshop Details
 
-Limited to 10 participants.
+- **When:** February 2026
+- **Where:** Outdoors in Greater Boston, MA
+- **Duration:** ~90 minutes
+- **Group size:** Limited to 10 participants
+- **Cost:** $45 | $65 | $85 (Sliding scale)
 
 ### Additional Resources
 
