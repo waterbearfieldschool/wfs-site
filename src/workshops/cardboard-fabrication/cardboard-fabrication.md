@@ -10,6 +10,9 @@ level: intro
 category: "Future Workshop"
 ---
 
+![Cardboard Fabrication](/assets/images/cardboard/cardboard-fabrication.png)
+*Building creative structures from cardboard using simple tools.*
+
 ## Cardboard Fabrication Workshop
 
 Learn to transform cardboard into sturdy, creative structures using a nibbler tool, plastic fasteners, and simple cutting techniques—all completely safe for kids while still engaging for adults.

@@ -10,9 +10,10 @@ level: applied
 category: "Future Workshop"
 ---
 
-## Sandcasting Workshop
+![Sandcasting](/assets/images/sandcasting/sandmold.webp)
+*A sand mold ready for casting. Image: [Wikipedia](https://en.wikipedia.org/wiki/Sand_casting)*
 
-*Image: [Wikipedia](https://en.wikipedia.org/wiki/Sand_casting)*
+## Sandcasting Workshop
 
 Discover the traditional craft of sand casting - a process that uses specially prepared sand to create molds for pouring molten metal. Create your own custom metal objects using techniques that have been used for thousands of years.
 

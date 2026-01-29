@@ -10,6 +10,9 @@ level: advanced
 category: "Future Workshop"
 ---
 
+![Heating Small Spaces](/assets/images/heat-transfer/stove.webp)
+*Understanding heat transfer for off-grid heating solutions.*
+
 ## Heating Small Spaces Workshop
 
 How much energy does it take to keep a goat shed warm? A tiny home? An off-grid water tank from freezing? In this workshop, we'll explore the physics of heat loss and learn practical methods for estimating heating requirements for small spaces.

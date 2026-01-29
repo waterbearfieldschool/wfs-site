@@ -12,6 +12,9 @@ level: advanced
 category: "Future Workshop"
 ---
 
+![Piggott Wind Turbine](/assets/images/piggott-wind-turbine/placeholder.png)
+*A small-scale wind turbine based on Hugh Piggott's open-source design.*
+
 ## Piggott Wind Turbine Workshop
 
 Build a complete small-scale wind turbine based on Hugh Piggott's renowned open-source design, created specifically for ease of fabrication, good output in moderate winds, and resistance to strong winds. These turbines range from 1.2m to 4.2m in diameter, producing 200-2000W of electricity.

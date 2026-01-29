@@ -11,6 +11,9 @@ level: intro
 category: "Future Workshop"
 ---
 
+![Leather Sandal Making](/assets/images/leather-sandals/placeholder.png)
+*Handcrafted leather sandals made from your own measurements.*
+
 ## Leather Sandal Making Workshop
 
 Create your own custom leather sandals from scratch, starting with your foot measurements and ending with a finished pair of adjustable sandals. This workshop introduces traditional leatherworking techniques including pattern making, cutting, stitching, and finishing.

@@ -12,6 +12,9 @@ level: applied
 category: "Future Workshop"
 ---
 
+![E-Bike Conversion](/assets/images/ebike-conversion/placeholder.png)
+*Converting a regular bicycle into an electric-assisted e-bike.*
+
 ## E-Bike Conversion Workshop
 
 Transform your regular bicycle into an electric-assisted bike (e-bike) by installing an electrification kit. This hands-on workshop covers the complete process from understanding e-bike components to diagnosing common issues, giving you the skills to electrify bikes and maintain them long-term.

@@ -11,6 +11,9 @@ level: intro
 category: "Future Workshop"
 ---
 
+![Bamboo Basketry](/assets/images/bamboo-basketry/placeholder.png)
+*Traditional hexagonal weave bamboo basket.*
+
 ## Bamboo Basketry Workshop
 
 Learn the art of bamboo basket weaving using traditional hexagonal weave techniques. In this hands-on workshop, you'll create a beautiful, functional basket while developing skills in fiber preparation, weaving patterns, and working with specialized basketry tools.

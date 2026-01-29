@@ -10,9 +10,10 @@ level: intro
 category: "Future Workshop"
 ---
 
-## Wire Sculpture Workshop
+![Wire Sculpture](/assets/images/wire-sculpture/asawa_1967.jpg)
+*Sculpture by [Ruth Asawa](https://en.wikipedia.org/wiki/Ruth_Asawa). Image: Wikipedia*
 
-*Image: [Ruth Asawa](https://en.wikipedia.org/wiki/Ruth_Asawa), Wikipedia*
+## Wire Sculpture Workshop
 
 Learn to create three-dimensional forms from metal wire through twisting, coiling, and weaving. This accessible art form, popularized by modern artists like Alexander Calder and Ruth Asawa, transforms simple wire into expressive sculptures ranging from figurative pieces to abstract shapes.
 

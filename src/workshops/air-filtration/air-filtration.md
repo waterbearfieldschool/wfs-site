@@ -10,6 +10,9 @@ level: intro
 category: "Future Workshop"
 ---
 
+![DIY Air Filtration](/assets/images/air-filtration/airbox.webp)
+*A Corsi-Rosenthal box air purifier using MERV-13 filters.*
+
 ## DIY Air Filtration Workshop
 
 Learn to build your own affordable, effective air purifier. We'll explore several designs, including the well-known Corsi-Rosenthal-Comparetto box - a collaborative open-source design that costs less than $200 and requires no specialized tools.

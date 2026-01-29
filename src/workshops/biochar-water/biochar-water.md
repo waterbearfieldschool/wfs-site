@@ -10,9 +10,10 @@ level: applied
 category: "Future Workshop"
 ---
 
-## Biochar Water Filter Workshop
+![Biochar Water Filter](/assets/images/biochar-water/biochar_filter.webp)
+*A biochar-based water filtration system. Image: [Kearns et al, 2023](https://www.sciencedirect.com/science/article/abs/pii/S2468312423000184)*
 
-*Image: [Kearns et al, 2023](https://www.sciencedirect.com/science/article/abs/pii/S2468312423000184)*
+## Biochar Water Filter Workshop
 
 Learn to build decentralized water filtration systems using biochar - a carbon material that can be produced locally from agricultural waste. These filters use adsorption to remove contaminants, offering a sustainable alternative to commercial activated carbon filters.
 

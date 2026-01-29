@@ -10,6 +10,9 @@ level: intro
 category: "Future Workshop"
 ---
 
+![Bike Maintenance Basics](/assets/images/bike-repair/bike_repair.png)
+*Learning essential bicycle maintenance and repair skills.*
+
 ## Bicycle Mechanics Workshop
 
 Master the fundamentals of bicycle maintenance and repair. Learn how to service your bike and perform common repairs to keep it running smoothly and safely.

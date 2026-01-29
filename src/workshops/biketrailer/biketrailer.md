@@ -11,6 +11,9 @@ level: intro
 category: "Future Workshop"
 ---
 
+![DIY Bike Trailer](/assets/images/biketrailer/full_system.webp)
+*A cargo trailer built from electrical conduit and recycled bike wheels.*
+
 ## DIY Bike Trailer Workshop
 
 Learn to build your own cargo bike trailer using inexpensive, readily-available materials. This design uses electrical conduit and recycled bike wheels to create a sturdy, functional trailer for around $35-45.

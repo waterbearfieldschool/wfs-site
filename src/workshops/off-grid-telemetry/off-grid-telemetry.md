@@ -11,6 +11,9 @@ level: applied
 category: "Future Workshop"
 ---
 
+![Off-Grid Monitoring](/assets/images/off-grid-telemetry/main.webp)
+*Solar-powered sensors transmitting data via long-range radio.*
+
 ## Off-Grid Monitoring Workshop
 
 Learn to build solar-powered environmental monitoring systems that collect and transmit sensor data from remote locations without grid power or internet infrastructure. These systems use LoRa radio technology to send measurements over long distances to a central gateway for visualization and analysis.

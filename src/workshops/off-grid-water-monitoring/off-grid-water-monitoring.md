@@ -11,6 +11,9 @@ level: applied
 category: "Future Workshop"
 ---
 
+![Off-Grid Water Level Monitoring](/assets/images/off-grid-water-monitoring/main.jpeg)
+*Solar-powered sensors for monitoring wells, streams, and tanks.*
+
 ## Off-Grid Water Level Monitoring Workshop
 
 Learn to build and deploy solar-powered water level sensors for remote monitoring of wells, streams, ponds, and storage tanks. These systems operate independently of grid power and cellular infrastructure, making them ideal for rural and off-grid applications.

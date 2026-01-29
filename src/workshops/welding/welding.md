@@ -10,6 +10,9 @@ level: applied
 category: "Future Workshop"
 ---
 
+![Introduction to Welding](/assets/images/welding/welding.png)
+*Learning welding fundamentals while building a Butaphone instrument.*
+
 ## Welding Workshop: Build Your Butaphone
 
 Learn the fundamentals of welding while creating a unique musical instrument - the Butaphone - crafted from a repurposed gas bottle. This introductory workshop combines practical welding skills with creative expression.

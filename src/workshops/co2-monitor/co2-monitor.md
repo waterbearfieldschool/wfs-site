@@ -10,6 +10,9 @@ level: applied
 category: "Future Workshop"
 ---
 
+![DIY CO2 Monitor](/assets/images/co2-monitor/co2-monitor.webp)
+*A low-cost open-source CO2 monitor for indoor air quality.*
+
 ## DIY CO2 Monitoring Workshop
 
 Build your own inexpensive, open-source CO2 monitor for indoor air quality assessment. Indoor CO2 levels serve as a practical indicator of ventilation effectiveness and potential airborne disease transmission risk.

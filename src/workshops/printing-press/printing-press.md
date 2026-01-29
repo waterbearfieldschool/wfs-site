@@ -10,6 +10,9 @@ level: intro
 category: "Future Workshop"
 ---
 
+![DIY Printing Press](/assets/images/printing-press/printing-press.png)
+*A functional letterpress built from plywood.*
+
 ## DIY Printing Press Workshop
 
 Explore the art of relief printing by creating your own printing blocks and pressing custom designs onto paper. This hands-on workshop connects traditional craft techniques with creative expression.

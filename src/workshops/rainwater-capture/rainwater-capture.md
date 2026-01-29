@@ -11,6 +11,9 @@ level: intro
 category: "Future Workshop"
 ---
 
+![Rainwater Capture](/assets/images/rainwater-capture/placeholder.webp)
+*Collecting and storing rainwater for household and garden use.*
+
 ## Rainwater Capture Workshop
 
 Learn to design and build effective rainwater collection systems for household and garden use. This workshop covers the fundamentals of harvesting rain from rooftops, calculating potential yield, and building reliable storage and distribution systems.

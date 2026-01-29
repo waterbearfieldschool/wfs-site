@@ -10,6 +10,9 @@ level: advanced
 category: "Future Workshop"
 ---
 
+![DIY 4G Phone](/assets/images/diy-phone/diy-phone.webp)
+*An open-source mobile phone with only the features you choose.*
+
 ## DIY 4G Phone Workshop
 
 Build your own open-source 4G mobile phone from scratch. This project prioritizes mindful technology - no app stores, no infinite scrolling, just calls, texts, and the features you choose to add.

@@ -10,6 +10,9 @@ level: applied
 category: "Future Workshop"
 ---
 
+![Build & Repair Meetup](/assets/images/build-repair/build_repair.png)
+*Developing hands-on repair and fabrication skills for local food production.*
+
 An ongoing workshop bringing together individuals interested in developing repair and fabrication skills relevant to small farms and small-scale food production.
 
 ### Example Skills and Projects
