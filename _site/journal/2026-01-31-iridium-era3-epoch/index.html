@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Debugging the Iridium ERA3 Epoch Transition</title>
+  <meta name="description" content="Learning to live well, off-the-grid." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/journal/2026-01-31-iridium-era3-epoch/">
+  <meta property="og:title" content="Debugging the Iridium ERA3 Epoch Transition">
+  <meta property="og:description" content="Learning to live well, off-the-grid.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/grassnomads/iridium-era3-debug.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/journal/2026-01-31-iridium-era3-epoch/">
+  <meta property="twitter:title" content="Debugging the Iridium ERA3 Epoch Transition">
+  <meta property="twitter:description" content="Learning to live well, off-the-grid.">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/grassnomads/iridium-era3-debug.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics" style="color: #8B6914; font-size: 0.95rem;">Hands-on community workshops and projects focusing on energy, water, food, shelter, climate, communication, fabrication, transport, arts & crafts.</p>
+          <nav class="brand-nav brand-nav-inline">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/#journal">Journal</a></li>
+              <li><a href="/#workshops">Workshops</a></li>
+              <li><a href="/#recently">Recently</a></li>
+              <li><a href="/#projects">Projects</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.95rem; font-style: italic; color: var(--muted); text-align: center;">
+            We'd love to hear from you!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.95rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Debugging the Iridium ERA3 Epoch Transition</h1>
+  <div class="meta">Fri Jan 30 2026</div>
+  <p><img src="/assets/images/grassnomads/iridium-era3-debug.jpg" alt="Debugging the satellite time sync at the bayou"></p>
+<p>Our <a href="/projects/sweet-p/">Sweet-P water level monitor</a> uses a RockBLOCK satellite modem to transmit data at scheduled times (5 AM, 1 PM, and 6 PM EST). After each successful transmission, it syncs its real-time clock (RTC) with the Iridium satellite network. Recently, we noticed the device was sending data 4 hours late—at 9 AM, 5 PM, and 10 PM instead.</p>
+<h2>The Symptoms</h2>
+<p>The initial symptom seemed like a simple timezone bug. The device was consistently 4 hours off from its scheduled transmission times. But when we added debug output to trace the time synchronization, we discovered something far stranger:</p>
+<pre><code>DEBUG: RTC BEFORE sync: 2026-01-30 23:26:55
+DEBUG: Raw satellite struct_time: struct_time(tm_year=2015, ...)
+DEBUG: Satellite time (should be UTC): 00:37:36
+DEBUG: RTC AFTER sync: 2015-04-26 19:37:36
+</code></pre>
+<p>The satellite was returning <strong>April 2015</strong>—eleven years in the past! The RTC had the correct time <em>before</em> the sync, but the satellite time was overwriting it with garbage.</p>
+<h2>Following the Data</h2>
+<p>The RockBLOCK modem uses the AT-MSSTM command to retrieve time from the Iridium network. This returns a 32-bit hex value representing &quot;ticks&quot; (90-millisecond intervals) since a reference epoch. The Adafruit RockBlock library converts this to a human-readable time.</p>
+<p>We added debug output to see the raw values:</p>
+<pre><code>DEBUG ROCKBLOCK: Raw hex from modem: '140d6135'
+DEBUG ROCKBLOCK: Ticks since Iridium epoch: 336421173
+DEBUG ROCKBLOCK: Seconds since epoch: 30277905
+</code></pre>
+<p>The library was calculating from the <strong>ERA2 epoch</strong> (May 11, 2014, 14:23:55 UTC). With that epoch, 336 million ticks equals about 350 days—landing in April 2015.</p>
+<p>But 336 million ticks seemed low. For January 2026, we'd expect around 4.1 billion ticks from the 2014 epoch. Something didn't add up.</p>
+<h2>The Root Cause: ERA3</h2>
+<p>Searching the <a href="https://docs.groundcontrol.com/iot/rockblock/user-manual/iridium-time">RockBLOCK documentation</a>, we found the answer:</p>
+<blockquote>
+<p><strong>ERA3 begins January 14, 2026</strong></p>
+</blockquote>
+<p>The Iridium network uses 32-bit counters for system time. These counters would overflow after about 12.3 years, so Iridium periodically transitions to a new &quot;era&quot; with a reset counter and new epoch. On January 14, 2026, the network transitioned from ERA2 to ERA3.</p>
+<p>The critical detail from the <a href="https://www.beamcommunications.com/support/product-support-news/169-iridium-epoch-change">Iridium epoch change documentation</a>:</p>
+<blockquote>
+<p>After the change to ERA3, the zero base value equates to <strong>February 14, 2025, 18:14:17 UTC</strong></p>
+</blockquote>
+<p>The Adafruit library was still using the ERA2 epoch (May 11, 2014). When we recalculated with the ERA3 epoch:</p>
+<pre><code class="language-python"># ERA3 epoch: February 14, 2025, 18:14:17 UTC
+# Ticks: 336,421,173
+# Seconds: 30,277,906
+# Result: February 14, 2025 + 350 days = January 31, 2026 04:46 UTC
+</code></pre>
+<p>The modem was returning the correct time all along—we just needed the right epoch to interpret it.</p>
+<h2>The Fix</h2>
+<p>The fix was straightforward. In the <code>adafruit_rockblock.py</code> library, we changed the epoch from ERA2 to ERA3:</p>
+<pre><code class="language-python"># OLD (ERA2 - no longer valid after Jan 14, 2026):
+# result_time = _add_seconds_to_datetime(2014, 5, 11, 14, 23, 55, secs_since_epoch)
+
+# NEW (ERA3 - active since Jan 14, 2026):
+result_time = _add_seconds_to_datetime(2025, 2, 14, 18, 14, 17, secs_since_epoch)
+</code></pre>
+<p>We also replaced the library's use of <code>time.mktime()</code> and <code>time.localtime()</code> with direct calendar arithmetic. CircuitPython's time functions have inconsistent epoch handling across different boards, so calculating dates manually is more reliable.</p>
+<h2>Lessons Learned</h2>
+<ol>
+<li>
+<p><strong>Check for epoch transitions</strong>: Satellite and GPS systems periodically reset their time counters. The GPS &quot;Week Number Rollover&quot; in 2019 caused similar issues. Always verify your time conversion code against current epoch documentation.</p>
+</li>
+<li>
+<p><strong>Debug with raw values</strong>: Printing the raw hex response from the modem immediately revealed that the tick count was plausible—just misinterpreted.</p>
+</li>
+<li>
+<p><strong>Protect against bad syncs</strong>: While debugging, we added a sanity check to skip syncs if the satellite year differed from the RTC year by more than one. This prevented the RTC from being corrupted while we investigated.</p>
+</li>
+<li>
+<p><strong>CircuitPython time quirks</strong>: The <code>time.mktime()</code> function behaves differently on CircuitPython (year 2000 epoch) vs standard Python (year 1970 epoch). Doing calendar math manually avoids these platform inconsistencies.</p>
+</li>
+</ol>
+<h2>References</h2>
+<ul>
+<li><a href="https://docs.groundcontrol.com/iot/rockblock/user-manual/iridium-time">Ground Control: Iridium Time Documentation</a></li>
+<li><a href="https://www.beamcommunications.com/support/product-support-news/169-iridium-epoch-change">Beam Communications: Iridium Epoch Change</a></li>
+<li><a href="https://blog.apollosatellite.com/iridium-time-re-epoch-2026-firmware-update/">Apollo Satellite: Iridium Time Re-Epoch 2026 Guide</a></li>
+<li><a href="https://docs.rockblock.rock7.com/reference/-msstm">RockBLOCK: AT-MSSTM Command Reference</a></li>
+</ul>
+<p>The updated library code is in the <a href="https://github.com/edgecollective/sweet-p">Sweet-P firmware repository</a> under <code>firmware/sync_debug/lib/adafruit_rockblock.py</code>.</p>
+
+</article>
+
+    </main>
+  </div>
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>
