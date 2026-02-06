@@ -20,7 +20,19 @@ Most modern communication depends on distant, expensive infrastructure we rarely
 
 In contrast, a mesh radio network uses small, inexpensive radio devices (around $30) that are able to send and relay messages without relying on cellular towers or the internet. These devices can connect to your smartphone via Bluetooth, then uses LoRA (Long Range) radio technology to communicate with other mesh nodes up to several miles away -- even if the cellular network or power grid is down.
 
-The "mesh" part is key: when nodes are spread across an area, messages automatically hop from one device to the next until they reach their destination. A node in the middle can act as a repeater, extending the network's reach far beyond what any single radio could achieve on its own. No special license is required, and all messages are encrypted.  
+The "mesh" part is key: when nodes are spread across an area, messages automatically hop from one device to the next until they reach their destination. A node in the middle can act as a repeater, extending the network's reach far beyond what any single radio could achieve on its own. No special license is required, and all messages are encrypted.
+
+<div style="max-width: 600px; margin: 2em auto;">
+  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe
+      src="https://www.youtube.com/embed/AsKzbXKYMOk"
+      title="Mesh Radio Explainer"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
 
 # Workshop: An Introduction to Mesh Radio
 
