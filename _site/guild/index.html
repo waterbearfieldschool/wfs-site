@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Bear Workshops — Practical Skills and Bricolage</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --text: #2c2c2c;
+    --muted: #6b6b6b;
+    --accent: #3a6b4c;
+    --accent-light: #e8f0eb;
+    --card-bg: #ffffff;
+    --card-border: #e0ddd8;
+    --card-shadow: rgba(0,0,0,0.06);
+    --section-alt: #f3f1ec;
+    --font-body: 'Georgia', 'Times New Roman', serif;
+    --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.8rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  nav .site-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  nav a {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  nav a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 4rem 1.5rem 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .hero .subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--text);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* MAIN IMAGE */
+  .main-image {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2rem;
+  }
+  .main-image img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 3rem 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  section.alt {
+    background: var(--section-alt);
+    max-width: 100%;
+    padding: 3rem 1.5rem;
+  }
+  section.alt .inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  h2 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+  }
+  h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .section-intro {
+    color: var(--muted);
+    margin-bottom: 2rem;
+    max-width: 660px;
+    font-size: 1rem;
+  }
+
+  /* BELIEFS */
+  .beliefs {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.5rem 0;
+  }
+  .beliefs li {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
+  }
+
+  /* CARD GRID */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.4rem;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 1.6rem;
+    box-shadow: 0 2px 8px var(--card-shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+  .card .emoji {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .card h3 {
+    margin-bottom: 0.4rem;
+    color: var(--text);
+  }
+  .card .focus {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+    font-style: italic;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .card ul li {
+    font-size: 0.9rem;
+    padding: 0.2rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .card ul li::before {
+    content: "~";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .card .outcomes {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--card-border);
+  }
+  .card .outcomes-label {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  /* SPECIAL TOPICS */
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.9rem;
+  }
+  .topic-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.92rem;
+    box-shadow: 0 1px 4px var(--card-shadow);
+  }
+  .topic-card .emoji {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .topic-card .label {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--text);
+  }
+  .topic-card .cat {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* ROLES */
+  .roles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.2rem;
+  }
+  .role {
+    padding: 1.2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+  }
+  .role h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .role p {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  /* SCHEDULE TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.2rem 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--card-border);
+    font-family: var(--font-heading);
+  }
+  th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    background: var(--section-alt);
+  }
+
+  /* PHASES */
+  .phases {
+    list-style: none;
+    counter-reset: phase;
+  }
+  .phases li {
+    counter-increment: phase;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .phases li::before {
+    content: counter(phase);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--accent);
+    min-width: 1.5rem;
+  }
+  .phases .phase-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+  .phases .phase-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  /* VILLAGE */
+  .village-trailers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin: 1rem 0;
+  }
+  .trailer-tag {
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+  }
+
+  /* SAFETY / ZONE LISTS */
+  .check-list {
+    list-style: none;
+    margin: 1rem 0;
+  }
+  .check-list li {
+    padding: 0.35rem 0 0.35rem 1.5rem;
+    position: relative;
+    font-size: 0.95rem;
+  }
+  .check-list li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    color: var(--muted);
+    border-top: 1px solid var(--card-border);
+    margin-top: 2rem;
+  }
+
+  .cta {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  /* ROTATION */
+  .rotation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+  .rotation .week {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    flex: 1;
+    min-width: 180px;
+    text-align: center;
+  }
+  .rotation .week strong {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.8rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .topic-grid { grid-template-columns: 1fr; }
+    nav { gap: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="site-name">Water Bear Workshops</a>
+  <a href="#philosophy">Philosophy</a>
+  <a href="#core">Core Literacies</a>
+  <a href="#topics">Special Topics</a>
+  <a href="#roles">Roles</a>
+  <a href="#village">Mobile Village</a>
+  <a href="#schedule">Schedule</a>
+  <a href="#scaling">Scaling</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Water Bear Workshops</h1>
+  <div class="subtitle">Practical Skills and Bricolage</div>
+  <p>A modular, mobile, intergenerational learning guild focused on building practical competence &mdash; in wood, metal, energy, electronics, navigation, communications, and art &mdash; through hands-on projects that serve real community needs.</p>
+</div>
+
+<!-- MAIN IMAGE -->
+<div class="main-image">
+  <img src="/assets/images/guild/guild.jpg" alt="Water Bear Workshops">
+</div>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <h2>Philosophy</h2>
+  <p class="section-intro">Named for the tardigrade &mdash; a microscopic creature famous for extreme resilience &mdash; Water Bear Workshops embodies pieces of a resilient local economy, one project at a time.</p>
+  <ul class="beliefs">
+    <li>Skills are best learned through making</li>
+    <li>Real tools build real confidence</li>
+    <li>Slow, embodied work restores attention</li>
+    <li>Intergenerational collaboration strengthens communities</li>
+    <li>Each workshop produces a tangible outcome</li>
+  </ul>
+  <p>This is not a school. It is not a makerspace. It is not a camp. It is a <strong>guild model</strong> &mdash; modular, mobile, and repeatable.</p>
+  <p style="margin-top: 1rem;">Historically, a guild was a closed association of specialists &mdash; master craftspeople who controlled entry into a single trade through years of formal apprenticeship. Water Bear Workshops borrows the guild&rsquo;s emphasis on direct skill transmission, mentorship, and learning through real work &mdash; but opens it up. Rather than gating access to one discipline, the guild here is a <em>commons</em>: a shared structure through which people of all ages and backgrounds rotate across many domains. There are no prerequisites and no credentials conferred. The focus is on building broad practical fluency &mdash; the spirit of the <em>bricoleur</em>, the resourceful generalist &mdash; rather than narrow professional identity. Mentors teach what they know; participants carry skills across boundaries; and the &ldquo;guild&rdquo; is the community itself, not a gatekeeping body.</p>
+</section>
+
+<!-- CORE LITERACIES -->
+<section class="alt" id="core">
+  <div class="inner">
+    <h2>Core Skill Workshops</h2>
+    <p class="section-intro">The core curriculum runs on a regular rotation. Each literacy domain includes tool training, safety training, a concrete build project, and reflection.</p>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <span class="emoji">&#x1f332;</span>
+        <h3>Woodworking</h3>
+        <div class="focus">Measurement, joinery, hand tools, structural thinking</div>
+        <ul>
+          <li>Folding easel</li>
+          <li>Three-legged stool</li>
+          <li>Field tool tote</li>
+        </ul>
+        <div class="outcomes">
+          <div class="outcomes-label">Outcomes</div>
+          <ul>
+            <li>Basic tool competence</li>
+            <li>Safe cutting and drilling</li>
+            <li>Functional object to keep</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="emoji">&#x1f529;</span>
+        <h3>Metalworking</h3>
+        <div class="focus">EMT conduit, bending, fastening, structural geometry</div>
+        <ul>
+          <li>EMT stool</li>
+          <li>Small side table</li>
+          <li>Simple rainwater stand</li>
+        </ul>
+        <div class="outcomes">
+          <div class="outcomes-label">Outcomes</div>
+          <ul>
+            <li>Conduit bending literacy</li>
+            <li>Mechanical fastening</li>
+            <li>Structural reasoning</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="emoji">&#x1f50b;</span>
+        <h3>Energy &amp; Electronics</h3>
+        <div class="focus">Circuits, storage, generation, measurement</div>
+        <ul>
+          <li>Solar USB charger</li>
+          <li>Battery boost module</li>
+          <li>CO&#x2082; or environmental monitor</li>
+        </ul>
+        <div class="outcomes">
+          <div class="outcomes-label">Outcomes</div>
+          <ul>
+            <li>Understanding volts, amps, watt-hours</li>
+            <li>Safe battery handling</li>
+            <li>Functional small energy system</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="emoji">&#x1f9ed;</span>
+        <h3>Navigation &amp; Maps</h3>
+        <div class="focus">Orientation, scale, spatial awareness</div>
+        <ul>
+          <li>Hand-drawn local map</li>
+          <li>Compass navigation challenge</li>
+          <li>Treasure map exercise</li>
+        </ul>
+        <div class="outcomes">
+          <div class="outcomes-label">Outcomes</div>
+          <ul>
+            <li>Compass use</li>
+            <li>Map reading</li>
+            <li>Observational drawing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="emoji">&#x1f4e1;</span>
+        <h3>Communications</h3>
+        <div class="focus">Local networks, radio basics, decentralized systems</div>
+        <ul>
+          <li>Mesh radio node setup</li>
+          <li>Mesh communication demo</li>
+          <li>Signal range experiment</li>
+        </ul>
+        <div class="outcomes">
+          <div class="outcomes-label">Outcomes</div>
+          <ul>
+            <li>Local vs. internet networks</li>
+            <li>Hands-on communication experiment</li>
+            <li>Introduction to decentralized systems</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="emoji">&#x1f3a8;</span>
+        <h3>Art &amp; Expression</h3>
+        <div class="focus">Drawing, observation, instrument-making</div>
+        <ul>
+          <li>Painting on handmade easel</li>
+          <li>Sketchbook fundamentals</li>
+          <li>Wooden percussion instrument</li>
+        </ul>
+        <div class="outcomes">
+          <div class="outcomes-label">Outcomes</div>
+          <ul>
+            <li>Observational drawing skills</li>
+            <li>Creative confidence</li>
+            <li>Integration of craft and art</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SPECIAL TOPICS -->
+<section id="topics">
+  <h2>Special Topics &amp; Deep Dives</h2>
+  <p class="section-intro">These extend a core literacy into a more ambitious or applied context &mdash; offered as Saturday intensives, multi-session series, or seasonal workshops.</p>
+
+  <div class="topic-grid">
+    <div class="topic-card"><span class="emoji">&#x26a1;</span><div><div class="label">Off-Grid Power for Sailing</div><div class="cat">Energy</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f6b2;</span><div><div class="label">DIY Bike Trailers</div><div class="cat">Transport</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f6b2;</span><div><div class="label">Bike Maintenance Basics</div><div class="cat">Transport</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f331;</span><div><div class="label">DIY Cold Frames</div><div class="cat">Food</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f331;</span><div><div class="label">Building a Cob Oven</div><div class="cat">Food / Fabrication</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f527;</span><div><div class="label">Introduction to Welding</div><div class="cat">Fabrication</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f527;</span><div><div class="label">Intro to Sandcasting</div><div class="cat">Fabrication</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f527;</span><div><div class="label">DIY Printing Press</div><div class="cat">Fabrication</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f527;</span><div><div class="label">Cardboard Fabrication</div><div class="cat">Fabrication</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f3a8;</span><div><div class="label">Wire Sculpture</div><div class="cat">Arts &amp; Crafts</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f4e1;</span><div><div class="label">Building a DIY 4G Phone</div><div class="cat">Communication</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f4e1;</span><div><div class="label">Off-Grid Telemetry</div><div class="cat">Communication</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f32c;&#xfe0f;</span><div><div class="label">DIY CO2 Monitoring</div><div class="cat">Air</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f32c;&#xfe0f;</span><div><div class="label">DIY Air Filtration</div><div class="cat">Air</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f321;&#xfe0f;</span><div><div class="label">Heating Small Spaces Off-Grid</div><div class="cat">Heating / Cooling</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f4a7;</span><div><div class="label">Biochar Water Filters</div><div class="cat">Water</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f4a7;</span><div><div class="label">Off-Grid Water Level Monitoring</div><div class="cat">Water</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f4a7;</span><div><div class="label">Rainwater Harvesting Build</div><div class="cat">Water</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f9ed;</span><div><div class="label">Mapmaking &amp; Drawing Walk</div><div class="cat">Navigation</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f9ed;</span><div><div class="label">Sail &amp; Navigation Field Day</div><div class="cat">Navigation</div></div></div>
+    <div class="topic-card"><span class="emoji">&#x1f525;</span><div><div class="label">Blacksmithing Demo</div><div class="cat">Fabrication</div></div></div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section class="alt" id="roles">
+  <div class="inner">
+    <h2>Structure &amp; Roles</h2>
+    <p class="section-intro">Water Bear Workshops operates as a guild ecosystem with four tiers.</p>
+    <div class="roles">
+      <div class="role">
+        <h3>Participants</h3>
+        <p>Youth, teens, adults. Everyone builds.</p>
+      </div>
+      <div class="role">
+        <h3>Facilitators</h3>
+        <p>Lead instructors with demonstrated skill in a domain.</p>
+      </div>
+      <div class="role">
+        <h3>Collaborators</h3>
+        <p>High school &amp; college students, retired tradespeople who assist and learn alongside.</p>
+      </div>
+      <div class="role">
+        <h3>Guild Mentors</h3>
+        <p>Retired electricians, machinists, sailors, artists, engineers sharing deep expertise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY + ZONE -->
+<section id="safety">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+    <div>
+      <h2>Safety Culture</h2>
+      <p class="section-intro">Safety is foundational and visible &mdash; not bureaucratic, but cultural.</p>
+      <ul class="check-list">
+        <li>Repeated safety briefings every session</li>
+        <li>Tool-specific training before use</li>
+        <li>Clear emergency &amp; first aid protocols</li>
+        <li>Appropriate instructor-to-participant ratios</li>
+        <li>Right to remove for safety violations</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Cultivating Close Attention</h2>
+      <p class="section-intro">We cultivate deep work and embodied attention.</p>
+      <ul class="check-list">
+        <li>Minimal phone use in workshop space</li>
+        <li>No internet during active sessions</li>
+        <li>Focused attention environment</li>
+        <li>Local connectivity allowed for project needs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE VILLAGE -->
+<section class="alt" id="village">
+  <div class="inner">
+    <h2>The Mobile Workshop Village</h2>
+    <p class="section-intro">Small utility trailers (~$1,500 each to equip) circle up at any site &mdash; parks, schools, farms, backyards &mdash; creating an instant multi-disciplinary workshop space. Like a food truck park for making.</p>
+    <div class="village-trailers">
+      <span class="trailer-tag">&#x1f332; Wood Trailer</span>
+      <span class="trailer-tag">&#x1f529; Metal Trailer</span>
+      <span class="trailer-tag">&#x1f50b; Electronics Trailer</span>
+      <span class="trailer-tag">&#x1f3a8; Art Trailer</span>
+      <span class="trailer-tag">&#x1f525; Outdoor Fire / Navigation Zone</span>
+      <span class="trailer-tag">&#x1f4fb; Radio Shack Trailer</span>
+    </div>
+    <p style="margin-top:1rem; font-size:0.92rem; color: var(--muted);">Estimated startup: <strong>~$5,000</strong> for three equipped trailers &mdash; comparable to a few months of rent for a fixed space, with far more flexibility.</p>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <h2>Example Monthly Schedule</h2>
+  <p class="section-intro">Twice-weekly sessions rotate through core literacies, with Saturday deep dives into special topics.</p>
+
+  <table>
+    <thead>
+      <tr><th></th><th>After School (3:30&ndash;5:30)</th><th>Evening (6:30&ndash;8:30)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Tuesday</strong></td><td>Core Literacy Workshop</td><td>Adult Session</td></tr>
+      <tr><td><strong>Thursday</strong></td><td>Second Core Literacy</td><td>Adult Session</td></tr>
+      <tr><td><strong>Saturday</strong></td><td colspan="2" style="text-align:center; font-style:italic;">Special Topic Deep Dive (half or full day)</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 1.5rem;">Monthly Rotation</h3>
+  <div class="rotation">
+    <div class="week"><strong>Week 1</strong>Woodworking</div>
+    <div class="week"><strong>Week 2</strong>Metalworking</div>
+    <div class="week"><strong>Week 3</strong>Energy &amp; Electronics</div>
+    <div class="week"><strong>Week 4</strong>Navigation &amp; Communications</div>
+  </div>
+</section>
+
+<!-- SCALING -->
+<section class="alt" id="scaling">
+  <div class="inner">
+    <h2>Roadmap</h2>
+    <p class="section-intro">Growth is modular. No permanent building required.</p>
+    <ol class="phases">
+      <li><div><span class="phase-title">Core Workshops</span><br><span class="phase-desc">Lightweight tools in parks &amp; rec spaces, after-school programs</span></div></li>
+      <li><div><span class="phase-title">Repeated Series + Mentor Network</span><br><span class="phase-desc">Regular schedule, growing roster of guild mentors and collaborators</span></div></li>
+      <li><div><span class="phase-title">First Mobile Trailer Module</span><br><span class="phase-desc">One equipped trailer, rotating between sites</span></div></li>
+      <li><div><span class="phase-title">Pop-Up Workshop Village</span><br><span class="phase-desc">Multiple trailers circled at a site for multi-domain sessions</span></div></li>
+      <li><div><span class="phase-title">Regional Expansion</span><br><span class="phase-desc">Multi-trailer gathering events, replication in other communities</span></div></li>
+    </ol>
+  </div>
+</section>
+
+
+<footer>
+  Water Bear Workshops &mdash; Practical Skills and Bricolage &mdash; Greater Boston, MA
+</footer>
+
+</body>
+</html>

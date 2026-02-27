@@ -3,13 +3,12 @@ title: "Intro to Off-Grid Power for Sailing Vessels"
 meta: "Build practical intuition for marine electrical systems—understand your energy needs, battery storage, solar charging, and monitoring for cruising sailboats."
 layout: layouts/post.njk
 permalink: /workshops/off-grid-power-sailors/
-current: false
-workshopDate: "Spring 2026"
-location: "Virtual (Winter) / Narragansett Bay (Spring)"
 image: /assets/images/sailing/panel_boat.png
+draft: true
 foundations:
   - energy
 level: intro
+category: "Future Workshop"
 ---
 
 ## Overview

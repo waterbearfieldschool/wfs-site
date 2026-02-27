@@ -62,8 +62,83 @@
 <article class="prose">
   <h1>Mesh Radio</h1>
   
-  <h2>Background</h2>
-<img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Diagram showing how mesh radio works: smartphones connect via Bluetooth to mesh radio nodes, which communicate with each other using LoRA radio technology over several miles" style="max-width: 100%; width: 600px; display: block; margin: 1.5em auto;">
+  <style>
+/* ── Hero: image + blurb + register, side by side on desktop ── */
+.workshop-hero {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  margin: 0 0 1.5em;
+}
+.workshop-hero-img {
+  flex: 0 0 360px;
+}
+.workshop-hero-img img {
+  width: 360px;
+  display: block;
+  border-radius: 8px;
+}
+.workshop-hero-body {
+  flex: 1;
+  min-width: 0;
+  margin-left: -20px;
+}
+.workshop-hero-body p {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--fg, #1f1f1f);
+}
+/* ── Register button ── */
+.register-button {
+  display: inline-block;
+  background: var(--accent, #1c4d3a);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.register-button:hover {
+  background: var(--link, #0b6b50);
+  color: #fff;
+  text-decoration: none;
+}
+
+.register-note {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .workshop-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .workshop-hero-img {
+    flex: none;
+  }
+  .workshop-hero-body {
+    margin-left: 0;
+  }
+}
+</style>
+<div class="workshop-hero">
+  <div class="workshop-hero-img">
+    <img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Mesh radio diagram">
+  </div>
+  <div class="workshop-hero-body">
+    <p>A hands-on, outdoor workshop on building decentralized radio networks that work without cell service or internet. No experience required.</p>
+    <a href="YOUR_EVENTBRITE_ORGANIZER_URL" target="_blank" class="register-button">Register for a Mesh Radio Workshop &rarr;</a>
+  </div>
+</div>
+<hr>
+<h2>Background</h2>
+<img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Diagram showing how mesh radio works: smartphones connect via Bluetooth to mesh radio nodes, which communicate with each other using LoRA radio technology over several miles" style="max-width: 100%; width: 600px; display: block; margin: 0 auto 1.5em;">
 <p>Most modern communication depends on distant, expensive infrastructure we rarely see and don't control.</p>
 <p>In contrast, a mesh radio network uses small, inexpensive radio devices (around $30) that are able to send and relay messages without relying on cellular towers or the internet. These devices can connect to your smartphone via Bluetooth, then uses LoRA (Long Range) radio technology to communicate with other mesh nodes up to several miles away -- even if the cellular network or power grid is down.</p>
 <p>The &quot;mesh&quot; part is key: when nodes are spread across an area, messages automatically hop from one device to the next until they reach their destination. A node in the middle can act as a repeater, extending the network's reach far beyond what any single radio could achieve on its own. No special license is required, and all messages are encrypted.</p>
@@ -78,8 +153,6 @@
     </iframe>
   </div>
 </div>
-<h1>Workshop: An Introduction to Mesh Radio</h1>
-<p>This workshop is a short, hands-on introduction to decentralized radio communication, held outdoors. In a small group setting (max 10 participants), we'll use real radios to build a simple mesh network, and watch how messages move from device to device. We'll learn the basics of setting up repeaters in useful locations, enabling participants to begin to develop resilient, secure communications networks in their own neighborhoods (and beyond).</p>
 <h2>What We'll Explore</h2>
 <ul>
 <li>What mesh radio is and how it differs from cellular and Wi-Fi</li>
@@ -104,16 +177,14 @@
 </ul>
 <h3>Workshop Details</h3>
 <ul>
-<li><strong>When:</strong> Winter 2026</li>
 <li><strong>Where:</strong> Outdoors in Greater Boston, MA</li>
 <li><strong>Duration:</strong> ~90 minutes</li>
 <li><strong>Group size:</strong> Limited to 10 participants</li>
-<li><strong>Cost:</strong> $45 | $65 | $85 (Sliding scale)</li>
 <li><strong>Equipment:</strong> Radios provided for use during the workshop (also available for purchase)</li>
 </ul>
 <h2>What to Bring</h2>
 <ul>
-<li>Warm layers</li>
+<li>Warm layers (or sun protection, depending on season)</li>
 <li>Gloves that allow dexterity</li>
 <li>A charged phone (for radio pairing, if applicable)</li>
 <li>A mug with a warm drink (encouraged)</li>
@@ -125,9 +196,17 @@
 <h2>Instructors</h2>
 <p><strong>Mike Beach</strong> is an Electrical Engineer with experience designing and debugging electro-optical and analog systems. He has held low-noise analog design classes for IEEE, co-taught a robotic design course based on a hybrid Raspberry Pi/Arduino platform at Artisan's Asylum, and is an active participant and mentor at Circuit Hacking night held at the Asylum every Wednesday.</p>
 <p><strong>Don Blair</strong> is a researcher, educator, and tinkerer with a background in physics and philosophy. He has built off-grid systems for remote monitoring, and enjoys exploring ways of helping folks to gain greater control over the technologies on which they depend.</p>
-<h2>Register</h2>
-<p>Registration opens late January 2026.</p>
-<p><em>Have questions? Contact us to learn more.</em></p>
+<hr>
+<div class="workshop-hero">
+  <div class="workshop-hero-img">
+    <img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Mesh radio diagram">
+  </div>
+  <div class="workshop-hero-body">
+    <p>A hands-on, outdoor workshop on building decentralized radio networks that work without cell service or internet. No experience required.</p>
+    <a href="YOUR_EVENTBRITE_ORGANIZER_URL" target="_blank" class="register-button">Register for a Mesh Radio Workshop &rarr;</a>
+  </div>
+</div>
+<p><em>Have questions? Contact us at:</em></p>
 <p class="contact-email" style="text-align: center; margin: 12px 0;">
   <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a>
 </p>

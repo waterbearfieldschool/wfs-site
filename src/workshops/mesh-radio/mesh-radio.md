@@ -4,7 +4,7 @@ meta: Hands-on introduction to decentralized radio communication that works with
 layout: layouts/post.njk
 permalink: /workshops/mesh-radio/
 current: true
-workshopDate: "Winter 2026"
+workshopDate: "Recurring"
 location: "Greater Boston"
 image: /assets/images/mesh-radio/simple_mesh.png
 foundations:
@@ -12,9 +12,87 @@ foundations:
 level: intro
 ---
 
+<style>
+/* ── Hero: image + blurb + register, side by side on desktop ── */
+.workshop-hero {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  margin: 0 0 1.5em;
+}
+.workshop-hero-img {
+  flex: 0 0 360px;
+}
+.workshop-hero-img img {
+  width: 360px;
+  display: block;
+  border-radius: 8px;
+}
+.workshop-hero-body {
+  flex: 1;
+  min-width: 0;
+  margin-left: -20px;
+}
+.workshop-hero-body p {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--fg, #1f1f1f);
+}
+/* ── Register button ── */
+.register-button {
+  display: inline-block;
+  background: var(--accent, #1c4d3a);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.register-button:hover {
+  background: var(--link, #0b6b50);
+  color: #fff;
+  text-decoration: none;
+}
+
+.register-note {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .workshop-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .workshop-hero-img {
+    flex: none;
+  }
+  .workshop-hero-body {
+    margin-left: 0;
+  }
+}
+</style>
+
+<div class="workshop-hero">
+  <div class="workshop-hero-img">
+    <img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Mesh radio diagram">
+  </div>
+  <div class="workshop-hero-body">
+    <p>A hands-on, outdoor workshop on building decentralized radio networks that work without cell service or internet. No experience required.</p>
+    <a href="YOUR_EVENTBRITE_ORGANIZER_URL" target="_blank" class="register-button">Register for a Mesh Radio Workshop &rarr;</a>
+  </div>
+</div>
+
+---
+
 ## Background
 
-<img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Diagram showing how mesh radio works: smartphones connect via Bluetooth to mesh radio nodes, which communicate with each other using LoRA radio technology over several miles" style="max-width: 100%; width: 600px; display: block; margin: 1.5em auto;">
+<img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Diagram showing how mesh radio works: smartphones connect via Bluetooth to mesh radio nodes, which communicate with each other using LoRA radio technology over several miles" style="max-width: 100%; width: 600px; display: block; margin: 0 auto 1.5em;">
 
 Most modern communication depends on distant, expensive infrastructure we rarely see and don't control.
 
@@ -33,10 +111,6 @@ The "mesh" part is key: when nodes are spread across an area, messages automatic
     </iframe>
   </div>
 </div>
-
-# Workshop: An Introduction to Mesh Radio
-
-This workshop is a short, hands-on introduction to decentralized radio communication, held outdoors. In a small group setting (max 10 participants), we'll use real radios to build a simple mesh network, and watch how messages move from device to device. We'll learn the basics of setting up repeaters in useful locations, enabling participants to begin to develop resilient, secure communications networks in their own neighborhoods (and beyond).
 
 ## What We'll Explore
 
@@ -62,16 +136,14 @@ This workshop is a short, hands-on introduction to decentralized radio communica
 
 ### Workshop Details
 
-- **When:** Winter 2026
 - **Where:** Outdoors in Greater Boston, MA
 - **Duration:** ~90 minutes
 - **Group size:** Limited to 10 participants
-- **Cost:** $45 | $65 | $85 (Sliding scale)
 - **Equipment:** Radios provided for use during the workshop (also available for purchase)
 
 ## What to Bring
 
-- Warm layers
+- Warm layers (or sun protection, depending on season)
 - Gloves that allow dexterity
 - A charged phone (for radio pairing, if applicable)
 - A mug with a warm drink (encouraged)
@@ -90,11 +162,19 @@ Off-grid power and mesh radio are deeply connected systems. Radios need energy t
 
 **Don Blair** is a researcher, educator, and tinkerer with a background in physics and philosophy. He has built off-grid systems for remote monitoring, and enjoys exploring ways of helping folks to gain greater control over the technologies on which they depend.
 
-## Register
+---
 
-Registration opens late January 2026.
+<div class="workshop-hero">
+  <div class="workshop-hero-img">
+    <img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Mesh radio diagram">
+  </div>
+  <div class="workshop-hero-body">
+    <p>A hands-on, outdoor workshop on building decentralized radio networks that work without cell service or internet. No experience required.</p>
+    <a href="YOUR_EVENTBRITE_ORGANIZER_URL" target="_blank" class="register-button">Register for a Mesh Radio Workshop &rarr;</a>
+  </div>
+</div>
 
-*Have questions? Contact us to learn more.*
+*Have questions? Contact us at:*
 
 <p class="contact-email" style="text-align: center; margin: 12px 0;">
   <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a>

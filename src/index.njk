@@ -300,44 +300,13 @@ image: /assets/images/biketrailer/full_system.webp
     <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">We're building a comprehensive curriculum for practical resilience - foundations covering the essential systems that sustain households and communities.</p>
     <div class="grid foundations-grid" style="gap: 10px;">
       {% for p in collections.allFoundations %}
-      <a href="{{ p.url }}" class="foundation-card foundation-mini-card{% if foundationInfo[p.data.foundation].inWinter2026 %} highlighted{% endif %}" data-foundation="{{ p.data.foundation }}" style="display: block; background: var(--card); border-radius: 12px; padding: 1rem; text-decoration: none; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+      <a href="{{ p.url }}" class="foundation-card foundation-mini-card" data-foundation="{{ p.data.foundation }}" style="display: block; background: var(--card); border-radius: 12px; padding: 1rem; text-decoration: none; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease;">
         <div class="foundation-emoji" style="font-size: 1.5rem; margin-bottom: 4px;">{{ foundationInfo[p.data.foundation].emoji }}</div>
         <div class="foundation-title" style="font-weight: 600; color: var(--fg); font-size: 0.9rem;">{{ p.data.title }}</div>
       </a>
       {% endfor %}
     </div>
 
-    <h3 style="color: var(--accent); font-size: 1.2rem; text-align: center; margin: 1.5rem 0 0.5rem;">Winter 2026 Foundations Sequence</h3>
-    <p style="color: var(--muted); text-align: center; max-width: 500px; margin: 0 auto 1rem;">A 4-week cohort program covering Energy, Climate, Communication, and Transport.</p>
-    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
-      <a href="/resilience-sequence/winter-2026/" style="display: inline-block; background: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Register for the Winter 2026 Sequence</a>
-    </div>
-    <div class="grid" style="margin: 1rem 0;">
-      {% for slug in ['off-grid-power', 'air-filtration', 'mesh-radio', 'biketrailer'] %}
-      {% for p in collections.allWorkshops %}
-      {% if p.fileSlug == slug %}
-      <article class="card workshop-card" data-foundation="{{ p.data.foundations[0] if p.data.foundations else '' }}">
-        {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
-        <div class="workshop-foundation-band" data-foundation="{{ f }}">
-          {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
-        </div>
-        {% endif %}{% endfor %}{% endif %}
-        <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
-          {% if p.data.image %}
-            <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
-          {% else %}
-            [FIELD SCHOOL]
-          {% endif %}
-        </a>
-        <div class="card-content">
-          <h3 style="text-align: center;"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
-          {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
-        </div>
-      </article>
-      {% endif %}
-      {% endfor %}
-      {% endfor %}
-    </div>
   </div>
 </section>
 
