@@ -4,7 +4,7 @@ meta: "Build practical intuition for marine electrical systems—understand your
 layout: layouts/post.njk
 permalink: /workshops/off-grid-power-sailors/
 image: /assets/images/sailing/panel_boat.png
-draft: true
+draft: false 
 foundations:
   - energy
 level: intro
@@ -20,136 +20,100 @@ category: "Future Workshop"
   <div class="float-caption">Solar panel mounted on the stern rail—a common setup for cruising sailboats.</div>
 </div>
 
+A beginner-friendly, hands-on workshop covering the essentials of boat electrics so participants can confidently manage power on their own vessels—whether day-sailing, cruising, or living aboard.
+
 Understanding your boat's electrical system is essential for cruising with confidence. How much power do you actually use? How long will your batteries last at anchor? Is your solar panel keeping up? This workshop builds the practical intuition you need to answer these questions—and to troubleshoot when things go wrong.
 
-This workshop begins with a **virtual session in late winter** (February/March 2026) to build foundational knowledge, followed by **hands-on sessions on Narragansett Bay in spring** where we'll work with real boat systems.
+---
 
-### Instructors
+## What We'll Cover
 
-**Don Blair** is a researcher, educator, and tinkerer with a background in physics and off-grid systems. He has built remote monitoring systems using cellular, satellite, and mesh radio networks, and enjoys helping folks gain greater control over the technologies on which they depend.
+### Basics of Electricity
+- DC vs. AC: what's on your boat and why it matters
+- Volts, amps, and watts—building intuition for what the numbers mean
+- How circuits work aboard a vessel
 
-**Simon Towers** is an experienced sailor and technology professional with deep knowledge of marine electrical systems. He brings practical experience from years of cruising and maintaining vessels on the water.
+### Batteries
+- Types: lead-acid, AGM, and lithium iron phosphate (LiFePO4)
+- Charging basics and how to keep batteries healthy
+- Maintenance essentials and common pitfalls that shorten battery life
+
+### Solar Charging
+- Panel selection: sizing and mounting options for sailboats
+- Charge controllers: PWM vs. MPPT and when each makes sense
+- Real-world output: what to actually expect from your panels in varying conditions
+
+### Inverters and AC Power
+- Powering AC devices safely from your battery bank
+- Sizing an inverter for your needs
+- Common mistakes and safety considerations
+
+### Building an Energy Budget
+- How to calculate your daily power needs
+- Balancing generation and consumption to avoid surprises
+- Working through a real scenario: a cruising sailboat at anchor for a weekend
+
+### Energy Density: Batteries vs. Diesel
+- Comparing energy storage options by weight and volume
+- Why electric motors and hybrid systems are gaining traction in the marine world
 
 ---
 
-## Virtual Session: Foundations (Winter 2026)
+## Hands-On Portion
 
-**Format:** 90-minute Zoom session with breakout discussions
-**Date:** Late February / Early March 2026
-**Group size:** Up to 20 participants
+Participants will wire up a simple, complete power system on a tabletop—no risk to anyone's boat. We'll work with:
 
-### Pre-Workshop Homework
+- **Batteries** — connecting in series and parallel, measuring voltage and state of charge
+- **LEDs and lights** — understanding loads, polarity, and how to calculate current draw
+- **A small DC motor or pump** — seeing mechanical work powered by your battery
 
-Before the session, participants complete a simple **energy audit worksheet**:
+- **A solar panel and charge controller** — seeing real charging in action
 
-- What vessel are you working with? (size, age, existing electrical systems)
-- List your essential electrical loads (navigation, refrigeration, communication, bilge pump, cabin lights, etc.)
-- Estimate daily power consumption if known
-- What generation sources do you currently have? (solar, wind, alternator)
-- What's your biggest energy-related concern or question?
-
-This homework drives the workshop content—we'll use real scenarios from participants as teaching material.
-
-### Session Structure
-
-**1. Introduction & Energy Intuition (20 min)**
-- Building intuition for energy scales—what's a watt-hour, really?
-- The fundamental equation: generation + storage = consumption + losses
-- Drawing on David MacKay's *Sustainable Energy—Without the Hot Air*
-
-**2. Case Study Walkthrough (25 min)**
-- We work through a baseline scenario together:
-  - *A 35-foot sailboat with two house batteries, a refrigerator, VHF radio, navigation instruments, cabin lights, and a bilge pump*
-- Calculate daily consumption
-- Assess existing generation (solar panel, alternator charging)
-- Identify the gap and discuss solutions
-
-**3. Breakout Discussions (20 min)**
-- Small groups (4-5 people) share their homework scenarios
-- Identify common challenges and questions
-- Each group reports back one key insight or question
-
-**4. Practical Topics (20 min)**
-- Battery types: lead-acid vs. lithium iron phosphate (LiFePO4)
-- Solar panel basics: sizing, mounting, charge controllers
-- Measuring what matters: using a multimeter to check voltage and current
-- The critical role of monitoring—knowing your state of charge
-
-**5. Q&A and Next Steps (10 min)**
-- Discussion of in-person spring sessions
-- Resources for continued learning
-- Community group setup (WhatsApp or Signal) for ongoing connection
-
-### Key Takeaways
-
-- A mental model for thinking about energy budgets on your boat
-- Understanding of battery capacity, state of charge, and how to measure it
-- Familiarity with solar charging systems and their limitations
-- Connection to a community of fellow sailors and learners
-
----
-
-## In-Person Sessions: Hands-On (Spring 2026)
-
-**Format:** Half-day workshop on the water
-**Location:** Narragansett Bay area (specific marina TBD)
-**Date:** April/May 2026
-**Group size:** Limited to 8 participants per session
-
-### What We'll Do
-
-**On a Real Boat:**
-- Walk through a complete marine electrical system
-- Practice measuring battery voltage and calculating state of charge
-- Trace circuits from panel to load
-- Discuss system design choices and trade-offs
-
-**Hands-On Projects:**
-- Build a simple battery monitor you can take home
-- Set up a basic solar charging system
-- (Optional) Introduction to remote monitoring—sending battery data over cellular or satellite
-
-**Discussion Topics:**
-- Anchor windlass and electric winch power demands
-- Retrofitting older boats with modern monitoring
-- The case for (and against) lithium batteries on boats
-- Backup systems and redundancy
-
----
-
-## Future Directions
-
-Based on participant interest, we're exploring:
-
-- **Individual consultations** — one-on-one sessions to design a system for your specific vessel
-- **Advanced workshop: Remote Monitoring** — using satellite modems, mesh radio, and cellular networks to keep tabs on your boat from anywhere
-- **Co-teaching pathway** — for participants who want to learn to teach this material themselves
+By the end, you'll have traced a circuit from panel to battery to load, used a multimeter to take real measurements, and built intuition for how all the pieces fit together.
 
 ---
 
 ## Workshop Details
 
-### Virtual Session (Winter)
-- **When:** Late February / Early March 2026
-- **Where:** Zoom
-- **Duration:** 90 minutes
-- **Cost:** $25 | $40 | $55 (Sliding scale)
+- **Duration:** 4–6 hours
+- **Group size:** 6–10 participants
+- **Who it's for:** Adults and youth (12+ with supervision). No prior electrical experience needed—just curiosity.
+- **Location:** TBD — can be hosted at a sailing facility or on-site near the water
 
-### In-Person Session (Spring)
-- **When:** April/May 2026
-- **Where:** Narragansett Bay, RI
-- **Duration:** ~4 hours
-- **Cost:** $65 | $95 | $125 (Sliding scale)
-- **Materials fee:** $20 (covers take-home battery monitor kit)
+---
 
-### Bundle Discount
-Register for both sessions: $80 | $120 | $160 (Sliding scale)
+## Youth Session: Intro to Electricity Basics
+
+For younger participants (ages 8–14), we offer a simplified version of this workshop focused on building a first intuition for how electricity works—no sailing knowledge required.
+
+### What We'll Explore
+
+- **What is electricity?** — using water analogies (pressure = voltage, flow = current) to make the invisible visible
+- **Building a simple circuit** — connecting a battery, wires, and an LED to make light
+- **Switches and control** — adding a switch to turn things on and off, understanding open vs. closed circuits
+- **Series vs. parallel** — wiring up multiple LEDs and discovering what happens when you add more
+- **Powering a motor** — connecting a small DC motor to a battery and watching electrical energy become spinning motion
+- **Solar power demo** — connecting a small solar panel and seeing it charge a battery or light an LED in real time
+
+### How It Works
+
+Youth participants work in pairs or small teams, each with their own kit of components: batteries, wires with crocodile clips, LEDs, a small motor, and a switch. The session is guided and hands-on throughout—every concept is learned by building something.
+
+The systems are intentionally simple and low-voltage (12V and under), so there's no shock hazard. The focus is on curiosity, experimentation, and the satisfaction of making something work.
+
+### Session Details
+
+- **Duration:** 2–3 hours
+- **Group size:** 6–10 participants
+- **Ages:** 8–14 (younger with parent/guardian participation)
+- **Supervision:** At least one adult helper per 4 participants
+- **Materials:** All provided — participants take home their LED circuit
 
 ---
 
 ## Register Interest
 
-This workshop is currently in development. If you're interested in participating, please reach out and we'll add you to the list.
+This workshop is currently in development. If you're interested in participating—or in hosting a session at your facility—please reach out.
 
 <p class="contact-email" style="text-align: center; margin: 12px 0;">
   <a href="mailto:info@waterbearfieldschool.org?subject=Off-Grid%20Power%20for%20Sailing%20Vessels%20Workshop">info@waterbearfieldschool.org</a>
@@ -157,10 +121,11 @@ This workshop is currently in development. If you're interested in participating
 
 ---
 
-## Connection with Off-Grid Power for Homesteads and Small Farms
+## Connection to Sailing Skills
 
-A cruising sailboat and a small homestead face remarkably similar energy challenges: limited generation capacity, battery storage constraints, critical loads that must stay powered, and the need for self-reliance when something fails. The rancher in Montana who wants to know when their cattle water tank is low faces the same fundamental problem as the sailor monitoring their bilge from shore. Participants from land-based off-grid contexts—small farms, rural homesteads, off-grid cabins—are welcome in this workshop. The cross-pollination of ideas between sailors and homesteaders has proven incredibly valuable, and the principles transfer directly.
+This workshop builds directly on sailing skills—empowering folks to extend their time on the water sustainably. A cruising sailboat and a small homestead face remarkably similar energy challenges: limited generation capacity, battery storage constraints, critical loads that must stay powered, and the need for self-reliance when something fails. The principles transfer directly.
 
 ### Related Workshop
 
 Looking for an introduction to off-grid energy with a land-based focus? Check out our [Gentle Introduction to Local Energy Resilience](/workshops/off-grid-power/)—a hands-on outdoor workshop covering similar fundamentals with a homestead orientation.
+
