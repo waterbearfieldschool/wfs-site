@@ -5,6 +5,8 @@
   "url": "https://waterbearfieldschool.org",
   "tagline": "Outdoor Resilience Skill-Share for Kids and Adults",
   "ogImage": "/assets/images/projects/waterbear-field-school.png",
+  "snipcartApiKey": "YWMwMTNjOGItODA1MS00YmFlLWE0MWYtNmYyNzU3YTg3Y2Y5NjM5MDczMTU2MTI1ODk3MDU1",
+  "availabilityWorkerUrl": "YOUR_WORKER_URL_HERE",
   "links": {
     "email": "info@waterbearfieldschool.org",
     "waterbear": "https://waterbearfieldschool.org/",

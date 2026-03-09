@@ -1,15 +1,22 @@
 ---
 title: "Mesh Radio"
-meta: Hands-on introduction to decentralized radio communication that works without cellular service or internet.
+meta: Introduction to decentralized radio communication that works without cellular service or internet.
 layout: layouts/post.njk
 permalink: /workshops/mesh-radio/
 current: true
 workshopDate: "Recurring"
 location: "Greater Boston"
 image: /assets/images/mesh-radio/simple_mesh.png
+workshopDates:
+  - id: "mesh-radio-2026-03-15-1200"
+    date: "Sunday, March 15, 2026"
+    time: "12 PM"
+    location: "Online (virtual)"
+    maxTickets: 30
 foundations:
   - communication
 level: intro
+snipcart: true
 ---
 
 <style>
@@ -17,7 +24,7 @@ level: intro
 .workshop-hero {
   display: flex;
   gap: 0;
-  align-items: center;
+  align-items: flex-start;
   margin: 0 0 1.5em;
 }
 .workshop-hero-img {
@@ -50,6 +57,7 @@ level: intro
   font-weight: 600;
   text-decoration: none;
   transition: background 0.15s ease;
+  margin-bottom: 16px;
 }
 .register-button:hover {
   background: var(--link, #0b6b50);
@@ -62,6 +70,63 @@ level: intro
   color: #999;
   margin-top: 8px;
   margin-bottom: 0;
+}
+
+/* ── Register widget ── */
+.register-widget {
+  margin-top: 12px;
+}
+.register-price {
+  font-size: 0.9rem;
+  color: var(--fg, #1f1f1f);
+  margin-bottom: 8px;
+}
+
+/* ── Date selector ── */
+.date-selector {
+  margin-bottom: 10px;
+}
+.date-selector-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg, #1f1f1f);
+  margin-bottom: 6px;
+}
+.date-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+.date-option input[type="radio"] {
+  accent-color: var(--accent, #1c4d3a);
+}
+.date-option label {
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.date-option.sold-out label {
+  color: #999;
+  text-decoration: line-through;
+}
+.availability-badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  white-space: nowrap;
+}
+.availability-badge.low {
+  background: #fff3e0;
+  color: #e65100;
+}
+.availability-badge.sold-out {
+  background: #fce4ec;
+  color: #c62828;
 }
 
 @media (max-width: 600px) {
@@ -84,7 +149,30 @@ level: intro
   </div>
   <div class="workshop-hero-body">
     <p>A hands-on, outdoor workshop on building decentralized radio networks that work without cell service or internet. No experience required.</p>
-    <a href="YOUR_EVENTBRITE_ORGANIZER_URL" target="_blank" class="register-button">Register for a Mesh Radio Workshop &rarr;</a>
+    <div class="date-selector">
+      <p class="date-selector-label">Choose a workshop date / time:</p>
+      {% for date in workshopDates %}
+      <div class="date-option" data-date-id="{{ date.id }}" data-max-tickets="{{ date.maxTickets }}">
+        <input type="radio" name="workshop-date-top" id="date-top-{{ date.id }}" value="{{ date.id }}"{% if loop.first %} checked{% endif %}>
+        <label for="date-top-{{ date.id }}">
+          {{ date.date }} at {{ date.time }} — {{ date.location }}
+          <span class="availability-badge" data-avail-id="{{ date.id }}"></span>
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="register-widget">
+      <p class="register-price">$25 per person</p>
+      <button
+        class="register-button snipcart-add-item"
+        data-item-id="{{ workshopDates[0].id }}"
+        data-item-name="Mesh Radio Workshop Ticket — {{ workshopDates[0].date }} at {{ workshopDates[0].time }}"
+        data-item-price="25.00"
+        data-item-url="/workshops/mesh-radio/"
+        data-item-description="Mesh Radio Ticket - {{ workshopDates[0].date }} at {{ workshopDates[0].time }} — {{ workshopDates[0].location }}"
+      >Register</button>
+    </div>
+    <p class="register-note">Read below for more info, or feel free to email <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a> with any questions!</p>
   </div>
 </div>
 
@@ -134,27 +222,10 @@ The "mesh" part is key: when nodes are spread across an area, messages automatic
 - Practical insight into deploying radios in the field
 - Better questions about range, reliability, and power
 
-### Workshop Details
-
-- **Where:** Outdoors in Greater Boston, MA
-- **Duration:** ~90 minutes
-- **Group size:** Limited to 10 participants
-- **Equipment:** Radios provided for use during the workshop (also available for purchase)
-
-## What to Bring
-
-- Warm layers (or sun protection, depending on season)
-- Gloves that allow dexterity
-- A charged phone (for radio pairing, if applicable)
-- A mug with a warm drink (encouraged)
-
 ## Who This Is For
 
 Curious beginners, farmers, organizers, educators, outdoor workers—anyone interested in resilient or off-grid communication. No technical background or prior radio experience required.
 
-## How This Connects
-
-Off-grid power and mesh radio are deeply connected systems. Radios need energy to function, and the way that energy is generated, stored, and managed shapes how reliable a radio network can be. If you're curious about powering radios and designing reliable solar-powered repeaters, see our [Off-Grid Power workshop](/workshops/off-grid-power/).
 
 ## Instructors
 
@@ -170,12 +241,122 @@ Off-grid power and mesh radio are deeply connected systems. Radios need energy t
   </div>
   <div class="workshop-hero-body">
     <p>A hands-on, outdoor workshop on building decentralized radio networks that work without cell service or internet. No experience required.</p>
-    <a href="YOUR_EVENTBRITE_ORGANIZER_URL" target="_blank" class="register-button">Register for a Mesh Radio Workshop &rarr;</a>
+    <div class="date-selector">
+      <p class="date-selector-label">Choose a workshop date / time:</p>
+      {% for date in workshopDates %}
+      <div class="date-option" data-date-id="{{ date.id }}" data-max-tickets="{{ date.maxTickets }}">
+        <input type="radio" name="workshop-date-bottom" id="date-bottom-{{ date.id }}" value="{{ date.id }}"{% if loop.first %} checked{% endif %}>
+        <label for="date-bottom-{{ date.id }}">
+          {{ date.date }} at {{ date.time }} — {{ date.location }}
+          <span class="availability-badge" data-avail-id="{{ date.id }}"></span>
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="register-widget">
+      <p class="register-price">$25 per person</p>
+      <button
+        class="register-button snipcart-add-item"
+        data-item-id="{{ workshopDates[0].id }}"
+        data-item-name="Mesh Radio Workshop Ticket — {{ workshopDates[0].date }} at {{ workshopDates[0].time }}"
+        data-item-price="25.00"
+        data-item-url="/workshops/mesh-radio/"
+        data-item-description="Mesh Radio Ticket - {{ workshopDates[0].date }} at {{ workshopDates[0].time }} — {{ workshopDates[0].location }}"
+      >Register</button>
+    </div>
+    <p class="register-note">Read below for more info, or feel free to email <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a> with any questions!</p>
   </div>
 </div>
 
-*Have questions? Contact us at:*
+<script>
+(function() {
+  // Workshop date metadata from front matter (rendered by Nunjucks)
+  var dates = [
+    {% for date in workshopDates %}
+    { id: "{{ date.id }}", date: "{{ date.date }}", time: "{{ date.time }}", location: "{{ date.location }}", maxTickets: {{ date.maxTickets }} }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ];
 
-<p class="contact-email" style="text-align: center; margin: 12px 0;">
-  <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a>
-</p>
+  // ── Date selection ──
+  // When a radio in one group is selected, sync the other group and update buttons
+  function updateButtons(selectedId) {
+    var dateInfo = dates.find(function(d) { return d.id === selectedId; });
+    if (!dateInfo) return;
+
+    document.querySelectorAll('.snipcart-add-item').forEach(function(btn) {
+      btn.setAttribute('data-item-id', dateInfo.id);
+      btn.setAttribute('data-item-name', 'Mesh Radio Workshop Ticket — ' + dateInfo.date + ' at ' + dateInfo.time);
+      btn.setAttribute('data-item-description', 'Mesh Radio Ticket - ' + dateInfo.date + ' at ' + dateInfo.time + ' — ' + dateInfo.location);
+    });
+  }
+
+  document.querySelectorAll('input[name="workshop-date-top"], input[name="workshop-date-bottom"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      var selectedId = this.value;
+      // Sync both radio groups
+      document.querySelectorAll('input[name="workshop-date-top"], input[name="workshop-date-bottom"]').forEach(function(r) {
+        r.checked = (r.value === selectedId);
+      });
+      updateButtons(selectedId);
+    });
+  });
+
+  // ── Availability fetch ──
+  var workerUrl = "{{ site.availabilityWorkerUrl }}";
+
+  if (workerUrl && workerUrl !== 'YOUR_WORKER_URL_HERE') {
+    var ids = dates.map(function(d) { return d.id; }).join(',');
+    fetch(workerUrl + '?ids=' + encodeURIComponent(ids))
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        dates.forEach(function(dateInfo) {
+          var avail = data[dateInfo.id];
+          var badges = document.querySelectorAll('[data-avail-id="' + dateInfo.id + '"]');
+          var options = document.querySelectorAll('[data-date-id="' + dateInfo.id + '"]');
+
+          var stock;
+          if (avail && avail.stock !== null && avail.stock !== undefined) {
+            stock = avail.stock;
+          } else {
+            stock = dateInfo.maxTickets;
+          }
+
+          badges.forEach(function(badge) {
+            if (stock <= 0) {
+              badge.textContent = 'Sold out';
+              badge.className = 'availability-badge sold-out';
+            } else if (stock <= 3) {
+              badge.textContent = stock + ' spot' + (stock === 1 ? '' : 's') + ' left';
+              badge.className = 'availability-badge low';
+            } else {
+              badge.textContent = stock + ' spots left';
+              badge.className = 'availability-badge';
+            }
+          });
+
+          if (stock <= 0) {
+            options.forEach(function(opt) {
+              opt.classList.add('sold-out');
+              var radio = opt.querySelector('input[type="radio"]');
+              if (radio) {
+                radio.disabled = true;
+                // If this was checked, select the next available date
+                if (radio.checked) {
+                  radio.checked = false;
+                  var available = document.querySelector('.date-option:not(.sold-out) input[type="radio"]');
+                  if (available) {
+                    available.checked = true;
+                    updateButtons(available.value);
+                  }
+                }
+              }
+            });
+          }
+        });
+      })
+      .catch(function() {
+        // Silently fail — badges stay empty, registration still works
+      });
+  }
+})();
+</script>

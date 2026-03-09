@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mesh Radio</title>
-  <meta name="description" content="Hands-on introduction to decentralized radio communication that works without cellular service or internet." />
+  <meta name="description" content="Introduction to decentralized radio communication that works without cellular service or internet." />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://waterbearfieldschool.org/workshops/mesh-radio/">
   <meta property="og:title" content="Mesh Radio">
-  <meta property="og:description" content="Hands-on introduction to decentralized radio communication that works without cellular service or internet.">
+  <meta property="og:description" content="Introduction to decentralized radio communication that works without cellular service or internet.">
   <meta property="og:site_name" content="Waterbear Field School">
   <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/mesh-radio/simple_mesh.png">
   <meta property="og:image:width" content="1200">
@@ -20,7 +20,7 @@
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/mesh-radio/">
   <meta property="twitter:title" content="Mesh Radio">
-  <meta property="twitter:description" content="Hands-on introduction to decentralized radio communication that works without cellular service or internet.">
+  <meta property="twitter:description" content="Introduction to decentralized radio communication that works without cellular service or internet.">
   <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/mesh-radio/simple_mesh.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +67,7 @@
 .workshop-hero {
   display: flex;
   gap: 0;
-  align-items: center;
+  align-items: flex-start;
   margin: 0 0 1.5em;
 }
 .workshop-hero-img {
@@ -100,6 +100,7 @@
   font-weight: 600;
   text-decoration: none;
   transition: background 0.15s ease;
+  margin-bottom: 16px;
 }
 .register-button:hover {
   background: var(--link, #0b6b50);
@@ -112,6 +113,63 @@
   color: #999;
   margin-top: 8px;
   margin-bottom: 0;
+}
+
+/* ── Register widget ── */
+.register-widget {
+  margin-top: 12px;
+}
+.register-price {
+  font-size: 0.9rem;
+  color: var(--fg, #1f1f1f);
+  margin-bottom: 8px;
+}
+
+/* ── Date selector ── */
+.date-selector {
+  margin-bottom: 10px;
+}
+.date-selector-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg, #1f1f1f);
+  margin-bottom: 6px;
+}
+.date-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+.date-option input[type="radio"] {
+  accent-color: var(--accent, #1c4d3a);
+}
+.date-option label {
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.date-option.sold-out label {
+  color: #999;
+  text-decoration: line-through;
+}
+.availability-badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  white-space: nowrap;
+}
+.availability-badge.low {
+  background: #fff3e0;
+  color: #e65100;
+}
+.availability-badge.sold-out {
+  background: #fce4ec;
+  color: #c62828;
 }
 
 @media (max-width: 600px) {
@@ -133,7 +191,28 @@
   </div>
   <div class="workshop-hero-body">
     <p>A hands-on, outdoor workshop on building decentralized radio networks that work without cell service or internet. No experience required.</p>
-    <a href="YOUR_EVENTBRITE_ORGANIZER_URL" target="_blank" class="register-button">Register for a Mesh Radio Workshop &rarr;</a>
+    <div class="date-selector">
+      <p class="date-selector-label">Choose a workshop date / time:</p>
+<p><div class="date-option" data-date-id="mesh-radio-2026-03-15-1200" data-max-tickets="30">
+<input type="radio" name="workshop-date-top" id="date-top-mesh-radio-2026-03-15-1200" value="mesh-radio-2026-03-15-1200" checked>
+<label for="date-top-mesh-radio-2026-03-15-1200">
+Sunday, March 15, 2026 at 12 PM — Online (virtual)
+<span class="availability-badge" data-avail-id="mesh-radio-2026-03-15-1200"></span>
+</label>
+</div></p>
+<p></div>
+<div class="register-widget">
+<p class="register-price">$25 per person</p>
+<button
+        class="register-button snipcart-add-item"
+        data-item-id="mesh-radio-2026-03-15-1200"
+        data-item-name="Mesh Radio Workshop Ticket — Sunday, March 15, 2026 at 12 PM"
+        data-item-price="25.00"
+        data-item-url="/workshops/mesh-radio/"
+        data-item-description="Mesh Radio Ticket - Sunday, March 15, 2026 at 12 PM — Online (virtual)"
+      >Register</button>
+</div>
+<p class="register-note">Read below for more info, or feel free to email <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a> with any questions!</p></p>
   </div>
 </div>
 <hr>
@@ -175,24 +254,8 @@
 <li>Practical insight into deploying radios in the field</li>
 <li>Better questions about range, reliability, and power</li>
 </ul>
-<h3>Workshop Details</h3>
-<ul>
-<li><strong>Where:</strong> Outdoors in Greater Boston, MA</li>
-<li><strong>Duration:</strong> ~90 minutes</li>
-<li><strong>Group size:</strong> Limited to 10 participants</li>
-<li><strong>Equipment:</strong> Radios provided for use during the workshop (also available for purchase)</li>
-</ul>
-<h2>What to Bring</h2>
-<ul>
-<li>Warm layers (or sun protection, depending on season)</li>
-<li>Gloves that allow dexterity</li>
-<li>A charged phone (for radio pairing, if applicable)</li>
-<li>A mug with a warm drink (encouraged)</li>
-</ul>
 <h2>Who This Is For</h2>
 <p>Curious beginners, farmers, organizers, educators, outdoor workers—anyone interested in resilient or off-grid communication. No technical background or prior radio experience required.</p>
-<h2>How This Connects</h2>
-<p>Off-grid power and mesh radio are deeply connected systems. Radios need energy to function, and the way that energy is generated, stored, and managed shapes how reliable a radio network can be. If you're curious about powering radios and designing reliable solar-powered repeaters, see our <a href="/workshops/off-grid-power/">Off-Grid Power workshop</a>.</p>
 <h2>Instructors</h2>
 <p><strong>Mike Beach</strong> is an Electrical Engineer with experience designing and debugging electro-optical and analog systems. He has held low-noise analog design classes for IEEE, co-taught a robotic design course based on a hybrid Raspberry Pi/Arduino platform at Artisan's Asylum, and is an active participant and mentor at Circuit Hacking night held at the Asylum every Wednesday.</p>
 <p><strong>Don Blair</strong> is a researcher, educator, and tinkerer with a background in physics and philosophy. He has built off-grid systems for remote monitoring, and enjoys exploring ways of helping folks to gain greater control over the technologies on which they depend.</p>
@@ -203,18 +266,138 @@
   </div>
   <div class="workshop-hero-body">
     <p>A hands-on, outdoor workshop on building decentralized radio networks that work without cell service or internet. No experience required.</p>
-    <a href="YOUR_EVENTBRITE_ORGANIZER_URL" target="_blank" class="register-button">Register for a Mesh Radio Workshop &rarr;</a>
+    <div class="date-selector">
+      <p class="date-selector-label">Choose a workshop date / time:</p>
+<p><div class="date-option" data-date-id="mesh-radio-2026-03-15-1200" data-max-tickets="30">
+<input type="radio" name="workshop-date-bottom" id="date-bottom-mesh-radio-2026-03-15-1200" value="mesh-radio-2026-03-15-1200" checked>
+<label for="date-bottom-mesh-radio-2026-03-15-1200">
+Sunday, March 15, 2026 at 12 PM — Online (virtual)
+<span class="availability-badge" data-avail-id="mesh-radio-2026-03-15-1200"></span>
+</label>
+</div></p>
+<p></div>
+<div class="register-widget">
+<p class="register-price">$25 per person</p>
+<button
+        class="register-button snipcart-add-item"
+        data-item-id="mesh-radio-2026-03-15-1200"
+        data-item-name="Mesh Radio Workshop Ticket — Sunday, March 15, 2026 at 12 PM"
+        data-item-price="25.00"
+        data-item-url="/workshops/mesh-radio/"
+        data-item-description="Mesh Radio Ticket - Sunday, March 15, 2026 at 12 PM — Online (virtual)"
+      >Register</button>
+</div>
+<p class="register-note">Read below for more info, or feel free to email <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a> with any questions!</p></p>
   </div>
 </div>
-<p><em>Have questions? Contact us at:</em></p>
-<p class="contact-email" style="text-align: center; margin: 12px 0;">
-  <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a>
-</p>
+<script>
+(function() {
+  // Workshop date metadata from front matter (rendered by Nunjucks)
+  var dates = [
+    
+    { id: "mesh-radio-2026-03-15-1200", date: "Sunday, March 15, 2026", time: "12 PM", location: "Online (virtual)", maxTickets: 30 }
+    
+  ];
+
+  // ── Date selection ──
+  // When a radio in one group is selected, sync the other group and update buttons
+  function updateButtons(selectedId) {
+    var dateInfo = dates.find(function(d) { return d.id === selectedId; });
+    if (!dateInfo) return;
+
+    document.querySelectorAll('.snipcart-add-item').forEach(function(btn) {
+      btn.setAttribute('data-item-id', dateInfo.id);
+      btn.setAttribute('data-item-name', 'Mesh Radio Workshop Ticket — ' + dateInfo.date + ' at ' + dateInfo.time);
+      btn.setAttribute('data-item-description', 'Mesh Radio Ticket - ' + dateInfo.date + ' at ' + dateInfo.time + ' — ' + dateInfo.location);
+    });
+  }
+
+  document.querySelectorAll('input[name="workshop-date-top"], input[name="workshop-date-bottom"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      var selectedId = this.value;
+      // Sync both radio groups
+      document.querySelectorAll('input[name="workshop-date-top"], input[name="workshop-date-bottom"]').forEach(function(r) {
+        r.checked = (r.value === selectedId);
+      });
+      updateButtons(selectedId);
+    });
+  });
+
+  // ── Availability fetch ──
+  var workerUrl = "YOUR_WORKER_URL_HERE";
+
+  if (workerUrl && workerUrl !== 'YOUR_WORKER_URL_HERE') {
+    var ids = dates.map(function(d) { return d.id; }).join(',');
+    fetch(workerUrl + '?ids=' + encodeURIComponent(ids))
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        dates.forEach(function(dateInfo) {
+          var avail = data[dateInfo.id];
+          var badges = document.querySelectorAll('[data-avail-id="' + dateInfo.id + '"]');
+          var options = document.querySelectorAll('[data-date-id="' + dateInfo.id + '"]');
+
+          var stock;
+          if (avail && avail.stock !== null && avail.stock !== undefined) {
+            stock = avail.stock;
+          } else {
+            stock = dateInfo.maxTickets;
+          }
+
+          badges.forEach(function(badge) {
+            if (stock <= 0) {
+              badge.textContent = 'Sold out';
+              badge.className = 'availability-badge sold-out';
+            } else if (stock <= 3) {
+              badge.textContent = stock + ' spot' + (stock === 1 ? '' : 's') + ' left';
+              badge.className = 'availability-badge low';
+            } else {
+              badge.textContent = stock + ' spots left';
+              badge.className = 'availability-badge';
+            }
+          });
+
+          if (stock <= 0) {
+            options.forEach(function(opt) {
+              opt.classList.add('sold-out');
+              var radio = opt.querySelector('input[type="radio"]');
+              if (radio) {
+                radio.disabled = true;
+                // If this was checked, select the next available date
+                if (radio.checked) {
+                  radio.checked = false;
+                  var available = document.querySelector('.date-option:not(.sold-out) input[type="radio"]');
+                  if (available) {
+                    available.checked = true;
+                    updateButtons(available.value);
+                  }
+                }
+              }
+            });
+          }
+        });
+      })
+      .catch(function() {
+        // Silently fail — badges stay empty, registration still works
+      });
+  }
+})();
+</script>
 
 </article>
 
     </main>
   </div>
+
+  
+  <script>
+    window.SnipcartSettings = {
+      publicApiKey: "YWMwMTNjOGItODA1MS00YmFlLWE0MWYtNmYyNzU3YTg3Y2Y5NjM5MDczMTU2MTI1ODk3MDU1",
+      loadStrategy: "on-user-interaction"
+    };
+
+    (function(){var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(function(t){return document.addEventListener(t,o)}),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector('src[src^="'.concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,'"][src$="snipcart.js"]')),n=document.querySelector('link[href^="'.concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,'"][href$="snipcart.css"]'));e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),i||(i=document.createElement("script"),i.src="".concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,"/themes/v").concat(window.SnipcartSettings.version,"/default/snipcart.js"),i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href="".concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,"/themes/v").concat(window.SnipcartSettings.version,"/default/snipcart.css"),t.appendChild(n))}})();
+  </script>
+  
 
   <script>
     // Slideshow functionality
