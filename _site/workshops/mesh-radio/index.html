@@ -62,7 +62,15 @@
 <article class="prose">
   <h1>Mesh Radio</h1>
   
-  <style>
+  <!--
+workshopDates:
+  - id: "mesh-radio-2026-03-15-1200"
+    date: "Sunday, March 15, 2026"
+    time: "12 PM"
+    location: "Online (virtual)"
+    maxTickets: 30
+-->
+<style>
 /* ── Hero: image + blurb + register, side by side on desktop ── */
 .workshop-hero {
   display: flex;
@@ -185,36 +193,6 @@
   }
 }
 </style>
-<div class="workshop-hero">
-  <div class="workshop-hero-img">
-    <img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Mesh radio diagram">
-  </div>
-  <div class="workshop-hero-body">
-    <p>A hands-on, outdoor workshop on building decentralized radio networks that work without cell service or internet. No experience required.</p>
-    <div class="date-selector">
-      <p class="date-selector-label">Choose a workshop date / time:</p>
-<p><div class="date-option" data-date-id="mesh-radio-2026-03-15-1200" data-max-tickets="30">
-<input type="radio" name="workshop-date-top" id="date-top-mesh-radio-2026-03-15-1200" value="mesh-radio-2026-03-15-1200" checked>
-<label for="date-top-mesh-radio-2026-03-15-1200">
-Sunday, March 15, 2026 at 12 PM — Online (virtual)
-<span class="availability-badge" data-avail-id="mesh-radio-2026-03-15-1200"></span>
-</label>
-</div></p>
-<p></div>
-<div class="register-widget">
-<p class="register-price">$25 per person</p>
-<button
-        class="register-button snipcart-add-item"
-        data-item-id="mesh-radio-2026-03-15-1200"
-        data-item-name="Mesh Radio Workshop Ticket — Sunday, March 15, 2026 at 12 PM"
-        data-item-price="25.00"
-        data-item-url="/workshops/mesh-radio/"
-        data-item-description="Mesh Radio Ticket - Sunday, March 15, 2026 at 12 PM — Online (virtual)"
-      >Register</button>
-</div>
-<p class="register-note">Read below for more info, or feel free to email <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a> with any questions!</p></p>
-  </div>
-</div>
 <hr>
 <h2>Background</h2>
 <img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Diagram showing how mesh radio works: smartphones connect via Bluetooth to mesh radio nodes, which communicate with each other using LoRA radio technology over several miles" style="max-width: 100%; width: 600px; display: block; margin: 0 auto 1.5em;">
@@ -259,129 +237,6 @@ Sunday, March 15, 2026 at 12 PM — Online (virtual)
 <h2>Instructors</h2>
 <p><strong>Mike Beach</strong> is an Electrical Engineer with experience designing and debugging electro-optical and analog systems. He has held low-noise analog design classes for IEEE, co-taught a robotic design course based on a hybrid Raspberry Pi/Arduino platform at Artisan's Asylum, and is an active participant and mentor at Circuit Hacking night held at the Asylum every Wednesday.</p>
 <p><strong>Don Blair</strong> is a researcher, educator, and tinkerer with a background in physics and philosophy. He has built off-grid systems for remote monitoring, and enjoys exploring ways of helping folks to gain greater control over the technologies on which they depend.</p>
-<hr>
-<div class="workshop-hero">
-  <div class="workshop-hero-img">
-    <img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Mesh radio diagram">
-  </div>
-  <div class="workshop-hero-body">
-    <p>A hands-on, outdoor workshop on building decentralized radio networks that work without cell service or internet. No experience required.</p>
-    <div class="date-selector">
-      <p class="date-selector-label">Choose a workshop date / time:</p>
-<p><div class="date-option" data-date-id="mesh-radio-2026-03-15-1200" data-max-tickets="30">
-<input type="radio" name="workshop-date-bottom" id="date-bottom-mesh-radio-2026-03-15-1200" value="mesh-radio-2026-03-15-1200" checked>
-<label for="date-bottom-mesh-radio-2026-03-15-1200">
-Sunday, March 15, 2026 at 12 PM — Online (virtual)
-<span class="availability-badge" data-avail-id="mesh-radio-2026-03-15-1200"></span>
-</label>
-</div></p>
-<p></div>
-<div class="register-widget">
-<p class="register-price">$25 per person</p>
-<button
-        class="register-button snipcart-add-item"
-        data-item-id="mesh-radio-2026-03-15-1200"
-        data-item-name="Mesh Radio Workshop Ticket — Sunday, March 15, 2026 at 12 PM"
-        data-item-price="25.00"
-        data-item-url="/workshops/mesh-radio/"
-        data-item-description="Mesh Radio Ticket - Sunday, March 15, 2026 at 12 PM — Online (virtual)"
-      >Register</button>
-</div>
-<p class="register-note">Read below for more info, or feel free to email <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a> with any questions!</p></p>
-  </div>
-</div>
-<script>
-(function() {
-  // Workshop date metadata from front matter (rendered by Nunjucks)
-  var dates = [
-    
-    { id: "mesh-radio-2026-03-15-1200", date: "Sunday, March 15, 2026", time: "12 PM", location: "Online (virtual)", maxTickets: 30 }
-    
-  ];
-
-  // ── Date selection ──
-  // When a radio in one group is selected, sync the other group and update buttons
-  function updateButtons(selectedId) {
-    var dateInfo = dates.find(function(d) { return d.id === selectedId; });
-    if (!dateInfo) return;
-
-    document.querySelectorAll('.snipcart-add-item').forEach(function(btn) {
-      btn.setAttribute('data-item-id', dateInfo.id);
-      btn.setAttribute('data-item-name', 'Mesh Radio Workshop Ticket — ' + dateInfo.date + ' at ' + dateInfo.time);
-      btn.setAttribute('data-item-description', 'Mesh Radio Ticket - ' + dateInfo.date + ' at ' + dateInfo.time + ' — ' + dateInfo.location);
-    });
-  }
-
-  document.querySelectorAll('input[name="workshop-date-top"], input[name="workshop-date-bottom"]').forEach(function(radio) {
-    radio.addEventListener('change', function() {
-      var selectedId = this.value;
-      // Sync both radio groups
-      document.querySelectorAll('input[name="workshop-date-top"], input[name="workshop-date-bottom"]').forEach(function(r) {
-        r.checked = (r.value === selectedId);
-      });
-      updateButtons(selectedId);
-    });
-  });
-
-  // ── Availability fetch ──
-  var workerUrl = "YOUR_WORKER_URL_HERE";
-
-  if (workerUrl && workerUrl !== 'YOUR_WORKER_URL_HERE') {
-    var ids = dates.map(function(d) { return d.id; }).join(',');
-    fetch(workerUrl + '?ids=' + encodeURIComponent(ids))
-      .then(function(res) { return res.json(); })
-      .then(function(data) {
-        dates.forEach(function(dateInfo) {
-          var avail = data[dateInfo.id];
-          var badges = document.querySelectorAll('[data-avail-id="' + dateInfo.id + '"]');
-          var options = document.querySelectorAll('[data-date-id="' + dateInfo.id + '"]');
-
-          var stock;
-          if (avail && avail.stock !== null && avail.stock !== undefined) {
-            stock = avail.stock;
-          } else {
-            stock = dateInfo.maxTickets;
-          }
-
-          badges.forEach(function(badge) {
-            if (stock <= 0) {
-              badge.textContent = 'Sold out';
-              badge.className = 'availability-badge sold-out';
-            } else if (stock <= 3) {
-              badge.textContent = stock + ' spot' + (stock === 1 ? '' : 's') + ' left';
-              badge.className = 'availability-badge low';
-            } else {
-              badge.textContent = stock + ' spots left';
-              badge.className = 'availability-badge';
-            }
-          });
-
-          if (stock <= 0) {
-            options.forEach(function(opt) {
-              opt.classList.add('sold-out');
-              var radio = opt.querySelector('input[type="radio"]');
-              if (radio) {
-                radio.disabled = true;
-                // If this was checked, select the next available date
-                if (radio.checked) {
-                  radio.checked = false;
-                  var available = document.querySelector('.date-option:not(.sold-out) input[type="radio"]');
-                  if (available) {
-                    available.checked = true;
-                    updateButtons(available.value);
-                  }
-                }
-              }
-            });
-          }
-        });
-      })
-      .catch(function() {
-        // Silently fail — badges stay empty, registration still works
-      });
-  }
-})();
-</script>
 
 </article>
 

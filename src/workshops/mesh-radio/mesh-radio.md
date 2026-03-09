@@ -8,16 +8,21 @@ workshopDate: "Recurring"
 location: "Greater Boston"
 image: /assets/images/mesh-radio/simple_mesh.png
 workshopDates:
-  - id: "mesh-radio-2026-03-15-1200"
-    date: "Sunday, March 15, 2026"
-    time: "12 PM"
-    location: "Online (virtual)"
-    maxTickets: 30
 foundations:
   - communication
 level: intro
 snipcart: true
 ---
+
+<!--
+workshopDates:
+  - id: "mesh-radio-2026-03-15-1200"
+    date: "Sunday, March 15, 2026"
+    time: "12 PM"
+    location: "Online (virtual)"
+    maxTickets: 30
+-->
+
 
 <style>
 /* ── Hero: image + blurb + register, side by side on desktop ── */
@@ -143,6 +148,7 @@ snipcart: true
 }
 </style>
 
+{% if workshopDates.length %}
 <div class="workshop-hero">
   <div class="workshop-hero-img">
     <img src="/assets/images/mesh-radio/mesh_illustration.png" alt="Mesh radio diagram">
@@ -175,6 +181,7 @@ snipcart: true
     <p class="register-note">Read below for more info, or feel free to email <a href="mailto:info@waterbearfieldschool.org?subject=Mesh%20Radio%20Workshop%20Inquiry">info@waterbearfieldschool.org</a> with any questions!</p>
   </div>
 </div>
+{% endif %}
 
 ---
 
@@ -232,6 +239,8 @@ Curious beginners, farmers, organizers, educators, outdoor workers—anyone inte
 **Mike Beach** is an Electrical Engineer with experience designing and debugging electro-optical and analog systems. He has held low-noise analog design classes for IEEE, co-taught a robotic design course based on a hybrid Raspberry Pi/Arduino platform at Artisan's Asylum, and is an active participant and mentor at Circuit Hacking night held at the Asylum every Wednesday.
 
 **Don Blair** is a researcher, educator, and tinkerer with a background in physics and philosophy. He has built off-grid systems for remote monitoring, and enjoys exploring ways of helping folks to gain greater control over the technologies on which they depend.
+
+{% if workshopDates.length %}
 
 ---
 
@@ -360,3 +369,4 @@ Curious beginners, farmers, organizers, educators, outdoor workers—anyone inte
   }
 })();
 </script>
+{% endif %}
