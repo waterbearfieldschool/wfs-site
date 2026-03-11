@@ -204,18 +204,20 @@ image: /assets/images/biketrailer/full_system.webp
       </article>
       {% endif %}{% endfor %}
 
-      {# External projects #}
-      {% for proj in externalProjects %}
-      <article class="card project-card" data-foundation="{{ proj.foundation }}">
-        <div class="workshop-foundation-band" data-foundation="{{ proj.foundation }}">
-          {{ foundationInfo[proj.foundation].emoji }} {{ foundationInfo[proj.foundation].name }}
+      {# Projects from markdown files #}
+      {% for proj in collections.recentEvents %}
+      <article class="card project-card" data-foundation="{{ proj.data.foundations[0] if proj.data.foundations else '' }}">
+        {% if proj.data.foundations %}{% for f in proj.data.foundations %}{% if loop.first %}
+        <div class="workshop-foundation-band" data-foundation="{{ f }}">
+          {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
         </div>
-        <a href="{{ proj.url }}" class="thumb" aria-label="{{ proj.title }}">
-          <img src="{{ proj.image }}" alt="{{ proj.title }}" />
+        {% endif %}{% endfor %}{% endif %}
+        <a href="{{ proj.url }}" class="thumb" aria-label="{{ proj.data.title }}">
+          {% if proj.data.image %}<img src="{{ proj.data.image }}" alt="{{ proj.data.title }}" />{% endif %}
         </a>
         <div class="card-content">
-          <h3 style="text-align: center;"><a href="{{ proj.url }}">{{ proj.title }}</a></h3>
-          <div class="meta-description">{{ proj.blurb }}</div>
+          <h3 style="text-align: center;"><a href="{{ proj.url }}">{{ proj.data.title }}</a></h3>
+          {% if proj.data.meta %}<div class="meta-description">{{ proj.data.meta }}</div>{% endif %}
         </div>
       </article>
       {% endfor %}

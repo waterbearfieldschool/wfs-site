@@ -6,6 +6,7 @@ permalink: /projects/grassnomads/
 image: /assets/images/projects/grassnomads.jpeg
 foundations:
   - water
+draft: true
 externalUrl: https://edgecollective.io/projects/grassnomads
 ---
 
