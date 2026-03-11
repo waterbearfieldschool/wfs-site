@@ -8,6 +8,7 @@ foundations:
   - water
   - communication
 level: applied
+draft: true
 category: "Future Workshop"
 ---
 

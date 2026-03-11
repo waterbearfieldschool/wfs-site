@@ -5,6 +5,7 @@ layout: layouts/post.njk
 tags: journal
 image: /assets/images/grassnomads/lifepo4.jpg
 excerpt: "Testing lithium iron phosphate batteries for cold-weather solar power in our remote water monitoring system."
+draft: true
 foundations:
   - water
 ---

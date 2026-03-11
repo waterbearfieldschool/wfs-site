@@ -5,6 +5,7 @@ layout: layouts/post.njk
 tags: journal
 image: /assets/images/grassnomads/iridium-era3-debug.jpg
 excerpt: "A satellite modem time sync was corrupting our RTC with dates from 2015. The culprit: Iridium's ERA3 epoch transition on January 14, 2026."
+draft: true
 foundations:
   - water
 ---

@@ -6,7 +6,7 @@ permalink: /workshops/mesh-radio/
 current: true
 workshopDate: "Recurring"
 location: "Greater Boston"
-image: /assets/images/mesh-radio/simple_mesh.png
+image: /assets/images/mesh-radio/mesh_illustration.png
 workshopDates:
 foundations:
   - communication

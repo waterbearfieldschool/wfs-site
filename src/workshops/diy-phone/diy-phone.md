@@ -7,6 +7,7 @@ image: /assets/images/diy-phone/diy-phone.webp
 foundations:
   - communication
 level: advanced
+draft: true
 category: "Future Workshop"
 ---
 
