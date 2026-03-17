@@ -4,6 +4,9 @@ date: 2025-10-12
 location: "Beaver Brook Reservation in Belmont, MA"
 meta: What scale of solar power might be useful for various applications?
 image: /assets/images/projects/solar101.jpg
+foundations:
+  - energy
+category: "Workshop"
 layout: layouts/post.njk
 permalink: /events/solar/
 ---

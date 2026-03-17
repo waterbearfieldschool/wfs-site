@@ -120,57 +120,27 @@ image: /assets/images/biketrailer/full_system.webp
     <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
     <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">Here are some workshops we've held in the past, and may offer again soon. Click through to see photos and details!</p>
     <div class="grid">
-    <article class="card workshop-card" data-foundation="energy">
-      <div class="workshop-foundation-band" data-foundation="energy">
-        {{ foundationInfo.energy.emoji }} {{ foundationInfo.energy.name }}
+    {% for event in collections.allEvents %}
+    <article class="card workshop-card" data-foundation="{{ event.data.foundations[0] if event.data.foundations else '' }}">
+      {% if event.data.foundations %}{% for f in event.data.foundations %}{% if loop.first %}
+      <div class="workshop-foundation-band" data-foundation="{{ f }}">
+        {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
       </div>
-      <div class="upcoming-workshop-label">Event</div>
+      {% endif %}{% endfor %}{% endif %}
+      {% if event.data.category %}<div class="upcoming-workshop-label">{{ event.data.category }}</div>{% endif %}
       <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
-        October 2025
+        {{ event.date | displayDate }}
       </div>
-      <div style="background: var(--card); text-align: center; font-size: 0.9rem; color: var(--link); padding: 0 14px 8px 14px;">Waltham, MA</div>
-      <a href="/events/farmday/" class="thumb" aria-label="Waltham Fields Community Farm: Farm Day 2025">
-        <img src="/assets/images/farmday/Farm_Day_2025_Square.jpg" alt="Waltham Fields Community Farm: Farm Day 2025" />
+      {% if event.data.location %}<div style="background: var(--card); text-align: center; font-size: 0.9rem; color: var(--link); padding: 0 14px 8px 14px;">{{ event.data.location }}</div>{% endif %}
+      <a href="{{ event.url }}" class="thumb" aria-label="{{ event.data.title }}">
+        {% if event.data.image %}<img src="{{ event.data.image }}" alt="{{ event.data.title }}" />{% endif %}
       </a>
       <div class="card-content">
-        <h3 style="text-align: center;"><a href="/events/farmday/">Waltham Fields Community Farm: Farm Day 2025</a></h3>
-        <div class="meta-description">Hands-on solar demos, hand drills, and DIY fun at Waltham Fields Community Farm</div>
+        <h3 style="text-align: center;"><a href="{{ event.url }}">{{ event.data.title }}</a></h3>
+        {% if event.data.meta %}<div class="meta-description">{{ event.data.meta }}</div>{% endif %}
       </div>
     </article>
-    <article class="card workshop-card" data-foundation="communication">
-      <div class="workshop-foundation-band" data-foundation="communication">
-        {{ foundationInfo.communication.emoji }} {{ foundationInfo.communication.name }}
-      </div>
-      <div class="upcoming-workshop-label">Camp</div>
-      <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
-        July 2025
-      </div>
-      <div style="background: var(--card); text-align: center; font-size: 0.9rem; color: var(--link); padding: 0 14px 8px 14px;">Danville, VT</div>
-      <a href="/workshops/diy-communicators/" class="thumb" aria-label="Off-Grid DIY Radio Communicators">
-        <img src="/assets/images/diy-communicators/main.webp" alt="Off-Grid DIY Radio Communicators" />
-      </a>
-      <div class="card-content">
-        <h3 style="text-align: center;"><a href="/workshops/diy-communicators/">Off-Grid DIY Radio Communicators</a></h3>
-        <div class="meta-description">Hands-on workshop building mesh radio communicators at Otherwise Summer Camp</div>
-      </div>
-    </article>
-    <article class="card workshop-card" data-foundation="energy">
-      <div class="workshop-foundation-band" data-foundation="energy">
-        {{ foundationInfo.energy.emoji }} {{ foundationInfo.energy.name }}
-      </div>
-      <div class="upcoming-workshop-label">Workshop</div>
-      <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
-        October 2025
-      </div>
-      <div style="background: var(--card); text-align: center; font-size: 0.9rem; color: var(--link); padding: 0 14px 8px 14px;">Belmont, MA</div>
-      <a href="/events/solar/" class="thumb" aria-label="Solar 101 at Beaver Brook">
-        <img src="/assets/images/projects/solar101.jpg" alt="Solar 101 at Beaver Brook" />
-      </a>
-      <div class="card-content">
-        <h3 style="text-align: center;"><a href="/events/solar/">Solar 101 at Beaver Brook</a></h3>
-        <div class="meta-description">Introduction to off-grid solar power - experimenting with panels, batteries, and motors</div>
-      </div>
-    </article>
+    {% endfor %}
     </div>
   </div>
 </section>

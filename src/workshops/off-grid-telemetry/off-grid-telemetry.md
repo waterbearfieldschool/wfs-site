@@ -9,6 +9,7 @@ foundations:
   - energy
 level: applied
 category: "Future Workshop"
+current: true
 ---
 
 ![Off-Grid Monitoring](/assets/images/off-grid-telemetry/main.webp)

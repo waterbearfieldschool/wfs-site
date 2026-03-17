@@ -5,10 +5,10 @@ location: "Danville, VT"
 meta: Hands-on workshop building mesh radio communicators at Otherwise Summer Camp
 image: /assets/images/diy-communicators/main.webp
 layout: layouts/post.njk
-permalink: /workshops/diy-communicators/
-draft: true
+permalink: /events/diy-communicators/
 foundations:
   - communication
+category: "Camp"
 level: intro
 ---
 
