@@ -1,6 +1,6 @@
 ---
 title: "Off-Grid Grain Mill & Food Resilience"
-meta: "Explore hand-powered, bike-powered, and solar-electric grain milling — plus grain storage basics and a hands-on pizza and tortilla party."
+meta: "Explore hand-powered, bike-powered, and solar-electric grain milling — plus grain storage basics and a hands-on pizza and tortilla party. (Image: howtopedia.org)"
 layout: layouts/post.njk
 permalink: /workshops/grain-mill/
 image: /assets/images/grainmill/pedal_mill.png
@@ -11,6 +11,10 @@ level: intro
 category: "Future Workshop"
 ---
 
+<img src="/assets/images/grainmill/pedal_mill.png">
+
+(Reference: [howtopedia.org](http://en.howtopedia.org/wiki/Pedal-Powered_Food/Grain/Coffee_Mill))
+ 
 ## Off-Grid Grain Mill & Food Resilience Workshop
 
 Whole grains are one of the most shelf-stable, nutrient-dense foods available — but turning them into flour requires a mill. In this workshop, we'll explore several approaches to grinding grain without grid power, and learn about storing grains for long-term food resilience.

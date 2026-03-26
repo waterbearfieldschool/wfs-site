@@ -1,15 +1,19 @@
 ---
 title: "Off-Grid Cooking"
-meta: "Learn practical approaches to cooking without grid power — propane, wood fires, efficient stove designs, and estimating fuel needs for any situation."
+meta: "Learn practical approaches to cooking without grid power — propane, wood fires, efficient stove designs, and estimating fuel needs for any situation. (Image: Wikipedia)"
 layout: layouts/post.njk
 permalink: /workshops/off-grid-cooking/
-image: /assets/images/projects/waterbear-field-school.png
+image: /assets/images/off-grid-cooking/samoa_umu_800.jpeg
 foundations:
   - food
   - energy
 level: intro
 category: "Future Workshop"
 ---
+
+<img src="/assets/images/off-grid-cooking/samoa_umu_800.jpeg" alt="Samoan umu (earth oven)">
+
+(Image: [Wikipedia — Earth oven](https://en.wikipedia.org/wiki/Earth_oven))
 
 ## Off-Grid Cooking Workshop
 
@@ -34,6 +38,10 @@ Whether you're preparing for emergencies, planning a camping trip, or building a
 This hands-on workshop will include live demonstrations of different stove types and cooking methods. Participants will get to build and test simple stove designs, and we'll share a meal cooked entirely off-grid.
 
 Suitable for all ages and experience levels.
+
+## References
+
+[Jack Mountain Bushcraft School](https://jackmtn.com/offgrid/)
 
 ---
 
