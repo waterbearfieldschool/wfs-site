@@ -3,25 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Libraries and Learning</title>
-  <meta name="description" content="Archiving, sharing, and contributing knowledge." />
+  <title>Arduino Farming Workshop</title>
+  <meta name="description" content="greenhouse monitoring and control and mesh" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://waterbearfieldschool.org/foundations/libraries-learning/">
-  <meta property="og:title" content="Libraries and Learning">
-  <meta property="og:description" content="Archiving, sharing, and contributing knowledge.">
+  <meta property="og:url" content="https://waterbearfieldschool.org/workshops/westport/">
+  <meta property="og:title" content="Arduino Farming Workshop">
+  <meta property="og:description" content="greenhouse monitoring and control and mesh">
   <meta property="og:site_name" content="Waterbear Field School">
-  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/cob-oven/cob-oven.webp">
   
   
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://waterbearfieldschool.org/foundations/libraries-learning/">
-  <meta property="twitter:title" content="Libraries and Learning">
-  <meta property="twitter:description" content="Archiving, sharing, and contributing knowledge.">
-  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/workshops/westport/">
+  <meta property="twitter:title" content="Arduino Farming Workshop">
+  <meta property="twitter:description" content="greenhouse monitoring and control and mesh">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/cob-oven/cob-oven.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -60,64 +60,75 @@
     <main>
       
 <article class="prose">
-  <h1>Libraries and Learning</h1>
-  <h2>Libraries and Learning</h2>
-<p>Develop systems and skills for archiving, sharing, and contributing knowledge. Learn to build learning communities and preserve important information for future generations.</p>
-<h3>What You'll Learn</h3>
+  <h1>Arduino Farming Workshop</h1>
+  
+  <h1>UART Input Format for companion_sensor_ble_uart_v2</h1>
+<h2>Serial settings</h2>
 <ul>
-<li>Knowledge archiving and documentation systems</li>
-<li>Community library and resource sharing</li>
-<li>Teaching and learning facilitation</li>
-<li>Digital and physical knowledge preservation</li>
+<li>Baud: 9600</li>
+<li>Format: 8N1 (8 data bits, no parity, 1 stop bit)</li>
+<li>Pin: GPIO 47 on Heltec V3</li>
+<li>Logic level: 3.3V (NOT 5V tolerant)</li>
 </ul>
-<h3>Module Details</h3>
-<p>This foundations module focuses on creating systems for collective learning and knowledge preservation. Learn to build and maintain libraries, archives, and learning communities that support ongoing education and skill development.</p>
+<h2>Line format</h2>
+<pre><code>MC,N=&lt;node_id&gt;,T=&lt;temperature_c&gt;,B=&lt;battery_v&gt;\n
+</code></pre>
+<ul>
+<li>Lines must end with <code>\n</code> (newline). <code>\r\n</code> is also accepted (<code>\r</code> is ignored).</li>
+<li>All characters must be printable ASCII (0x20-0x7E). Lines containing non-printable bytes are discarded.</li>
+<li>Maximum line length: 127 characters.</li>
+</ul>
+<h2>Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Type</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N</td>
+<td>Node ID</td>
+<td>integer</td>
+<td>0 - 65535</td>
+</tr>
+<tr>
+<td>T</td>
+<td>Temperature in Celsius</td>
+<td>float</td>
+<td>-100.0 to 150.0</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Battery voltage in volts</td>
+<td>float</td>
+<td>0.0 to 6.0</td>
+</tr>
+</tbody>
+</table>
+<h2>Examples</h2>
+<pre><code>MC,N=7,T=24.3,B=3.98
+MC,N=100,T=-5.2,B=4.15
+MC,N=0,T=0.0,B=3.30
+</code></pre>
+<h2>What happens on parse</h2>
+<p>Each valid line immediately triggers a mesh send to the configured target gateway. The values are packed into a <code>REQ_TYPE_SENSOR_UPLOAD</code> (0x10) packet:</p>
+<ul>
+<li><code>node_id</code> (uint16) from N</li>
+<li><code>temperature_x10</code> (int16, 0.1C units) from T — e.g. 24.3C becomes 243</li>
+<li><code>battery_mv</code> (uint16, millivolts) from B — e.g. 3.98V becomes 3980</li>
+</ul>
+<h2>Arduino example (sender side)</h2>
+<pre><code class="language-cpp">Serial.print(&quot;MC,N=7,T=&quot;);
+Serial.print(temperature, 1);
+Serial.print(&quot;,B=&quot;);
+Serial.print(battery, 2);
+Serial.println();
+</code></pre>
 
-
-  <h3>Related Workshops</h3>
-  <div class="grid" style="margin: 1rem 0;">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  </div>
 </article>
 
     </main>
