@@ -339,16 +339,20 @@
       return;
     }
 
-    const minT = Math.min(...tSlice);
-    const maxT = Math.max(...tSlice);
-    const rangeT = maxT - minT || 1;
+    // Data min/max (for summary lines below the chart)
+    const dataMinT = Math.min(...tSlice);
+    const dataMaxT = Math.max(...tSlice);
+    // Fixed Y-axis range: 30 °F – 120 °F, converted to °C for internal math
+    const minT = (30 - 32) * 5 / 9;
+    const maxT = (120 - 32) * 5 / 9;
+    const rangeT = maxT - minT;
     const minTime = timeSlice[0].getTime();
     const maxTime = timeSlice[timeSlice.length - 1].getTime();
     const rangeTime = maxTime - minTime || 1;
 
     // Chart dimensions (viewBox units). The SVG scales to fit its container.
-    const W = 640, H = 200;
-    const padLeft = 54, padRight = 14, padTop = 14, padBottom = 48;
+    const W = 640, H = 208;
+    const padLeft = 54, padRight = 14, padTop = 14, padBottom = 56;
     const plotW = W - padLeft - padRight;
     const plotH = H - padTop - padBottom;
 
@@ -365,32 +369,24 @@
         '" r="2.5" fill="var(--accent)"><title>' + title + '</title></circle>';
     }).join("");
 
-    // Y-axis ticks: min, mid, max — labels in °F
-    const yTicks = [minT, (minT + maxT) / 2, maxT];
-    const yTickMarkup = yTicks.map(v => {
-      const y = yFor(v);
+    // Y-axis ticks at fixed °F values across the full axis range
+    const yTickFs = [30, 60, 90, 120];
+    const yTickMarkup = yTickFs.map(fVal => {
+      const cVal = (fVal - 32) * 5 / 9;
+      const y = yFor(cVal);
       return (
         '<line x1="' + (padLeft - 4) + '" y1="' + y.toFixed(1) +
           '" x2="' + padLeft + '" y2="' + y.toFixed(1) +
           '" stroke="currentColor" stroke-width="1" opacity="0.6" />' +
         '<text x="' + (padLeft - 7) + '" y="' + (y + 3.5).toFixed(1) +
           '" text-anchor="end" font-size="11" fill="currentColor" opacity="0.8">' +
-          cToF(v).toFixed(1) + '</text>'
+          fVal + '</text>'
       );
     }).join("");
 
-    // X-axis ticks at whole-hour boundaries (EST/UTC agree on hour boundaries).
-    // Choose a step size so we end up with roughly 3–7 labels.
+    // X-axis ticks every 2 hours (aligned to whole-hour boundaries).
     const HOUR_MS = 3600 * 1000;
-    const rangeHours = rangeTime / HOUR_MS;
-    let stepHours = 1;
-    if (rangeHours > 4)  stepHours = 2;
-    if (rangeHours > 8)  stepHours = 3;
-    if (rangeHours > 16) stepHours = 6;
-    if (rangeHours > 36) stepHours = 12;
-    if (rangeHours > 72) stepHours = 24;
-
-    const stepMs = stepHours * HOUR_MS;
+    const stepMs = 2 * HOUR_MS;
     const firstTickMs = Math.ceil(minTime / stepMs) * stepMs;
     const xTickTimes = [];
     for (let t = firstTickMs; t <= maxTime; t += stepMs) {
@@ -416,19 +412,45 @@
       const x = xFor(ts.getTime());
       const dateStr = ts.toLocaleDateString("en-US", tickDateOpts);
       const timeStr = ts.toLocaleTimeString("en-US", tickTimeOpts);
-      const label = (i === 0 || dateStr !== lastDateStr) ? dateStr + " " + timeStr : timeStr;
+      const showDate = (i === 0 || dateStr !== lastDateStr);
       lastDateStr = dateStr;
 
       const anchor = i === 0 ? "start" : (i === xTickTimes.length - 1 ? "end" : "middle");
-      return (
+      let markup =
         '<line x1="' + x.toFixed(1) + '" y1="' + (padTop + plotH) +
           '" x2="' + x.toFixed(1) + '" y2="' + (padTop + plotH + 4) +
           '" stroke="currentColor" stroke-width="1" opacity="0.6" />' +
-        '<text x="' + x.toFixed(1) + '" y="' + (padTop + plotH + 18) +
+        '<text x="' + x.toFixed(1) + '" y="' + (padTop + plotH + 16) +
           '" text-anchor="' + anchor + '" font-size="11" fill="currentColor" opacity="0.8">' +
-          label + '</text>'
-      );
+          timeStr + '</text>';
+      if (showDate) {
+        markup +=
+          '<text x="' + x.toFixed(1) + '" y="' + (padTop + plotH + 30) +
+            '" text-anchor="' + anchor + '" font-size="10" fill="currentColor" opacity="0.7">' +
+            dateStr + '</text>';
+      }
+      return markup;
     }).join("");
+
+    // Optional horizontal reference line: current NWS (local weather station) temp.
+    // Spans the x-range of the last 4 data points (or all points if fewer than 4).
+    // Only drawn when the latest NWS reading is inside the fixed 30–120 °F window.
+    let wxLineMarkup = "";
+    if (typeof lastWxTempC === "number" && lastWxTempC >= minT && lastWxTempC <= maxT) {
+      const wxY = yFor(lastWxTempC);
+      const startIdx = Math.max(0, points.length - 4);
+      const wxX1 = points[startIdx][0];
+      const wxX2 = points[points.length - 1][0];
+      const wxLabelX = wxX2;
+      const wxLabelY = Math.max(padTop + 10, wxY - 4);
+      wxLineMarkup =
+        '<line x1="' + wxX1.toFixed(1) + '" y1="' + wxY.toFixed(1) +
+          '" x2="' + wxX2.toFixed(1) + '" y2="' + wxY.toFixed(1) +
+          '" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.55" />' +
+        '<text x="' + wxLabelX.toFixed(1) + '" y="' + wxLabelY.toFixed(1) +
+          '" text-anchor="end" font-size="10" fill="currentColor" opacity="0.75">' +
+          'KBED ' + cToF(lastWxTempC).toFixed(1) + '°F</text>';
+    }
 
     // Axis titles
     const yTitleX = 14;
@@ -477,6 +499,7 @@
         xTickMarkup +
         yTitle +
         xTitle +
+        wxLineMarkup +
         '<polyline points="' + polyline + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />' +
         dots +
       '</svg>' +
@@ -487,13 +510,15 @@
           '<strong style="color: var(--fg);">' + cToF(avgT).toFixed(2) + ' °F</strong> / ' + avgT.toFixed(2) + ' °C' +
           ' <span style="color: var(--muted);">— from ' + fmtWhen(timeSlice[0]) + ' to ' + fmtWhen(timeSlice[timeSlice.length - 1]) + '</span>' +
         '</div>' +
-        summaryLine("Min",     cToF(minT),   minT,   minTime_) +
-        summaryLine("Max",     cToF(maxT),   maxT,   maxTime_) +
+        summaryLine("Min",     cToF(dataMinT), dataMinT, minTime_) +
+        summaryLine("Max",     cToF(dataMaxT), dataMaxT, maxTime_) +
       '</div>';
   }
 
   let lastTimestamp = null;
   let lastWxTimestamp = null;
+  let lastWxTempC = null;
+  let lastRecords = null;
 
   function updateNowAndAgo() {
     const now = new Date();
@@ -552,6 +577,7 @@
       document.getElementById("gh-id").textContent = record.id;
       const nodeId = record.parameters && record.parameters.node_id;
       document.getElementById("gh-node").textContent = nodeId != null ? nodeId : "—";
+      lastRecords = records;
       renderParams(record.parameters || {});
       renderSparkline(records);
 
@@ -592,10 +618,13 @@
         ' <span style="font-size: 1rem; font-weight: 400; color: var(--muted);"> / </span>' +
         tempC.toFixed(1) + ' <span style="font-size: 0.9rem; font-weight: 400; color: var(--muted);">°C</span>';
       condEl.textContent = p.textDescription || "";
+      lastWxTempC = tempC;
       if (p.timestamp) {
         lastWxTimestamp = new Date(p.timestamp);
         updateNowAndAgo();
       }
+      // Re-draw the sparkline so the NWS reference line reflects the new value
+      if (lastRecords) renderSparkline(lastRecords);
       errorEl.style.display = "none";
     } catch (err) {
       errorEl.textContent = "Could not load local weather: " + err.message;
