@@ -268,13 +268,8 @@
           ' <span style="font-size: 1rem; font-weight: 400; color: var(--muted);"> / </span>' +
           value.toFixed(2) + ' <span style="font-size: 0.9rem; font-weight: 400; color: var(--muted);">°C</span>';
 
-        const hopsRaw = parameters.aux_1;
-        const hopsDisplay = (hopsRaw === null || hopsRaw === undefined)
-          ? "—"
-          : (typeof hopsRaw === "number" && !Number.isInteger(hopsRaw) ? hopsRaw.toFixed(2) : String(hopsRaw));
-
-        // Temperature card uses a 3-column layout: temp value on the left,
-        // last-reading time + ago in the middle, and Radio hops on the right.
+        // Temperature card uses a 2-column layout: temp value on the left,
+        // last-reading time + ago on the right.
         card.innerHTML =
           '<div class="hhf-row">' +
             '<div>' +
@@ -285,14 +280,10 @@
                 tempValueHtml +
               '</div>' +
             '</div>' +
-            '<div style="text-align: center;">' +
+            '<div style="text-align: right;">' +
               '<div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Last Reading</div>' +
               '<div id="gh-ago" style="font-size: 1.1rem; font-weight: 600; margin-top: 0.2rem;">—</div>' +
               '<div id="gh-ts" style="font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem;">—</div>' +
-            '</div>' +
-            '<div style="text-align: right;">' +
-              '<div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Radio hops</div>' +
-              '<div style="font-size: 1.35rem; font-weight: 600; margin-top: 0.2rem;">' + hopsDisplay + '</div>' +
             '</div>' +
           '</div>' +
           '<div class="hhf-src">' +
