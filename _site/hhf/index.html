@@ -140,7 +140,7 @@
       </div>
       <div class="hhf-src">
         Source:
-        <a href="https://bayou.pvos.org/data/q86dqq927qy6/json/" target="_blank" rel="noopener">https://bayou.pvos.org/data/q86dqq927qy6/json/</a>
+        <a id="gh-sparkline-src" href="#" target="_blank" rel="noopener">—</a>
       </div>
     </div>
 
@@ -175,7 +175,20 @@
 
 <script>
 (function() {
-  const API_URL = "https://bayou.pvos.org/data/q86dqq927qy6/json/";
+  // Multiple data feeds — on each refresh we check /latest/ on each
+  // and use whichever has the most recent observation.
+  const FEEDS = [
+    {
+      latestUrl: "https://bayou.pvos.org/data/q86dqq927qy6/latest/",
+      jsonUrl:   "https://bayou.pvos.org/data/q86dqq927qy6/json/"
+    },
+    {
+      latestUrl: "https://bayou.pvos.org/data/g2q9cyf96eai/latest/1",
+      jsonUrl:   "https://bayou.pvos.org/data/g2q9cyf96eai/json/1"
+    }
+  ];
+  let activeJsonUrl = FEEDS[0].jsonUrl; // updated on each successful load
+
   const WX_URL = "https://api.weather.gov/stations/KBED/observations/latest";
   const REFRESH_MS = 30000;
   const WX_REFRESH_MS = 10 * 60 * 1000; // NWS updates ~hourly, poll every 10 minutes
@@ -288,7 +301,7 @@
           '</div>' +
           '<div class="hhf-src">' +
             'Source: ' +
-            '<a href="' + API_URL + '" target="_blank" rel="noopener">' + API_URL + '</a>' +
+            '<a href="' + activeJsonUrl + '" target="_blank" rel="noopener">' + activeJsonUrl + '</a>' +
           '</div>';
       } else {
         const valueHtml = formatValue(key, value) +
@@ -498,9 +511,35 @@
     }
   }
 
+  // Poll /latest/ on every feed in parallel and return the one with the
+  // most recent observation. Returns null if none respond successfully.
+  async function pickFreshestFeed() {
+    const results = await Promise.all(FEEDS.map(async (f) => {
+      try {
+        const res = await fetch(f.latestUrl, { cache: "no-store" });
+        if (!res.ok) return null;
+        const json = await res.json();
+        const records = (json && json.data) || [];
+        const rec = records[records.length - 1] || records[0];
+        if (!rec || !rec.timestamp) return null;
+        return { feed: f, ts: new Date(rec.timestamp).getTime() };
+      } catch (e) {
+        return null;
+      }
+    }));
+    const valid = results.filter(r => r !== null);
+    if (valid.length === 0) return null;
+    valid.sort((a, b) => b.ts - a.ts);
+    return valid[0].feed;
+  }
+
   async function load() {
     try {
-      const res = await fetch(API_URL, { cache: "no-store" });
+      const feed = await pickFreshestFeed();
+      if (!feed) throw new Error("No data feeds reachable");
+      activeJsonUrl = feed.jsonUrl;
+
+      const res = await fetch(feed.jsonUrl, { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       const json = await res.json();
       const records = (json && json.data) || [];
@@ -515,6 +554,13 @@
       document.getElementById("gh-node").textContent = nodeId != null ? nodeId : "—";
       renderParams(record.parameters || {});
       renderSparkline(records);
+
+      // Update the sparkline card's source link to point at whichever feed won.
+      const srcEl = document.getElementById("gh-sparkline-src");
+      if (srcEl) {
+        srcEl.href = activeJsonUrl;
+        srcEl.textContent = activeJsonUrl;
+      }
 
       // gh-ts/gh-ago live inside the temperature card rendered by renderParams
       // above, so update them now that the card exists.
