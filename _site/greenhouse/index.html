@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greenhouse — Live Data</title>
+  <meta name="description" content="Live readings from the Waterbear Field School greenhouse radio node." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/greenhouse/">
+  <meta property="og:title" content="Greenhouse — Live Data">
+  <meta property="og:description" content="Live readings from the Waterbear Field School greenhouse radio node.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
+  
+  
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/greenhouse/">
+  <meta property="twitter:title" content="Greenhouse — Live Data">
+  <meta property="twitter:description" content="Live readings from the Waterbear Field School greenhouse radio node.">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics" style="color: #8B6914; font-size: 0.95rem;">Hands-on community workshops and projects focusing on energy, water, food, shelter, climate, communication, fabrication, transport, arts & crafts.</p>
+          <nav class="brand-nav brand-nav-inline">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/#journal">Journal</a></li>
+              <li><a href="/#workshops">Workshops</a></li>
+              <li><a href="/#recently">Recently</a></li>
+              <li><a href="/#projects">Projects</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.95rem; font-style: italic; color: var(--muted); text-align: center;">
+            We'd love to hear from you!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.95rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Greenhouse — Live Data</h1>
+  
+  
+<p style="color: var(--muted); margin-top: 0;">Live readings from the greenhouse radio node. This page auto-refreshes every 30 seconds.</p>
+
+<div id="greenhouse-status" style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow); margin: 1rem 0;">
+  <div id="gh-loading" style="text-align: center; color: var(--muted);">Loading…</div>
+  <div id="gh-content" style="display: none;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+      <div style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 1rem; text-align: center;">
+        <div style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Current time (EST)</div>
+        <div id="gh-now" style="font-size: 1.25rem; font-weight: 600; margin-top: 0.25rem;">—</div>
+      </div>
+      <div style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 1rem; text-align: center;">
+        <div style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Last reading (EST)</div>
+        <div id="gh-ts" style="font-size: 1.25rem; font-weight: 600; margin-top: 0.25rem;">—</div>
+        <div id="gh-ago" style="font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem;">—</div>
+      </div>
+    </div>
+
+    <h3 style="color: var(--accent); margin: 0 0 0.75rem;">Parameters</h3>
+    <div id="gh-params" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;"></div>
+
+    <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--muted); text-align: right;">
+      Source:
+      <a href="https://bayou.pvos.org/data/q86dqq927qy6/latest/" target="_blank" rel="noopener">bayou.pvos.org</a>
+      · Node <span id="gh-node">—</span> · Reading #<span id="gh-id">—</span>
+    </div>
+  </div>
+  <div id="gh-error" style="display: none; color: #b04a2e; text-align: center;"></div>
+</div>
+
+<script>
+(function() {
+  const API_URL = "https://bayou.pvos.org/data/q86dqq927qy6/latest/";
+  const REFRESH_MS = 30000;
+
+  // Human-readable labels + units for known parameter keys
+  const paramInfo = {
+    temperature_c:    { label: "Temperature",        unit: "°C"    },
+    humidity_rh:      { label: "Humidity",           unit: "% RH"  },
+    distance_meters:  { label: "Distance",           unit: "m"     },
+    pressure_mbar:    { label: "Pressure",           unit: "mbar"  },
+    battery_volts:    { label: "Battery",            unit: "V"     },
+    gps_lat:          { label: "GPS Latitude",       unit: "°"     },
+    gps_lon:          { label: "GPS Longitude",      unit: "°"     },
+    gps_alt:          { label: "GPS Altitude",       unit: "m"     },
+    co2_ppm:          { label: "CO₂",                unit: "ppm"   },
+    light_lux:        { label: "Light",              unit: "lux"   },
+    rssi:             { label: "RSSI",               unit: "dBm"   },
+    next_rssi:        { label: "Next-hop RSSI",      unit: "dBm"   },
+    node_id:          { label: "Node ID",            unit: ""      },
+    next_hop:         { label: "Next hop",           unit: ""      },
+    aux_1:            { label: "Aux 1",              unit: ""      },
+    aux_2:            { label: "Aux 2",              unit: ""      },
+    aux_3:            { label: "Aux 3",              unit: ""      }
+  };
+
+  // Keys that aren't really "measurement" cards (shown elsewhere)
+  const metaKeys = new Set(["node_id", "next_hop", "log"]);
+
+  const EST_OPTS = {
+    timeZone: "America/New_York",
+    year: "numeric", month: "short", day: "numeric",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+    hour12: false
+  };
+
+  function fmtEST(date) {
+    return date.toLocaleString("en-US", EST_OPTS) + " EST";
+  }
+
+  function timeAgo(then, now) {
+    const s = Math.max(0, Math.floor((now - then) / 1000));
+    if (s < 60)      return s + " second" + (s === 1 ? "" : "s") + " ago";
+    const m = Math.floor(s / 60);
+    if (m < 60)      return m + " minute" + (m === 1 ? "" : "s") + " ago";
+    const h = Math.floor(m / 60);
+    if (h < 24)      return h + " hour"   + (h === 1 ? "" : "s") + " ago";
+    const d = Math.floor(h / 24);
+    return d + " day" + (d === 1 ? "" : "s") + " ago";
+  }
+
+  function formatValue(key, value) {
+    if (typeof value === "number") {
+      // Drop unnecessary trailing zeros for ints, keep up to 2 decimals otherwise
+      return Number.isInteger(value) ? String(value) : value.toFixed(2);
+    }
+    return String(value);
+  }
+
+  function renderParams(parameters) {
+    const container = document.getElementById("gh-params");
+    container.innerHTML = "";
+    const entries = Object.entries(parameters)
+      .filter(([k, v]) => v !== null && v !== undefined && !metaKeys.has(k));
+
+    if (entries.length === 0) {
+      container.innerHTML = '<div style="color: var(--muted); grid-column: 1 / -1; text-align: center;">No parameter readings in the latest record.</div>';
+      return;
+    }
+
+    for (const [key, value] of entries) {
+      const info = paramInfo[key] || { label: key, unit: "" };
+      const card = document.createElement("div");
+      card.style.cssText = "background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem;";
+      card.innerHTML =
+        '<div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">' +
+          info.label +
+        '</div>' +
+        '<div style="font-size: 1.35rem; font-weight: 600; margin-top: 0.2rem;">' +
+          formatValue(key, value) +
+          (info.unit ? ' <span style="font-size: 0.9rem; font-weight: 400; color: var(--muted);">' + info.unit + '</span>' : '') +
+        '</div>';
+      container.appendChild(card);
+    }
+  }
+
+  let lastTimestamp = null;
+
+  function updateNowAndAgo() {
+    const now = new Date();
+    document.getElementById("gh-now").textContent = fmtEST(now);
+    if (lastTimestamp) {
+      document.getElementById("gh-ago").textContent = timeAgo(lastTimestamp, now);
+    }
+  }
+
+  async function load() {
+    try {
+      const res = await fetch(API_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const json = await res.json();
+      const record = json && json.data && json.data[0];
+      if (!record) throw new Error("No data record returned");
+
+      lastTimestamp = new Date(record.timestamp);
+      document.getElementById("gh-ts").textContent = fmtEST(lastTimestamp);
+      document.getElementById("gh-id").textContent = record.id;
+      const nodeId = record.parameters && record.parameters.node_id;
+      document.getElementById("gh-node").textContent = nodeId != null ? nodeId : "—";
+      renderParams(record.parameters || {});
+
+      updateNowAndAgo();
+      document.getElementById("gh-loading").style.display = "none";
+      document.getElementById("gh-error").style.display = "none";
+      document.getElementById("gh-content").style.display = "block";
+    } catch (err) {
+      const errEl = document.getElementById("gh-error");
+      errEl.textContent = "Could not load live data: " + err.message;
+      errEl.style.display = "block";
+      document.getElementById("gh-loading").style.display = "none";
+    }
+  }
+
+  load();
+  setInterval(load, REFRESH_MS);
+  setInterval(updateNowAndAgo, 1000);
+})();
+</script>
+
+</article>
+
+    </main>
+  </div>
+
+  
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>

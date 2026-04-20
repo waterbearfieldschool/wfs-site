@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hannan Healthy Foods Farm</title>
+  <meta name="description" content="Mesh radio data." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/hhf_greenhouse/">
+  <meta property="og:title" content="Hannan Healthy Foods Farm">
+  <meta property="og:description" content="Mesh radio data.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
+  
+  
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/hhf_greenhouse/">
+  <meta property="twitter:title" content="Hannan Healthy Foods Farm">
+  <meta property="twitter:description" content="Mesh radio data.">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics" style="color: #8B6914; font-size: 0.95rem;">Hands-on community workshops and projects focusing on energy, water, food, shelter, climate, communication, fabrication, transport, arts & crafts.</p>
+          <nav class="brand-nav brand-nav-inline">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/#journal">Journal</a></li>
+              <li><a href="/#workshops">Workshops</a></li>
+              <li><a href="/#recently">Recently</a></li>
+              <li><a href="/#projects">Projects</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p style="margin: 12px 0 4px 0; font-size: 0.95rem; font-style: italic; color: var(--muted); text-align: center;">
+            We'd love to hear from you!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.95rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Hannan Healthy Foods Farm</h1>
+  
+  
+<p style="color: var(--muted); margin-top: 0;">Mesh radio data.</p>
+
+<div id="greenhouse-status" style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow); margin: 1rem 0;">
+  <div id="gh-loading" style="text-align: center; color: var(--muted);">Loading…</div>
+  <div id="gh-content" style="display: none;">
+    <h3 style="color: var(--accent); margin: 0 0 0.25rem;">Greenhouse #1</h3>
+    <p style="color: var(--muted); font-size: 0.9rem; margin: 0 0 0.75rem;">Test measurements near front door</p>
+    <div id="gh-params" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;"></div>
+
+    <h3 style="color: var(--accent); margin: 1.5rem 0 0.5rem;">Temperature — last 20 readings</h3>
+    <div id="gh-sparkline" style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem;">
+      <div style="color: var(--muted); text-align: center;">Loading…</div>
+    </div>
+
+    <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--muted); text-align: right; word-break: break-all;">
+      Source:
+      <a href="https://bayou.pvos.org/data/q86dqq927qy6/json/" target="_blank" rel="noopener">https://bayou.pvos.org/data/q86dqq927qy6/json/</a>
+      · Node <span id="gh-node">—</span> · Reading #<span id="gh-id">—</span>
+    </div>
+  </div>
+  <div id="gh-error" style="display: none; color: #b04a2e; text-align: center;"></div>
+</div>
+
+<script>
+(function() {
+  const API_URL = "https://bayou.pvos.org/data/q86dqq927qy6/json/";
+  const REFRESH_MS = 30000;
+  const SPARKLINE_N = 20;
+
+  // Human-readable labels + units for known parameter keys
+  const paramInfo = {
+    temperature_c:    { label: "Temperature",        unit: "°C"    },
+    humidity_rh:      { label: "Humidity",           unit: "% RH"  },
+    distance_meters:  { label: "Distance",           unit: "m"     },
+    pressure_mbar:    { label: "Pressure",           unit: "mbar"  },
+    battery_volts:    { label: "Battery",            unit: "V"     },
+    gps_lat:          { label: "GPS Latitude",       unit: "°"     },
+    gps_lon:          { label: "GPS Longitude",      unit: "°"     },
+    gps_alt:          { label: "GPS Altitude",       unit: "m"     },
+    co2_ppm:          { label: "CO₂",                unit: "ppm"   },
+    light_lux:        { label: "Light",              unit: "lux"   },
+    rssi:             { label: "RSSI",               unit: "dBm"   },
+    next_rssi:        { label: "Next-hop RSSI",      unit: "dBm"   },
+    node_id:          { label: "Node ID",            unit: ""      },
+    next_hop:         { label: "Next hop",           unit: ""      },
+    aux_1:            { label: "Aux 1",              unit: ""      },
+    aux_2:            { label: "Aux 2",              unit: ""      },
+    aux_3:            { label: "Aux 3",              unit: ""      }
+  };
+
+  // Keys that aren't really "measurement" cards (shown elsewhere or hidden)
+  const metaKeys = new Set(["node_id", "next_hop", "log"]);
+  const hiddenKeys = new Set(["battery_volts", "aux_1", "aux_2", "aux_3"]);
+
+  const EST_OPTS = {
+    timeZone: "America/New_York",
+    year: "numeric", month: "short", day: "numeric",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+    hour12: false
+  };
+
+  const SPARK_TS_OPTS = {
+    timeZone: "America/New_York",
+    month: "short", day: "numeric",
+    hour: "2-digit", minute: "2-digit",
+    hour12: false
+  };
+
+  function fmtEST(date) {
+    return date.toLocaleString("en-US", EST_OPTS) + " EST";
+  }
+
+  function cToF(c) { return c * 9 / 5 + 32; }
+
+  function timeAgo(then, now) {
+    const s = Math.max(0, Math.floor((now - then) / 1000));
+    if (s < 60)      return s + " second" + (s === 1 ? "" : "s") + " ago";
+    const m = Math.floor(s / 60);
+    if (m < 60)      return m + " minute" + (m === 1 ? "" : "s") + " ago";
+    const h = Math.floor(m / 60);
+    if (h < 24)      return h + " hour"   + (h === 1 ? "" : "s") + " ago";
+    const d = Math.floor(h / 24);
+    return d + " day" + (d === 1 ? "" : "s") + " ago";
+  }
+
+  function formatValue(key, value) {
+    if (typeof value === "number") {
+      // Drop unnecessary trailing zeros for ints, keep up to 2 decimals otherwise
+      return Number.isInteger(value) ? String(value) : value.toFixed(2);
+    }
+    return String(value);
+  }
+
+  function renderParams(parameters) {
+    const container = document.getElementById("gh-params");
+    container.innerHTML = "";
+    const entries = Object.entries(parameters)
+      .filter(([k, v]) => v !== null && v !== undefined && !metaKeys.has(k) && !hiddenKeys.has(k));
+
+    if (entries.length === 0) {
+      container.innerHTML = '<div style="color: var(--muted); grid-column: 1 / -1; text-align: center;">No parameter readings in the latest record.</div>';
+      return;
+    }
+
+    for (const [key, value] of entries) {
+      const info = paramInfo[key] || { label: key, unit: "" };
+      const card = document.createElement("div");
+      card.style.cssText = "background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem;";
+
+      if (key === "temperature_c" && typeof value === "number") {
+        const f = value * 9 / 5 + 32;
+        const tempValueHtml =
+          f.toFixed(2) + ' <span style="font-size: 0.9rem; font-weight: 400; color: var(--muted);">°F</span>' +
+          ' <span style="font-size: 1rem; font-weight: 400; color: var(--muted);"> / </span>' +
+          value.toFixed(2) + ' <span style="font-size: 0.9rem; font-weight: 400; color: var(--muted);">°C</span>';
+
+        // Temperature card uses a 2-column layout: value on the left,
+        // last-reading time + ago on the right so they line up visually.
+        card.innerHTML =
+          '<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">' +
+            '<div>' +
+              '<div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">' +
+                info.label +
+              '</div>' +
+              '<div style="font-size: 1.35rem; font-weight: 600; margin-top: 0.2rem;">' +
+                tempValueHtml +
+              '</div>' +
+            '</div>' +
+            '<div style="text-align: right;">' +
+              '<div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Last Reading</div>' +
+              '<div id="gh-ago" style="font-size: 1.1rem; font-weight: 600; margin-top: 0.2rem;">—</div>' +
+              '<div id="gh-ts" style="font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem;">—</div>' +
+            '</div>' +
+          '</div>';
+      } else {
+        const valueHtml = formatValue(key, value) +
+          (info.unit ? ' <span style="font-size: 0.9rem; font-weight: 400; color: var(--muted);">' + info.unit + '</span>' : '');
+        card.innerHTML =
+          '<div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">' +
+            info.label +
+          '</div>' +
+          '<div style="font-size: 1.35rem; font-weight: 600; margin-top: 0.2rem;">' +
+            valueHtml +
+          '</div>';
+      }
+      container.appendChild(card);
+    }
+  }
+
+  function renderSparkline(records) {
+    const container = document.getElementById("gh-sparkline");
+    const temps = [];
+    const times = [];
+    for (const r of records) {
+      const p = r && r.parameters;
+      if (p && typeof p.temperature_c === "number") {
+        temps.push(p.temperature_c);
+        times.push(new Date(r.timestamp));
+      }
+    }
+    // Keep the most recent N
+    const startIdx = Math.max(0, temps.length - SPARKLINE_N);
+    const tSlice = temps.slice(startIdx);
+    const timeSlice = times.slice(startIdx);
+
+    if (tSlice.length < 2) {
+      container.innerHTML = '<div style="color: var(--muted); text-align: center;">Not enough data points yet to draw a graph.</div>';
+      return;
+    }
+
+    const minT = Math.min(...tSlice);
+    const maxT = Math.max(...tSlice);
+    const rangeT = maxT - minT || 1;
+    const minTime = timeSlice[0].getTime();
+    const maxTime = timeSlice[timeSlice.length - 1].getTime();
+    const rangeTime = maxTime - minTime || 1;
+
+    // Chart dimensions (viewBox units). The SVG scales to fit its container.
+    const W = 640, H = 200;
+    const padLeft = 54, padRight = 14, padTop = 14, padBottom = 48;
+    const plotW = W - padLeft - padRight;
+    const plotH = H - padTop - padBottom;
+
+    const xFor = ms => padLeft + ((ms - minTime) / rangeTime) * plotW;
+    const yFor = v  => padTop + (1 - (v - minT) / rangeT) * plotH;
+
+    const points = tSlice.map((v, i) => [xFor(timeSlice[i].getTime()), yFor(v)]);
+    const polyline = points.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" ");
+    const dots = points.map(([x, y], i) => {
+      const v = tSlice[i];
+      const title = cToF(v).toFixed(2) + "°F / " + v.toFixed(2) + "°C — " +
+        timeSlice[i].toLocaleString("en-US", SPARK_TS_OPTS) + " EST";
+      return '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) +
+        '" r="2.5" fill="var(--accent)"><title>' + title + '</title></circle>';
+    }).join("");
+
+    // Y-axis ticks: min, mid, max — labels in °F
+    const yTicks = [minT, (minT + maxT) / 2, maxT];
+    const yTickMarkup = yTicks.map(v => {
+      const y = yFor(v);
+      return (
+        '<line x1="' + (padLeft - 4) + '" y1="' + y.toFixed(1) +
+          '" x2="' + padLeft + '" y2="' + y.toFixed(1) +
+          '" stroke="currentColor" stroke-width="1" opacity="0.6" />' +
+        '<text x="' + (padLeft - 7) + '" y="' + (y + 3.5).toFixed(1) +
+          '" text-anchor="end" font-size="11" fill="currentColor" opacity="0.8">' +
+          cToF(v).toFixed(1) + '</text>'
+      );
+    }).join("");
+
+    // X-axis ticks at whole-hour boundaries (EST/UTC agree on hour boundaries).
+    // Choose a step size so we end up with roughly 3–7 labels.
+    const HOUR_MS = 3600 * 1000;
+    const rangeHours = rangeTime / HOUR_MS;
+    let stepHours = 1;
+    if (rangeHours > 4)  stepHours = 2;
+    if (rangeHours > 8)  stepHours = 3;
+    if (rangeHours > 16) stepHours = 6;
+    if (rangeHours > 36) stepHours = 12;
+    if (rangeHours > 72) stepHours = 24;
+
+    const stepMs = stepHours * HOUR_MS;
+    const firstTickMs = Math.ceil(minTime / stepMs) * stepMs;
+    const xTickTimes = [];
+    for (let t = firstTickMs; t <= maxTime; t += stepMs) {
+      xTickTimes.push(new Date(t));
+    }
+    // Safety: if the range is shorter than one step, fall back to first/last
+    if (xTickTimes.length < 2) {
+      xTickTimes.length = 0;
+      xTickTimes.push(timeSlice[0], timeSlice[timeSlice.length - 1]);
+    }
+
+    const tickTimeOpts = {
+      timeZone: "America/New_York",
+      hour: "2-digit", minute: "2-digit", hour12: false
+    };
+    const tickDateOpts = {
+      timeZone: "America/New_York",
+      month: "short", day: "numeric"
+    };
+
+    let lastDateStr = null;
+    const xTickMarkup = xTickTimes.map((ts, i) => {
+      const x = xFor(ts.getTime());
+      const dateStr = ts.toLocaleDateString("en-US", tickDateOpts);
+      const timeStr = ts.toLocaleTimeString("en-US", tickTimeOpts);
+      const label = (i === 0 || dateStr !== lastDateStr) ? dateStr + " " + timeStr : timeStr;
+      lastDateStr = dateStr;
+
+      const anchor = i === 0 ? "start" : (i === xTickTimes.length - 1 ? "end" : "middle");
+      return (
+        '<line x1="' + x.toFixed(1) + '" y1="' + (padTop + plotH) +
+          '" x2="' + x.toFixed(1) + '" y2="' + (padTop + plotH + 4) +
+          '" stroke="currentColor" stroke-width="1" opacity="0.6" />' +
+        '<text x="' + x.toFixed(1) + '" y="' + (padTop + plotH + 18) +
+          '" text-anchor="' + anchor + '" font-size="11" fill="currentColor" opacity="0.8">' +
+          label + '</text>'
+      );
+    }).join("");
+
+    // Axis titles
+    const yTitleX = 14;
+    const yTitleY = padTop + plotH / 2;
+    const yTitle = '<text x="' + yTitleX + '" y="' + yTitleY +
+      '" text-anchor="middle" transform="rotate(-90, ' + yTitleX + ', ' + yTitleY + ')" ' +
+      'font-size="11" fill="currentColor" opacity="0.8">Temperature (°F)</text>';
+    const xTitle = '<text x="' + (padLeft + plotW / 2) + '" y="' + (H - 4) +
+      '" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">Time (EST)</text>';
+
+    const latest = tSlice[tSlice.length - 1];
+    const latestTime = timeSlice[timeSlice.length - 1];
+
+    // Find indices of min/max so we can report their timestamps
+    let minIdx = 0, maxIdx = 0;
+    for (let i = 1; i < tSlice.length; i++) {
+      if (tSlice[i] < tSlice[minIdx]) minIdx = i;
+      if (tSlice[i] > tSlice[maxIdx]) maxIdx = i;
+    }
+    const minTime_ = timeSlice[minIdx];
+    const maxTime_ = timeSlice[maxIdx];
+
+    const avgT = tSlice.reduce((s, v) => s + v, 0) / tSlice.length;
+
+    const fmtWhen = d => d.toLocaleString("en-US", SPARK_TS_OPTS) + " EST";
+
+    const summaryLine = (label, f, c, when) =>
+      '<div>' +
+        '<span style="display: inline-block; min-width: 70px;">' + label + ':</span> ' +
+        '<strong style="color: var(--fg);">' + f.toFixed(2) + ' °F</strong> / ' + c.toFixed(2) + ' °C' +
+        (when ? ' <span style="color: var(--muted);">— at ' + fmtWhen(when) + '</span>' : '') +
+      '</div>';
+
+    container.innerHTML =
+      '<svg viewBox="0 0 ' + W + ' ' + H + '" ' +
+        'style="width: 100%; max-width: 720px; height: auto; display: block; color: var(--fg); margin: 0 auto;">' +
+        // Y axis
+        '<line x1="' + padLeft + '" y1="' + padTop +
+          '" x2="' + padLeft + '" y2="' + (padTop + plotH) +
+          '" stroke="currentColor" stroke-width="1" opacity="0.5" />' +
+        // X axis
+        '<line x1="' + padLeft + '" y1="' + (padTop + plotH) +
+          '" x2="' + (padLeft + plotW) + '" y2="' + (padTop + plotH) +
+          '" stroke="currentColor" stroke-width="1" opacity="0.5" />' +
+        yTickMarkup +
+        xTickMarkup +
+        yTitle +
+        xTitle +
+        '<polyline points="' + polyline + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />' +
+        dots +
+      '</svg>' +
+      '<div style="display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; margin-top: 0.9rem;">' +
+        summaryLine("Latest",  cToF(latest), latest, latestTime) +
+        '<div>' +
+          '<span style="display: inline-block; min-width: 70px;">Average:</span> ' +
+          '<strong style="color: var(--fg);">' + cToF(avgT).toFixed(2) + ' °F</strong> / ' + avgT.toFixed(2) + ' °C' +
+          ' <span style="color: var(--muted);">— from ' + fmtWhen(timeSlice[0]) + ' to ' + fmtWhen(timeSlice[timeSlice.length - 1]) + '</span>' +
+        '</div>' +
+        summaryLine("Min",     cToF(minT),   minT,   minTime_) +
+        summaryLine("Max",     cToF(maxT),   maxT,   maxTime_) +
+      '</div>';
+  }
+
+  let lastTimestamp = null;
+
+  function updateNowAndAgo() {
+    if (!lastTimestamp) return;
+    const now = new Date();
+    const tsEl = document.getElementById("gh-ts");
+    const agoEl = document.getElementById("gh-ago");
+    if (tsEl) tsEl.textContent = fmtEST(lastTimestamp);
+    if (agoEl) agoEl.textContent = timeAgo(lastTimestamp, now);
+  }
+
+  async function load() {
+    try {
+      const res = await fetch(API_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const json = await res.json();
+      const records = (json && json.data) || [];
+      if (records.length === 0) throw new Error("No data records returned");
+
+      // Records come oldest-first; the most recent is the last element.
+      const record = records[records.length - 1];
+
+      lastTimestamp = new Date(record.timestamp);
+      document.getElementById("gh-id").textContent = record.id;
+      const nodeId = record.parameters && record.parameters.node_id;
+      document.getElementById("gh-node").textContent = nodeId != null ? nodeId : "—";
+      renderParams(record.parameters || {});
+      renderSparkline(records);
+
+      // gh-ts/gh-ago live inside the temperature card rendered by renderParams
+      // above, so update them now that the card exists.
+      updateNowAndAgo();
+      document.getElementById("gh-loading").style.display = "none";
+      document.getElementById("gh-error").style.display = "none";
+      document.getElementById("gh-content").style.display = "block";
+    } catch (err) {
+      const errEl = document.getElementById("gh-error");
+      errEl.textContent = "Could not load live data: " + err.message;
+      errEl.style.display = "block";
+      document.getElementById("gh-loading").style.display = "none";
+    }
+  }
+
+  load();
+  setInterval(load, REFRESH_MS);
+  setInterval(updateNowAndAgo, 1000);
+})();
+</script>
+
+</article>
+
+    </main>
+  </div>
+
+  
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>
