@@ -1,19 +1,29 @@
 ---
 title: "Hannan Healthy Foods Farm"
-meta: "Mesh radio data."
+meta: "Community radio experiment: gathering temperature and other data from an off-grid farm via a grassroots mesh radio network. A collaboration with Hannan Healthy Foods Farm in Lincoln, MA."
 layout: layouts/post.njk
 permalink: /hhf_greenhouse/
 hideDate: true
 ---
 
-<p style="color: var(--muted); margin-top: 0;">Mesh radio data.</p>
+<p style="color: var(--muted); margin-top: 0;">Community radio experiment: gathering temperature and other data from an off-grid farm via a grassroots mesh radio network. A collaboration with <a href="https://hannanhealthyfoods.com/" target="_blank" rel="noopener">Hannan Healthy Foods Farm</a> in Lincoln, MA.</p>
 
 <div id="greenhouse-status" style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow); margin: 1rem 0;">
   <div id="gh-loading" style="text-align: center; color: var(--muted);">Loading…</div>
   <div id="gh-content" style="display: none;">
     <h3 style="color: var(--accent); margin: 0 0 0.25rem;">Greenhouse #1</h3>
     <p style="color: var(--muted); font-size: 0.9rem; margin: 0 0 0.75rem;">Test measurements near front door</p>
-    <div id="gh-params" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;"></div>
+
+    <div id="gh-params" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1rem;"></div>
+
+    <figure style="margin: 0 0 1rem; background: #fff; border: 1px solid var(--hair); border-radius: 10px; padding: 0.75rem;">
+      <img src="/assets/images/hhf_greenhouse/farm_aerial.jpg"
+           alt="Aerial view of Hannan Agro Farms, with a magenta dot marking the sensor location just outside the smaller greenhouse near its south-end door."
+           style="width: 100%; max-width: 338px; height: auto; display: block; margin: 0 auto; border-radius: 6px;" />
+      <figcaption style="text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 0.5rem;">
+        Sensor location (magenta dot) — inside Greenhouse #1, near the door at the south end.
+      </figcaption>
+    </figure>
 
     <h3 style="color: var(--accent); margin: 1.5rem 0 0.5rem;">Temperature — last 20 readings</h3>
     <div id="gh-sparkline" style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem;">

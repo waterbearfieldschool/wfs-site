@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hannan Healthy Foods Farm</title>
-  <meta name="description" content="Mesh radio data." />
+  <meta name="description" content="Community radio experiment: gathering temperature and other data from an off-grid farm via a grassroots mesh radio network. A collaboration with Hannan Healthy Foods Farm in Lincoln, MA." />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://waterbearfieldschool.org/hhf_greenhouse/">
   <meta property="og:title" content="Hannan Healthy Foods Farm">
-  <meta property="og:description" content="Mesh radio data.">
+  <meta property="og:description" content="Community radio experiment: gathering temperature and other data from an off-grid farm via a grassroots mesh radio network. A collaboration with Hannan Healthy Foods Farm in Lincoln, MA.">
   <meta property="og:site_name" content="Waterbear Field School">
   <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
   
@@ -20,7 +20,7 @@
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://waterbearfieldschool.org/hhf_greenhouse/">
   <meta property="twitter:title" content="Hannan Healthy Foods Farm">
-  <meta property="twitter:description" content="Mesh radio data.">
+  <meta property="twitter:description" content="Community radio experiment: gathering temperature and other data from an off-grid farm via a grassroots mesh radio network. A collaboration with Hannan Healthy Foods Farm in Lincoln, MA.">
   <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,14 +63,24 @@
   <h1>Hannan Healthy Foods Farm</h1>
   
   
-<p style="color: var(--muted); margin-top: 0;">Mesh radio data.</p>
+<p style="color: var(--muted); margin-top: 0;">Community radio experiment: gathering temperature and other data from an off-grid farm via a grassroots mesh radio network. A collaboration with <a href="https://hannanhealthyfoods.com/" target="_blank" rel="noopener">Hannan Healthy Foods Farm</a> in Lincoln, MA.</p>
 
 <div id="greenhouse-status" style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow); margin: 1rem 0;">
   <div id="gh-loading" style="text-align: center; color: var(--muted);">Loading…</div>
   <div id="gh-content" style="display: none;">
     <h3 style="color: var(--accent); margin: 0 0 0.25rem;">Greenhouse #1</h3>
     <p style="color: var(--muted); font-size: 0.9rem; margin: 0 0 0.75rem;">Test measurements near front door</p>
-    <div id="gh-params" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;"></div>
+
+    <div id="gh-params" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1rem;"></div>
+
+    <figure style="margin: 0 0 1rem; background: #fff; border: 1px solid var(--hair); border-radius: 10px; padding: 0.75rem;">
+      <img src="/assets/images/hhf_greenhouse/farm_aerial.jpg"
+           alt="Aerial view of Hannan Agro Farms, with a magenta dot marking the sensor location just outside the smaller greenhouse near its south-end door."
+           style="width: 100%; max-width: 338px; height: auto; display: block; margin: 0 auto; border-radius: 6px;" />
+      <figcaption style="text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 0.5rem;">
+        Sensor location (magenta dot) — inside Greenhouse #1, near the door at the south end.
+      </figcaption>
+    </figure>
 
     <h3 style="color: var(--accent); margin: 1.5rem 0 0.5rem;">Temperature — last 20 readings</h3>
     <div id="gh-sparkline" style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem;">
