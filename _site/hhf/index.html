@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hannan Healthy Foods Farm</title>
+  <title>Hannan Healthy Foods</title>
   <meta name="description" content="Community radio experiment: gathering temperature and other data from an off-grid farm via a grassroots mesh radio network. A collaboration with Hannan Healthy Foods Farm in Lincoln, MA." />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://waterbearfieldschool.org/hhf_greenhouse/">
-  <meta property="og:title" content="Hannan Healthy Foods Farm">
+  <meta property="og:url" content="https://waterbearfieldschool.org/hhf/">
+  <meta property="og:title" content="Hannan Healthy Foods">
   <meta property="og:description" content="Community radio experiment: gathering temperature and other data from an off-grid farm via a grassroots mesh radio network. A collaboration with Hannan Healthy Foods Farm in Lincoln, MA.">
   <meta property="og:site_name" content="Waterbear Field School">
   <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
@@ -18,8 +18,8 @@
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://waterbearfieldschool.org/hhf_greenhouse/">
-  <meta property="twitter:title" content="Hannan Healthy Foods Farm">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/hhf/">
+  <meta property="twitter:title" content="Hannan Healthy Foods">
   <meta property="twitter:description" content="Community radio experiment: gathering temperature and other data from an off-grid farm via a grassroots mesh radio network. A collaboration with Hannan Healthy Foods Farm in Lincoln, MA.">
   <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,21 +60,72 @@
     <main>
       
 <article class="prose">
-  <h1>Hannan Healthy Foods Farm</h1>
+  <h1>Hannan Healthy Foods</h1>
   
   
+<style>
+  /* Multi-column row used inside data cards — stacks vertically on narrow screens */
+  .hhf-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 520px) {
+    .hhf-row {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    /* When stacked, force left-alignment so right/center-aligned columns read consistently */
+    .hhf-row > * {
+      text-align: left !important;
+      width: 100%;
+    }
+  }
+
+  /* Source link line — long URLs should wrap on narrow screens */
+  .hhf-src {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .hhf-src a { overflow-wrap: anywhere; }
+
+  /* Sparkline summary lines (Latest/Average/Min/Max) */
+  .hhf-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+    margin-top: 0.9rem;
+  }
+  .hhf-summary-label {
+    display: inline-block;
+    min-width: 70px;
+  }
+  @media (max-width: 520px) {
+    .hhf-summary-label {
+      min-width: 0;
+      margin-right: 0.35rem;
+    }
+  }
+</style>
+
 <p style="color: var(--muted); margin-top: 0;">Community radio experiment: gathering temperature and other data from an off-grid farm via a grassroots mesh radio network. A collaboration with <a href="https://hannanhealthyfoods.com/" target="_blank" rel="noopener">Hannan Healthy Foods Farm</a> in Lincoln, MA.</p>
 
 <div id="greenhouse-status" style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow); margin: 1rem 0;">
   <div id="gh-loading" style="text-align: center; color: var(--muted);">Loading…</div>
   <div id="gh-content" style="display: none;">
     <h3 style="color: var(--accent); margin: 0 0 0.25rem;">Greenhouse #1</h3>
-    <p style="color: var(--muted); font-size: 0.9rem; margin: 0 0 0.75rem;">Test measurements near front door</p>
+    <p style="color: var(--muted); font-size: 0.9rem; margin: 0 0 0.75rem;">Test measurements near the front door.</p>
 
     <div id="gh-params" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1rem;"></div>
 
     <figure style="margin: 0 0 1rem; background: #fff; border: 1px solid var(--hair); border-radius: 10px; padding: 0.75rem;">
-      <img src="/assets/images/hhf_greenhouse/farm_aerial.jpg"
+      <img src="/assets/images/hhf/farm_aerial.jpg"
            alt="Aerial view of Hannan Agro Farms, with a magenta dot marking the sensor location just outside the smaller greenhouse near its south-end door."
            style="width: 100%; max-width: 338px; height: auto; display: block; margin: 0 auto; border-radius: 6px;" />
       <figcaption style="text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 0.5rem;">
@@ -82,15 +133,41 @@
       </figcaption>
     </figure>
 
-    <h3 style="color: var(--accent); margin: 1.5rem 0 0.5rem;">Temperature — last 20 readings</h3>
-    <div id="gh-sparkline" style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem;">
-      <div style="color: var(--muted); text-align: center;">Loading…</div>
+    <div style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem; margin-top: 1rem;">
+      <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Temperature — last 20 readings</div>
+      <div id="gh-sparkline" style="margin-top: 0.5rem;">
+        <div style="color: var(--muted); text-align: center;">Loading…</div>
+      </div>
+      <div class="hhf-src">
+        Source:
+        <a href="https://bayou.pvos.org/data/q86dqq927qy6/json/" target="_blank" rel="noopener">https://bayou.pvos.org/data/q86dqq927qy6/json/</a>
+      </div>
     </div>
 
-    <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--muted); text-align: right; word-break: break-all;">
-      Source:
-      <a href="https://bayou.pvos.org/data/q86dqq927qy6/json/" target="_blank" rel="noopener">https://bayou.pvos.org/data/q86dqq927qy6/json/</a>
-      · Node <span id="gh-node">—</span> · Reading #<span id="gh-id">—</span>
+    <div id="wx-card" style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem; margin: 1rem 0 0;">
+      <div class="hhf-row">
+        <div>
+          <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Local Weather Station Temperature</div>
+          <div id="wx-temp" style="font-size: 1.35rem; font-weight: 600; margin-top: 0.2rem;">—</div>
+          <div id="wx-conditions" style="font-size: 0.9rem; color: var(--muted); margin-top: 0.2rem;"></div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Observed</div>
+          <div id="wx-ago" style="font-size: 1.1rem; font-weight: 600; margin-top: 0.2rem;">—</div>
+          <div id="wx-ts" style="font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem;">—</div>
+          <div style="font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem;">KBED · Hanscom Field, Bedford MA</div>
+        </div>
+      </div>
+      <div id="wx-error" style="display: none; color: #b04a2e; font-size: 0.85rem; margin-top: 0.4rem;"></div>
+      <div class="hhf-src">
+        Source:
+        <a href="https://api.weather.gov/stations/KBED/observations/latest" target="_blank" rel="noopener">NWS station KBED — latest observation</a>
+        (<a href="https://www.weather.gov/documentation/services-web-api" target="_blank" rel="noopener">api.weather.gov</a>)
+      </div>
+    </div>
+
+    <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--muted); text-align: right;">
+      Node <span id="gh-node">—</span> · Reading #<span id="gh-id">—</span>
     </div>
   </div>
   <div id="gh-error" style="display: none; color: #b04a2e; text-align: center;"></div>
@@ -99,7 +176,9 @@
 <script>
 (function() {
   const API_URL = "https://bayou.pvos.org/data/q86dqq927qy6/json/";
+  const WX_URL = "https://api.weather.gov/stations/KBED/observations/latest";
   const REFRESH_MS = 30000;
+  const WX_REFRESH_MS = 10 * 60 * 1000; // NWS updates ~hourly, poll every 10 minutes
   const SPARKLINE_N = 20;
 
   // Human-readable labels + units for known parameter keys
@@ -189,10 +268,15 @@
           ' <span style="font-size: 1rem; font-weight: 400; color: var(--muted);"> / </span>' +
           value.toFixed(2) + ' <span style="font-size: 0.9rem; font-weight: 400; color: var(--muted);">°C</span>';
 
-        // Temperature card uses a 2-column layout: value on the left,
-        // last-reading time + ago on the right so they line up visually.
+        const hopsRaw = parameters.aux_1;
+        const hopsDisplay = (hopsRaw === null || hopsRaw === undefined)
+          ? "—"
+          : (typeof hopsRaw === "number" && !Number.isInteger(hopsRaw) ? hopsRaw.toFixed(2) : String(hopsRaw));
+
+        // Temperature card uses a 3-column layout: temp value on the left,
+        // last-reading time + ago in the middle, and Radio hops on the right.
         card.innerHTML =
-          '<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">' +
+          '<div class="hhf-row">' +
             '<div>' +
               '<div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">' +
                 info.label +
@@ -201,11 +285,19 @@
                 tempValueHtml +
               '</div>' +
             '</div>' +
-            '<div style="text-align: right;">' +
+            '<div style="text-align: center;">' +
               '<div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Last Reading</div>' +
               '<div id="gh-ago" style="font-size: 1.1rem; font-weight: 600; margin-top: 0.2rem;">—</div>' +
               '<div id="gh-ts" style="font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem;">—</div>' +
             '</div>' +
+            '<div style="text-align: right;">' +
+              '<div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Radio hops</div>' +
+              '<div style="font-size: 1.35rem; font-weight: 600; margin-top: 0.2rem;">' + hopsDisplay + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="hhf-src">' +
+            'Source: ' +
+            '<a href="' + API_URL + '" target="_blank" rel="noopener">' + API_URL + '</a>' +
           '</div>';
       } else {
         const valueHtml = formatValue(key, value) +
@@ -361,7 +453,7 @@
 
     const summaryLine = (label, f, c, when) =>
       '<div>' +
-        '<span style="display: inline-block; min-width: 70px;">' + label + ':</span> ' +
+        '<span class="hhf-summary-label">' + label + ':</span> ' +
         '<strong style="color: var(--fg);">' + f.toFixed(2) + ' °F</strong> / ' + c.toFixed(2) + ' °C' +
         (when ? ' <span style="color: var(--muted);">— at ' + fmtWhen(when) + '</span>' : '') +
       '</div>';
@@ -384,10 +476,10 @@
         '<polyline points="' + polyline + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />' +
         dots +
       '</svg>' +
-      '<div style="display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; margin-top: 0.9rem;">' +
+      '<div class="hhf-summary">' +
         summaryLine("Latest",  cToF(latest), latest, latestTime) +
         '<div>' +
-          '<span style="display: inline-block; min-width: 70px;">Average:</span> ' +
+          '<span class="hhf-summary-label">Average:</span> ' +
           '<strong style="color: var(--fg);">' + cToF(avgT).toFixed(2) + ' °F</strong> / ' + avgT.toFixed(2) + ' °C' +
           ' <span style="color: var(--muted);">— from ' + fmtWhen(timeSlice[0]) + ' to ' + fmtWhen(timeSlice[timeSlice.length - 1]) + '</span>' +
         '</div>' +
@@ -397,14 +489,22 @@
   }
 
   let lastTimestamp = null;
+  let lastWxTimestamp = null;
 
   function updateNowAndAgo() {
-    if (!lastTimestamp) return;
     const now = new Date();
-    const tsEl = document.getElementById("gh-ts");
-    const agoEl = document.getElementById("gh-ago");
-    if (tsEl) tsEl.textContent = fmtEST(lastTimestamp);
-    if (agoEl) agoEl.textContent = timeAgo(lastTimestamp, now);
+    if (lastTimestamp) {
+      const tsEl = document.getElementById("gh-ts");
+      const agoEl = document.getElementById("gh-ago");
+      if (tsEl) tsEl.textContent = fmtEST(lastTimestamp);
+      if (agoEl) agoEl.textContent = timeAgo(lastTimestamp, now);
+    }
+    if (lastWxTimestamp) {
+      const wxTsEl = document.getElementById("wx-ts");
+      const wxAgoEl = document.getElementById("wx-ago");
+      if (wxTsEl) wxTsEl.textContent = fmtEST(lastWxTimestamp);
+      if (wxAgoEl) wxAgoEl.textContent = timeAgo(lastWxTimestamp, now);
+    }
   }
 
   async function load() {
@@ -439,9 +539,39 @@
     }
   }
 
+  async function loadWeather() {
+    const tempEl  = document.getElementById("wx-temp");
+    const condEl  = document.getElementById("wx-conditions");
+    const errorEl = document.getElementById("wx-error");
+    try {
+      const res = await fetch(WX_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const json = await res.json();
+      const p = (json && json.properties) || {};
+      const tempC = p.temperature && typeof p.temperature.value === "number" ? p.temperature.value : null;
+      if (tempC === null) throw new Error("No temperature value in response");
+      tempEl.innerHTML =
+        cToF(tempC).toFixed(1) + ' <span style="font-size: 0.9rem; font-weight: 400; color: var(--muted);">°F</span>' +
+        ' <span style="font-size: 1rem; font-weight: 400; color: var(--muted);"> / </span>' +
+        tempC.toFixed(1) + ' <span style="font-size: 0.9rem; font-weight: 400; color: var(--muted);">°C</span>';
+      condEl.textContent = p.textDescription || "";
+      if (p.timestamp) {
+        lastWxTimestamp = new Date(p.timestamp);
+        updateNowAndAgo();
+      }
+      errorEl.style.display = "none";
+    } catch (err) {
+      errorEl.textContent = "Could not load local weather: " + err.message;
+      errorEl.style.display = "block";
+    }
+  }
+
   load();
   setInterval(load, REFRESH_MS);
   setInterval(updateNowAndAgo, 1000);
+
+  loadWeather();
+  setInterval(loadWeather, WX_REFRESH_MS);
 })();
 </script>
 
