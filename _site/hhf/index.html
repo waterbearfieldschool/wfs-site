@@ -134,7 +134,7 @@
     </figure>
 
     <div style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem; margin-top: 1rem;">
-      <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Temperature — last 20 readings</div>
+      <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Temperature — last 80 readings</div>
       <div id="gh-sparkline" style="margin-top: 0.5rem;">
         <div style="color: var(--muted); text-align: center;">Loading…</div>
       </div>
@@ -192,7 +192,7 @@
   const WX_URL = "https://api.weather.gov/stations/KBED/observations/latest";
   const REFRESH_MS = 30000;
   const WX_REFRESH_MS = 10 * 60 * 1000; // NWS updates ~hourly, poll every 10 minutes
-  const SPARKLINE_N = 20;
+  const SPARKLINE_N = 80;
 
   // Human-readable labels + units for known parameter keys
   const paramInfo = {
@@ -346,8 +346,44 @@
     const minT = (30 - 32) * 5 / 9;
     const maxT = (120 - 32) * 5 / 9;
     const rangeT = maxT - minT;
-    const minTime = timeSlice[0].getTime();
-    const maxTime = timeSlice[timeSlice.length - 1].getTime();
+    // X-axis helpers: ticks land on local (America/New_York) 00/06/12/18.
+    // We compute them up here so we can also *extend* the plot domain out
+    // to the nearest such boundary on each side — otherwise the first and
+    // last ticks float inside the chart instead of sitting at the edges.
+    const HOUR_MS = 3600 * 1000;
+    const tickHoursLocal = [0, 6, 12, 18];
+    const hourFmt = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York", hour: "2-digit", hour12: false
+    });
+    const localHour = ts => {
+      const parts = hourFmt.formatToParts(new Date(ts));
+      let h = parseInt(parts.find(p => p.type === "hour").value, 10);
+      if (h === 24) h = 0;
+      return h;
+    };
+
+    const dataMinTime = timeSlice[0].getTime();
+    const dataMaxTime = timeSlice[timeSlice.length - 1].getTime();
+
+    // Find the nearest 6-hour local tick ≤ dataMinTime and ≥ dataMaxTime.
+    let minTime = dataMinTime;
+    {
+      const start = Math.floor(dataMinTime / HOUR_MS) * HOUR_MS;
+      for (let t = start; t >= start - 24 * HOUR_MS; t -= HOUR_MS) {
+        if (t <= dataMinTime && tickHoursLocal.indexOf(localHour(t)) !== -1) {
+          minTime = t; break;
+        }
+      }
+    }
+    let maxTime = dataMaxTime;
+    {
+      const start = Math.ceil(dataMaxTime / HOUR_MS) * HOUR_MS;
+      for (let t = start; t <= start + 24 * HOUR_MS; t += HOUR_MS) {
+        if (t >= dataMaxTime && tickHoursLocal.indexOf(localHour(t)) !== -1) {
+          maxTime = t; break;
+        }
+      }
+    }
     const rangeTime = maxTime - minTime || 1;
 
     // Chart dimensions (viewBox units). The SVG scales to fit its container.
@@ -384,18 +420,20 @@
       );
     }).join("");
 
-    // X-axis ticks every 2 hours (aligned to whole-hour boundaries).
-    const HOUR_MS = 3600 * 1000;
-    const stepMs = 2 * HOUR_MS;
-    const firstTickMs = Math.ceil(minTime / stepMs) * stepMs;
+    // Sweep the extended [minTime, maxTime] range hour-by-hour and keep the
+    // timestamps whose local hour is a 6-hour tick boundary. Because the
+    // domain was already extended to such boundaries, the sweep naturally
+    // includes ticks at both the left and right chart edges.
     const xTickTimes = [];
-    for (let t = firstTickMs; t <= maxTime; t += stepMs) {
-      xTickTimes.push(new Date(t));
+    for (let t = minTime; t <= maxTime; t += HOUR_MS) {
+      if (tickHoursLocal.indexOf(localHour(t)) !== -1) {
+        xTickTimes.push(new Date(t));
+      }
     }
     // Safety: if the range is shorter than one step, fall back to first/last
     if (xTickTimes.length < 2) {
       xTickTimes.length = 0;
-      xTickTimes.push(timeSlice[0], timeSlice[timeSlice.length - 1]);
+      xTickTimes.push(new Date(minTime), new Date(maxTime));
     }
 
     const tickTimeOpts = {
@@ -420,13 +458,13 @@
         '<line x1="' + x.toFixed(1) + '" y1="' + (padTop + plotH) +
           '" x2="' + x.toFixed(1) + '" y2="' + (padTop + plotH + 4) +
           '" stroke="currentColor" stroke-width="1" opacity="0.6" />' +
-        '<text x="' + x.toFixed(1) + '" y="' + (padTop + plotH + 16) +
-          '" text-anchor="' + anchor + '" font-size="11" fill="currentColor" opacity="0.8">' +
+        '<text x="' + x.toFixed(1) + '" y="' + (padTop + plotH + 15) +
+          '" text-anchor="' + anchor + '" font-size="9" fill="currentColor" opacity="0.8">' +
           timeStr + '</text>';
       if (showDate) {
         markup +=
-          '<text x="' + x.toFixed(1) + '" y="' + (padTop + plotH + 30) +
-            '" text-anchor="' + anchor + '" font-size="10" fill="currentColor" opacity="0.7">' +
+          '<text x="' + x.toFixed(1) + '" y="' + (padTop + plotH + 27) +
+            '" text-anchor="' + anchor + '" font-size="9" fill="currentColor" opacity="0.7">' +
             dateStr + '</text>';
       }
       return markup;
@@ -442,7 +480,7 @@
       const wxX1 = points[startIdx][0];
       const wxX2 = points[points.length - 1][0];
       const wxLabelX = wxX2;
-      const wxLabelY = Math.max(padTop + 10, wxY - 4);
+      const wxLabelY = Math.min(padTop + plotH - 2, wxY + 12);
       wxLineMarkup =
         '<line x1="' + wxX1.toFixed(1) + '" y1="' + wxY.toFixed(1) +
           '" x2="' + wxX2.toFixed(1) + '" y2="' + wxY.toFixed(1) +
