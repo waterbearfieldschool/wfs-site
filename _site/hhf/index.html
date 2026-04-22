@@ -342,8 +342,8 @@
     // Data min/max (for summary lines below the chart)
     const dataMinT = Math.min(...tSlice);
     const dataMaxT = Math.max(...tSlice);
-    // Fixed Y-axis range: 30 °F – 120 °F, converted to °C for internal math
-    const minT = (30 - 32) * 5 / 9;
+    // Fixed Y-axis range: 20 °F – 120 °F, converted to °C for internal math
+    const minT = (20 - 32) * 5 / 9;
     const maxT = (120 - 32) * 5 / 9;
     const rangeT = maxT - minT;
     // X-axis helpers: ticks land on local (America/New_York) 00/06/12/18.
@@ -406,7 +406,7 @@
     }).join("");
 
     // Y-axis ticks at fixed °F values across the full axis range
-    const yTickFs = [30, 60, 90, 120];
+    const yTickFs = [20, 40, 60, 80, 100, 120];
     const yTickMarkup = yTickFs.map(fVal => {
       const cVal = (fVal - 32) * 5 / 9;
       const y = yFor(cVal);
