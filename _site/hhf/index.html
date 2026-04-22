@@ -405,6 +405,31 @@
         '" r="2.5" fill="var(--accent)"><title>' + title + '</title></circle>';
     }).join("");
 
+    // NWS KBED history: a dashed line sampled every ~4 hours.
+    let wxHistoryLine = "";
+    if (Array.isArray(wxHistory) && wxHistory.length > 0) {
+      const FOUR_HOURS_MS = 4 * 60 * 60 * 1000;
+      const sampled = [];
+      let lastEmittedMs = -Infinity;
+      for (const pt of wxHistory) {
+        const t = pt.ts.getTime();
+        if (t < minTime || t > maxTime) continue;
+        if (pt.tempC < minT || pt.tempC > maxT) continue;
+        if (t - lastEmittedMs >= FOUR_HOURS_MS) {
+          sampled.push(pt);
+          lastEmittedMs = t;
+        }
+      }
+      if (sampled.length >= 2) {
+        const pts = sampled.map(pt =>
+          xFor(pt.ts.getTime()).toFixed(1) + "," + yFor(pt.tempC).toFixed(1)
+        ).join(" ");
+        wxHistoryLine =
+          '<polyline points="' + pts + '" fill="none" stroke="currentColor" ' +
+          'stroke-width="1.25" stroke-dasharray="4 3" opacity="0.6" />';
+      }
+    }
+
     // Y-axis ticks at fixed °F values across the full axis range
     const yTickFs = [20, 40, 60, 80, 100, 120];
     const yTickMarkup = yTickFs.map(fVal => {
@@ -538,6 +563,7 @@
         yTitle +
         xTitle +
         wxLineMarkup +
+        wxHistoryLine +
         '<polyline points="' + polyline + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />' +
         dots +
       '</svg>' +
@@ -557,6 +583,8 @@
   let lastWxTimestamp = null;
   let lastWxTempC = null;
   let lastRecords = null;
+  let wxHistory = null; // [{ ts: Date, tempC: number }, ...] from NWS KBED
+  let lastWxHistoryRange = null; // { start, end } of last successful fetch
 
   function updateNowAndAgo() {
     const now = new Date();
@@ -618,6 +646,17 @@
       lastRecords = records;
       renderParams(record.parameters || {});
       renderSparkline(records);
+      // Fire-and-forget: fetch NWS history to overlay on the chart. Only
+      // refetch if the range has meaningfully changed since last success.
+      if (!wxHistory || !lastWxHistoryRange ||
+          records[0].timestamp !== lastWxHistoryRange.start ||
+          records[records.length - 1].timestamp !== lastWxHistoryRange.end) {
+        lastWxHistoryRange = {
+          start: records[0].timestamp,
+          end: records[records.length - 1].timestamp
+        };
+        loadWeatherHistory();
+      }
 
       // Update the sparkline card's source link to point at whichever feed won.
       const srcEl = document.getElementById("gh-sparkline-src");
@@ -637,6 +676,35 @@
       errEl.textContent = "Could not load live data: " + err.message;
       errEl.style.display = "block";
       document.getElementById("gh-loading").style.display = "none";
+    }
+  }
+
+  // Fetch KBED observation history over the same time range as the current
+  // bayou record set. Best-effort — on failure, just leave existing history
+  // (or null) in place.
+  async function loadWeatherHistory() {
+    if (!lastRecords || lastRecords.length === 0) return;
+    try {
+      const startIso = new Date(lastRecords[0].timestamp).toISOString();
+      const endIso = new Date(lastRecords[lastRecords.length - 1].timestamp).toISOString();
+      const url = "https://api.weather.gov/stations/KBED/observations?start=" +
+        encodeURIComponent(startIso) + "&end=" + encodeURIComponent(endIso);
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const json = await res.json();
+      const features = (json && json.features) || [];
+      const series = [];
+      for (const f of features) {
+        const p = (f && f.properties) || {};
+        const tempC = p.temperature && typeof p.temperature.value === "number" ? p.temperature.value : null;
+        if (tempC === null || !p.timestamp) continue;
+        series.push({ ts: new Date(p.timestamp), tempC: tempC });
+      }
+      series.sort((a, b) => a.ts - b.ts);
+      wxHistory = series;
+      if (lastRecords) renderSparkline(lastRecords);
+    } catch (e) {
+      // swallow — history line is optional
     }
   }
 
