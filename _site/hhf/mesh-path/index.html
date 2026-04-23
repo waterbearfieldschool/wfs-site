@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mesh Path Visualizer</title>
+  <meta name="description" content="Decode a companion_sensor_receiver_route `log` hex string into candidate repeater identities and plot them on a map." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://waterbearfieldschool.org/hhf/mesh-path/">
+  <meta property="og:title" content="Mesh Path Visualizer">
+  <meta property="og:description" content="Decode a companion_sensor_receiver_route `log` hex string into candidate repeater identities and plot them on a map.">
+  <meta property="og:site_name" content="Waterbear Field School">
+  <meta property="og:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
+  
+  
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://waterbearfieldschool.org/hhf/mesh-path/">
+  <meta property="twitter:title" content="Mesh Path Visualizer">
+  <meta property="twitter:description" content="Decode a companion_sensor_receiver_route `log` hex string into candidate repeater identities and plot them on a map.">
+  <meta property="twitter:image" content="https://waterbearfieldschool.org/assets/images/projects/waterbear-field-school.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside>
+      <div class="brand">
+        <!--<div class="dot" aria-hidden="true"></div>-->
+        <div class="brand-hero">
+          <h1><a class="brand-link" href="/">Waterbear Field School</a></h1>
+          <p class="brand-topics" style="color: #8B6914; font-size: 0.95rem;">Hands-on community workshops and projects focusing on energy, water, food, shelter, climate, communication, fabrication, transport, arts & crafts.</p>
+          <nav class="brand-nav brand-nav-inline">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/#journal">Journal</a></li>
+              <li><a href="/#workshops">Workshops</a></li>
+              <li><a href="/#recently">Recently</a></li>
+              <li><a href="/#projects">Projects</a></li>
+              <li><a href="/#foundations">Foundations</a></li>
+              <li><a href="/about/">About</a></li>
+            </ul>
+          </nav>
+          <p class="brand-tagline" style="margin: 12px 0 4px 0; font-size: 0.95rem; font-style: italic; color: var(--muted); text-align: center;">
+            We'd love to hear from you!
+          </p>
+          <p class="contact-email" style="margin: 12px 0 0 0; font-size: 0.95rem;">
+            <a href="mailto:info@waterbearfieldschool.org?subject=Waterbear%20Field%20School%20Inquiry">info@waterbearfieldschool.org</a>
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <main>
+      
+<article class="prose">
+  <h1>Mesh Path Visualizer</h1>
+  
+  
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+  .mp-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+  .mp-form label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .mp-form input {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    font: inherit;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.95rem;
+    border: 1px solid var(--hair);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--fg);
+  }
+  /* Read-only inputs should clearly look static (not editable) */
+  .mp-form input[readonly] {
+    background: transparent;
+    border-color: transparent;
+    cursor: default;
+    padding-left: 0;
+  }
+  #mp-map {
+    height: 480px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--hair);
+    margin-top: 1rem;
+  }
+  .mp-hops {
+    margin-top: 1rem;
+    border: 1px solid var(--hair);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .mp-hop {
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--hair);
+  }
+  .mp-hop:last-child { border-bottom: none; }
+  .mp-hop-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-weight: 600;
+  }
+  .mp-hop-byte {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: var(--bg);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    border: 1px solid var(--hair);
+    font-size: 0.9rem;
+  }
+  .mp-hop-unique { color: var(--accent); }
+  .mp-hop-ambig  { color: #b04a2e; }
+  .mp-hop-none   { color: var(--muted); }
+  .mp-candidate {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .mp-status {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0.5rem 0;
+  }
+  /* Override Leaflet tooltip defaults so our marker labels show as plain
+     centered text overlaid on the circle marker. */
+  .mp-marker-label {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    padding: 0 !important;
+    white-space: nowrap;
+  }
+  .mp-marker-label::before { display: none !important; }
+</style>
+
+<p style="color: var(--muted); margin-top: 0;">Decode a FLOOD-route path from the <code>log</code> field of a Bayou record and plot each hop on a map. Each byte of the path is a 1-byte prefix of a repeater's public key; the nearest match is looked up in the <a href="https://map.meshcore.dev" target="_blank" rel="noopener">MeshCore global node map</a>.</p>
+
+<div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow); margin: 1rem 0;">
+  <div class="mp-form">
+    <div style="grid-column: 1 / -1;">
+      <label for="mp-hex">Path hex</label>
+      <input id="mp-hex" type="text" value="95a6e75dce9a" readonly />
+    </div>
+    <div>
+      <label for="mp-sender">Sender lat,lon</label>
+      <input id="mp-sender" type="text" value="42.405071,-71.319301" readonly />
+    </div>
+    <div>
+      <label for="mp-receiver">Receiver lat,lon</label>
+      <input id="mp-receiver" type="text" value="42.375,-71.236" readonly />
+    </div>
+    <div>
+      <label for="mp-center">Region center lat,lon</label>
+      <input id="mp-center" type="text" value="42.4,-71.25" readonly />
+    </div>
+    <div>
+      <label for="mp-radius">Radius (km)</label>
+      <input id="mp-radius" type="number" value="40" readonly />
+    </div>
+  </div>
+
+  <div id="mp-status" class="mp-status">Ready.</div>
+  <div id="mp-map"></div>
+  <div id="mp-hops" class="mp-hops"></div>
+</div>
+
+<script>
+(function() {
+  const API_URL = "https://map.meshcore.io/api/v1/nodes";
+  // Cache the roster in sessionStorage so repeated resolves on the same page
+  // don't hit the API every time.
+  const CACHE_KEY = "meshcore_nodes_v1";
+  const CACHE_TTL_MS = 60 * 60 * 1000;
+
+  const map = L.map("mp-map").setView([42.4, -71.25], 10);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  let layerGroup = L.layerGroup().addTo(map);
+
+  const statusEl = document.getElementById("mp-status");
+  const hopsEl = document.getElementById("mp-hops");
+
+  function setStatus(msg) { statusEl.textContent = msg; }
+
+  async function fetchNodes() {
+    try {
+      const cached = sessionStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const obj = JSON.parse(cached);
+        if (obj && obj.ts && (Date.now() - obj.ts) < CACHE_TTL_MS) {
+          return obj.data;
+        }
+      }
+    } catch (e) { /* ignore malformed cache */ }
+
+    setStatus("Fetching MeshCore node roster…");
+    const res = await fetch(API_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    try {
+      sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+    } catch (e) { /* storage full — not fatal */ }
+    return data;
+  }
+
+  // Distance in km between two lat/lon pairs.
+  function haversineKm(a, b) {
+    const R = 6371;
+    const dlat = (b[0] - a[0]) * Math.PI / 180;
+    const dlon = (b[1] - a[1]) * Math.PI / 180;
+    const s = Math.sin(dlat / 2) ** 2
+            + Math.cos(a[0] * Math.PI / 180) * Math.cos(b[0] * Math.PI / 180) * Math.sin(dlon / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(s));
+  }
+
+  // Pull the first byte of whatever pub_key-looking field this node has.
+  function firstByte(node) {
+    const v = node.public_key || node.pubkey || node.pub_key || node.id;
+    if (typeof v === "string" && v.length >= 2) return v.substring(0, 2).toLowerCase();
+    return null;
+  }
+
+  function nodeLatLon(node) {
+    const lat = node.adv_lat != null ? node.adv_lat
+              : node.lat != null ? node.lat
+              : node.latitude;
+    const lon = node.adv_lon != null ? node.adv_lon
+              : node.lon != null ? node.lon
+              : node.longitude;
+    if (typeof lat === "number" && typeof lon === "number") return [lat, lon];
+    return null;
+  }
+
+  function nodeName(node) {
+    return node.adv_name || node.name || node.label || "(unnamed)";
+  }
+
+  function parseHex(s) {
+    const cleaned = s.toLowerCase().replace(/[\s,:]+/g, "");
+    if (cleaned.length === 0 || cleaned.length % 2 !== 0) return null;
+    if (!/^[0-9a-f]+$/.test(cleaned)) return null;
+    const bytes = [];
+    for (let i = 0; i < cleaned.length; i += 2) bytes.push(cleaned.substring(i, i + 2));
+    return bytes;
+  }
+
+  // Pick the "best" candidate for a hop given the previous hop's location —
+  // nearest by great-circle distance.
+  function pickBest(candidates, prevLatLon) {
+    if (candidates.length === 0) return null;
+    if (candidates.length === 1) return candidates[0];
+    if (!prevLatLon) return candidates[0];
+    let best = candidates[0];
+    let bestD = Infinity;
+    for (const c of candidates) {
+      const ll = nodeLatLon(c);
+      if (!ll) continue;
+      const d = haversineKm(prevLatLon, ll);
+      if (d < bestD) { bestD = d; best = c; }
+    }
+    return best;
+  }
+
+  async function resolve() {
+    try {
+      const hex = document.getElementById("mp-hex").value.trim();
+      const bytes = parseHex(hex);
+      if (!bytes) { setStatus("Invalid hex string."); return; }
+
+      const [cLat, cLon] = document.getElementById("mp-center").value.split(",").map(parseFloat);
+      const radiusKm = parseFloat(document.getElementById("mp-radius").value);
+      if (isNaN(cLat) || isNaN(cLon) || isNaN(radiusKm)) {
+        setStatus("Invalid center or radius."); return;
+      }
+
+      // Sender / receiver locations are optional. When set, they seed the pick
+      // for the first and last hop respectively and are drawn as endpoint markers.
+      function parseLatLon(id) {
+        const raw = document.getElementById(id).value.trim();
+        if (!raw) return null;
+        const parts = raw.split(",").map(parseFloat);
+        if (parts.length !== 2 || isNaN(parts[0]) || isNaN(parts[1])) return null;
+        return parts;
+      }
+      const senderLatLon = parseLatLon("mp-sender");
+      const receiverLatLon = parseLatLon("mp-receiver");
+
+      const allNodes = await fetchNodes();
+      setStatus("Loaded " + allNodes.length + " nodes; filtering by region…");
+
+      const regional = allNodes.filter(n => {
+        const ll = nodeLatLon(n);
+        return ll && haversineKm([cLat, cLon], ll) <= radiusKm;
+      });
+
+      // Index by first-byte of pub_key
+      const byByte = {};
+      for (const n of regional) {
+        const fb = firstByte(n);
+        if (fb) (byByte[fb] = byByte[fb] || []).push(n);
+      }
+
+      setStatus(regional.length + " nodes in region · resolving " + bytes.length + " hops…");
+
+      // Clear and redraw
+      layerGroup.clearLayers();
+      hopsEl.innerHTML = "";
+
+      // Helper: circle marker with a centered text label at the real coords.
+      function placeMarker(latlon, label, fill, popupHtml) {
+        const m = L.circleMarker(latlon, {
+          radius: 11, color: "white", weight: 2, fillColor: fill, fillOpacity: 1
+        }).addTo(layerGroup);
+        m.bindTooltip(label, {
+          permanent: true, direction: "center", className: "mp-marker-label"
+        });
+        if (popupHtml) m.bindPopup(popupHtml);
+        return m;
+      }
+
+      // Draw sender as green "S"; seed prev so hop 1 picks the candidate
+      // closest to the sender.
+      const polyPoints = [];
+      let prev = null;
+      if (senderLatLon) {
+        placeMarker(senderLatLon, "S", "#2e7d32",
+          '<strong>Sender</strong><br><code>' + senderLatLon.map(v => v.toFixed(4)).join(", ") + '</code>');
+        polyPoints.push(senderLatLon);
+        prev = senderLatLon;
+      }
+      bytes.forEach((b, i) => {
+        const candidates = byByte[b] || [];
+        // For the final hop, bias toward the receiver location (if provided).
+        const biasToward = (i === bytes.length - 1 && receiverLatLon) ? receiverLatLon : prev;
+        const picked = pickBest(candidates, biasToward);
+        const div = document.createElement("div");
+        div.className = "mp-hop";
+
+        const headClass = candidates.length === 0 ? "mp-hop-none"
+                        : candidates.length === 1 ? "mp-hop-unique"
+                        : "mp-hop-ambig";
+        const status = candidates.length === 0 ? "no match"
+                    : candidates.length === 1 ? "unique"
+                    : candidates.length + " candidates";
+        div.innerHTML =
+          '<div class="mp-hop-head ' + headClass + '">' +
+            '<span>Hop ' + (i + 1) + '</span>' +
+            '<span class="mp-hop-byte">' + b + '</span>' +
+            '<span>· ' + status + '</span>' +
+          '</div>';
+
+        if (picked) {
+          const ll = nodeLatLon(picked);
+          if (ll) {
+            prev = ll;
+            polyPoints.push(ll);
+            placeMarker(ll, String(i + 1), "#c2185b",
+              '<strong>Hop ' + (i + 1) + ' — ' + b + '</strong><br>' +
+              nodeName(picked) + '<br>' +
+              '<code>' + ll[0].toFixed(4) + ', ' + ll[1].toFixed(4) + '</code>');
+          }
+          const row = document.createElement("div");
+          row.className = "mp-candidate";
+          row.innerHTML = '→ <strong>' + nodeName(picked) + '</strong> at <code>' +
+            (nodeLatLon(picked) ? nodeLatLon(picked).map(v => v.toFixed(4)).join(", ") : "?") +
+            '</code>';
+          div.appendChild(row);
+        }
+        // List all candidates so the user can eyeball ambiguity
+        if (candidates.length > 1) {
+          for (const c of candidates) {
+            if (c === picked) continue;
+            const ll = nodeLatLon(c);
+            const row = document.createElement("div");
+            row.className = "mp-candidate";
+            row.innerHTML = '· ' + nodeName(c) + (ll ? ' <code>' + ll.map(v => v.toFixed(4)).join(", ") + '</code>' : "");
+            div.appendChild(row);
+          }
+        }
+
+        hopsEl.appendChild(div);
+      });
+
+      // Draw receiver as blue "R" and extend the polyline to it.
+      if (receiverLatLon) {
+        placeMarker(receiverLatLon, "R", "#1565c0",
+          '<strong>Receiver</strong><br><code>' + receiverLatLon.map(v => v.toFixed(4)).join(", ") + '</code>');
+        polyPoints.push(receiverLatLon);
+      }
+
+      if (polyPoints.length >= 2) {
+        L.polyline(polyPoints, { color: "#c2185b", weight: 3, opacity: 0.75 }).addTo(layerGroup);
+        map.fitBounds(L.latLngBounds(polyPoints).pad(0.2));
+      } else if (polyPoints.length === 1) {
+        map.setView(polyPoints[0], 12);
+      }
+
+      setStatus("Done. " + polyPoints.length + "/" + bytes.length + " hops placed.");
+    } catch (err) {
+      setStatus("Error: " + err.message);
+    }
+  }
+
+  // Auto-run on first load with the prefilled values
+  resolve();
+})();
+</script>
+
+</article>
+
+    </main>
+  </div>
+
+  
+
+  <script>
+    // Slideshow functionality
+    var slideIndex = 1;
+
+    function currentSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      if (slides[slideIndex-1]) slides[slideIndex-1].classList.add("active");
+      if (dots[slideIndex-1]) dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 4 seconds
+    setInterval(function() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 4000);
+  </script>
+</body>
+</html>
