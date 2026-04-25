@@ -169,7 +169,7 @@ hideDate: true
     </figure>
 
     <div style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem; margin-top: 1rem;">
-      <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Temperature — last 80 readings</div>
+      <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Temperature</div>
       <div id="gh-sparkline" style="margin-top: 0.5rem;">
         <div style="color: var(--muted); text-align: center;">Loading…</div>
       </div>
@@ -223,7 +223,7 @@ hideDate: true
     </div>
     <div>
       <label for="mp-receiver">Receiver lat,lon</label>
-      <input id="mp-receiver" type="text" value="42.375,-71.236" readonly />
+      <input id="mp-receiver" type="text" value="42.38962391606562,-71.20274058650459" readonly />
     </div>
     <div>
       <label for="mp-center">Region center lat,lon</label>
@@ -259,7 +259,8 @@ hideDate: true
   const WX_URL = "https://api.weather.gov/stations/KBED/observations/latest";
   const REFRESH_MS = 30000;
   const WX_REFRESH_MS = 10 * 60 * 1000; // NWS updates ~hourly, poll every 10 minutes
-  const SPARKLINE_N = 80;
+  const FETCH_LIMIT = 120;
+  const SPARKLINE_DAYS = 3;
 
   // Human-readable labels + units for known parameter keys
   const paramInfo = {
@@ -396,10 +397,19 @@ hideDate: true
         times.push(new Date(r.timestamp));
       }
     }
-    // Keep the most recent N
-    const startIdx = Math.max(0, temps.length - SPARKLINE_N);
-    const tSlice = temps.slice(startIdx);
-    const timeSlice = times.slice(startIdx);
+    // Keep readings from the last SPARKLINE_DAYS days, anchored to the most
+    // recent timestamp so a stale feed still shows its last 3 days of data.
+    const tSlice = [];
+    const timeSlice = [];
+    if (times.length > 0) {
+      const cutoff = times[times.length - 1].getTime() - SPARKLINE_DAYS * 24 * 3600 * 1000;
+      for (let i = 0; i < times.length; i++) {
+        if (times[i].getTime() >= cutoff) {
+          tSlice.push(temps[i]);
+          timeSlice.push(times[i]);
+        }
+      }
+    }
 
     if (tSlice.length < 2) {
       container.innerHTML = '<div style="color: var(--muted); text-align: center;">Not enough data points yet to draw a graph.</div>';
@@ -703,7 +713,9 @@ hideDate: true
       if (!feed) throw new Error("No data feeds reachable");
       activeJsonUrl = feed.jsonUrl;
 
-      const res = await fetch(feed.jsonUrl, { cache: "no-store" });
+      const sep = feed.jsonUrl.indexOf("?") === -1 ? "?" : "&";
+      const fetchUrl = feed.jsonUrl + sep + "limit=" + FETCH_LIMIT;
+      const res = await fetch(fetchUrl, { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       const json = await res.json();
       const records = (json && json.data) || [];

@@ -226,7 +226,7 @@
     </figure>
 
     <div style="background: var(--bg); border: 1px solid var(--hair); border-radius: 10px; padding: 0.9rem; margin-top: 1rem;">
-      <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Temperature — last 80 readings</div>
+      <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Temperature</div>
       <div id="gh-sparkline" style="margin-top: 0.5rem;">
         <div style="color: var(--muted); text-align: center;">Loading…</div>
       </div>
@@ -280,7 +280,7 @@
     </div>
     <div>
       <label for="mp-receiver">Receiver lat,lon</label>
-      <input id="mp-receiver" type="text" value="42.375,-71.236" readonly />
+      <input id="mp-receiver" type="text" value="42.38962391606562,-71.20274058650459" readonly />
     </div>
     <div>
       <label for="mp-center">Region center lat,lon</label>
@@ -316,7 +316,8 @@
   const WX_URL = "https://api.weather.gov/stations/KBED/observations/latest";
   const REFRESH_MS = 30000;
   const WX_REFRESH_MS = 10 * 60 * 1000; // NWS updates ~hourly, poll every 10 minutes
-  const SPARKLINE_N = 80;
+  const FETCH_LIMIT = 120;
+  const SPARKLINE_DAYS = 3;
 
   // Human-readable labels + units for known parameter keys
   const paramInfo = {
@@ -453,10 +454,19 @@
         times.push(new Date(r.timestamp));
       }
     }
-    // Keep the most recent N
-    const startIdx = Math.max(0, temps.length - SPARKLINE_N);
-    const tSlice = temps.slice(startIdx);
-    const timeSlice = times.slice(startIdx);
+    // Keep readings from the last SPARKLINE_DAYS days, anchored to the most
+    // recent timestamp so a stale feed still shows its last 3 days of data.
+    const tSlice = [];
+    const timeSlice = [];
+    if (times.length > 0) {
+      const cutoff = times[times.length - 1].getTime() - SPARKLINE_DAYS * 24 * 3600 * 1000;
+      for (let i = 0; i < times.length; i++) {
+        if (times[i].getTime() >= cutoff) {
+          tSlice.push(temps[i]);
+          timeSlice.push(times[i]);
+        }
+      }
+    }
 
     if (tSlice.length < 2) {
       container.innerHTML = '<div style="color: var(--muted); text-align: center;">Not enough data points yet to draw a graph.</div>';
@@ -529,23 +539,23 @@
         '" r="2.5" fill="var(--accent)"><title>' + title + '</title></circle>';
     }).join("");
 
-    // NWS KBED history: a dashed line sampled every ~4 hours.
+    // NWS KBED recent-history dashed line — only the last ~8 hours so it reads
+    // as a short "outside temp recently" trace rather than a full-chart overlay.
+    // We keep every point in that window (no sub-sampling) since the density is
+    // manageable and avoids the jagged-polyline effect the 4-hour sample caused.
+    const WX_HISTORY_HOURS = 8;
     let wxHistoryLine = "";
     if (Array.isArray(wxHistory) && wxHistory.length > 0) {
-      const FOUR_HOURS_MS = 4 * 60 * 60 * 1000;
-      const sampled = [];
-      let lastEmittedMs = -Infinity;
+      const windowStartMs = maxTime - WX_HISTORY_HOURS * 60 * 60 * 1000;
+      const recent = [];
       for (const pt of wxHistory) {
         const t = pt.ts.getTime();
-        if (t < minTime || t > maxTime) continue;
+        if (t < windowStartMs || t > maxTime) continue;
         if (pt.tempC < minT || pt.tempC > maxT) continue;
-        if (t - lastEmittedMs >= FOUR_HOURS_MS) {
-          sampled.push(pt);
-          lastEmittedMs = t;
-        }
+        recent.push(pt);
       }
-      if (sampled.length >= 2) {
-        const pts = sampled.map(pt =>
+      if (recent.length >= 2) {
+        const pts = recent.map(pt =>
           xFor(pt.ts.getTime()).toFixed(1) + "," + yFor(pt.tempC).toFixed(1)
         ).join(" ");
         wxHistoryLine =
@@ -629,7 +639,13 @@
       const wxX1 = points[startIdx][0];
       const wxX2 = points[points.length - 1][0];
       const wxLabelX = wxX2;
-      const wxLabelY = Math.min(padTop + plotH - 2, wxY + 12);
+      // Place the label clearly below the line. If that would overrun the plot
+      // bottom, flip the label above the line instead — so it never overlaps.
+      const LABEL_OFFSET = 16;
+      const labelBelow = wxY + LABEL_OFFSET;
+      const wxLabelY = labelBelow <= padTop + plotH - 2
+        ? labelBelow
+        : wxY - 6;  // flip above
       wxLineMarkup =
         '<line x1="' + wxX1.toFixed(1) + '" y1="' + wxY.toFixed(1) +
           '" x2="' + wxX2.toFixed(1) + '" y2="' + wxY.toFixed(1) +
@@ -754,7 +770,9 @@
       if (!feed) throw new Error("No data feeds reachable");
       activeJsonUrl = feed.jsonUrl;
 
-      const res = await fetch(feed.jsonUrl, { cache: "no-store" });
+      const sep = feed.jsonUrl.indexOf("?") === -1 ? "?" : "&";
+      const fetchUrl = feed.jsonUrl + sep + "limit=" + FETCH_LIMIT;
+      const res = await fetch(fetchUrl, { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       const json = await res.json();
       const records = (json && json.data) || [];
@@ -770,6 +788,12 @@
       lastRecords = records;
       renderParams(record.parameters || {});
       renderSparkline(records);
+
+      // Broadcast the record so other widgets on this page (e.g. mesh-path
+      // visualizer) can react without coupling to this IIFE's internals.
+      document.dispatchEvent(new CustomEvent("hhf-record-update", {
+        detail: { record, records }
+      }));
       // Fire-and-forget: fetch NWS history to overlay on the chart. Only
       // refetch if the range has meaningfully changed since last success.
       if (!wxHistory || !lastWxHistoryRange ||
@@ -902,9 +926,10 @@
     return json; // { generated_at, nodes, ... }
   }
 
-  // Fetch the live roster from the MeshCore map API (with a session cache to
-  // avoid repeat hits on the same visit).
-  async function fetchLive() {
+  // Fetch the live roster from the MeshCore map API. Uses a session cache to
+  // avoid repeat hits within the same visit, and retries transient failures
+  // (network blips, cold-start latency) a few times before giving up.
+  async function fetchLive(onRetry) {
     try {
       const cached = sessionStorage.getItem(CACHE_KEY);
       if (cached) {
@@ -913,12 +938,28 @@
       }
     } catch (e) { /* ignore malformed cache */ }
 
-    const res = await fetch(API_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    const data = await res.json();
-    try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); }
-    catch (e) { /* storage full */ }
-    return data;
+    // Short retry — CORS failures will always fail, but a brief retry
+    // catches transient network blips (on origins where CORS is allowed).
+    const MAX_ATTEMPTS = 3;
+    const RETRY_DELAYS_MS = [2000, 4000];  // after attempts 1 and 2
+    let lastErr = null;
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+      try {
+        const res = await fetch(API_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); }
+        catch (e) { /* storage full */ }
+        return data;
+      } catch (err) {
+        lastErr = err;
+        if (attempt >= MAX_ATTEMPTS) break;
+        const delay = RETRY_DELAYS_MS[attempt - 1] || 12000;
+        if (typeof onRetry === "function") onRetry(attempt, MAX_ATTEMPTS, delay);
+        await new Promise(r => setTimeout(r, delay));
+      }
+    }
+    throw lastErr || new Error("fetchLive: unknown error");
   }
 
   function fmtTs(iso) {
@@ -1110,6 +1151,32 @@
     }
   }
 
+  // Keep the most recent node dataset around so incoming Bayou updates can
+  // re-resolve without refetching. Also track the last log-hex we've applied,
+  // to avoid redundant re-renders when the feed polls on its regular cadence.
+  let currentNodes = null;
+  let lastAppliedLog = null;
+
+  // Apply a log-hex from a Bayou record IF it's present and valid. Silently
+  // ignores blank, malformed, or duplicate values — so old firmware (no path
+  // field yet) leaves the example hex in place.
+  function applyLogFromBayou(raw) {
+    if (typeof raw !== "string") return;
+    const cleaned = raw.trim().toLowerCase();
+    if (!cleaned) return;
+    if (cleaned === lastAppliedLog) return;
+    if (!/^[0-9a-f]+$/.test(cleaned) || cleaned.length % 2 !== 0) return;
+    lastAppliedLog = cleaned;
+    document.getElementById("mp-hex").value = cleaned;
+    if (currentNodes) resolve(currentNodes);
+  }
+
+  document.addEventListener("hhf-record-update", (ev) => {
+    const rec = ev && ev.detail && ev.detail.record;
+    const log = rec && rec.parameters && rec.parameters.log;
+    applyLogFromBayou(log);
+  });
+
   // Orchestration: render instantly from the static snapshot, then refresh in
   // the background from the live API. If the live fetch fails we keep the
   // static render and say so in the status line.
@@ -1118,7 +1185,8 @@
     try {
       const staticJson = await fetchStatic();
       staticMeta = staticJson;
-      resolve(staticJson.nodes);
+      currentNodes = staticJson.nodes;
+      resolve(currentNodes);
       setStatus('Showing cached repeater data (snapshot ' + fmtTs(staticJson.generated_at) +
                 ') · checking for live update…');
     } catch (err) {
@@ -1126,13 +1194,19 @@
     }
 
     try {
+      // Retries happen silently — no need to broadcast each attempt, since a
+      // CORS-blocked origin (the common production case) will just keep failing.
       const liveNodes = await fetchLive();
-      resolve(liveNodes);
+      currentNodes = liveNodes;
+      resolve(currentNodes);
       setStatus('Live repeater data (refreshed just now).');
     } catch (err) {
+      const isCors = /CORS|cross-origin|failed to fetch|NetworkError/i.test(String(err && err.message));
       if (staticMeta) {
-        setStatus('Live fetch unavailable — showing cached repeater data (snapshot ' +
-                  fmtTs(staticMeta.generated_at) + ').');
+        const base = 'Showing cached repeater data (snapshot ' + fmtTs(staticMeta.generated_at) + ')';
+        setStatus(isCors
+          ? base + ' — live updates not available from this origin.'
+          : base + ' — live update unavailable.');
       } else {
         setStatus("Could not load repeater data: " + err.message);
       }

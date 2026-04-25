@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-23T12:58:08.855099+00:00",
+  "generated_at": "2026-04-25T01:16:42.256787+00:00",
   "source": "https://map.meshcore.io/api/v1/nodes",
   "region": {
     "center": [
@@ -11,7 +11,7 @@
   "nodes": [
     {
       "public_key": "01f0e86393494b0be83e3d93bd528456de39f389b9dcf802bc90b21f66ea88a6",
-      "adv_name": "Concord MA - MQTT",
+      "adv_name": "Concord MA",
       "adv_lat": 42.474,
       "adv_lon": -71.3146
     },
@@ -287,9 +287,9 @@
     },
     {
       "public_key": "2003fcdd3f6f34a8e081025a03176eb96e504131b48cca7c7782bb70e780fbb5",
-      "adv_name": "BRK CP MQTT",
+      "adv_name": "North Brookline MQTT",
       "adv_lat": 42.3462,
-      "adv_lon": -71.1314
+      "adv_lon": -71.1315
     },
     {
       "public_key": "2104f09d5011385401beabcbddb7ae89778c0b8bfff83f6eb5e78d2a30c6bc3c",
@@ -548,6 +548,12 @@
       "adv_name": "SOM - LunarLander",
       "adv_lat": 42.3967,
       "adv_lon": -71.1116
+    },
+    {
+      "public_key": "44370a972f9f8f82447a171507b5b980dbe7acb65acd7520e5e3e9b693073f88",
+      "adv_name": "Murphnet Repeater",
+      "adv_lat": 42.4384,
+      "adv_lon": -71.0868
     },
     {
       "public_key": "446ab4afe22a8458dfd45fa180c303609429214bf2671884d5ec9c1d21ffbeec",
@@ -924,7 +930,7 @@
     {
       "public_key": "7057edd3389f21867e1e49e8e518326e565702e31ddbecab141ccf343a184fbc",
       "adv_name": "T114_DOT",
-      "adv_lat": 42.2946,
+      "adv_lat": 42.2947,
       "adv_lon": -71.0534
     },
     {
@@ -1144,6 +1150,12 @@
       "adv_lon": -70.9339
     },
     {
+      "public_key": "8d11a6e35d45d23803cc5d6d711179bec952833c9f7072d10f350edac6ef7eb8",
+      "adv_name": "nexa",
+      "adv_lat": 42.1511,
+      "adv_lon": -71.1137
+    },
+    {
       "public_key": "8d5b7626154246020e3a8f5853b44cade0287e30e2e95d54e95651a9e778b423",
       "adv_name": "Furnace Brook Parkway R",
       "adv_lat": 42.2621,
@@ -1324,6 +1336,12 @@
       "adv_lon": -71.187
     },
     {
+      "public_key": "9f9a26fbcab7b8695f158ccba7d159ae012f1ee1927cf44d7727d86ae6c82d7c",
+      "adv_name": "CQDX",
+      "adv_lat": 42.4672,
+      "adv_lon": -71.2016
+    },
+    {
       "public_key": "a09b6f3be9a44e5c2fc7b09aa8af70a0940bf1f7938db66a557a1432437b3070",
       "adv_name": "LEX - GreatMeadow",
       "adv_lat": 42.4303,
@@ -1340,6 +1358,12 @@
       "adv_name": "NTK-CTR-02",
       "adv_lat": 42.2809,
       "adv_lon": -71.355
+    },
+    {
+      "public_key": "a2af8492d6c80fcd6d21554f6884dbd0efa17d1247aecc577f2f20a3aac6f1f7",
+      "adv_name": "Steve's Mobile FIREBALL",
+      "adv_lat": 42.2239,
+      "adv_lon": -71.0053
     },
     {
       "public_key": "a3a5653b0f8b814ec331f6028893ad0018f5486756b780e3f0bf069cfb33d7d5",
@@ -1880,6 +1904,12 @@
       "adv_name": "Lowell Alpha",
       "adv_lat": 42.6477,
       "adv_lon": -71.34
+    },
+    {
+      "public_key": "e9899d186afb90001cbdb5a601b074f310e6375e29d45c08ae594b04325e6a72",
+      "adv_name": "Peter WisMesh Pot V2 E9",
+      "adv_lat": 42.2469,
+      "adv_lon": -71.6269
     },
     {
       "public_key": "ea571ea4ddc5eb55f7c15200add315947658bcca947f31c360d639cd44099ed5",
