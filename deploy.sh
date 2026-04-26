@@ -9,4 +9,4 @@ cp CNAME ../waterbearfieldschool.github.io/
 cd ../waterbearfieldschool.github.io/
 git add *	
 git commit -m 'update'
-git push
+git push -f
