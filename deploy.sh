@@ -4,7 +4,9 @@ git pull
 git add *
 git commit -m 'update'
 git push --no-verify
-rm -rf ../waterbearfieldschool.github.io/*
+cd ../waterbearfieldschool.github.io/
+rm -rf *
+cd ../wfs-site/
 cp -r _site/* ../waterbearfieldschool.github.io/
 cp CNAME ../waterbearfieldschool.github.io/
 cd ../waterbearfieldschool.github.io/
