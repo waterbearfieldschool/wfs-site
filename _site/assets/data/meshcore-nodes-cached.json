@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25T01:16:42.256787+00:00",
+  "generated_at": "2026-04-27T04:00:09.024087+00:00",
   "source": "https://map.meshcore.io/api/v1/nodes",
   "region": {
     "center": [
@@ -124,6 +124,12 @@
       "adv_lon": -71.1497
     },
     {
+      "public_key": "0e467c8305a434c6e3c0f792ceca3b19c886fba0934894f42b18a88aac8e2731",
+      "adv_name": "Longspur",
+      "adv_lat": 42.3619,
+      "adv_lon": -71.1394
+    },
+    {
       "public_key": "0fbd60c6a6f81f69e56a019c4f0a0e96947f321052a9bd82ba696a12010299dd",
       "adv_name": "Brookline \ud83d\udc63",
       "adv_lat": 42.3309,
@@ -194,6 +200,12 @@
       "adv_name": "WES - Trolley Line Trai",
       "adv_lat": 42.2789,
       "adv_lon": -71.5772
+    },
+    {
+      "public_key": "16830a0af2406305514be6dc619f0e87e1f6ec035fb3447b2b8a9efab230849f",
+      "adv_name": "d970 O",
+      "adv_lat": 42.4203,
+      "adv_lon": -71.148
     },
     {
       "public_key": "17f94ff3d4e5012a859524854a0bc51db099784d65df9803df9c249ac816ce35",
@@ -796,6 +808,12 @@
       "adv_lon": -71.6263
     },
     {
+      "public_key": "60a37371c8a094be1f6d1d5772193b2dc754abd6b936381b87cfc0daa95f6fd2",
+      "adv_name": "MID-Wills Hill",
+      "adv_lat": 42.5972,
+      "adv_lon": -71.0237
+    },
+    {
       "public_key": "60f4f33c92b9133447915b3096c0dc40232de207a3791a4dec072bc15619765f",
       "adv_name": "Steve\u2019s ZaTree 2",
       "adv_lat": 42.2233,
@@ -920,6 +938,12 @@
       "adv_name": "SNO Repeater \u2744\ufe0f",
       "adv_lat": 42.6146,
       "adv_lon": -71.3238
+    },
+    {
+      "public_key": "6dcd3c44ccefa0279c3d072cc8b2a5f18381c508a9e74fc71fc5b02bdea397e7",
+      "adv_name": "Holbrook Repeater",
+      "adv_lat": 42.148,
+      "adv_lon": -71.009
     },
     {
       "public_key": "6dd8d2fab917e84db37e42fcd707a4c7ea0e3858127996c0180acff5b6e98a68",
@@ -1108,6 +1132,12 @@
       "adv_lon": -71.0804
     },
     {
+      "public_key": "85823b07909a48e03282cea00aa1280fd7301bd83c86060aae28c06aa8a1a127",
+      "adv_name": "\ud83d\ude0eSteve\u2019s Mishko ca",
+      "adv_lat": 42.2435,
+      "adv_lon": -71.0505
+    },
+    {
       "public_key": "85ec1cd56b6806a7b12213f4daed9093710021cf4c7fad2a497b9d306ebfd186",
       "adv_name": "OWD - Neponset River",
       "adv_lat": 42.1872,
@@ -1184,6 +1214,12 @@
       "adv_name": "FRA - Gibbs",
       "adv_lat": 42.3316,
       "adv_lon": -71.4822
+    },
+    {
+      "public_key": "8fe6f1dce5aa1e3b3db9585eab6e7ab941c32013d979e52d80b8c2820c821dff",
+      "adv_name": "Peppercorn Hill",
+      "adv_lat": 42.1831,
+      "adv_lon": -71.5616
     },
     {
       "public_key": "900e9107d4b2e92e305163ee2d1734e32f59ab4aec84812b2b87165a07c38a49",
@@ -1294,6 +1330,12 @@
       "adv_lon": -71.1949
     },
     {
+      "public_key": "9b1cbda7adeb5b12e17dfe717846163a3d459348c5d7dbef95cba8030236b7e4",
+      "adv_name": "gcp pager",
+      "adv_lat": 42.4659,
+      "adv_lon": -71.0571
+    },
+    {
       "public_key": "9c227cd977baf2176a257100574407cfe0cf8a23b803de690879478cfd2c0209",
       "adv_name": "NBORO Heimdall Repeater",
       "adv_lat": 42.3023,
@@ -1304,6 +1346,12 @@
       "adv_name": "Shrew1",
       "adv_lat": 42.2966,
       "adv_lon": -71.7136
+    },
+    {
+      "public_key": "9ccdcc5a94bf6b5a24d4ae4ed42f76aac6524143a99801d3ef6c974afc4efc0b",
+      "adv_name": "Macfisherman",
+      "adv_lat": 42.5475,
+      "adv_lon": -71.5514
     },
     {
       "public_key": "9d42974e844e10504bd34ebee9f2817d86804b477368bd358df5e912205ccca7",
@@ -1428,8 +1476,8 @@
     {
       "public_key": "a6ff1a1a90c6b294575d094ff82ab9f7016f8af3a9b1c1937e4c6e6ba2ccab26",
       "adv_name": "Steve's Braintree Time ",
-      "adv_lat": 42.2189,
-      "adv_lon": -71.0236
+      "adv_lat": 42.2424,
+      "adv_lon": -71.0529
     },
     {
       "public_key": "a82ad718652a4425fcc216b407624149e9e414067ad65bfa5bb47a54b6b428de",
@@ -1462,6 +1510,12 @@
       "adv_lon": -71.1014
     },
     {
+      "public_key": "af65e5a84a21bd66e9b4fad0b26f9a8d456e2d38469c38b4d006333b0d9f9051",
+      "adv_name": "ANNOUNCEMENTS|BOS",
+      "adv_lat": 42.3534,
+      "adv_lon": -71.0695
+    },
+    {
       "public_key": "b0ec883edf45bf1ffe6b95f02891ec1e1ac8ae45820ba3c1ac4109b18990c143",
       "adv_name": "OTTO",
       "adv_lat": 42.3583,
@@ -1472,6 +1526,12 @@
       "adv_name": "QCY - Pres Hill",
       "adv_lat": 42.2503,
       "adv_lon": -71.0144
+    },
+    {
+      "public_key": "b16ba51b50f06b6dca9b0bda7e0d38291fa5dca5a1c7a0a28c013c91eb48b62a",
+      "adv_name": "BUR - Fox Hill 2",
+      "adv_lat": 42.5234,
+      "adv_lon": -71.1998
     },
     {
       "public_key": "b19b1f34b92db322451057e4957ef2df0d9544cc8a11e8519173fcea41a6d2a1",
@@ -1532,6 +1592,12 @@
       "adv_name": "DED - East Dedham",
       "adv_lat": 42.2477,
       "adv_lon": -71.1544
+    },
+    {
+      "public_key": "bd01a37909ffc140b107e7c3c48d6ffb01fe16a2d7fb88e4615456c3a4f62bdc",
+      "adv_name": "BD Repeater (Franklin)",
+      "adv_lat": 42.0832,
+      "adv_lon": -71.3691
     },
     {
       "public_key": "be09ebed9b7cec13a074eb830ad12a211dcbeafef1b7ea9570067edafbce903b",
@@ -1786,6 +1852,12 @@
       "adv_lon": -71.3739
     },
     {
+      "public_key": "dbb443201e8bb104d1ae8d93bc7b8e9d4bedf31add112a8253dfc25b1e2ca4ee",
+      "adv_name": "Hossman Repeater Braint",
+      "adv_lat": 42.2268,
+      "adv_lon": -71.0043
+    },
+    {
       "public_key": "dc9e25c6cdfb1571ec8ad35237286db02f7e90b69ed79c0e1891948c18ab771b",
       "adv_name": "Steve\u2019s SS Plaza Brai",
       "adv_lat": 42.2231,
@@ -1822,6 +1894,12 @@
       "adv_lon": -71.6577
     },
     {
+      "public_key": "e173f0cbaf9b957d1c56daf1854bc0bdfcd79b1e9e75b42e20d0a03eca6058eb",
+      "adv_name": "Morency Woods",
+      "adv_lat": 42.2865,
+      "adv_lon": -71.3994
+    },
+    {
       "public_key": "e19c710fc112f4a93dcb41c938f36e395eb0bdd50559addb22b02a8472afb89a",
       "adv_name": "WalpDave",
       "adv_lat": 42.1647,
@@ -1842,7 +1920,7 @@
     {
       "public_key": "e2b5b58f8055862ac78a0d271b81e409869630b7b9208aee13c6ea09d3824a49",
       "adv_name": "\ud83d\ude0e Steve\u2019s G2 NANO",
-      "adv_lat": 42.2233,
+      "adv_lat": 42.2232,
       "adv_lon": -71.0094
     },
     {
@@ -1964,6 +2042,12 @@
       "adv_name": "CON-Old Rifle Range",
       "adv_lat": 42.4447,
       "adv_lon": -71.4
+    },
+    {
+      "public_key": "ede14146a34783c68b8721f51c85373101e01c7f1db85ab45ace4c2f5a428a7f",
+      "adv_name": "\ud83d\ude0eSteve",
+      "adv_lat": 42.2446,
+      "adv_lon": -71.0346
     },
     {
       "public_key": "ef206284a348cc32f0272096d6c36ae3d9e62f6b489e8d735421f17d722fbbec",
