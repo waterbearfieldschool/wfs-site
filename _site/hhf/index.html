@@ -316,8 +316,8 @@
   const WX_URL = "https://api.weather.gov/stations/KBED/observations/latest";
   const REFRESH_MS = 30000;
   const WX_REFRESH_MS = 10 * 60 * 1000; // NWS updates ~hourly, poll every 10 minutes
-  const FETCH_LIMIT = 120;
-  const SPARKLINE_DAYS = 3;
+  const FETCH_LIMIT = 80;
+  const MAX_POINTS = 80;
 
   // Human-readable labels + units for known parameter keys
   const paramInfo = {
@@ -454,18 +454,14 @@
         times.push(new Date(r.timestamp));
       }
     }
-    // Keep readings from the last SPARKLINE_DAYS days, anchored to the most
-    // recent timestamp so a stale feed still shows its last 3 days of data.
+    // Keep the most recent MAX_POINTS readings, regardless of how spread
+    // out they are in time. If fewer points are available, keep all of them.
     const tSlice = [];
     const timeSlice = [];
-    if (times.length > 0) {
-      const cutoff = times[times.length - 1].getTime() - SPARKLINE_DAYS * 24 * 3600 * 1000;
-      for (let i = 0; i < times.length; i++) {
-        if (times[i].getTime() >= cutoff) {
-          tSlice.push(temps[i]);
-          timeSlice.push(times[i]);
-        }
-      }
+    const startIdx = Math.max(0, times.length - MAX_POINTS);
+    for (let i = startIdx; i < times.length; i++) {
+      tSlice.push(temps[i]);
+      timeSlice.push(times[i]);
     }
 
     if (tSlice.length < 2) {
@@ -597,7 +593,7 @@
 
     const tickTimeOpts = {
       timeZone: "America/New_York",
-      hour: "2-digit", minute: "2-digit", hour12: false
+      hour: "2-digit", hour12: false
     };
     const tickDateOpts = {
       timeZone: "America/New_York",
