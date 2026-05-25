@@ -73,7 +73,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("recentJournal", (collection) => {
     return collection.getFilteredByTag("journal")
       .sort((a, b) => b.date - a.date)
-      .slice(0, 3);
+      .slice(0, 10);
   });
 
   return {

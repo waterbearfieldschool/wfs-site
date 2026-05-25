@@ -43,10 +43,6 @@ Students will also learn to use multimeters for measuring voltage and current, a
 
 This workshop is intended for everyone—from complete beginners to folks with some electrical experience looking to expand their skills. We're also exploring a pathway for participants who'd like to learn to teach this material themselves, with opportunities to co-teach future sessions.
 
-### Material Fee
-
-The materials fee for this class is $15. This covers components for the take-home projects (DIY multimeter and gravity/crank light). This will be paid directly to the instructor at the start of class. Cash or Venmo accepted.
-
 ### Class Goals
 
 - Build intuition for energy scales—what's possible and what's not
@@ -73,21 +69,9 @@ Warm layers appropriate for an outdoor workshop. Comfortable clothes you don't m
 
 None! This class is designed for kids and adults alike—no prior experience necessary.
 
-### Workshop Details
-
-- **When:** February 2026
-- **Where:** Outdoors in Greater Boston, MA
-- **Duration:** ~90 minutes
-- **Group size:** Limited to 10 participants
-- **Cost:** $45 | $65 | $85 (Sliding scale)
-
 ### Additional Resources
 
 Participants will gain access to live monitoring data from a residential solar installation and opportunities to contribute to community energy infrastructure projects.
-
-### Register
-
-Registration opens late January 2026.
 
 Please email info@waterbearfieldschool.org with any questions.
 
