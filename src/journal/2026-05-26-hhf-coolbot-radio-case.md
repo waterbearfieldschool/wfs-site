@@ -5,7 +5,7 @@ layout: layouts/post.njk
 tags: journal
 image: /assets/images/journal/2026-05-26-hhf-coolbot-radio-case/red-case-on-beam.jpg
 excerpt: "Dick at Artisans Asylum donated a mesh radio case for the cause!"
-draft: false
+draft: true
 foundations:
   - communication
 ---
