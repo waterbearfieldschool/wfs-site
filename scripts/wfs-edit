@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+# wfs-edit — guarded edit/push wrapper for ~/gitwork/wfs-site.
+#
+# Two-step Telegram-edit workflow:
+#   wfs-edit pull                       # before any edits, sync with origin
+#   ... edit files in ~/gitwork/wfs-site/src/ ...
+#   wfs-edit push "<commit message>"    # after edits, add+commit+push (auto-retries on rebase)
+#
+# Other:
+#   wfs-edit status                     # ahead/behind + working-tree changes
+#
+# Safe: pull aborts if the working tree is dirty; push retries once with --rebase
+# if the remote moved during the edit window. Respects whatever branch is checked
+# out (currently foundations-restructure).
+
+set -euo pipefail
+
+REPO="$HOME/gitwork/wfs-site"
+
+if [[ ! -d "$REPO/.git" ]]; then
+  echo "wfs-edit: $REPO is not a git repo" >&2
+  exit 2
+fi
+
+cd "$REPO"
+
+cmd="${1:-status}"
+
+case "$cmd" in
+  pull)
+    branch="$(git branch --show-current)"
+    if [[ -n "$(git status --porcelain)" ]]; then
+      echo "✗ working tree has uncommitted changes — resolve before pulling:" >&2
+      git status --short >&2
+      exit 1
+    fi
+    git fetch origin
+    git pull --rebase --ff-only origin "$branch"
+    echo "✓ on $branch, up to date with origin"
+    ;;
+
+  push)
+    msg="${2:-}"
+    if [[ -z "$msg" ]]; then
+      echo "usage: wfs-edit push \"<commit message>\"" >&2
+      exit 2
+    fi
+    branch="$(git branch --show-current)"
+    if [[ -z "$(git status --porcelain)" ]]; then
+      echo "(no changes to commit on $branch)"
+      exit 0
+    fi
+    git add -A
+    echo "--- staged changes ---"
+    git status --short
+    echo "----------------------"
+    git commit -m "$msg"
+    if ! git push origin "$branch"; then
+      echo "⚠ push rejected — fetching and rebasing once, then retrying"
+      git fetch origin
+      git rebase "origin/$branch"
+      git push origin "$branch"
+    fi
+    echo "✓ pushed $(git rev-parse --short HEAD) to origin/$branch"
+    ;;
+
+  status)
+    branch="$(git branch --show-current)"
+    git fetch origin >/dev/null 2>&1 || true
+    ahead=$(git rev-list --count "origin/$branch..HEAD" 2>/dev/null || echo 0)
+    behind=$(git rev-list --count "HEAD..origin/$branch" 2>/dev/null || echo 0)
+    echo "branch: $branch  (ahead $ahead, behind $behind)"
+    if [[ -n "$(git status --porcelain)" ]]; then
+      git status --short
+    else
+      echo "(working tree clean)"
+    fi
+    ;;
+
+  *)
+    echo "usage: wfs-edit {pull | push \"<msg>\" | status}" >&2
+    exit 2
+    ;;
+esac
