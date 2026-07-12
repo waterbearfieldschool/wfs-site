@@ -4,6 +4,7 @@
   /* Foundation colors */
   --foundation-air:#87ceeb; --foundation-energy:#d4a574; --foundation-water:#5b8fd4; --foundation-food:#6b9b4d; --foundation-shelter:#8b7355;
   --foundation-heating-cooling:#4da6a6; --foundation-communication:#9370db; --foundation-fabrication:#cd853f; --foundation-transport:#cd5c5c; --foundation-craft:#e6a4b4;
+  --foundation-ecology:#7d9670;
 }
 *{box-sizing:border-box}
 body{overflow-x:hidden}
@@ -216,6 +217,7 @@ main .slide img{aspect-ratio:1/1}
 .foundation-fabrication{background:var(--foundation-fabrication)}
 .foundation-transport{background:var(--foundation-transport)}
 .foundation-craft{background:var(--foundation-craft)}
+.foundation-ecology{background:var(--foundation-ecology)}
 .foundation-card{transition:transform 0.2s ease, box-shadow 0.2s ease}
 .foundation-card:hover{transform:translateY(-4px); box-shadow:0 4px 12px rgba(0,0,0,.1)}
 .foundation-card[data-foundation="air"]{border-top-color:var(--foundation-air) !important}
@@ -228,6 +230,7 @@ main .slide img{aspect-ratio:1/1}
 .foundation-card[data-foundation="fabrication"]{border-top-color:var(--foundation-fabrication) !important}
 .foundation-card[data-foundation="transport"]{border-top-color:var(--foundation-transport) !important}
 .foundation-card[data-foundation="craft"]{border-top-color:var(--foundation-craft) !important}
+.foundation-card[data-foundation="ecology"]{border-top-color:var(--foundation-ecology) !important}
 .foundations-grid{grid-template-columns:repeat(4, minmax(0,1fr))}
 @media (max-width:880px){.foundations-grid{grid-template-columns:repeat(2, minmax(0,1fr))}}
 @media (max-width:560px){.foundations-grid{grid-template-columns:repeat(2, minmax(0,1fr)); gap:6px !important} .foundation-card{padding:0.5rem !important} .foundation-card .foundation-emoji{font-size:1.2rem !important} .foundation-card .foundation-title{font-size:0.7rem !important}}
@@ -243,6 +246,7 @@ main .slide img{aspect-ratio:1/1}
 .foundation-card.highlighted[data-foundation="fabrication"]{background:rgba(205,133,63,0.15); border:2px solid var(--foundation-fabrication); border-top-width:3px}
 .foundation-card.highlighted[data-foundation="transport"]{background:rgba(205,92,92,0.15); border:2px solid var(--foundation-transport); border-top-width:3px}
 .foundation-card.highlighted[data-foundation="craft"]{background:rgba(230,164,180,0.15); border:2px solid var(--foundation-craft); border-top-width:3px}
+.foundation-card.highlighted[data-foundation="ecology"]{background:rgba(125,150,112,0.15); border:2px solid var(--foundation-ecology); border-top-width:3px}
 
 /* Workshop foundation band */
 .workshop-foundation-band{padding:6px 14px; font-size:0.85rem; font-weight:600; text-align:center; border-radius:16px 16px 0 0}
@@ -256,6 +260,7 @@ main .slide img{aspect-ratio:1/1}
 .workshop-foundation-band[data-foundation="transport"]{background:var(--foundation-transport); color:white}
 .workshop-foundation-band[data-foundation="craft"]{background:var(--foundation-craft); color:white}
 .workshop-foundation-band[data-foundation="air"]{background:var(--foundation-air); color:white}
+.workshop-foundation-band[data-foundation="ecology"]{background:var(--foundation-ecology); color:white}
 
 /* Upcoming workshop label */
 .upcoming-workshop-label{background:var(--bg); color:var(--accent); text-align:center; padding:4px 10px; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--hair)}
@@ -272,6 +277,7 @@ main .slide img{aspect-ratio:1/1}
 .workshop-card[data-foundation="fabrication"], .project-card[data-foundation="fabrication"]{border-color:var(--foundation-fabrication)}
 .workshop-card[data-foundation="transport"], .project-card[data-foundation="transport"]{border-color:var(--foundation-transport)}
 .workshop-card[data-foundation="craft"], .project-card[data-foundation="craft"]{border-color:var(--foundation-craft)}
+.workshop-card[data-foundation="ecology"], .project-card[data-foundation="ecology"]{border-color:var(--foundation-ecology)}
 
 /* Foundation mini-card borders - match foundation color */
 .foundation-mini-card{border:3px solid var(--hair)}
@@ -285,3 +291,4 @@ main .slide img{aspect-ratio:1/1}
 .foundation-mini-card[data-foundation="fabrication"]{border-color:var(--foundation-fabrication)}
 .foundation-mini-card[data-foundation="transport"]{border-color:var(--foundation-transport)}
 .foundation-mini-card[data-foundation="craft"]{border-color:var(--foundation-craft)}
+.foundation-mini-card[data-foundation="ecology"]{border-color:var(--foundation-ecology)}
