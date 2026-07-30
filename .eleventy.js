@@ -2,6 +2,7 @@ const fs = require("fs");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  eleventyConfig.addPassthroughCopy({ "src/history": "history" }); // frozen backup of old homepage
 
   // Exclude draft pages from build output entirely
   eleventyConfig.addGlobalData("eleventyComputed", {
