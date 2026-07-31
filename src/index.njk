@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Waterbear Field School — hands-on learning &amp; building on local farms near Lincoln, MA</title>
+<title>Waterbear Field School — hands-on learning &amp; building for kids and adults near Lincoln, MA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -43,6 +43,23 @@ eleventyExcludeFromCollections: true
   .morelink{text-align:center;margin-top:20px}
   .morelink a{display:inline-block;background:#4f6675;color:#fff;text-decoration:none;font-weight:700;padding:11px 22px;border-radius:9px}
   .morelink a:hover{background:#3f5563}
+  .seclead{text-align:center;color:var(--muted);max-width:660px;margin:2px auto 14px;font-size:.96rem;line-height:1.4}
+  .sec-august{background:#fbf3de;border-color:#f0e1ad} .sec-august .grp{color:#9a6f14}
+  .sec-september{background:#f5efe6;border-color:#e8dcc8} .sec-september .grp{color:#8a5a2f}
+  .cal{max-width:720px;margin:8px auto 0}
+  .wk{margin:14px 0 0} .wklabel{font-weight:800;color:#9a6f14;font-size:.8rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.05em}
+  .dayrow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin:6px 0;cursor:pointer;font:inherit;transition:.12s}
+  .dayrow:hover{border-color:#c8901f} .dayrow.sel{background:#fdf3d6;border-color:#c8901f}
+  .dchk{width:20px;height:20px;border:2px solid #c9b16a;border-radius:5px;flex:none;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff}
+  .dayrow.sel .dchk{background:#c8901f;border-color:#c8901f} .dayrow.sel .dchk::after{content:"\2713"}
+  .ddate{font-weight:700;color:var(--ink);min-width:104px}
+  .dact{color:var(--muted);font-weight:600} .dact::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:7px;vertical-align:middle}
+  .calbar{position:sticky;bottom:8px;background:#fff;border:1px solid var(--line);border-radius:12px;margin:14px auto 0;max-width:720px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 5px 16px rgba(0,0,0,.10)}
+  #calcount{font-weight:700;color:var(--accent-d)}
+  .cancelnote{max-width:720px;margin:12px auto 0;text-align:center;font-size:.83rem;color:var(--muted)}
+  .monthpick{max-width:640px;margin:8px auto 0}
+  .mprow{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:10px;padding:12px 16px;margin:8px 0}
+  .mpday{font-weight:700;color:var(--ink)} .mprow .btn-reg{flex:none;padding:8px 16px}
   .grp{font-weight:800;color:var(--accent-d);text-align:center;font-size:1.4rem;margin:26px 0 16px}
   .about-lead{max-width:760px;margin:8px auto 0;text-align:center;color:var(--accent-d);font-size:clamp(1rem,2.4vw,1.18rem);font-weight:600;line-height:1.4}
   .legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:840px;margin:16px auto 0}
@@ -82,11 +99,13 @@ eleventyExcludeFromCollections: true
 <body>
 <div class="stickytop">
   <header class="top">
-    <div class="brand">Waterbear Field School<small>Hands-on learning &amp; building on local farms — for kids and adults.</small></div>
+    <div class="brand">Waterbear Field School<small>Hands-on learning &amp; building, for kids and adults.</small></div>
   </header>
   <div class="chips">
     <button class="chip" data-t="journal">📓 Journal</button>
-    <button class="chip" data-t="program">🗓️ Programs</button>
+    <button class="chip" data-t="program">🗓️ Weekly Craft Schedule</button>
+    <button class="chip" data-t="august">☀️ Summer Schedule</button>
+    <button class="chip" data-t="september">🍂 Fall Schedule</button>
     <button class="chip" data-t="workshop">🔧 Workshops</button>
     <button class="chip" data-t="project">🛠️ Projects</button>
     <button class="chip" data-t="meetup">🌲 Meetups</button>
@@ -106,17 +125,68 @@ eleventyExcludeFromCollections: true
     </div>
     <div class="morelink"><a href="/journal/">Read more journal entries &rarr;</a></div>
   </section>
-  <section class="sec sec-program" id="program" data-name="Programs" data-blurb="Sign up for a weekly meetup focused on a particular topic." data-accent="#a86f28" data-tint="#f7efe1" data-bd="#ecdcc2">
-    <h2 class="grp">🗓️ Monthly Programs</h2>
+  <section class="sec sec-program" id="program" data-name="Weekly Craft Schedule" data-blurb="A different focus each weekday — the weekly rhythm." data-accent="#a86f28" data-tint="#f7efe1" data-bd="#ecdcc2">
+    <h2 class="grp">🗓️ Weekly Craft Schedule</h2>
+    <p class="seclead">We focus on a different craft each day of the week. You can register to attend individual days on our <a href="#august" style="color:#9a6f14;font-weight:700;text-decoration:underline">Summer Schedule</a>. For our <a href="#september" style="color:#8a5a2f;font-weight:700;text-decoration:underline">Fall Schedule</a>, we offer registration by the month.</p>
     <div class="cards">
-      <article class="card"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">Mondays 🪚</div><div class="theme">Woodworking</div></div><div class="body"><div class="when">Weekly on Mondays, 9 AM – 3 PM</div><div class="desc">Build the shop's own furniture over four weeks — sawhorse → bench → stool → toolbox.</div><div class="foot"><button class="btn-reg" onclick="m('r')">Register</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-fiber.jpg" alt=""><div class="band" style="background:#4f5aa6"><div class="day">Tuesdays 🧶</div><div class="theme">Fiber Arts</div></div><div class="body"><div class="when">Weekly on Tuesdays, 9 AM – 3 PM</div><div class="desc">Weaving, rope-making, lashing, and sewing — turning fiber into cordage and cloth.</div><div class="foot"><button class="btn-reg" onclick="m('r')">Register</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-art.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">Wednesdays 🎨</div><div class="theme">Painting, Drawing &amp; Ceramics</div></div><div class="body"><div class="when">Weekly on Wednesdays, 9 AM – 3 PM</div><div class="desc">Drawing and painting from life, plus clay — pinch-pots to a wheel-thrown bowl.</div><div class="foot"><button class="btn-reg" onclick="m('r')">Register</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">Thursdays 🌿</div><div class="theme">Nature &amp; Plants</div></div><div class="body"><div class="when">Weekly on Thursdays, 9 AM – 3 PM</div><div class="desc">Seasonal plant ID, leaf prints, tree lore, and which wood is good for what.</div><div class="foot"><button class="btn-reg" onclick="m('r')">Register</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">Fridays 🎵</div><div class="theme">Music &amp; Instruments</div></div><div class="body"><div class="when">Weekly on Fridays, 9 AM – 3 PM</div><div class="desc">Build simple instruments — shakers, drum, panpipes — then play together.</div><div class="foot"><button class="btn-reg" onclick="m('r')">Register</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">Mondays 🪚</div><div class="theme">Woodworking</div></div><div class="body"><div class="when">Weekly on Mondays, 9 AM – 3 PM</div><div class="desc">Build the shop's own furniture over four weeks — sawhorse → bench → stool → toolbox.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-fiber.jpg" alt=""><div class="band" style="background:#4f5aa6"><div class="day">Tuesdays 🧶</div><div class="theme">Fiber Arts</div></div><div class="body"><div class="when">Weekly on Tuesdays, 9 AM – 3 PM</div><div class="desc">Weaving, rope-making, lashing, and sewing — turning fiber into cordage and cloth.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-art.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">Wednesdays 🎨</div><div class="theme">Painting, Drawing &amp; Ceramics</div></div><div class="body"><div class="when">Weekly on Wednesdays, 9 AM – 3 PM</div><div class="desc">Drawing and painting from life, plus clay — pinch-pots to a wheel-thrown bowl.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">Thursdays 🌿</div><div class="theme">Nature &amp; Plants</div></div><div class="body"><div class="when">Weekly on Thursdays, 9 AM – 3 PM</div><div class="desc">Seasonal plant ID, leaf prints, tree lore, and which wood is good for what.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">Fridays 🎵</div><div class="theme">Music &amp; Instruments</div></div><div class="body"><div class="when">Weekly on Fridays, 9 AM – 3 PM</div><div class="desc">Build simple instruments — shakers, drum, panpipes — then play together.</div></div></article>
     </div>
   </section>
 
+  <section class="sec sec-august" id="august" data-name="Summer Schedule" data-blurb="Regular craft days, 9 AM–3 PM, ages 6+, drop-off available — pick the days you want.">
+    <h2 class="grp">☀️ Summer Schedule</h2>
+    <p class="seclead">We run regular craft days, 9 AM – 3 PM, ages 6+. Drop-off available. Check off the days you want below.</p>
+    <div class="cal">
+      <div class="wk"><div class="wklabel">Week of Aug 3</div>
+        <button class="dayrow" data-d="Mon Aug 3"><span class="dchk"></span><span class="ddate">Mon · Aug 3</span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
+        <button class="dayrow" data-d="Tue Aug 4"><span class="dchk"></span><span class="ddate">Tue · Aug 4</span><span class="dact" style="--c:#4f5aa6">Fiber Arts</span></button>
+        <button class="dayrow" data-d="Wed Aug 5"><span class="dchk"></span><span class="ddate">Wed · Aug 5</span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Ceramics</span></button>
+        <button class="dayrow" data-d="Thu Aug 6"><span class="dchk"></span><span class="ddate">Thu · Aug 6</span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
+        <button class="dayrow" data-d="Fri Aug 7"><span class="dchk"></span><span class="ddate">Fri · Aug 7</span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
+      </div>
+      <div class="wk"><div class="wklabel">Week of Aug 10</div>
+        <button class="dayrow" data-d="Mon Aug 10"><span class="dchk"></span><span class="ddate">Mon · Aug 10</span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
+        <button class="dayrow" data-d="Tue Aug 11"><span class="dchk"></span><span class="ddate">Tue · Aug 11</span><span class="dact" style="--c:#4f5aa6">Fiber Arts</span></button>
+        <button class="dayrow" data-d="Wed Aug 12"><span class="dchk"></span><span class="ddate">Wed · Aug 12</span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Ceramics</span></button>
+        <button class="dayrow" data-d="Thu Aug 13"><span class="dchk"></span><span class="ddate">Thu · Aug 13</span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
+        <button class="dayrow" data-d="Fri Aug 14"><span class="dchk"></span><span class="ddate">Fri · Aug 14</span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
+      </div>
+      <div class="wk"><div class="wklabel">Week of Aug 17</div>
+        <button class="dayrow" data-d="Mon Aug 17"><span class="dchk"></span><span class="ddate">Mon · Aug 17</span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
+        <button class="dayrow" data-d="Tue Aug 18"><span class="dchk"></span><span class="ddate">Tue · Aug 18</span><span class="dact" style="--c:#4f5aa6">Fiber Arts</span></button>
+        <button class="dayrow" data-d="Wed Aug 19"><span class="dchk"></span><span class="ddate">Wed · Aug 19</span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Ceramics</span></button>
+        <button class="dayrow" data-d="Thu Aug 20"><span class="dchk"></span><span class="ddate">Thu · Aug 20</span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
+        <button class="dayrow" data-d="Fri Aug 21"><span class="dchk"></span><span class="ddate">Fri · Aug 21</span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
+      </div>
+      <div class="wk"><div class="wklabel">Week of Aug 24</div>
+        <button class="dayrow" data-d="Mon Aug 24"><span class="dchk"></span><span class="ddate">Mon · Aug 24</span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
+        <button class="dayrow" data-d="Tue Aug 25"><span class="dchk"></span><span class="ddate">Tue · Aug 25</span><span class="dact" style="--c:#4f5aa6">Fiber Arts</span></button>
+        <button class="dayrow" data-d="Wed Aug 26"><span class="dchk"></span><span class="ddate">Wed · Aug 26</span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Ceramics</span></button>
+        <button class="dayrow" data-d="Thu Aug 27"><span class="dchk"></span><span class="ddate">Thu · Aug 27</span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
+        <button class="dayrow" data-d="Fri Aug 28"><span class="dchk"></span><span class="ddate">Fri · Aug 28</span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
+      </div>
+      <div class="wk"><div class="wklabel">Week of Aug 31</div>
+        <button class="dayrow" data-d="Mon Aug 31"><span class="dchk"></span><span class="ddate">Mon · Aug 31</span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
+      </div>
+    </div>
+    <div class="calbar"><span id="calcount">No days selected</span><button class="btn-reg" style="flex:none;padding:9px 18px" onclick="reg()">Register selected days</button></div>
+    <div class="cancelnote">Full refund for cancellations 48+ hours ahead; within 48 hours, credit toward another day. Sessions run rain or shine (severe weather may reschedule).</div>
+  </section>
+  <section class="sec sec-september" id="september" data-name="Fall Schedule" data-blurb="Register for a day of the week, a month at a time — 9 AM–3 PM, ages 6+.">
+    <h2 class="grp">🍂 Fall Schedule</h2>
+    <p class="seclead">9 AM – 3 PM, ages 6+. Register for a day of the week, a month at a time.</p>
+    <div class="monthpick">
+      <div class="mprow"><span class="mpday" style="--c:#a86f28">Mondays — Woodworking</span><button class="btn-reg" onclick="m('r')">Book a month</button></div>
+      <div class="mprow"><span class="mpday" style="--c:#4f5aa6">Tuesdays — Fiber Arts</span><button class="btn-reg" onclick="m('r')">Book a month</button></div>
+      <div class="mprow"><span class="mpday" style="--c:#2c8299">Wednesdays — Painting, Drawing &amp; Ceramics</span><button class="btn-reg" onclick="m('r')">Book a month</button></div>
+      <div class="mprow"><span class="mpday" style="--c:#3f7d54">Thursdays — Nature &amp; Plants</span><button class="btn-reg" onclick="m('r')">Book a month</button></div>
+      <div class="mprow"><span class="mpday" style="--c:#7b6bb5">Fridays — Music &amp; Instruments</span><button class="btn-reg" onclick="m('r')">Book a month</button></div>
+    </div>
+  </section>
   <section class="sec sec-workshop" id="workshop" data-name="Workshops" data-blurb="Single-session deep-dives." data-accent="#3b6fb0" data-tint="#e9f0f8" data-bd="#cfe0f0">
     <h2 class="grp">🔧 Single-session Workshops</h2>
     <div class="cards">
@@ -183,6 +253,12 @@ eleventyExcludeFromCollections: true
     var el=document.getElementById(c.dataset.t); if(el) el.scrollIntoView({behavior:'smooth'});
   }); });
   spy();
+  document.querySelectorAll('.dayrow').forEach(function(r){ r.addEventListener('click',function(){ r.classList.toggle('sel'); updcal(); }); });
+  function updcal(){ var n=document.querySelectorAll('.dayrow.sel').length; document.getElementById('calcount').textContent = n? (n+' day'+(n>1?'s':'')+' selected') : 'No days selected'; }
+  function reg(){ var n=document.querySelectorAll('.dayrow.sel').length; var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
+    if(!n){ t.textContent='Pick your days first'; b.textContent='Check the August days you want, then register.'; }
+    else { t.textContent='Registration opens soon 🌱'; b.textContent='You picked '+n+' day'+(n>1?'s':'')+'. Send your email and we\'ll confirm your days the moment sign-ups are live.'; }
+    e.href='mailto:info@waterbearfieldschool.org?subject=August%20days'; document.getElementById('ov').classList.add('on'); }
   function m(k){var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
    if(k==='r'){t.textContent='Registration opens soon 🌱';b.textContent="We're finalizing our programming. Send us your email and we'll let you know the moment sign-ups are live.";e.href="mailto:info@waterbearfieldschool.org?subject=Let%20me%20know%20when%20registration%20opens";}
    else{t.textContent='Want to know more?';b.textContent="Happy to tell you all about it — email us with any questions and we'll be right in touch.";e.href="mailto:info@waterbearfieldschool.org?subject=More%20info";}
