@@ -122,6 +122,8 @@
   .brand{color:#ffffff}
   .brand small{color:#c7d3c9}
   .chip{background:rgba(255,255,255,.10);color:#eaf0eb;border-color:rgba(255,255,255,.30)}
+  .sellist{text-align:left;display:inline-block;margin:12px auto;padding-left:22px}
+  .sellist li{margin:5px 0;color:var(--ink);font-weight:600}
 </style>
 </head>
 <body>
@@ -299,7 +301,7 @@
   function segupd(){ var n=document.querySelectorAll('.blockbtn.on').length; var el=document.getElementById('segcount'); if(el) el.textContent = n? (n+' selection'+(n>1?'s':'')) : 'No blocks selected'; }
   function segreg(){ var sel=[].slice.call(document.querySelectorAll('.blockbtn.on')); var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
     if(!sel.length){ t.textContent='Pick your blocks first'; b.textContent='Select one or more weekday + block options, then register.'; }
-    else { t.textContent='Registration opens soon 🌱'; var list=sel.map(function(x){return x.dataset.day+' · '+x.dataset.block;}).join('  |  '); b.textContent='You selected: '+list+'. Send your email and we\'ll confirm your spots the moment sign-ups are live.'; }
+    else { t.textContent='Registration opens soon 🌱'; var items=sel.map(function(x){return '<li>'+x.dataset.day+' · '+x.dataset.block+'</li>';}).join(''); b.innerHTML='You picked:<ul class="sellist">'+items+'</ul>Send your email and we&rsquo;ll confirm your spots the moment sign-ups are live.'; }
     e.href='mailto:info@waterbearfieldschool.org?subject=Seasonal%20blocks'; document.getElementById('ov').classList.add('on'); }
   function m(k){var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
    if(k==='r'){t.textContent='Registration opens soon 🌱';b.textContent="We're finalizing our programming. Send us your email and we'll let you know the moment sign-ups are live.";e.href="mailto:info@waterbearfieldschool.org?subject=Let%20me%20know%20when%20registration%20opens";}
