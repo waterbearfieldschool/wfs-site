@@ -295,7 +295,7 @@
   function updcal(){ var n=document.querySelectorAll('.dayrow.sel').length; document.getElementById('calcount').textContent = n? (n+' day'+(n>1?'s':'')+' selected') : 'No days selected'; }
   function reg(){ var n=document.querySelectorAll('.dayrow.sel').length; var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
     if(!n){ t.textContent='Pick your days first'; b.textContent='Check the August days you want, then register.'; }
-    else { t.textContent='Registration opens soon 🌱'; b.textContent='You picked '+n+' day'+(n>1?'s':'')+'. Send your email and we\'ll confirm your days the moment sign-ups are live.'; }
+    else { t.textContent='Registration opens soon 🌱'; var items=[].slice.call(document.querySelectorAll('.dayrow.sel')).map(function(x){return '<li>'+x.querySelector('.ddate').textContent+' — '+x.querySelector('.dact').textContent+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' day'+(n>1?'s':'')+':</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your days the moment sign-ups are live.</div>'; }
     e.href='mailto:info@waterbearfieldschool.org?subject=August%20days'; document.getElementById('ov').classList.add('on'); }
   function togblock(b){ b.classList.toggle('on'); segupd(); }
   function segupd(){ var n=document.querySelectorAll('.blockbtn.on').length; var el=document.getElementById('segcount'); if(el) el.textContent = n? (n+' selection'+(n>1?'s':'')) : 'No blocks selected'; }
