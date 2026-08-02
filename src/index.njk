@@ -24,7 +24,8 @@ eleventyExcludeFromCollections: true
   .top nav a{text-decoration:none;color:var(--muted)}.top nav a:hover{color:var(--accent)}
   .top .cta{background:var(--accent);color:#fff;padding:6px 13px;border-radius:8px}
   .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto;padding:4px 20px 8px}
-  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:700;font-size:.82rem;padding:7px 13px;border-radius:999px;cursor:pointer;transition:.15s}
+  @media(max-width:600px){.chips{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 16px 8px;-webkit-mask-image:linear-gradient(to right,#000 86%,transparent);mask-image:linear-gradient(to right,#000 86%,transparent)}.chips::-webkit-scrollbar{display:none}}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:700;font-size:.82rem;padding:7px 13px;border-radius:999px;cursor:pointer;transition:.15s;white-space:nowrap;flex:none}
   .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
   /* the hovering section blurb */
   .sind{background:#eef3ee;border-top:1px solid #dbe6de;padding:8px 20px;text-align:center;color:var(--accent-d);font-size:.9rem;line-height:1.35}
@@ -139,8 +140,8 @@ eleventyExcludeFromCollections: true
   </header>
   <div class="chips">
     <button class="chip" data-t="program">🎨 Crafts</button>
-    <button class="chip" data-t="august">☀️ Summer Schedule</button>
-    <button class="chip" data-t="september">🍂 Fall Schedule</button>
+    <button class="chip" data-t="august">☀️ Summer</button>
+    <button class="chip" data-t="september">🍂 Fall</button>
     <button class="chip" data-t="workshop">🔧 Workshops</button>
     <button class="chip" data-t="project">🛠️ Projects</button>
     <button class="chip" data-t="meetup">🌲 Meetups</button>
@@ -248,7 +249,6 @@ eleventyExcludeFromCollections: true
     <h2 class="grp">📓 From the Journal</h2>
     <div class="cards">
       <article class="card"><img class="cardimg" src="/v6img/jr-radiocase.jpg" alt=""><div class="body"><h3>New radio case for the HHF monitor</h3><div class="when">May 26, 2026</div><div class="desc">Dick at Artisans Asylum donated a mesh-radio case for the cause.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-26-hhf-coolbot-radio-case/">Read →</a></div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/jr-goats.jpg" alt=""><div class="body"><h3>Meetup with Goodwin Hill Goats</h3><div class="when">May 23, 2026</div><div class="desc">A conversation about the ways kids learn with — and from — animals.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-23-goodwin-hill-goats/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/jr-toaster.jpg" alt=""><div class="body"><h3>Toaster-oven reflow at Artisans Asylum</h3><div class="when">May 21, 2026</div><div class="desc">Testing toaster-oven reflow-soldering techniques at Artisans Asylum.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-21-toaster-oven-reflow/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/jr-sailing.jpg" alt=""><div class="body"><h3>Sailing &amp; STEM at Edgewood</h3><div class="when">May 20, 2026</div><div class="desc">Scoping 2026 STEM workshops — mesh radio and a dock-mounted water-level sensor.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-20-sailing-stem-edgewood/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/jr-solar.jpg" alt=""><div class="body"><h3>Girl Scouts: Intro to Solar</h3><div class="when">May 16, 2026</div><div class="desc">An Intro to Solar Power workshop with a Girl Scout troop in West Medford.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-16-girl-scouts-solar/">Read →</a></div></div></article>
