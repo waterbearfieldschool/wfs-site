@@ -57,6 +57,7 @@
   .dchk{width:20px;height:20px;border:2px solid #c9b16a;border-radius:5px;flex:none;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff}
   .dayrow.sel .dchk{background:#c8901f;border-color:#c8901f} .dayrow.sel .dchk::after{content:"\2713"}
   .ddate{font-weight:700;color:var(--ink);min-width:104px}
+  .dtime{font-weight:400;color:var(--muted)}
   .dact{color:var(--muted);font-weight:600} .dact::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:7px;vertical-align:middle}
   .calbar{position:sticky;bottom:8px;background:#fff;border:1px solid var(--line);border-radius:12px;margin:14px auto 0;max-width:720px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 5px 16px rgba(0,0,0,.10)}
   #calcount{font-weight:700;color:var(--accent-d)}
@@ -174,31 +175,31 @@
     <p class="seclead">Check the days you&rsquo;d like to register for below.</p>
     <div class="cal">
       <div class="wk"><div class="wklabel">Week of Aug 10</div>
-        <button class="dayrow" data-d="Mon Aug 10"><span class="dchk"></span><span class="ddate">Mon · Aug 10 · 9 AM – 2 PM</span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
-        <button class="dayrow" data-d="Tue Aug 11"><span class="dchk"></span><span class="ddate">Tue · Aug 11 · 9 AM – 2 PM</span><span class="dact" style="--c:#4f5aa6">Fiber Arts</span></button>
-        <button class="dayrow" data-d="Wed Aug 12"><span class="dchk"></span><span class="ddate">Wed · Aug 12 · 9 AM – 2 PM</span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Ceramics</span></button>
-        <button class="dayrow" data-d="Thu Aug 13"><span class="dchk"></span><span class="ddate">Thu · Aug 13 · 9 AM – 2 PM</span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
-        <button class="dayrow" data-d="Fri Aug 14"><span class="dchk"></span><span class="ddate">Fri · Aug 14 · 9 AM – 2 PM</span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
-        <button class="dayrow" data-d="Sat Aug 15"><span class="dchk"></span><span class="ddate">Sat · Aug 15 · 9 AM – 2 PM</span><span class="dact" style="--c:#b5652f">Hiking, Maps &amp; Navigation</span></button>
+        <button class="dayrow" data-d="Mon Aug 10"><span class="dchk"></span><span class="ddate">Mon · Aug 10 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
+        <button class="dayrow" data-d="Tue Aug 11"><span class="dchk"></span><span class="ddate">Tue · Aug 11 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#4f5aa6">Fiber Arts</span></button>
+        <button class="dayrow" data-d="Wed Aug 12"><span class="dchk"></span><span class="ddate">Wed · Aug 12 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Ceramics</span></button>
+        <button class="dayrow" data-d="Thu Aug 13"><span class="dchk"></span><span class="ddate">Thu · Aug 13 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
+        <button class="dayrow" data-d="Fri Aug 14"><span class="dchk"></span><span class="ddate">Fri · Aug 14 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
+        <button class="dayrow" data-d="Sat Aug 15"><span class="dchk"></span><span class="ddate">Sat · Aug 15 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#b5652f">Hiking, Maps &amp; Navigation</span></button>
       </div>
       <div class="wk"><div class="wklabel">Week of Aug 17</div>
-        <button class="dayrow" data-d="Mon Aug 17"><span class="dchk"></span><span class="ddate">Mon · Aug 17 · 9 AM – 2 PM</span><span class="dact" style="--c:#4f5aa6">Fiber Arts</span></button>
-        <button class="dayrow" data-d="Tue Aug 18"><span class="dchk"></span><span class="ddate">Tue · Aug 18 · 9 AM – 2 PM</span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Ceramics</span></button>
-        <button class="dayrow" data-d="Wed Aug 19"><span class="dchk"></span><span class="ddate">Wed · Aug 19 · 9 AM – 2 PM</span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
-        <button class="dayrow" data-d="Thu Aug 20"><span class="dchk"></span><span class="ddate">Thu · Aug 20 · 9 AM – 2 PM</span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
-        <button class="dayrow" data-d="Fri Aug 21"><span class="dchk"></span><span class="ddate">Fri · Aug 21 · 9 AM – 2 PM</span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
-        <button class="dayrow" data-d="Sat Aug 22"><span class="dchk"></span><span class="ddate">Sat · Aug 22 · 9 AM – 2 PM</span><span class="dact" style="--c:#b5652f">Hiking, Maps &amp; Navigation</span></button>
+        <button class="dayrow" data-d="Mon Aug 17"><span class="dchk"></span><span class="ddate">Mon · Aug 17 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#4f5aa6">Fiber Arts</span></button>
+        <button class="dayrow" data-d="Tue Aug 18"><span class="dchk"></span><span class="ddate">Tue · Aug 18 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Ceramics</span></button>
+        <button class="dayrow" data-d="Wed Aug 19"><span class="dchk"></span><span class="ddate">Wed · Aug 19 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
+        <button class="dayrow" data-d="Thu Aug 20"><span class="dchk"></span><span class="ddate">Thu · Aug 20 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
+        <button class="dayrow" data-d="Fri Aug 21"><span class="dchk"></span><span class="ddate">Fri · Aug 21 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
+        <button class="dayrow" data-d="Sat Aug 22"><span class="dchk"></span><span class="ddate">Sat · Aug 22 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#b5652f">Hiking, Maps &amp; Navigation</span></button>
       </div>
       <div class="wk"><div class="wklabel">Week of Aug 24</div>
-        <button class="dayrow" data-d="Mon Aug 24"><span class="dchk"></span><span class="ddate">Mon · Aug 24 · 9 AM – 2 PM</span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Ceramics</span></button>
-        <button class="dayrow" data-d="Tue Aug 25"><span class="dchk"></span><span class="ddate">Tue · Aug 25 · 9 AM – 2 PM</span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
-        <button class="dayrow" data-d="Wed Aug 26"><span class="dchk"></span><span class="ddate">Wed · Aug 26 · 9 AM – 2 PM</span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
-        <button class="dayrow" data-d="Thu Aug 27"><span class="dchk"></span><span class="ddate">Thu · Aug 27 · 9 AM – 2 PM</span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
-        <button class="dayrow" data-d="Fri Aug 28"><span class="dchk"></span><span class="ddate">Fri · Aug 28 · 9 AM – 2 PM</span><span class="dact" style="--c:#4f5aa6">Fiber Arts</span></button>
-        <button class="dayrow" data-d="Sat Aug 29"><span class="dchk"></span><span class="ddate">Sat · Aug 29 · 9 AM – 2 PM</span><span class="dact" style="--c:#b5652f">Hiking, Maps &amp; Navigation</span></button>
+        <button class="dayrow" data-d="Mon Aug 24"><span class="dchk"></span><span class="ddate">Mon · Aug 24 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Ceramics</span></button>
+        <button class="dayrow" data-d="Tue Aug 25"><span class="dchk"></span><span class="ddate">Tue · Aug 25 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
+        <button class="dayrow" data-d="Wed Aug 26"><span class="dchk"></span><span class="ddate">Wed · Aug 26 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
+        <button class="dayrow" data-d="Thu Aug 27"><span class="dchk"></span><span class="ddate">Thu · Aug 27 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
+        <button class="dayrow" data-d="Fri Aug 28"><span class="dchk"></span><span class="ddate">Fri · Aug 28 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#4f5aa6">Fiber Arts</span></button>
+        <button class="dayrow" data-d="Sat Aug 29"><span class="dchk"></span><span class="ddate">Sat · Aug 29 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#b5652f">Hiking, Maps &amp; Navigation</span></button>
       </div>
       <div class="wk"><div class="wklabel">Week of Aug 31</div>
-        <button class="dayrow" data-d="Mon Aug 31"><span class="dchk"></span><span class="ddate">Mon · Aug 31 · 9 AM – 2 PM</span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
+        <button class="dayrow" data-d="Mon Aug 31"><span class="dchk"></span><span class="ddate">Mon · Aug 31 <span class="dtime">· 9 AM – 2 PM</span></span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
       </div>
         </div>
     <div class="calbar"><span id="calcount">No days selected</span><button class="btn-reg" style="flex:none;padding:9px 18px" onclick="reg()">Register selected days</button></div>
