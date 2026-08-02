@@ -20,7 +20,8 @@
   .top nav a{text-decoration:none;color:var(--muted)}.top nav a:hover{color:var(--accent)}
   .top .cta{background:var(--accent);color:#fff;padding:6px 13px;border-radius:8px}
   .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto;padding:4px 20px 8px}
-  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:700;font-size:.82rem;padding:7px 13px;border-radius:999px;cursor:pointer;transition:.15s}
+  @media(max-width:600px){.chips{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 16px 8px}.chips::-webkit-scrollbar{display:none}}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:700;font-size:.82rem;padding:7px 13px;border-radius:999px;cursor:pointer;transition:.15s;white-space:nowrap;flex:none}
   .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
   /* the hovering section blurb */
   .sind{background:#eef3ee;border-top:1px solid #dbe6de;padding:8px 20px;text-align:center;color:var(--accent-d);font-size:.9rem;line-height:1.35}
@@ -135,8 +136,8 @@
   </header>
   <div class="chips">
     <button class="chip" data-t="program">🎨 Crafts</button>
-    <button class="chip" data-t="august">☀️ Summer Schedule</button>
-    <button class="chip" data-t="september">🍂 Fall Schedule</button>
+    <button class="chip" data-t="august">☀️ Summer</button>
+    <button class="chip" data-t="september">🍂 Fall</button>
     <button class="chip" data-t="workshop">🔧 Workshops</button>
     <button class="chip" data-t="project">🛠️ Projects</button>
     <button class="chip" data-t="meetup">🌲 Meetups</button>
