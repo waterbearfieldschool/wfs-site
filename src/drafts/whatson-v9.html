@@ -19,9 +19,9 @@
   .top nav{display:flex;gap:16px;font-size:.9rem;font-weight:600}
   .top nav a{text-decoration:none;color:var(--muted)}.top nav a:hover{color:var(--accent)}
   .top .cta{background:var(--accent);color:#fff;padding:6px 13px;border-radius:8px}
-  .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto;padding:4px 20px 8px;overflow:hidden;transition:max-height .35s ease,padding .3s ease}
-  @media(max-width:600px){.chips{max-height:260px}.stickytop.navmin .chips{max-height:50px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;justify-content:flex-start;-webkit-overflow-scrolling:touch;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 86%,transparent);mask-image:linear-gradient(to right,#000 86%,transparent)}.stickytop.navmin .chip{font-size:.78rem;padding:6px 11px}.chips::-webkit-scrollbar{display:none}}
-  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:700;font-size:.82rem;padding:7px 13px;border-radius:999px;cursor:pointer;transition:.15s;white-space:nowrap;flex:none}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto;padding:4px 20px 8px;transition:gap .3s ease,padding .3s ease}
+  
+  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:700;font-size:.82rem;padding:7px 13px;border-radius:999px;cursor:pointer;transition:.25s ease;white-space:nowrap;flex:none}
   .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
   /* the hovering section blurb */
   .sind{background:#eef3ee;border-top:1px solid #dbe6de;padding:8px 20px;text-align:center;color:var(--accent-d);font-size:.9rem;line-height:1.35}
@@ -85,6 +85,14 @@
   .blockbtn:hover{background:#8a5a2f;color:#fff}
   .blockbtn.on{background:#8a5a2f;color:#fff}
   .blockbtn.on::after{content:" ✓"}
+  .brand{transition:font-size .3s ease}
+  .brand small{max-height:26px;overflow:hidden;transition:max-height .3s ease,opacity .25s ease,margin .3s ease}
+  .top{transition:padding .3s ease}
+  .stickytop.navmin .top{padding-top:6px;padding-bottom:2px}
+  .stickytop.navmin .brand{font-size:1rem}
+  .stickytop.navmin .brand small{max-height:0;opacity:0;margin:0}
+  .stickytop.navmin .chips{gap:5px;padding-top:2px;padding-bottom:6px}
+  .stickytop.navmin .chip{font-size:.76rem;padding:5px 10px}
   .grp{font-weight:800;color:var(--accent-d);text-align:center;font-size:1.4rem;margin:26px 0 16px}
   .about-lead{max-width:760px;margin:8px auto 0;text-align:center;color:var(--accent-d);font-size:clamp(1rem,2.4vw,1.18rem);font-weight:600;line-height:1.4}
   .legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:840px;margin:16px auto 0}
