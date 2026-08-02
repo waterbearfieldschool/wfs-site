@@ -19,8 +19,8 @@
   .top nav{display:flex;gap:16px;font-size:.9rem;font-weight:600}
   .top nav a{text-decoration:none;color:var(--muted)}.top nav a:hover{color:var(--accent)}
   .top .cta{background:var(--accent);color:#fff;padding:6px 13px;border-radius:8px}
-  .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto;padding:4px 20px 8px;transition:padding .25s ease}
-  @media(max-width:600px){.stickytop.navmin .chips{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 86%,transparent);mask-image:linear-gradient(to right,#000 86%,transparent)}.stickytop.navmin .chip{font-size:.78rem;padding:6px 11px}.chips::-webkit-scrollbar{display:none}}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto;padding:4px 20px 8px;overflow:hidden;transition:max-height .35s ease,padding .3s ease}
+  @media(max-width:600px){.chips{max-height:260px}.stickytop.navmin .chips{max-height:50px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;justify-content:flex-start;-webkit-overflow-scrolling:touch;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 86%,transparent);mask-image:linear-gradient(to right,#000 86%,transparent)}.stickytop.navmin .chip{font-size:.78rem;padding:6px 11px}.chips::-webkit-scrollbar{display:none}}
   .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:700;font-size:.82rem;padding:7px 13px;border-radius:999px;cursor:pointer;transition:.15s;white-space:nowrap;flex:none}
   .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
   /* the hovering section blurb */
@@ -278,7 +278,7 @@
   var siName=document.getElementById('siName'), siBlurb=document.getElementById('siBlurb');
   var sticky=document.querySelector('.stickytop');
   function spy(){
-    sticky.classList.toggle("navmin", window.scrollY>30);
+    var _y=window.scrollY; if(_y>70) sticky.classList.add("navmin"); else if(_y<20) sticky.classList.remove("navmin");
     var line=window.scrollY+sticky.offsetHeight+14, cur=secs[0];
     for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=line) cur=secs[i]; }
     siName.textContent=cur.dataset.name; siBlurb.textContent=cur.dataset.blurb;
