@@ -13,15 +13,15 @@
   body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
   a{color:inherit}
   .stickytop{position:sticky;top:0;z-index:50;background:#f7f7f2;border-bottom:1px solid var(--line);box-shadow:0 3px 10px rgba(0,0,0,.06)}
-  .top{display:flex;flex-direction:column;align-items:center;gap:6px;padding:11px 26px 4px;background:#f7f7f2}
-  .brand{font-weight:800;font-size:1.18rem;color:var(--accent);text-align:center}
+  .top{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 26px 3px;background:#f7f7f2}
+  .brand{font-weight:800;font-size:1.05rem;color:var(--accent);text-align:center}
   .brand small{display:block;font-weight:500;font-size:.66rem;color:var(--muted)}
   .top nav{display:flex;gap:16px;font-size:.9rem;font-weight:600}
   .top nav a{text-decoration:none;color:var(--muted)}.top nav a:hover{color:var(--accent)}
   .top .cta{background:var(--accent);color:#fff;padding:6px 13px;border-radius:8px}
-  .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto;padding:4px 20px 8px;transition:gap .3s ease,padding .3s ease}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto;gap:5px;padding:2px 16px 7px}
   
-  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:700;font-size:.82rem;padding:7px 13px;border-radius:999px;cursor:pointer;transition:.25s ease;white-space:nowrap;flex:none}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-weight:700;font-size:.77rem;padding:6px 11px;border-radius:999px;cursor:pointer;transition:.25s ease;white-space:nowrap;flex:none}
   .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
   /* the hovering section blurb */
   .sind{background:#eef3ee;border-top:1px solid #dbe6de;padding:8px 20px;text-align:center;color:var(--accent-d);font-size:.9rem;line-height:1.35}
@@ -86,14 +86,6 @@
   .blockbtn:hover{background:#8a5a2f;color:#fff}
   .blockbtn.on{background:#8a5a2f;color:#fff}
   .blockbtn.on::after{content:" ✓"}
-  .brand{transition:font-size .3s ease}
-  .brand small{max-height:26px;overflow:hidden;transition:max-height .3s ease,opacity .25s ease,margin .3s ease}
-  .top{transition:padding .3s ease}
-  .stickytop.navmin .top{padding-top:6px;padding-bottom:2px}
-  .stickytop.navmin .brand{font-size:1rem}
-  .stickytop.navmin .brand small{max-height:0;opacity:0;margin:0}
-  .stickytop.navmin .chips{gap:5px;padding-top:2px;padding-bottom:6px}
-  .stickytop.navmin .chip{font-size:.76rem;padding:5px 10px}
   .grp{font-weight:800;color:var(--accent-d);text-align:center;font-size:1.4rem;margin:26px 0 16px}
   .about-lead{max-width:760px;margin:8px auto 0;text-align:center;color:var(--accent-d);font-size:clamp(1rem,2.4vw,1.18rem);font-weight:600;line-height:1.4}
   .legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:840px;margin:16px auto 0}
@@ -287,7 +279,6 @@
   var siName=document.getElementById('siName'), siBlurb=document.getElementById('siBlurb');
   var sticky=document.querySelector('.stickytop');
   function spy(){
-    var _y=window.scrollY; if(_y>70) sticky.classList.add("navmin"); else if(_y<20) sticky.classList.remove("navmin");
     var line=window.scrollY+sticky.offsetHeight+14, cur=secs[0];
     for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=line) cur=secs[i]; }
     siName.textContent=cur.dataset.name; siBlurb.textContent=cur.dataset.blurb;
