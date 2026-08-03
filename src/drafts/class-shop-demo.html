@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Waterbear Field School — Register (Snipcart demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+<style>
+  :root{--ink:#1f241f;--bg:#f7f7f2;--muted:#6b7168;--accent:#1c4d3a;--accent-d:#123526;--sun:#e0a92b;--line:#e5e6e0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+  header{background:#123526;color:#fff;text-align:center;padding:14px 20px 11px;border-bottom:3px solid var(--sun);position:relative}
+  header h1{font-size:1.1rem} header p{font-size:.78rem;color:#c7d3c9;margin-top:2px}
+  .cart{position:absolute;right:14px;top:14px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:6px 13px;font-weight:700;font-size:.82rem;cursor:pointer}
+  .wrap{max-width:560px;margin:0 auto;padding:22px 16px 60px}
+  .lead{text-align:center;color:var(--muted);font-size:.95rem;margin:0 auto 18px;max-width:460px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 5px 16px rgba(0,0,0,.06)}
+  .card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+  .band{background:#a86f28;color:#fff;text-align:center;padding:12px 16px}
+  .band .n{font-size:1.35rem;font-weight:800}
+  .band .d{font-weight:600;font-size:.9rem;opacity:.95}
+  .body{padding:18px 18px 20px;text-align:center}
+  .desc{color:var(--ink);font-size:.95rem;margin-bottom:10px}
+  .price{font-size:1.6rem;font-weight:800;color:var(--accent-d)}
+  .seats{color:var(--muted);font-size:.85rem;font-weight:600;margin:2px 0 14px}
+  .reg{display:inline-block;background:var(--accent);color:#fff!important;border:none;font-weight:800;font-size:1rem;padding:13px 30px;border-radius:11px;cursor:pointer;text-decoration:none!important}
+  .reg:hover{background:var(--accent-d)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Waterbear Field School</h1><p>Register for a class</p>
+  <button class="cart snipcart-checkout">🛒 Cart (<span class="snipcart-items-count">0</span>)</button>
+</header>
+<div class="wrap">
+  <p class="lead">Reserve your seat — pay to register. When a class fills, it shows as sold out.</p>
+
+  <div class="card">
+    <img src="/v6img/pg-wood.jpg" alt="Woodworking">
+    <div class="band"><div class="n">🪚 Woodworking</div><div class="d">Craft Day · Mon · 9 AM – 2 PM</div></div>
+    <div class="body">
+      <div class="desc">Build the shop's own furniture — sawhorse, bench, stool, toolbox.</div>
+      <div class="price">$45</div>
+      <div class="seats">8 seats per day</div>
+      <button class="reg snipcart-add-item"
+        data-item-id="craft-woodworking"
+        data-item-name="Woodworking — Craft Day"
+        data-item-price="45.00"
+        data-item-url="/drafts/class-shop-demo.html"
+        data-item-description="Waterbear Field School — a hands-on Woodworking craft day (9 AM – 2 PM)."
+        data-item-image="/v6img/pg-wood.jpg"
+        data-item-quantity="1"
+        data-item-max-quantity="4">
+        Register — $45
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="snipcart" data-api-key="MTA2ODIzNWItMjAyZi00ZThmLThiMDktNTNiOGVmMjJhNzU5NjM5MDczMTU2MTI1ODk3MDU1" data-config-modal-style="side" hidden></div>
+<script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+</body>
+</html>
