@@ -176,15 +176,14 @@
   .hbtn-sum{background:#c8891a}
   .hbtn-fall{background:#a85423}
   .hbtn-work{background:#3b6fb0}
-  .carousel{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 16px 12px;max-width:900px;margin:0 auto;scrollbar-width:none}
-  .carousel::-webkit-scrollbar{display:none}
-  .ccard{flex:0 0 auto;width:150px;scroll-snap-align:start;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 4px 12px rgba(0,0,0,.10);text-decoration:none}
-  .ccard img{width:100%;height:110px;object-fit:cover;display:block}
-  .ccard .clabel{position:absolute;left:0;right:0;bottom:0;color:#fff;font-weight:800;font-size:.88rem;padding:20px 10px 8px;background:linear-gradient(to top,rgba(0,0,0,.74),rgba(0,0,0,0));line-height:1.12}
+  .showcase{display:block;position:relative;max-width:680px;margin:12px auto 0;aspect-ratio:3/2;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.16);text-decoration:none;background:#e9e5da}
+  .sc-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .9s ease}
+  .sc-slide.on{opacity:1}
+  .sc-label{position:absolute;left:0;right:0;bottom:0;color:#fff;font-weight:800;font-size:1.08rem;padding:34px 16px 14px;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0))}
   .hero{margin-bottom:20px}
-  .hdrnav{display:flex;gap:8px;justify-content:center;align-items:stretch;max-width:520px;margin:0 auto;max-height:0;overflow:hidden;opacity:0;transition:max-height .28s ease,opacity .22s ease,padding .28s ease;padding:0 12px}
+  .hdrnav{display:flex;gap:6px;justify-content:center;align-items:stretch;max-width:520px;margin:0 auto;max-height:0;overflow:hidden;opacity:0;transition:max-height .28s ease,opacity .22s ease,padding .28s ease;padding:0 12px}
   .stickytop.show-nav .hdrnav{max-height:64px;opacity:1;padding:0 12px 9px}
-  .hbtn-mini{flex:1 1 0;max-width:160px;text-align:center;text-decoration:none;color:#fff;font-weight:800;font-size:.84rem;line-height:1;padding:9px 6px;border-radius:9px;white-space:nowrap;box-shadow:0 3px 9px rgba(0,0,0,.22)}
+  .hbtn-mini{flex:1 1 0;max-width:130px;text-align:center;text-decoration:none;color:#fff;font-weight:800;font-size:.75rem;line-height:1;padding:8px 4px;border-radius:8px;white-space:nowrap;box-shadow:0 3px 9px rgba(0,0,0,.22)}
 </style>
 </head>
 <body>
@@ -193,28 +192,30 @@
     <div class="brand">Waterbear Field School</div>
   </header>
   <nav class="hdrnav">
-    <a class="hbtn-mini" href="#august" style="background:#c8891a">☀️ Summer</a>
-    <a class="hbtn-mini" href="#september" style="background:#a85423">🍂 Fall</a>
-    <a class="hbtn-mini" href="#workshop" style="background:#3b6fb0">🔧 Workshops</a>
+    <a class="hbtn-mini" href="#program" style="background:#3f7d54">Craft Days</a>
+    <a class="hbtn-mini" href="#august" style="background:#c8891a">Summer</a>
+    <a class="hbtn-mini" href="#september" style="background:#a85423">Fall</a>
+    <a class="hbtn-mini" href="#workshop" style="background:#3b6fb0">Workshops</a>
   </nav>
 </div>
 
 <div class="wrap">
 
-  <div class="carousel">
-    <a class="ccard" href="#program"><img src="v6img/pg-wood.jpg" alt=""><span class="clabel">🪚 Woodworking</span></a>
-    <a class="ccard" href="#program"><img src="v6img/ws-rain.jpg" alt=""><span class="clabel">💧 Water</span></a>
-    <a class="ccard" href="#program"><img src="v6img/pg-fiber.jpg" alt=""><span class="clabel">🧶 Fiber Arts</span></a>
-    <a class="ccard" href="#program"><img src="v6img/pj-humanpower.jpg" alt=""><span class="clabel">🛠️ Sculpture &amp; Fabrication</span></a>
-    <a class="ccard" href="#program"><img src="v6img/pg-nature.jpg" alt=""><span class="clabel">🌿 Plants &amp; Animals</span></a>
-    <a class="ccard" href="#program"><img src="v6img/pg-music.jpg" alt=""><span class="clabel">🎵 Music &amp; Instrument Making</span></a>
-    <a class="ccard" href="#program"><img src="v6img/pg-art.jpg" alt=""><span class="clabel">🎨 Painting &amp; Drawing</span></a>
-  </div>
+  <a class="showcase" href="#program">
+    <div class="sc-slide on" style="background-image:url(v6img/pg-wood.jpg)"><span class="sc-label">🪚 Woodworking</span></div>
+    <div class="sc-slide" style="background-image:url(v6img/ws-rain.jpg)"><span class="sc-label">💧 Water</span></div>
+    <div class="sc-slide" style="background-image:url(v6img/pg-fiber.jpg)"><span class="sc-label">🧶 Fiber Arts</span></div>
+    <div class="sc-slide" style="background-image:url(v6img/pj-humanpower.jpg)"><span class="sc-label">🛠️ Sculpture &amp; Fabrication</span></div>
+    <div class="sc-slide" style="background-image:url(v6img/pg-nature.jpg)"><span class="sc-label">🌿 Plants &amp; Animals</span></div>
+    <div class="sc-slide" style="background-image:url(v6img/pg-music.jpg)"><span class="sc-label">🎵 Music &amp; Instrument Making</span></div>
+    <div class="sc-slide" style="background-image:url(v6img/pg-art.jpg)"><span class="sc-label">🎨 Painting &amp; Drawing</span></div>
+  </a>
 
   <section class="hero">
     <div class="hero-cta">
-      <a class="hbtn hbtn-sum" href="#august">☀️ Summer Craft Days, 9 AM – 2 PM</a>
-      <a class="hbtn hbtn-fall" href="#september">🍂 Fall Craft Days, 9 AM – 2 PM</a>
+      <a class="hbtn hbtn-learn" href="#program">🎨 Craft Days</a>
+      <a class="hbtn hbtn-sum" href="#august">☀️ Summer Registration</a>
+      <a class="hbtn hbtn-fall" href="#september">🍂 Fall Registration</a>
       <a class="hbtn hbtn-work" href="#workshop">🔧 Workshops</a>
     </div>
   </section>
@@ -359,18 +360,11 @@
 </script>
 <script>
 (function(){
-  var car=document.querySelector('.carousel'); if(!car) return;
-  var cards=car.querySelectorAll('.ccard'); if(cards.length<2) return;
-  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var paused=false, rt;
-  function nearest(){var m=1e9,idx=0;for(var k=0;k<cards.length;k++){var d=Math.abs(cards[k].offsetLeft-car.offsetLeft-car.scrollLeft);if(d<m){m=d;idx=k;}}return idx;}
-  function go(i){car.scrollTo({left:cards[i].offsetLeft-car.offsetLeft,behavior:'smooth'});}
-  function step(){if(paused||document.hidden)return;go((nearest()+1)%cards.length);}
-  function bump(){paused=true;clearTimeout(rt);rt=setTimeout(function(){paused=false;},4500);}
-  ['pointerdown','wheel','touchmove'].forEach(function(ev){car.addEventListener(ev,bump,{passive:true});});
-  car.addEventListener('mouseenter',function(){paused=true;});
-  car.addEventListener('mouseleave',function(){paused=false;});
-  setInterval(step,2800);
+  var sc=document.querySelector(".showcase"); if(!sc) return;
+  var sl=sc.querySelectorAll(".sc-slide"); if(sl.length<2) return;
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var i=0;
+  setInterval(function(){ if(document.hidden) return; sl[i].classList.remove("on"); i=(i+1)%sl.length; sl[i].classList.add("on"); },3400);
 })();
 </script>
 <script>
