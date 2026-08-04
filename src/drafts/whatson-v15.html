@@ -360,5 +360,21 @@
    document.getElementById('ov').classList.add('on');}
   function cl(){document.getElementById('ov').classList.remove('on');}
 </script>
+<script>
+(function(){
+  var car=document.querySelector('.carousel'); if(!car) return;
+  var cards=car.querySelectorAll('.ccard'); if(cards.length<2) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var paused=false, rt;
+  function nearest(){var m=1e9,idx=0;for(var k=0;k<cards.length;k++){var d=Math.abs(cards[k].offsetLeft-car.offsetLeft-car.scrollLeft);if(d<m){m=d;idx=k;}}return idx;}
+  function go(i){car.scrollTo({left:cards[i].offsetLeft-car.offsetLeft,behavior:'smooth'});}
+  function step(){if(paused||document.hidden)return;go((nearest()+1)%cards.length);}
+  function bump(){paused=true;clearTimeout(rt);rt=setTimeout(function(){paused=false;},4500);}
+  ['pointerdown','wheel','touchmove'].forEach(function(ev){car.addEventListener(ev,bump,{passive:true});});
+  car.addEventListener('mouseenter',function(){paused=true;});
+  car.addEventListener('mouseleave',function(){paused=false;});
+  setInterval(step,2800);
+})();
+</script>
 </body>
 </html>
