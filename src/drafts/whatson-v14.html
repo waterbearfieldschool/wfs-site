@@ -47,7 +47,7 @@
   .morelink{text-align:center;margin-top:20px}
   .morelink a{display:inline-block;background:#4f6675;color:#fff;text-decoration:none;font-weight:700;padding:11px 22px;border-radius:9px}
   .morelink a:hover{background:#3f5563}
-  .seclead{text-align:center;color:var(--muted);max-width:660px;margin:2px auto 14px;font-size:.96rem;line-height:1.4}
+  .seclead{text-align:center;color:var(--muted);max-width:660px;margin:2px auto 8px;font-size:.9rem;line-height:1.35}
   .sec-august{background:#fdefc6;border-color:#eed99a} .sec-august .grp{color:#9a6f14}
   .sec-september{background:#f7ddc8;border-color:#eec3a3} .sec-september .grp{color:#a85423}
   .cal{max-width:720px;margin:8px auto 0}
@@ -59,7 +59,7 @@
   .ddate{font-weight:700;color:var(--ink);white-space:nowrap;flex:none;width:104px}
   .dtime{font-weight:400;color:var(--muted)}
   .dact{color:var(--ink);font-weight:600;display:flex;align-items:flex-start;gap:8px;flex:1;min-width:0} .dact::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c);flex:none;margin-top:5px}
-  .calbar{position:sticky;bottom:8px;background:#fff;border:1px solid var(--line);border-radius:12px;margin:14px auto 0;max-width:720px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 5px 16px rgba(0,0,0,.10)}
+  .calbar{position:sticky;bottom:8px;background:#fff;border:1px solid var(--line);border-radius:12px;margin:10px auto 0;max-width:720px;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 5px 16px rgba(0,0,0,.10)}
   #calcount{font-weight:700;color:var(--accent-d)}
   .cancelnote{max-width:720px;margin:12px auto 0;text-align:center;font-size:.83rem;color:var(--muted)}
   @media(max-width:560px){.wrap{padding-left:14px;padding-right:14px;padding-top:8px}section.sec{padding-left:10px;padding-right:10px}section.sec:first-of-type{padding-top:2px}section.sec:first-of-type .grp{margin-top:12px}.dayrow{padding:11px 16px}}
@@ -104,7 +104,7 @@
   .picker .blockbtn{display:inline-block;width:auto;margin:0;font-size:.72rem;padding:5px 9px}
   .leg2{display:flex;gap:16px;justify-content:center;margin:14px 0 2px;font-size:.82rem;color:var(--muted);font-weight:700}
   .leg2 i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px;vertical-align:middle}
-  .months{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:640px;margin:10px auto 0}
+  .months{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-width:640px;margin:6px auto 0}
   @media(max-width:560px){.months{grid-template-columns:1fr 1fr}}
   .month{background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 6px 6px}
   .month h4{text-align:center;color:var(--accent-d);font-size:.72rem;margin-bottom:4px}
@@ -112,6 +112,8 @@
   .cg .dow{font-size:.5rem;color:var(--muted);text-align:center;font-weight:800;padding:0}
   .cg .cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.58rem;border-radius:4px;color:var(--ink)}
   .cg .cell.hl{color:#fff;font-weight:800}
+  #september .grp{margin:10px 0 4px} #august .grp{margin:12px 0 6px}
+  #segcount{font-size:.88rem;line-height:1.2}
   .grp{font-weight:800;color:var(--accent-d);text-align:center;font-size:1.4rem;margin:26px 0 16px}
   .about-lead{max-width:760px;margin:8px auto 0;text-align:center;color:var(--accent-d);font-size:clamp(1rem,2.4vw,1.18rem);font-weight:600;line-height:1.4}
   .legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:840px;margin:16px auto 0}
@@ -154,12 +156,11 @@
   .chip{background:rgba(255,255,255,.10);color:#eaf0eb;border-color:rgba(255,255,255,.30)}
   .sellist{text-align:left;max-width:270px;margin:10px auto;padding-left:22px}
   .sellist li{margin:5px 0;color:var(--ink);font-weight:600}
-  .bgrid{border-collapse:collapse;width:auto;margin:14px auto 2px}
-  .bgrid th,.bgrid td{border:1px solid var(--line);padding:10px 14px;text-align:center}
+  .bgrid{border-collapse:collapse;width:auto;margin:8px auto 2px}
+  .bgrid th,.bgrid td{border:1px solid var(--line);padding:6px 11px;text-align:center}
   .bgrid thead th{font-weight:800;font-size:.85rem}
-  .bgrid tbody th{font-weight:700;font-size:.8rem;color:var(--ink);text-align:left;white-space:nowrap;background:#faf6ef}
+  .bgrid tbody th{font-weight:700;font-size:.8rem;color:var(--ink);text-align:left;white-space:nowrap}
   .bgrid td{cursor:pointer}
-  .bgrid td:hover{background:#f7f2e9}
   .cbx{display:inline-block;width:22px;height:22px;border:2px solid #cdb79c;border-radius:6px;vertical-align:middle;transition:.12s;position:relative}
   .bcell.on .cbx{background:var(--cc);border-color:var(--cc)}
   .bcell.on .cbx::after{content:"\2713";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px}
@@ -168,7 +169,7 @@
 <body>
 <div class="stickytop">
   <header class="top">
-    <div class="brand">Waterbear Field School<small>Hands-on learning &amp; building, for kids and adults.</small></div>
+    <div class="brand">Waterbear Field School</div>
   </header>
   <div class="chips">
     <button class="chip" data-t="program">🎨 Crafts</button>
@@ -222,7 +223,7 @@
   </section>
       <section class="sec sec-september" id="september" data-name="Seasonal Schedule" data-blurb="Register a weekday (Tue/Wed/Thu) for a block of weeks — see it on the calendar.">
     <h2 class="grp">🍂 Fall Schedule</h2>
-    <p class="seclead">Pick a weekday — <b>Tuesday, Wednesday, or Thursday</b> — and a block; the days you'd attend light up on the calendar. Pick one or several.</p>
+    <p class="seclead">Check a weekday × block — those days light up below. Pick one or several.</p>
     <table class="bgrid"><thead><tr><th></th><th style="color:#2c8299">Tue</th><th style="color:#a85423">Wed</th><th style="color:#3f7d54">Thu</th></tr></thead><tbody><tr><th>Sept 7 – Oct 9</th><td class="bcell" style="--cc:#2c8299" data-day="Tuesdays" data-block="Sept 7 – Oct 9" data-color="#2c8299" data-dates="2026-09-08,2026-09-15,2026-09-22,2026-09-29,2026-10-06" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#a85423" data-day="Wednesdays" data-block="Sept 7 – Oct 9" data-color="#a85423" data-dates="2026-09-09,2026-09-16,2026-09-23,2026-09-30,2026-10-07" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#3f7d54" data-day="Thursdays" data-block="Sept 7 – Oct 9" data-color="#3f7d54" data-dates="2026-09-10,2026-09-17,2026-09-24,2026-10-01,2026-10-08" onclick="selcell(this)"><span class="cbx"></span></td></tr><tr><th>Oct 12 – Nov 13</th><td class="bcell" style="--cc:#2c8299" data-day="Tuesdays" data-block="Oct 12 – Nov 13" data-color="#2c8299" data-dates="2026-10-13,2026-10-20,2026-10-27,2026-11-03,2026-11-10" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#a85423" data-day="Wednesdays" data-block="Oct 12 – Nov 13" data-color="#a85423" data-dates="2026-10-14,2026-10-21,2026-10-28,2026-11-04,2026-11-11" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#3f7d54" data-day="Thursdays" data-block="Oct 12 – Nov 13" data-color="#3f7d54" data-dates="2026-10-15,2026-10-22,2026-10-29,2026-11-05,2026-11-12" onclick="selcell(this)"><span class="cbx"></span></td></tr><tr><th>Nov 16 – Dec 18</th><td class="bcell" style="--cc:#2c8299" data-day="Tuesdays" data-block="Nov 16 – Dec 18" data-color="#2c8299" data-dates="2026-11-17,2026-11-24,2026-12-01,2026-12-08,2026-12-15" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#a85423" data-day="Wednesdays" data-block="Nov 16 – Dec 18" data-color="#a85423" data-dates="2026-11-18,2026-11-25,2026-12-02,2026-12-09,2026-12-16" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#3f7d54" data-day="Thursdays" data-block="Nov 16 – Dec 18" data-color="#3f7d54" data-dates="2026-11-19,2026-11-26,2026-12-03,2026-12-10,2026-12-17" onclick="selcell(this)"><span class="cbx"></span></td></tr></tbody></table>
     <div class="months">
       <div class="month"><h4>September 2026</h4><div class="cg"><div class="dow">S</div><div class="dow">M</div><div class="dow">T</div><div class="dow">W</div><div class="dow">T</div><div class="dow">F</div><div class="dow">S</div><div class="cell"></div><div class="cell"></div><div class="cell" data-d="2026-09-01">1</div><div class="cell" data-d="2026-09-02">2</div><div class="cell" data-d="2026-09-03">3</div><div class="cell" data-d="2026-09-04">4</div><div class="cell" data-d="2026-09-05">5</div><div class="cell" data-d="2026-09-06">6</div><div class="cell" data-d="2026-09-07">7</div><div class="cell" data-d="2026-09-08">8</div><div class="cell" data-d="2026-09-09">9</div><div class="cell" data-d="2026-09-10">10</div><div class="cell" data-d="2026-09-11">11</div><div class="cell" data-d="2026-09-12">12</div><div class="cell" data-d="2026-09-13">13</div><div class="cell" data-d="2026-09-14">14</div><div class="cell" data-d="2026-09-15">15</div><div class="cell" data-d="2026-09-16">16</div><div class="cell" data-d="2026-09-17">17</div><div class="cell" data-d="2026-09-18">18</div><div class="cell" data-d="2026-09-19">19</div><div class="cell" data-d="2026-09-20">20</div><div class="cell" data-d="2026-09-21">21</div><div class="cell" data-d="2026-09-22">22</div><div class="cell" data-d="2026-09-23">23</div><div class="cell" data-d="2026-09-24">24</div><div class="cell" data-d="2026-09-25">25</div><div class="cell" data-d="2026-09-26">26</div><div class="cell" data-d="2026-09-27">27</div><div class="cell" data-d="2026-09-28">28</div><div class="cell" data-d="2026-09-29">29</div><div class="cell" data-d="2026-09-30">30</div></div></div>
