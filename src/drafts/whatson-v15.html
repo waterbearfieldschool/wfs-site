@@ -176,6 +176,11 @@
   .hbtn-sum{background:#c8891a}
   .hbtn-fall{background:#a85423}
   .hbtn-work{background:#3b6fb0}
+  .carousel{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 16px 12px;max-width:900px;margin:0 auto;scrollbar-width:none}
+  .carousel::-webkit-scrollbar{display:none}
+  .ccard{flex:0 0 auto;width:150px;scroll-snap-align:start;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 4px 12px rgba(0,0,0,.10);text-decoration:none}
+  .ccard img{width:100%;height:110px;object-fit:cover;display:block}
+  .ccard .clabel{position:absolute;left:0;right:0;bottom:0;color:#fff;font-weight:800;font-size:.88rem;padding:20px 10px 8px;background:linear-gradient(to top,rgba(0,0,0,.74),rgba(0,0,0,0));line-height:1.12}
   .hero{margin-bottom:20px}
 </style>
 </head>
@@ -188,8 +193,17 @@
 
 <div class="wrap">
 
+  <div class="carousel">
+    <a class="ccard" href="#program"><img src="v6img/pg-wood.jpg" alt=""><span class="clabel">🪚 Woodworking</span></a>
+    <a class="ccard" href="#program"><img src="v6img/ws-rain.jpg" alt=""><span class="clabel">💧 Water</span></a>
+    <a class="ccard" href="#program"><img src="v6img/pg-fiber.jpg" alt=""><span class="clabel">🧶 Fiber Arts</span></a>
+    <a class="ccard" href="#program"><img src="v6img/pj-humanpower.jpg" alt=""><span class="clabel">🛠️ Sculpture &amp; Fabrication</span></a>
+    <a class="ccard" href="#program"><img src="v6img/pg-nature.jpg" alt=""><span class="clabel">🌿 Plants &amp; Animals</span></a>
+    <a class="ccard" href="#program"><img src="v6img/pg-music.jpg" alt=""><span class="clabel">🎵 Music &amp; Instrument Making</span></a>
+    <a class="ccard" href="#program"><img src="v6img/pg-art.jpg" alt=""><span class="clabel">🎨 Painting &amp; Drawing</span></a>
+  </div>
+
   <section class="hero">
-    <p class="hero-tag">Hands-on learning &amp; building on local farms &mdash; for kids and adults.</p>
     <div class="hero-cta">
       <a class="hbtn hbtn-sum" href="#august">☀️ Summer Craft Days, 9 AM – 2 PM</a>
       <a class="hbtn hbtn-fall" href="#september">🍂 Fall Craft Days, 9 AM – 2 PM</a>
