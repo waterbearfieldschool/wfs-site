@@ -416,6 +416,7 @@
     hams.forEach(function(b){ b.addEventListener("click",function(e){ e.stopPropagation(); d.classList.toggle("open"); }); });
     d.addEventListener("click",function(e){ if(e.target.tagName==="A") d.classList.remove("open"); });
     document.addEventListener("click",function(e){ if(!d.contains(e.target)&&!e.target.closest(".hbtn-ham")) d.classList.remove("open"); });
+    var brand=document.querySelector(".brand"); if(brand){ brand.style.cursor="pointer"; brand.setAttribute("role","button"); brand.addEventListener("click",function(){ window.scrollTo({top:0,behavior:"smooth"}); }); }
   }
 })();
 </script>
