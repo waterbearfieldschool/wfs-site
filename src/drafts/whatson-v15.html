@@ -34,7 +34,7 @@
   .sind{background:#eef3ee;border-top:1px solid #dbe6de;padding:8px 20px;text-align:center;color:var(--accent-d);font-size:.9rem;line-height:1.35}
   .sind b{font-weight:800}
   .wrap{max-width:1080px;margin:0 auto;padding:22px 24px 40px}
-  section.sec{scroll-margin-top:170px;padding:14px 20px 26px;margin:0 0 20px;border-radius:18px;border:1px solid transparent;transition:background .2s}
+  section.sec{scroll-margin-top:60px;padding:14px 20px 26px;margin:0 0 20px;border-radius:18px;border:1px solid transparent;transition:background .2s}
   .sec-about{background:#eef3ee;border-color:#dbe6de} .sec-about .grp{color:#1c4d3a}
   .sec-program{background:#e9f0e4;border-color:#cfe0c8} .sec-program .grp{color:#46713e}
   .sec-workshop{background:#e9f0f8;border-color:#cfe0f0} .sec-workshop .grp{color:#2f5a92}
@@ -112,7 +112,7 @@
   .cg .dow{font-size:.5rem;color:var(--muted);text-align:center;font-weight:800;padding:0}
   .cg .cell{aspect-ratio:1;min-width:0;display:flex;align-items:center;justify-content:center;font-size:.58rem;border-radius:4px;color:var(--ink);overflow:hidden}
   .cg .cell.hl{color:#fff;font-weight:800}
-  #september .grp{margin:10px 0 4px} #august .grp{margin:12px 0 6px}
+  #september .grp{margin:10px 0 4px} #august .grp{margin:12px 0 6px} #program .grp{margin:12px 0 10px}
   #segcount{font-size:.88rem;line-height:1.2}
   .grp{font-weight:800;color:var(--accent-d);text-align:center;font-size:1.4rem;margin:26px 0 16px}
   .about-lead{max-width:760px;margin:8px auto 0;text-align:center;color:var(--accent-d);font-size:clamp(1rem,2.4vw,1.18rem);font-weight:600;line-height:1.4}
@@ -175,9 +175,8 @@
   .hbtn-learn{background:#3f7d54}
   .hbtn-sum{background:#c8891a}
   .hbtn-fall{background:#a85423}
-  .hero{margin-bottom:2px}
-  .hero + section.sec{padding-top:4px}
-  .hero + section.sec .grp{margin-top:8px}
+  .hbtn-work{background:#3b6fb0}
+  .hero{margin-bottom:20px}
 </style>
 </head>
 <body>
@@ -185,16 +184,6 @@
   <header class="top">
     <div class="brand">Waterbear Field School</div>
   </header>
-  <div class="chips">
-    <button class="chip" data-t="program">🎨 Crafts</button>
-    <button class="chip" data-t="august">☀️ Summer</button>
-    <button class="chip" data-t="september">🍂 Fall</button>
-    <button class="chip" data-t="workshop">🔧 Workshops</button>
-    <button class="chip" data-t="project">🛠️ Projects</button>
-    <button class="chip" data-t="meetup">🌲 Meetups</button>
-    <button class="chip" data-t="journal">📓 Journal</button>
-    <button class="chip" data-t="about">ℹ️ About</button>
-  </div>
 </div>
 
 <div class="wrap">
@@ -202,9 +191,9 @@
   <section class="hero">
     <p class="hero-tag">Hands-on learning &amp; building on local farms &mdash; for kids and adults.</p>
     <div class="hero-cta">
-      <a class="hbtn hbtn-learn" href="#program">🎨 Learn about our programs</a>
-      <a class="hbtn hbtn-sum" href="#august">☀️ Register for Summer<small>Individual days &middot; 9 AM – 2 PM</small></a>
-      <a class="hbtn hbtn-fall" href="#september">🍂 Register for Fall<small>By the month &middot; 9 AM – 2 PM</small></a>
+      <a class="hbtn hbtn-sum" href="#august">☀️ Summer Craft Days, 9 AM – 2 PM</a>
+      <a class="hbtn hbtn-fall" href="#september">🍂 Fall Craft Days, 9 AM – 2 PM</a>
+      <a class="hbtn hbtn-work" href="#workshop">🔧 Workshops</a>
     </div>
   </section>
 
@@ -257,6 +246,7 @@
   </section>
   <section class="sec sec-workshop" id="workshop" data-name="Workshops" data-blurb="Single-session deep-dives." data-accent="#3b6fb0" data-tint="#e9f0f8" data-bd="#cfe0f0">
     <h2 class="grp">🔧 Single-session Workshops</h2>
+    <p class="seclead">One-time, hands-on sessions — pick a topic and dive in for an afternoon. No commitment.</p>
     <div class="cards">
       <article class="card"><img class="cardimg" src="v6img/ws-mesh.jpg" alt=""><div class="band" style="background:#3b6fb0"><div class="day">📡 Mesh Radio</div><div class="theme">Workshop</div></div><div class="body"><div class="when">3 hours</div><div class="desc">Decentralized radio messaging that works with no cell service or internet.</div><div class="foot"><button class="btn-reg" onclick="m('r')">Register</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
       <article class="card"><img class="cardimg" src="v6img/ws-solar.jpg" alt=""><div class="band" style="background:#3b6fb0"><div class="day">☀️ Intro to Solar</div><div class="theme">Workshop</div></div><div class="body"><div class="when">3 hours</div><div class="desc">A gentle, hands-on intro to human-scale renewable energy and off-grid power.</div><div class="foot"><button class="btn-reg" onclick="m('r')">Register</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
@@ -268,6 +258,7 @@
 
   <section class="sec sec-project" id="project" data-name="Ongoing Projects" data-blurb="Long-running builds and experiments." data-accent="#2c8299" data-tint="#e6f2f5" data-bd="#c6e2e9">
     <h2 class="grp">🛠️ Ongoing Projects</h2>
+    <p class="seclead">Long-running builds and experiments you can follow along with — and jump into anytime.</p>
     <div class="cards">
       <article class="card"><img class="cardimg" src="v6img/pj-offgrid.jpg" alt=""><div class="body"><h3>Off-grid Sensing</h3><div class="when">Ongoing · follow along</div><div class="desc">With applications to temperature in greenhouses, and water-level / flood alerts.</div><div class="foot"><a class="btn-reg" href="/journal/">Read the latest →</a></div></div></article>
       <article class="card"><img class="cardimg" src="v6img/pj-biochar.jpg" alt=""><div class="body"><h3>Biochar Water Filters</h3><div class="when">Ongoing · follow along</div><div class="desc">DIY water filtration from locally-made biochar — cheap, effective, and evolving.</div><div class="foot"><a class="btn-reg" href="/journal/">Read the latest →</a></div></div></article>
@@ -280,6 +271,7 @@
 
     <section class="sec sec-meetup" id="meetup" data-name="Meetups" data-blurb="Casual, drop-in gatherings — woods hikes and farm salons." data-accent="#3f7d54" data-tint="#e9f2ec" data-bd="#cbe2d4">
     <h2 class="grp">🌲 Meetups</h2>
+    <p class="seclead">Casual, drop-in gatherings — woods hikes, plant walks, and farm salons. Everyone&rsquo;s welcome.</p>
     <div class="cards">
       <article class="card"><img class="cardimg" src="v6img/mt-hike.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌲 Woods Hike</div><div class="theme">Meetup · Plant walk</div></div><div class="body"><div class="when">Weekend morning · drop-in</div><div class="desc">A hike in the woods, learning the plants around us — edible, useful, and otherwise.</div><div class="foot"><button class="btn-reg" onclick="m('r')">RSVP</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
       <article class="card"><img class="cardimg" src="v6img/mt-salon.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌾 Farm Salon</div><div class="theme">Meetup · Drop-in</div></div><div class="body"><div class="when">Weekend · drop-in</div><div class="desc">A relaxed gathering at the farm — conversation, ideas, and sharing what we're each working on.</div><div class="foot"><button class="btn-reg" onclick="m('r')">RSVP</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
@@ -288,6 +280,7 @@
 
   <section class="sec sec-journal" id="journal" data-name="Journal" data-blurb="Recent goings-on — workshops, meetups, and builds from the field." data-accent="#4f6675" data-tint="#eef1f4" data-bd="#d6dee5">
     <h2 class="grp">📓 From the Journal</h2>
+    <p class="seclead">Recent goings-on — workshops, meetups, and builds from the field.</p>
     <div class="cards">
       <article class="card"><img class="cardimg" src="v6img/jr-radiocase.jpg" alt=""><div class="body"><h3>New radio case for the HHF monitor</h3><div class="when">May 26, 2026</div><div class="desc">Dick at Artisans Asylum donated a mesh-radio case for the cause.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-26-hhf-coolbot-radio-case/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="v6img/jr-toaster.jpg" alt=""><div class="body"><h3>Toaster-oven reflow at Artisans Asylum</h3><div class="when">May 21, 2026</div><div class="desc">Testing toaster-oven reflow-soldering techniques at Artisans Asylum.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-21-toaster-oven-reflow/">Read →</a></div></div></article>
