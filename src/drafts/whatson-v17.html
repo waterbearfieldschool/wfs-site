@@ -20,7 +20,7 @@
   body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
   a{color:inherit}
   .stickytop{position:sticky;top:0;z-index:50;background:#f7f7f2;border-bottom:1px solid var(--line);box-shadow:0 3px 10px rgba(0,0,0,.06)}
-  .top{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 26px 3px;background:#f7f7f2}
+  .top{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 26px 13px;background:#f7f7f2}
   .brand{font-weight:800;font-size:1.05rem;color:var(--accent);text-align:center}
   .brand small{display:block;font-weight:500;font-size:.66rem;color:var(--muted)}
   .top nav{display:flex;gap:16px;font-size:.9rem;font-weight:600}
@@ -193,6 +193,7 @@
   .menudrop a{display:block;color:#eaf0eb;text-decoration:none;font-weight:700;font-size:.95rem;padding:10px 14px;border-radius:8px;white-space:nowrap}
   .menudrop a:hover,.menudrop a:active{background:rgba(255,255,255,.13)}
   @media(min-width:561px){.showcase{max-width:520px;aspect-ratio:2.1/1;margin-top:8px}}
+  @media(min-width:561px){.stickytop.show-nav .top{padding-bottom:2px}}
 </style>
 </head>
 <body>
