@@ -34,7 +34,7 @@
   .sind{background:#eef3ee;border-top:1px solid #dbe6de;padding:8px 20px;text-align:center;color:var(--accent-d);font-size:.9rem;line-height:1.35}
   .sind b{font-weight:800}
   .wrap{max-width:1080px;margin:0 auto;padding:22px 24px 40px}
-  section.sec{scroll-margin-top:60px;padding:14px 20px 26px;margin:0 0 20px;border-radius:18px;border:1px solid transparent;transition:background .2s}
+  section.sec{scroll-margin-top:104px;padding:14px 20px 26px;margin:0 0 20px;border-radius:18px;border:1px solid transparent;transition:background .2s}
   .sec-about{background:#eef3ee;border-color:#dbe6de} .sec-about .grp{color:#1c4d3a}
   .sec-program{background:#e9f0e4;border-color:#cfe0c8} .sec-program .grp{color:#46713e}
   .sec-workshop{background:#e9f0f8;border-color:#cfe0f0} .sec-workshop .grp{color:#2f5a92}
@@ -179,7 +179,7 @@
   .showcase{display:block;position:relative;max-width:680px;margin:12px auto 0;aspect-ratio:3/2;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.16);text-decoration:none;background:#e9e5da}
   .sc-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .9s ease}
   .sc-slide.on{opacity:1}
-  .sc-label{position:absolute;left:0;right:0;bottom:0;color:#fff;font-weight:800;font-size:1.08rem;padding:34px 16px 14px;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0))}
+  .sc-label{position:absolute;left:0;right:0;bottom:0;text-align:center;color:#fff;font-weight:800;font-size:1.08rem;padding:34px 16px 14px;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0))}
   .hero{margin-bottom:20px}
   .hdrnav{display:flex;gap:8px;justify-content:center;align-items:center;max-width:560px;margin:0 auto;max-height:0;overflow:hidden;opacity:0;transition:max-height .28s ease,opacity .22s ease,padding .28s ease;padding:0 12px}
   .stickytop.show-nav .hdrnav{max-height:64px;opacity:1;padding:7px 12px 9px}
@@ -402,8 +402,13 @@
 <script>
 (function(){
   var hero=document.querySelector(".hero"), st=document.querySelector(".stickytop");
-  if(hero&&st&&("IntersectionObserver" in window)){
-    new IntersectionObserver(function(es){ st.classList.toggle("show-nav", !es[0].isIntersecting); },{rootMargin:"-64px 0px 0px 0px",threshold:0}).observe(hero);
+  if(hero&&st){
+    var shown=false, revealY=0;
+    function measure(){ var had=st.classList.contains("show-nav"); if(had) st.classList.remove("show-nav"); revealY=hero.offsetTop+hero.offsetHeight-72; if(had) st.classList.add("show-nav"); }
+    function onScroll(){ var y=window.scrollY||document.documentElement.scrollTop||0; if(!shown&&y>=revealY){ shown=true; st.classList.add("show-nav"); } else if(shown&&y<=revealY-64){ shown=false; st.classList.remove("show-nav"); } }
+    measure(); onScroll();
+    window.addEventListener("scroll", onScroll, {passive:true});
+    window.addEventListener("resize", function(){ measure(); onScroll(); });
   }
   var hams=document.querySelectorAll(".hbtn-ham"), d=document.getElementById("menuDrop");
   if(hams.length&&d){
