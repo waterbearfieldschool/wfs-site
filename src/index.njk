@@ -24,7 +24,7 @@ eleventyExcludeFromCollections: true
   body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
   a{color:inherit}
   .stickytop{position:sticky;top:0;z-index:50;background:#f7f7f2;border-bottom:1px solid var(--line);box-shadow:0 3px 10px rgba(0,0,0,.06)}
-  .top{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 26px 3px;background:#f7f7f2}
+  .top{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 26px 13px;background:#f7f7f2}
   .brand{font-weight:800;font-size:1.05rem;color:var(--accent);text-align:center}
   .brand small{display:block;font-weight:500;font-size:.66rem;color:var(--muted)}
   .top nav{display:flex;gap:16px;font-size:.9rem;font-weight:600}
@@ -38,7 +38,7 @@ eleventyExcludeFromCollections: true
   .sind{background:#eef3ee;border-top:1px solid #dbe6de;padding:8px 20px;text-align:center;color:var(--accent-d);font-size:.9rem;line-height:1.35}
   .sind b{font-weight:800}
   .wrap{max-width:1080px;margin:0 auto;padding:22px 24px 40px}
-  section.sec{scroll-margin-top:170px;padding:14px 20px 26px;margin:0 0 20px;border-radius:18px;border:1px solid transparent;transition:background .2s}
+  section.sec{scroll-margin-top:104px;padding:14px 20px 26px;margin:0 0 20px;border-radius:18px;border:1px solid transparent;transition:background .2s}
   .sec-about{background:#eef3ee;border-color:#dbe6de} .sec-about .grp{color:#1c4d3a}
   .sec-program{background:#e9f0e4;border-color:#cfe0c8} .sec-program .grp{color:#46713e}
   .sec-workshop{background:#e9f0f8;border-color:#cfe0f0} .sec-workshop .grp{color:#2f5a92}
@@ -51,7 +51,7 @@ eleventyExcludeFromCollections: true
   .morelink{text-align:center;margin-top:20px}
   .morelink a{display:inline-block;background:#4f6675;color:#fff;text-decoration:none;font-weight:700;padding:11px 22px;border-radius:9px}
   .morelink a:hover{background:#3f5563}
-  .seclead{text-align:center;color:var(--muted);max-width:660px;margin:2px auto 14px;font-size:.96rem;line-height:1.4}
+  .seclead{text-align:center;color:var(--muted);max-width:660px;margin:2px auto 8px;font-size:.9rem;line-height:1.35}
   .sec-august{background:#fdefc6;border-color:#eed99a} .sec-august .grp{color:#9a6f14}
   .sec-september{background:#f7ddc8;border-color:#eec3a3} .sec-september .grp{color:#a85423}
   .cal{max-width:720px;margin:8px auto 0}
@@ -63,10 +63,10 @@ eleventyExcludeFromCollections: true
   .ddate{font-weight:700;color:var(--ink);white-space:nowrap;flex:none;width:104px}
   .dtime{font-weight:400;color:var(--muted)}
   .dact{color:var(--ink);font-weight:600;display:flex;align-items:flex-start;gap:8px;flex:1;min-width:0} .dact::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c);flex:none;margin-top:5px}
-  .calbar{position:sticky;bottom:8px;background:#fff;border:1px solid var(--line);border-radius:12px;margin:14px auto 0;max-width:720px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 5px 16px rgba(0,0,0,.10)}
+  .calbar{position:sticky;bottom:8px;background:#fff;border:1px solid var(--line);border-radius:12px;margin:10px auto 0;max-width:720px;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 5px 16px rgba(0,0,0,.10)}
   #calcount{font-weight:700;color:var(--accent-d)}
   .cancelnote{max-width:720px;margin:12px auto 0;text-align:center;font-size:.83rem;color:var(--muted)}
-  @media(max-width:560px){.wrap{padding-left:14px;padding-right:14px;padding-top:8px}section.sec{padding-left:10px;padding-right:10px}section.sec:first-of-type{padding-top:2px}section.sec:first-of-type .grp{margin-top:12px}.dayrow{padding:11px 16px}}
+  @media(max-width:560px){.wrap{padding-left:14px;padding-right:14px;padding-top:8px}section.sec{padding-left:10px;padding-right:10px}#september{padding-left:8px;padding-right:8px}section.sec:first-of-type{padding-top:2px}section.sec:first-of-type .grp{margin-top:12px}.dayrow{padding:11px 16px}}
   .monthpick{max-width:640px;margin:8px auto 0}
   .mprow{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:10px;padding:12px 16px;margin:8px 0}
   .mpday{font-weight:700;color:var(--ink)} .mprow .btn-reg{flex:none;padding:8px 16px}
@@ -99,6 +99,25 @@ eleventyExcludeFromCollections: true
   .blockbtn:hover{background:#a85423;color:#fff}
   .blockbtn.on{background:#a85423;color:#fff}
   .blockbtn.on::after{content:" ✓"}
+  .sublabel{text-align:center;font-weight:800;color:var(--accent-d);margin:18px auto 2px;font-size:1rem}
+  .cards.one{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
+  .picker{max-width:640px;margin:6px auto 0}
+  .prow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:4px 0;padding:5px 2px;border-bottom:1px dashed #ecd7c4}
+  .plab{font-weight:800;min-width:78px;font-size:.9rem;display:flex;align-items:center;gap:6px}
+  .plab i{width:10px;height:10px;border-radius:3px;flex:none}
+  .picker .blockbtn{display:inline-block;width:auto;margin:0;font-size:.72rem;padding:5px 9px}
+  .leg2{display:flex;gap:16px;justify-content:center;margin:14px 0 2px;font-size:.82rem;color:var(--muted);font-weight:700}
+  .leg2 i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px;vertical-align:middle}
+  .months{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:560px;margin:6px auto 0}
+  @media(max-width:560px){.months{grid-template-columns:repeat(3,1fr);gap:5px;margin:6px -6px 0}.month{padding:6px 2px 7px}.cg{gap:1px}.cg .dow{font-size:.5rem}.cg .cell{font-size:.6rem}.month h4{font-size:.7rem}}
+  .month{background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 6px 6px;min-width:0;overflow:hidden}
+  .month h4{text-align:center;color:var(--accent-d);font-size:.72rem;margin-bottom:4px}
+  .cg{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;min-width:0}
+  .cg .dow{font-size:.5rem;color:var(--muted);text-align:center;font-weight:800;padding:0}
+  .cg .cell{aspect-ratio:1;min-width:0;display:flex;align-items:center;justify-content:center;font-size:.58rem;border-radius:4px;color:var(--ink);overflow:hidden}
+  .cg .cell.hl{color:#fff;font-weight:800}
+  #september .grp{margin:10px 0 4px} #august .grp{margin:12px 0 6px} #program .grp{margin:12px 0 10px}
+  #segcount{font-size:.88rem;line-height:1.2}
   .grp{font-weight:800;color:var(--accent-d);text-align:center;font-size:1.4rem;margin:26px 0 16px}
   .about-lead{max-width:760px;margin:8px auto 0;text-align:center;color:var(--accent-d);font-size:clamp(1rem,2.4vw,1.18rem);font-weight:600;line-height:1.4}
   .legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:840px;margin:16px auto 0}
@@ -141,81 +160,138 @@ eleventyExcludeFromCollections: true
   .chip{background:rgba(255,255,255,.10);color:#eaf0eb;border-color:rgba(255,255,255,.30)}
   .sellist{text-align:left;max-width:270px;margin:10px auto;padding-left:22px}
   .sellist li{margin:5px 0;color:var(--ink);font-weight:600}
+  .bgrid{border-collapse:collapse;width:auto;margin:8px auto 2px}
+  .bgrid th,.bgrid td{border:1px solid var(--line);padding:6px 11px;text-align:center}
+  .bgrid thead th{font-weight:800;font-size:.85rem}
+  .bgrid tbody th{font-weight:700;font-size:.8rem;color:var(--ink);text-align:left;white-space:nowrap}
+  .bgrid td{cursor:pointer}
+  .cbx{display:inline-block;width:22px;height:22px;border:2px solid #cdb79c;border-radius:6px;vertical-align:middle;transition:.12s;position:relative}
+  .bcell.on .cbx{background:var(--cc);border-color:var(--cc)}
+  .bcell.on .cbx::after{content:"\2713";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px}
+  html{scroll-behavior:smooth}
+  .sec{scroll-margin-top:118px}
+  .hero{max-width:540px;margin:22px auto 10px;padding:0 18px;text-align:center}
+  .hero-tag{color:var(--accent-d);font-size:1.06rem;font-weight:600;line-height:1.42;margin:0 auto 18px;max-width:460px}
+  .hero-cta{display:flex;flex-direction:column;gap:12px}
+  .hbtn{display:block;text-decoration:none;font-weight:800;font-size:1.14rem;padding:17px 20px;border-radius:14px;color:#fff;box-shadow:0 5px 16px rgba(0,0,0,.10);transition:.15s}
+  .hbtn small{display:block;font-weight:600;font-size:.8rem;opacity:.92;margin-top:2px}
+  .hbtn:hover{transform:translateY(-2px);box-shadow:0 9px 24px rgba(0,0,0,.17)}
+  .hbtn-learn{background:#3f7d54}
+  .hbtn-sum{background:#c8891a}
+  .hbtn-fall{background:#a85423}
+  .hbtn-work{background:#3b6fb0}
+  .showcase{display:block;position:relative;max-width:680px;margin:12px auto 0;aspect-ratio:3/2;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.16);text-decoration:none;background:#e9e5da}
+  .sc-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .9s ease}
+  .sc-slide.on{opacity:1}
+  .sc-label{position:absolute;left:0;right:0;bottom:0;text-align:center;color:#fff;font-weight:800;font-size:1.08rem;padding:34px 16px 14px;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0))}
+  .hero{margin-bottom:20px}
+  .hdrnav{display:flex;gap:8px;justify-content:center;align-items:center;max-width:560px;margin:0 auto;max-height:0;overflow:hidden;opacity:0;transition:max-height .28s ease,opacity .22s ease,padding .28s ease;padding:0 12px}
+  .stickytop.show-nav .hdrnav{max-height:64px;opacity:1;padding:7px 12px 9px}
+  .hbtn-mini{flex:1 1 0;max-width:150px;text-align:center;text-decoration:none;color:#fff;font-weight:800;font-size:.75rem;line-height:1;padding:8px 6px;border-radius:8px;white-space:nowrap;overflow:hidden;box-shadow:0 3px 9px rgba(0,0,0,.22)}
+  .top{position:relative}
+  .hbtn-ham{flex:none;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.32);border-radius:8px;font-size:1.1rem;line-height:1;padding:7px 12px;cursor:pointer}
+  .top .hbtn-ham{position:absolute;left:12px;top:50%;transform:translateY(-50%)}
+  .stickytop.show-nav .top .hbtn-ham{display:none}
+  .menudrop{position:absolute;top:100%;left:8px;z-index:60;background:#123526;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 26px rgba(0,0,0,.38);border-radius:12px;padding:8px;display:none;min-width:200px}
+  .menudrop.open{display:block}
+  .menudrop a{display:block;color:#eaf0eb;text-decoration:none;font-weight:700;font-size:.95rem;padding:10px 14px;border-radius:8px;white-space:nowrap}
+  .menudrop a:hover,.menudrop a:active{background:rgba(255,255,255,.13)}
+  @media(min-width:561px){.showcase{max-width:520px;aspect-ratio:2.1/1;margin-top:8px}}
+  @media(min-width:561px){.stickytop.show-nav .top{padding-bottom:2px}}
 </style>
 </head>
 <body>
 <div class="stickytop">
   <header class="top">
-    <div class="brand">Waterbear Field School<small>Hands-on learning &amp; building, for kids and adults.</small></div>
+    <button class="hbtn-ham" aria-label="Open menu">☰</button>
+    <div class="brand">Waterbear Field School</div>
   </header>
-  <div class="chips">
-    <button class="chip" data-t="program">🎨 Crafts</button>
-    <button class="chip" data-t="august">☀️ Summer</button>
-    <button class="chip" data-t="september">🍂 Fall</button>
-    <button class="chip" data-t="workshop">🔧 Workshops</button>
-    <button class="chip" data-t="project">🛠️ Projects</button>
-    <button class="chip" data-t="meetup">🌲 Meetups</button>
-    <button class="chip" data-t="journal">📓 Journal</button>
-    <button class="chip" data-t="about">ℹ️ About</button>
-  </div>
+  <nav class="hdrnav">
+    <button class="hbtn-ham" aria-label="Open menu">☰</button>
+    <a class="hbtn-mini" href="#program" style="background:#3f7d54">Craft Days</a>
+    <a class="hbtn-mini" href="#august" style="background:#c8891a">Summer</a>
+    <a class="hbtn-mini" href="#september" style="background:#a85423">Fall</a>
+    <a class="hbtn-mini" href="#workshop" style="background:#3b6fb0">Workshops</a>
+  </nav>
+  <nav class="menudrop" id="menuDrop">
+    <a href="#program">🎨 Craft Days</a>
+    <a href="#august">☀️ Summer</a>
+    <a href="#september">🍂 Fall</a>
+    <a href="#workshop">🔧 Workshops</a>
+    <a href="#project">🛠️ Projects</a>
+    <a href="#meetup">🌲 Meetups</a>
+    <a href="#journal">📓 Journal</a>
+    <a href="#about">ℹ️ About</a>
+  </nav>
 </div>
 
 <div class="wrap">
 
-      <section class="sec sec-program" id="program" data-name="Craft Days" data-blurb="9 AM–2 PM: tool-use & safety, a guided project, and free-build time.">
-    <h2 class="grp">🎨 Craft Days</h2>
-    <p class="seclead">Register for individual days on our <a href="#august" style="color:#9a6f14;font-weight:700;text-decoration:underline">Summer Schedule</a>, or for a &lsquo;day block&rsquo; (e.g. &lsquo;Tuesdays, Sept 7 – Oct 17&rsquo;) on our <a href="#september" style="color:#a85423;font-weight:700;text-decoration:underline">Fall Schedule</a>.</p>
-    <div class="cards">
-      <article class="card"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">🪚 Woodworking</div></div><div class="body"><div class="desc">Build the shop's own furniture — sawhorse, bench, stool, toolbox.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-fiber.jpg" alt=""><div class="band" style="background:#4f5aa6"><div class="day">🧶 Sewing &amp; Fiber Arts</div></div><div class="body"><div class="desc">Weaving, rope-making, lashing, and sewing — fiber into cordage and cloth.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-art.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">🎨 Painting, Drawing &amp; Sculpting</div></div><div class="body"><div class="desc">Drawing and painting from life, plus clay — pinch-pots to a wheel-thrown bowl.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌿 Nature &amp; Plants</div></div><div class="body"><div class="desc">Seasonal plant ID, leaf prints, tree lore, and which wood is good for what.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">🎵 Music &amp; Instruments</div></div><div class="body"><div class="desc">Build simple instruments — shakers, drum, panpipes — then play together.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/mt-hike.jpg" alt=""><div class="band" style="background:#b5652f"><div class="day">🥾 Hiking, Maps &amp; Navigation</div></div><div class="body"><div class="desc">Hikes near and far — making our own maps and finding the way with map and compass.</div></div></article>
+  <a class="showcase" href="#program">
+    <div class="sc-slide on" style="background-image:url(/v6img/pg-wood.jpg)"><span class="sc-label">Woodworking</span></div>
+    <div class="sc-slide" style="background-image:url(/v6img/ws-rain.jpg)"><span class="sc-label">Working with Water</span></div>
+    <div class="sc-slide" style="background-image:url(/v6img/pg-fiber.jpg)"><span class="sc-label">Fiber Arts</span></div>
+    <div class="sc-slide" style="background-image:url(/v6img/pj-humanpower.jpg)"><span class="sc-label">Sculpture &amp; Fabrication</span></div>
+    <div class="sc-slide" style="background-image:url(/v6img/pg-nature.jpg)"><span class="sc-label">Plants &amp; Animals</span></div>
+    <div class="sc-slide" style="background-image:url(/v6img/pg-music.jpg)"><span class="sc-label">Music &amp; Instrument Making</span></div>
+    <div class="sc-slide" style="background-image:url(/v6img/pg-art.jpg)"><span class="sc-label">Painting &amp; Drawing</span></div>
+  </a>
+
+  <section class="hero">
+    <div class="hero-cta">
+      <a class="hbtn hbtn-learn" href="#program">🎨 Craft Days</a>
+      <a class="hbtn hbtn-sum" href="#august">☀️ Summer Craft Registration</a>
+      <a class="hbtn hbtn-fall" href="#september">🍂 Fall Craft Registration</a>
+      <a class="hbtn hbtn-work" href="#workshop">🔧 Workshops</a>
     </div>
   </section>
 
-  <section class="sec sec-august" id="august" data-name="Summer Schedule" data-blurb="Regular craft days — pick the days you want.">
-    <h2 class="grp">☀️ Summer Schedule</h2>
-    <p class="seclead">Individual Craft days, 9 AM – 2 PM. Check all of the days for which you&rsquo;d like to register below.</p>
+        <section class="sec sec-program" id="program" data-name="Craft Days" data-blurb="A mix of craft topics each morning, plus Bricolage (Build & Repair) in the afternoon." data-accent="#a86f28" data-tint="#e9f0e4" data-bd="#cfe0c8">
+    <h2 class="grp">🎨 Craft Days</h2>
+    <p class="seclead">Every day is a different mix of skills and topics. Register for individual days on our <a href="#august" style="color:#9a6f14;font-weight:700;text-decoration:underline">Summer Schedule</a>, or a weekday block on our <a href="#september" style="color:#a85423;font-weight:700;text-decoration:underline">Fall Schedule</a>.</p>
+    <div class="cards">
+      <article class="card"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">🪚 Woodworking</div></div><div class="body"><div class="desc">Saws, drills, joinery — build furniture, cold frames, and structures.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/ws-rain.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">💧 Working with Water</div></div><div class="body"><div class="desc">Filters, rain catchment, and flow — clean water and how it moves.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-fiber.jpg" alt=""><div class="band" style="background:#4f5aa6"><div class="day">🧶 Fiber Arts</div></div><div class="body"><div class="desc">Weaving, rope-making, and sewing — fiber into cordage and cloth.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-humanpower.jpg" alt=""><div class="band" style="background:#8a5a2f"><div class="day">🛠️ Sculpture &amp; Fabrication</div></div><div class="body"><div class="desc">Clay, carving, molds, and making — shaping and fabricating by hand.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌿 Plants &amp; Animals</div></div><div class="body"><div class="desc">Plant ID, gardening, foraging, and the farm’s animals.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">🎵 Music &amp; Instrument Making</div></div><div class="body"><div class="desc">Build simple instruments, then play together.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-art.jpg" alt=""><div class="band" style="background:#9a5b7a"><div class="day">🎨 Painting &amp; Drawing</div></div><div class="body"><div class="desc">Drawing and painting from life.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-trailer.jpg" alt=""><div class="band" style="background:#c05a2a"><div class="day">🔧 Build &amp; Repair</div></div><div class="body"><div class="desc">We take on real Build &amp; Repair projects for neighboring farms — fixing and making useful things, together.</div></div></article>
+    </div>
+  </section>
+
+    <section class="sec sec-august" id="august" data-name="Summer Schedule" data-blurb="Pick the individual days you'd like — Tue/Wed/Thu, 9 AM – 2 PM.">
+    <h2 class="grp">☀️ Summer Craft Registration</h2>
+    <p class="seclead"><a href="#program" style="color:#9a6f14;font-weight:700;text-decoration:underline">Craft Days</a> are for ages 6+, and run from <b>9 AM – 2 PM</b>. Register below for the days you&rsquo;d like.</p>
     <div class="cal">
       <div class="wk"><div class="wklabel">Week of Aug 17</div>
-        <button class="dayrow" data-d="Mon Aug 17"><span class="dchk"></span><span class="ddate">Mon · Aug 17</span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
-        <button class="dayrow" data-d="Tue Aug 18"><span class="dchk"></span><span class="ddate">Tue · Aug 18</span><span class="dact" style="--c:#4f5aa6">Sewing &amp; Fiber Arts</span></button>
-        <button class="dayrow" data-d="Wed Aug 19"><span class="dchk"></span><span class="ddate">Wed · Aug 19</span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Sculpting</span></button>
-        <button class="dayrow" data-d="Thu Aug 20"><span class="dchk"></span><span class="ddate">Thu · Aug 20</span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
-        <button class="dayrow" data-d="Fri Aug 21"><span class="dchk"></span><span class="ddate">Fri · Aug 21</span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
-        <button class="dayrow" data-d="Sat Aug 22"><span class="dchk"></span><span class="ddate">Sat · Aug 22</span><span class="dact" style="--c:#b5652f">Hiking, Maps &amp; Navigation</span></button>
+        <button class="dayrow" data-d="Tue Aug 18"><span class="dchk"></span><span class="ddate">Tue · Aug 18</span></button>
+        <button class="dayrow" data-d="Wed Aug 19"><span class="dchk"></span><span class="ddate">Wed · Aug 19</span></button>
+        <button class="dayrow" data-d="Thu Aug 20"><span class="dchk"></span><span class="ddate">Thu · Aug 20</span></button>
       </div>
       <div class="wk"><div class="wklabel">Week of Aug 24</div>
-        <button class="dayrow" data-d="Mon Aug 24"><span class="dchk"></span><span class="ddate">Mon · Aug 24</span><span class="dact" style="--c:#4f5aa6">Sewing &amp; Fiber Arts</span></button>
-        <button class="dayrow" data-d="Tue Aug 25"><span class="dchk"></span><span class="ddate">Tue · Aug 25</span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Sculpting</span></button>
-        <button class="dayrow" data-d="Wed Aug 26"><span class="dchk"></span><span class="ddate">Wed · Aug 26</span><span class="dact" style="--c:#3f7d54">Nature &amp; Plants</span></button>
-        <button class="dayrow" data-d="Thu Aug 27"><span class="dchk"></span><span class="ddate">Thu · Aug 27</span><span class="dact" style="--c:#7b6bb5">Music &amp; Instruments</span></button>
-        <button class="dayrow" data-d="Fri Aug 28"><span class="dchk"></span><span class="ddate">Fri · Aug 28</span><span class="dact" style="--c:#b5652f">Hiking, Maps &amp; Navigation</span></button>
-        <button class="dayrow" data-d="Sat Aug 29"><span class="dchk"></span><span class="ddate">Sat · Aug 29</span><span class="dact" style="--c:#a86f28">Woodworking</span></button>
+        <button class="dayrow" data-d="Tue Aug 25"><span class="dchk"></span><span class="ddate">Tue · Aug 25</span></button>
+        <button class="dayrow" data-d="Wed Aug 26"><span class="dchk"></span><span class="ddate">Wed · Aug 26</span></button>
+        <button class="dayrow" data-d="Thu Aug 27"><span class="dchk"></span><span class="ddate">Thu · Aug 27</span></button>
       </div>
-      <div class="wk"><div class="wklabel">Week of Aug 31</div>
-        <button class="dayrow" data-d="Mon Aug 31"><span class="dchk"></span><span class="ddate">Mon · Aug 31</span><span class="dact" style="--c:#2c8299">Painting, Drawing &amp; Sculpting</span></button>
-      </div>
-        </div>
+    </div>
     <div class="calbar"><span id="calcount">No days selected</span><button class="btn-reg" style="flex:none;padding:9px 18px" onclick="reg()">Register selected days</button></div>
   </section>
-  <section class="sec sec-september" id="september" data-name="Seasonal Schedule" data-blurb="Pick any weekday + 6-week block combos, then register them together.">
-    <h2 class="grp">🍂 Fall Schedule</h2>
-    <p class="seclead">Register for a day of the week for a 6-week block; pick one or several.</p>
-    <div class="fdays">
-      <div class="fday"><div class="fday-h">Mondays</div><div class="fday-time">9 AM – 2 PM</div><ul class="fweeks"><li><span class="fdot" style="--c:#a86f28"></span><span class="wlab">Week 1</span> Woodworking</li><li><span class="fdot" style="--c:#4f5aa6"></span><span class="wlab">Week 2</span> Sewing &amp; Fiber Arts</li><li><span class="fdot" style="--c:#2c8299"></span><span class="wlab">Week 3</span> Painting, Drawing &amp; Sculpting</li><li><span class="fdot" style="--c:#3f7d54"></span><span class="wlab">Week 4</span> Nature &amp; Plants</li><li><span class="fdot" style="--c:#7b6bb5"></span><span class="wlab">Week 5</span> Music &amp; Instruments</li><li><span class="fdot" style="--c:#b5652f"></span><span class="wlab">Week 6</span> Hiking, Maps &amp; Navigation</li></ul><div class="fbook"><span class="fbook-l">Book Mondays for a block (pick any):</span><button class="blockbtn" data-day="Mondays" data-block="Sept 7 – Oct 17" onclick="togblock(this)">Sept 7 – Oct 17</button><button class="blockbtn" data-day="Mondays" data-block="Oct 19 – Nov 28" onclick="togblock(this)">Oct 19 – Nov 28</button><button class="blockbtn" data-day="Mondays" data-block="Nov 30 – Jan 9" onclick="togblock(this)">Nov 30 – Jan 9</button></div></div>
-      <div class="fday"><div class="fday-h">Tuesdays</div><div class="fday-time">9 AM – 2 PM</div><ul class="fweeks"><li><span class="fdot" style="--c:#4f5aa6"></span><span class="wlab">Week 1</span> Sewing &amp; Fiber Arts</li><li><span class="fdot" style="--c:#2c8299"></span><span class="wlab">Week 2</span> Painting, Drawing &amp; Sculpting</li><li><span class="fdot" style="--c:#3f7d54"></span><span class="wlab">Week 3</span> Nature &amp; Plants</li><li><span class="fdot" style="--c:#7b6bb5"></span><span class="wlab">Week 4</span> Music &amp; Instruments</li><li><span class="fdot" style="--c:#b5652f"></span><span class="wlab">Week 5</span> Hiking, Maps &amp; Navigation</li><li><span class="fdot" style="--c:#a86f28"></span><span class="wlab">Week 6</span> Woodworking</li></ul><div class="fbook"><span class="fbook-l">Book Tuesdays for a block (pick any):</span><button class="blockbtn" data-day="Tuesdays" data-block="Sept 7 – Oct 17" onclick="togblock(this)">Sept 7 – Oct 17</button><button class="blockbtn" data-day="Tuesdays" data-block="Oct 19 – Nov 28" onclick="togblock(this)">Oct 19 – Nov 28</button><button class="blockbtn" data-day="Tuesdays" data-block="Nov 30 – Jan 9" onclick="togblock(this)">Nov 30 – Jan 9</button></div></div>
-      <div class="fday"><div class="fday-h">Wednesdays</div><div class="fday-time">9 AM – 2 PM</div><ul class="fweeks"><li><span class="fdot" style="--c:#2c8299"></span><span class="wlab">Week 1</span> Painting, Drawing &amp; Sculpting</li><li><span class="fdot" style="--c:#3f7d54"></span><span class="wlab">Week 2</span> Nature &amp; Plants</li><li><span class="fdot" style="--c:#7b6bb5"></span><span class="wlab">Week 3</span> Music &amp; Instruments</li><li><span class="fdot" style="--c:#b5652f"></span><span class="wlab">Week 4</span> Hiking, Maps &amp; Navigation</li><li><span class="fdot" style="--c:#a86f28"></span><span class="wlab">Week 5</span> Woodworking</li><li><span class="fdot" style="--c:#4f5aa6"></span><span class="wlab">Week 6</span> Sewing &amp; Fiber Arts</li></ul><div class="fbook"><span class="fbook-l">Book Wednesdays for a block (pick any):</span><button class="blockbtn" data-day="Wednesdays" data-block="Sept 7 – Oct 17" onclick="togblock(this)">Sept 7 – Oct 17</button><button class="blockbtn" data-day="Wednesdays" data-block="Oct 19 – Nov 28" onclick="togblock(this)">Oct 19 – Nov 28</button><button class="blockbtn" data-day="Wednesdays" data-block="Nov 30 – Jan 9" onclick="togblock(this)">Nov 30 – Jan 9</button></div></div>
-      <div class="fday"><div class="fday-h">Thursdays</div><div class="fday-time">9 AM – 2 PM</div><ul class="fweeks"><li><span class="fdot" style="--c:#3f7d54"></span><span class="wlab">Week 1</span> Nature &amp; Plants</li><li><span class="fdot" style="--c:#7b6bb5"></span><span class="wlab">Week 2</span> Music &amp; Instruments</li><li><span class="fdot" style="--c:#b5652f"></span><span class="wlab">Week 3</span> Hiking, Maps &amp; Navigation</li><li><span class="fdot" style="--c:#a86f28"></span><span class="wlab">Week 4</span> Woodworking</li><li><span class="fdot" style="--c:#4f5aa6"></span><span class="wlab">Week 5</span> Sewing &amp; Fiber Arts</li><li><span class="fdot" style="--c:#2c8299"></span><span class="wlab">Week 6</span> Painting, Drawing &amp; Sculpting</li></ul><div class="fbook"><span class="fbook-l">Book Thursdays for a block (pick any):</span><button class="blockbtn" data-day="Thursdays" data-block="Sept 7 – Oct 17" onclick="togblock(this)">Sept 7 – Oct 17</button><button class="blockbtn" data-day="Thursdays" data-block="Oct 19 – Nov 28" onclick="togblock(this)">Oct 19 – Nov 28</button><button class="blockbtn" data-day="Thursdays" data-block="Nov 30 – Jan 9" onclick="togblock(this)">Nov 30 – Jan 9</button></div></div>
-      <div class="fday"><div class="fday-h">Fridays</div><div class="fday-time">9 AM – 2 PM</div><ul class="fweeks"><li><span class="fdot" style="--c:#7b6bb5"></span><span class="wlab">Week 1</span> Music &amp; Instruments</li><li><span class="fdot" style="--c:#b5652f"></span><span class="wlab">Week 2</span> Hiking, Maps &amp; Navigation</li><li><span class="fdot" style="--c:#a86f28"></span><span class="wlab">Week 3</span> Woodworking</li><li><span class="fdot" style="--c:#4f5aa6"></span><span class="wlab">Week 4</span> Sewing &amp; Fiber Arts</li><li><span class="fdot" style="--c:#2c8299"></span><span class="wlab">Week 5</span> Painting, Drawing &amp; Sculpting</li><li><span class="fdot" style="--c:#3f7d54"></span><span class="wlab">Week 6</span> Nature &amp; Plants</li></ul><div class="fbook"><span class="fbook-l">Book Fridays for a block (pick any):</span><button class="blockbtn" data-day="Fridays" data-block="Sept 7 – Oct 17" onclick="togblock(this)">Sept 7 – Oct 17</button><button class="blockbtn" data-day="Fridays" data-block="Oct 19 – Nov 28" onclick="togblock(this)">Oct 19 – Nov 28</button><button class="blockbtn" data-day="Fridays" data-block="Nov 30 – Jan 9" onclick="togblock(this)">Nov 30 – Jan 9</button></div></div>
-      <div class="fday"><div class="fday-h">Saturdays</div><div class="fday-time">9 AM – 2 PM</div><ul class="fweeks"><li><span class="fdot" style="--c:#b5652f"></span><span class="wlab">Week 1</span> Hiking, Maps &amp; Navigation</li><li><span class="fdot" style="--c:#a86f28"></span><span class="wlab">Week 2</span> Woodworking</li><li><span class="fdot" style="--c:#4f5aa6"></span><span class="wlab">Week 3</span> Sewing &amp; Fiber Arts</li><li><span class="fdot" style="--c:#2c8299"></span><span class="wlab">Week 4</span> Painting, Drawing &amp; Sculpting</li><li><span class="fdot" style="--c:#3f7d54"></span><span class="wlab">Week 5</span> Nature &amp; Plants</li><li><span class="fdot" style="--c:#7b6bb5"></span><span class="wlab">Week 6</span> Music &amp; Instruments</li></ul><div class="fbook"><span class="fbook-l">Book Saturdays for a block (pick any):</span><button class="blockbtn" data-day="Saturdays" data-block="Sept 7 – Oct 17" onclick="togblock(this)">Sept 7 – Oct 17</button><button class="blockbtn" data-day="Saturdays" data-block="Oct 19 – Nov 28" onclick="togblock(this)">Oct 19 – Nov 28</button><button class="blockbtn" data-day="Saturdays" data-block="Nov 30 – Jan 9" onclick="togblock(this)">Nov 30 – Jan 9</button></div></div>
+      <section class="sec sec-september" id="september" data-name="Seasonal Schedule" data-blurb="Register a weekday (Tue/Wed/Thu) for a block of weeks — see it on the calendar.">
+    <h2 class="grp">🍂 Fall Craft Registration</h2>
+    <p class="seclead" style="margin:2px auto 8px;font-size:.9rem"><a href="#program" style="color:#a85423;font-weight:700;text-decoration:underline">Craft Days</a> are for ages 6+, and run from <b>9 AM – 2 PM</b>. Register by the month below.</p>
+    <table class="bgrid"><thead><tr><th></th><th style="color:#2c8299">Tue</th><th style="color:#a85423">Wed</th><th style="color:#3f7d54">Thu</th></tr></thead><tbody><tr><th>September</th><td class="bcell" style="--cc:#2c8299" data-day="Tuesdays" data-block="September" data-color="#2c8299" data-dates="2026-09-01,2026-09-08,2026-09-15,2026-09-22,2026-09-29" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#a85423" data-day="Wednesdays" data-block="September" data-color="#a85423" data-dates="2026-09-02,2026-09-09,2026-09-16,2026-09-23,2026-09-30" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#3f7d54" data-day="Thursdays" data-block="September" data-color="#3f7d54" data-dates="2026-09-03,2026-09-10,2026-09-17,2026-09-24" onclick="selcell(this)"><span class="cbx"></span></td></tr><tr><th>October</th><td class="bcell" style="--cc:#2c8299" data-day="Tuesdays" data-block="October" data-color="#2c8299" data-dates="2026-10-06,2026-10-13,2026-10-20,2026-10-27" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#a85423" data-day="Wednesdays" data-block="October" data-color="#a85423" data-dates="2026-10-07,2026-10-14,2026-10-21,2026-10-28" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#3f7d54" data-day="Thursdays" data-block="October" data-color="#3f7d54" data-dates="2026-10-01,2026-10-08,2026-10-15,2026-10-22,2026-10-29" onclick="selcell(this)"><span class="cbx"></span></td></tr><tr><th>November</th><td class="bcell" style="--cc:#2c8299" data-day="Tuesdays" data-block="November" data-color="#2c8299" data-dates="2026-11-03,2026-11-10,2026-11-17,2026-11-24" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#a85423" data-day="Wednesdays" data-block="November" data-color="#a85423" data-dates="2026-11-04,2026-11-11,2026-11-18,2026-11-25" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#3f7d54" data-day="Thursdays" data-block="November" data-color="#3f7d54" data-dates="2026-11-05,2026-11-12,2026-11-19,2026-11-26" onclick="selcell(this)"><span class="cbx"></span></td></tr></tbody></table>
+    <div class="months">
+      <div class="month"><h4>September</h4><div class="cg"><div class="dow">S</div><div class="dow">M</div><div class="dow">T</div><div class="dow">W</div><div class="dow">T</div><div class="dow">F</div><div class="dow">S</div><div class="cell"></div><div class="cell"></div><div class="cell" data-d="2026-09-01">1</div><div class="cell" data-d="2026-09-02">2</div><div class="cell" data-d="2026-09-03">3</div><div class="cell" data-d="2026-09-04">4</div><div class="cell" data-d="2026-09-05">5</div><div class="cell" data-d="2026-09-06">6</div><div class="cell" data-d="2026-09-07">7</div><div class="cell" data-d="2026-09-08">8</div><div class="cell" data-d="2026-09-09">9</div><div class="cell" data-d="2026-09-10">10</div><div class="cell" data-d="2026-09-11">11</div><div class="cell" data-d="2026-09-12">12</div><div class="cell" data-d="2026-09-13">13</div><div class="cell" data-d="2026-09-14">14</div><div class="cell" data-d="2026-09-15">15</div><div class="cell" data-d="2026-09-16">16</div><div class="cell" data-d="2026-09-17">17</div><div class="cell" data-d="2026-09-18">18</div><div class="cell" data-d="2026-09-19">19</div><div class="cell" data-d="2026-09-20">20</div><div class="cell" data-d="2026-09-21">21</div><div class="cell" data-d="2026-09-22">22</div><div class="cell" data-d="2026-09-23">23</div><div class="cell" data-d="2026-09-24">24</div><div class="cell" data-d="2026-09-25">25</div><div class="cell" data-d="2026-09-26">26</div><div class="cell" data-d="2026-09-27">27</div><div class="cell" data-d="2026-09-28">28</div><div class="cell" data-d="2026-09-29">29</div><div class="cell" data-d="2026-09-30">30</div></div></div>
+      <div class="month"><h4>October</h4><div class="cg"><div class="dow">S</div><div class="dow">M</div><div class="dow">T</div><div class="dow">W</div><div class="dow">T</div><div class="dow">F</div><div class="dow">S</div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell" data-d="2026-10-01">1</div><div class="cell" data-d="2026-10-02">2</div><div class="cell" data-d="2026-10-03">3</div><div class="cell" data-d="2026-10-04">4</div><div class="cell" data-d="2026-10-05">5</div><div class="cell" data-d="2026-10-06">6</div><div class="cell" data-d="2026-10-07">7</div><div class="cell" data-d="2026-10-08">8</div><div class="cell" data-d="2026-10-09">9</div><div class="cell" data-d="2026-10-10">10</div><div class="cell" data-d="2026-10-11">11</div><div class="cell" data-d="2026-10-12">12</div><div class="cell" data-d="2026-10-13">13</div><div class="cell" data-d="2026-10-14">14</div><div class="cell" data-d="2026-10-15">15</div><div class="cell" data-d="2026-10-16">16</div><div class="cell" data-d="2026-10-17">17</div><div class="cell" data-d="2026-10-18">18</div><div class="cell" data-d="2026-10-19">19</div><div class="cell" data-d="2026-10-20">20</div><div class="cell" data-d="2026-10-21">21</div><div class="cell" data-d="2026-10-22">22</div><div class="cell" data-d="2026-10-23">23</div><div class="cell" data-d="2026-10-24">24</div><div class="cell" data-d="2026-10-25">25</div><div class="cell" data-d="2026-10-26">26</div><div class="cell" data-d="2026-10-27">27</div><div class="cell" data-d="2026-10-28">28</div><div class="cell" data-d="2026-10-29">29</div><div class="cell" data-d="2026-10-30">30</div><div class="cell" data-d="2026-10-31">31</div></div></div>
+      <div class="month"><h4>November</h4><div class="cg"><div class="dow">S</div><div class="dow">M</div><div class="dow">T</div><div class="dow">W</div><div class="dow">T</div><div class="dow">F</div><div class="dow">S</div><div class="cell" data-d="2026-11-01">1</div><div class="cell" data-d="2026-11-02">2</div><div class="cell" data-d="2026-11-03">3</div><div class="cell" data-d="2026-11-04">4</div><div class="cell" data-d="2026-11-05">5</div><div class="cell" data-d="2026-11-06">6</div><div class="cell" data-d="2026-11-07">7</div><div class="cell" data-d="2026-11-08">8</div><div class="cell" data-d="2026-11-09">9</div><div class="cell" data-d="2026-11-10">10</div><div class="cell" data-d="2026-11-11">11</div><div class="cell" data-d="2026-11-12">12</div><div class="cell" data-d="2026-11-13">13</div><div class="cell" data-d="2026-11-14">14</div><div class="cell" data-d="2026-11-15">15</div><div class="cell" data-d="2026-11-16">16</div><div class="cell" data-d="2026-11-17">17</div><div class="cell" data-d="2026-11-18">18</div><div class="cell" data-d="2026-11-19">19</div><div class="cell" data-d="2026-11-20">20</div><div class="cell" data-d="2026-11-21">21</div><div class="cell" data-d="2026-11-22">22</div><div class="cell" data-d="2026-11-23">23</div><div class="cell" data-d="2026-11-24">24</div><div class="cell" data-d="2026-11-25">25</div><div class="cell" data-d="2026-11-26">26</div><div class="cell" data-d="2026-11-27">27</div><div class="cell" data-d="2026-11-28">28</div><div class="cell" data-d="2026-11-29">29</div><div class="cell" data-d="2026-11-30">30</div></div></div>
     </div>
-    <div class="calbar"><span id="segcount">No blocks selected</span><button class="btn-reg" style="flex:none;padding:9px 18px" onclick="segreg()">Register selected</button></div>
+    <div class="calbar"><span id="segcount">No days selected</span><button class="btn-reg" style="flex:none;padding:9px 18px" onclick="segreg()">Register selected</button></div>
   </section>
   <section class="sec sec-workshop" id="workshop" data-name="Workshops" data-blurb="Single-session deep-dives." data-accent="#3b6fb0" data-tint="#e9f0f8" data-bd="#cfe0f0">
-    <h2 class="grp">🔧 Single-session Workshops</h2>
+    <h2 class="grp">🔧 Workshops</h2>
+    <p class="seclead">One-time, hands-on sessions — pick a topic and dive in for an afternoon. No commitment.</p>
     <div class="cards">
       <article class="card"><img class="cardimg" src="/v6img/ws-mesh.jpg" alt=""><div class="band" style="background:#3b6fb0"><div class="day">📡 Mesh Radio</div><div class="theme">Workshop</div></div><div class="body"><div class="when">3 hours</div><div class="desc">Decentralized radio messaging that works with no cell service or internet.</div><div class="foot"><button class="btn-reg" onclick="m('r')">Register</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/ws-solar.jpg" alt=""><div class="band" style="background:#3b6fb0"><div class="day">☀️ Intro to Solar</div><div class="theme">Workshop</div></div><div class="body"><div class="when">3 hours</div><div class="desc">A gentle, hands-on intro to human-scale renewable energy and off-grid power.</div><div class="foot"><button class="btn-reg" onclick="m('r')">Register</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
@@ -227,6 +303,7 @@ eleventyExcludeFromCollections: true
 
   <section class="sec sec-project" id="project" data-name="Ongoing Projects" data-blurb="Long-running builds and experiments." data-accent="#2c8299" data-tint="#e6f2f5" data-bd="#c6e2e9">
     <h2 class="grp">🛠️ Ongoing Projects</h2>
+    <p class="seclead">Long-running builds and experiments you can follow along with — and jump into anytime.</p>
     <div class="cards">
       <article class="card"><img class="cardimg" src="/v6img/pj-offgrid.jpg" alt=""><div class="body"><h3>Off-grid Sensing</h3><div class="when">Ongoing · follow along</div><div class="desc">With applications to temperature in greenhouses, and water-level / flood alerts.</div><div class="foot"><a class="btn-reg" href="/journal/">Read the latest →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/pj-biochar.jpg" alt=""><div class="body"><h3>Biochar Water Filters</h3><div class="when">Ongoing · follow along</div><div class="desc">DIY water filtration from locally-made biochar — cheap, effective, and evolving.</div><div class="foot"><a class="btn-reg" href="/journal/">Read the latest →</a></div></div></article>
@@ -239,6 +316,7 @@ eleventyExcludeFromCollections: true
 
     <section class="sec sec-meetup" id="meetup" data-name="Meetups" data-blurb="Casual, drop-in gatherings — woods hikes and farm salons." data-accent="#3f7d54" data-tint="#e9f2ec" data-bd="#cbe2d4">
     <h2 class="grp">🌲 Meetups</h2>
+    <p class="seclead">Casual, drop-in gatherings — woods hikes, plant walks, and farm salons. Everyone&rsquo;s welcome.</p>
     <div class="cards">
       <article class="card"><img class="cardimg" src="/v6img/mt-hike.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌲 Woods Hike</div><div class="theme">Meetup · Plant walk</div></div><div class="body"><div class="when">Weekend morning · drop-in</div><div class="desc">A hike in the woods, learning the plants around us — edible, useful, and otherwise.</div><div class="foot"><button class="btn-reg" onclick="m('r')">RSVP</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/mt-salon.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌾 Farm Salon</div><div class="theme">Meetup · Drop-in</div></div><div class="body"><div class="when">Weekend · drop-in</div><div class="desc">A relaxed gathering at the farm — conversation, ideas, and sharing what we're each working on.</div><div class="foot"><button class="btn-reg" onclick="m('r')">RSVP</button><button class="btn-info" onclick="m('i')">More info</button></div></div></article>
@@ -247,6 +325,7 @@ eleventyExcludeFromCollections: true
 
   <section class="sec sec-journal" id="journal" data-name="Journal" data-blurb="Recent goings-on — workshops, meetups, and builds from the field." data-accent="#4f6675" data-tint="#eef1f4" data-bd="#d6dee5">
     <h2 class="grp">📓 From the Journal</h2>
+    <p class="seclead">Recent goings-on — workshops, meetups, and builds from the field.</p>
     <div class="cards">
       <article class="card"><img class="cardimg" src="/v6img/jr-radiocase.jpg" alt=""><div class="body"><h3>New radio case for the HHF monitor</h3><div class="when">May 26, 2026</div><div class="desc">Dick at Artisans Asylum donated a mesh-radio case for the cause.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-26-hhf-coolbot-radio-case/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/jr-toaster.jpg" alt=""><div class="body"><h3>Toaster-oven reflow at Artisans Asylum</h3><div class="when">May 21, 2026</div><div class="desc">Testing toaster-oven reflow-soldering techniques at Artisans Asylum.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-21-toaster-oven-reflow/">Read →</a></div></div></article>
@@ -259,11 +338,11 @@ eleventyExcludeFromCollections: true
     </div>
     <div class="morelink"><a href="/journal/">Read more journal entries &rarr;</a></div>
   </section>
-  <section class="sec sec-about" id="about" data-name="About" data-blurb="What we're about — four ways to take part, on farms around Lincoln." data-accent="#1c4d3a" data-tint="#eef3ee" data-bd="#dbe6de">
-    <h2 class="grp">About</h2>
-    <p class="about-lead">Hands-on, screen-free learning and building for kids and adults, on farms in the Lincoln, MA area. Four ways to take part:</p>
+  <section class="sec sec-about" id="about" data-name="About" data-blurb="What we're about — ways to take part, on farms around Lincoln." data-accent="#1c4d3a" data-tint="#eef3ee" data-bd="#dbe6de">
+    <h2 class="grp">ℹ️ About</h2>
+    <p class="about-lead">Hands-on, screen-free learning and building for kids and adults, on farms in the Lincoln, MA area. Ways to take part:</p>
     <div class="legend">
-      <a class="leg" href="#program" style="border-left-color:#a86f28"><span class="leg-h" style="color:#8a5a20">🗓️ Programs</span><span class="leg-d">Sign up for a weekly meetup focused on a particular topic.</span></a>
+      <a class="leg" href="#program" style="border-left-color:#a86f28"><span class="leg-h" style="color:#8a5a20">🎨 Craft Days</span><span class="leg-d">Hands-on skills and topics — a different mix each day.</span></a>
       <a class="leg" href="#workshop" style="border-left-color:#3b6fb0"><span class="leg-h" style="color:#2f5a92">🔧 Workshops</span><span class="leg-d">Single-session deep-dives.</span></a>
       <a class="leg" href="#project" style="border-left-color:#2c8299"><span class="leg-h" style="color:#22697d">🛠️ Projects</span><span class="leg-d">Long-running builds and experiments.</span></a>
       <a class="leg" href="#meetup" style="border-left-color:#3f7d54"><span class="leg-h" style="color:#2f6641">🌲 Meetups</span><span class="leg-d">Casual, drop-in gatherings — hikes, plant walks, and goats at the farm.</span></a>
@@ -296,19 +375,53 @@ eleventyExcludeFromCollections: true
   function updcal(){ var n=document.querySelectorAll('.dayrow.sel').length; document.getElementById('calcount').textContent = n? (n+' day'+(n>1?'s':'')+' selected') : 'No days selected'; }
   function reg(){ var n=document.querySelectorAll('.dayrow.sel').length; var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
     if(!n){ t.textContent='Pick your days first'; b.textContent='Check the August days you want, then register.'; }
-    else { t.textContent='Registration opens soon 🌱'; var items=[].slice.call(document.querySelectorAll('.dayrow.sel')).map(function(x){return '<li>'+x.querySelector('.ddate').textContent+' — '+x.querySelector('.dact').textContent+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' day'+(n>1?'s':'')+':</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your days the moment sign-ups are live.</div>'; }
+    else { t.textContent='Registration opens soon 🌱'; var items=[].slice.call(document.querySelectorAll('.dayrow.sel')).map(function(x){return '<li>'+x.querySelector('.ddate').textContent+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' day'+(n>1?'s':'')+':</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your days the moment sign-ups are live.</div>'; }
     e.href='mailto:info@waterbearfieldschool.org?subject=August%20days'; document.getElementById('ov').classList.add('on'); }
   function togblock(b){ b.classList.toggle('on'); segupd(); }
   function segupd(){ var n=document.querySelectorAll('.blockbtn.on').length; var el=document.getElementById('segcount'); if(el) el.textContent = n? (n+' selection'+(n>1?'s':'')) : 'No blocks selected'; }
-  function segreg(){ var sel=[].slice.call(document.querySelectorAll('.blockbtn.on')); var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
-    if(!sel.length){ t.textContent='Pick your blocks first'; b.textContent='Select one or more weekday + block options, then register.'; }
+  function segreg(){ var sel=[].slice.call(document.querySelectorAll('.bgrid td.on')); var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
+    if(!sel.length){ t.textContent='Pick your blocks first'; b.textContent='Tap a cell — a weekday and a date range — to select a block.'; }
     else { t.textContent='Registration opens soon 🌱'; var items=sel.map(function(x){return '<li>'+x.dataset.day+' · '+x.dataset.block+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked:</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your spots the moment sign-ups are live.</div>'; }
-    e.href='mailto:info@waterbearfieldschool.org?subject=Seasonal%20blocks'; document.getElementById('ov').classList.add('on'); }
+    e.href='mailto:info@waterbearfieldschool.org?subject=Fall%20blocks'; document.getElementById('ov').classList.add('on'); }
+  function selcell(td){ td.classList.toggle('on'); refresh(); }
+  function refresh(){
+    document.querySelectorAll('.cg .cell.hl').forEach(function(x){x.classList.remove('hl');x.style.background='';});
+    document.querySelectorAll('.bgrid td.on').forEach(function(td){ var col=td.dataset.color; (td.dataset.dates||'').split(',').forEach(function(d){ var el=document.querySelector('.cg .cell[data-d="'+d+'"]'); if(el){el.classList.add('hl'); el.style.background=col;} }); });
+    var n=document.querySelectorAll('.bgrid td.on').length; var el=document.getElementById('segcount'); if(el) el.textContent = n?(n+' selected'):'No days selected';
+  }
   function m(k){var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
    if(k==='r'){t.textContent='Registration opens soon 🌱';b.textContent="We're finalizing our programming. Send us your email and we'll let you know the moment sign-ups are live.";e.href="mailto:info@waterbearfieldschool.org?subject=Let%20me%20know%20when%20registration%20opens";}
    else{t.textContent='Want to know more?';b.textContent="Happy to tell you all about it — email us with any questions and we'll be right in touch.";e.href="mailto:info@waterbearfieldschool.org?subject=More%20info";}
    document.getElementById('ov').classList.add('on');}
   function cl(){document.getElementById('ov').classList.remove('on');}
+</script>
+<script>
+(function(){
+  var sc=document.querySelector(".showcase"); if(!sc) return;
+  var sl=sc.querySelectorAll(".sc-slide"); if(sl.length<2) return;
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var i=0;
+  setInterval(function(){ if(document.hidden) return; sl[i].classList.remove("on"); i=(i+1)%sl.length; sl[i].classList.add("on"); },3400);
+})();
+</script>
+<script>
+(function(){
+  var hero=document.querySelector(".hero"), st=document.querySelector(".stickytop");
+  if(hero&&st){
+    var shown=false, revealY=0;
+    function measure(){ var had=st.classList.contains("show-nav"); if(had) st.classList.remove("show-nav"); revealY=hero.offsetTop+hero.offsetHeight-72; if(had) st.classList.add("show-nav"); }
+    function onScroll(){ var y=window.scrollY||document.documentElement.scrollTop||0; if(!shown&&y>=revealY){ shown=true; st.classList.add("show-nav"); } else if(shown&&y<=revealY-64){ shown=false; st.classList.remove("show-nav"); } }
+    measure(); onScroll();
+    window.addEventListener("scroll", onScroll, {passive:true});
+    window.addEventListener("resize", function(){ measure(); onScroll(); });
+  }
+  var hams=document.querySelectorAll(".hbtn-ham"), d=document.getElementById("menuDrop");
+  if(hams.length&&d){
+    hams.forEach(function(b){ b.addEventListener("click",function(e){ e.stopPropagation(); d.classList.toggle("open"); }); });
+    d.addEventListener("click",function(e){ if(e.target.tagName==="A") d.classList.remove("open"); });
+    document.addEventListener("click",function(e){ if(!d.contains(e.target)&&!e.target.closest(".hbtn-ham")) d.classList.remove("open"); });
+  }
+})();
 </script>
 </body>
 </html>
