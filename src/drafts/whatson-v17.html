@@ -181,11 +181,13 @@
   .sc-slide.on{opacity:1}
   .sc-label{position:absolute;left:0;right:0;bottom:0;color:#fff;font-weight:800;font-size:1.08rem;padding:34px 16px 14px;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0))}
   .hero{margin-bottom:20px}
-  .hdrnav{display:flex;gap:6px;justify-content:center;align-items:stretch;max-width:520px;margin:0 auto;max-height:0;overflow:hidden;opacity:0;transition:max-height .28s ease,opacity .22s ease,padding .28s ease;padding:0 12px}
-  .stickytop.show-nav .hdrnav{max-height:64px;opacity:1;padding:0 12px 9px}
-  .hbtn-mini{flex:1 1 0;max-width:130px;text-align:center;text-decoration:none;color:#fff;font-weight:800;font-size:.75rem;line-height:1;padding:8px 4px;border-radius:8px;white-space:nowrap;box-shadow:0 3px 9px rgba(0,0,0,.22)}
+  .hdrnav{display:flex;gap:8px;justify-content:center;align-items:center;max-width:560px;margin:0 auto;max-height:0;overflow:hidden;opacity:0;transition:max-height .28s ease,opacity .22s ease,padding .28s ease;padding:0 12px}
+  .stickytop.show-nav .hdrnav{max-height:64px;opacity:1;padding:7px 12px 9px}
+  .hbtn-mini{flex:1 1 0;max-width:150px;text-align:center;text-decoration:none;color:#fff;font-weight:800;font-size:.75rem;line-height:1;padding:8px 6px;border-radius:8px;white-space:nowrap;box-shadow:0 3px 9px rgba(0,0,0,.22)}
   .top{position:relative}
-  .hbtn-ham{position:absolute;left:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.32);border-radius:8px;font-size:1.15rem;line-height:1;padding:5px 11px;cursor:pointer}
+  .hbtn-ham{flex:none;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.32);border-radius:8px;font-size:1.1rem;line-height:1;padding:7px 12px;cursor:pointer}
+  .top .hbtn-ham{position:absolute;left:12px;top:50%;transform:translateY(-50%)}
+  .stickytop.show-nav .top .hbtn-ham{display:none}
   .menudrop{position:absolute;top:100%;left:8px;z-index:60;background:#123526;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 26px rgba(0,0,0,.38);border-radius:12px;padding:8px;display:none;min-width:200px}
   .menudrop.open{display:block}
   .menudrop a{display:block;color:#eaf0eb;text-decoration:none;font-weight:700;font-size:.95rem;padding:10px 14px;border-radius:8px;white-space:nowrap}
@@ -195,10 +197,11 @@
 <body>
 <div class="stickytop">
   <header class="top">
+    <button class="hbtn-ham" aria-label="Open menu">☰</button>
     <div class="brand">Waterbear Field School</div>
-    <button class="hbtn-ham" id="hamBtn" aria-label="Open menu">☰</button>
   </header>
   <nav class="hdrnav">
+    <button class="hbtn-ham" aria-label="Open menu">☰</button>
     <a class="hbtn-mini" href="#program" style="background:#3f7d54">Craft Days</a>
     <a class="hbtn-mini" href="#august" style="background:#c8891a">Summer</a>
     <a class="hbtn-mini" href="#september" style="background:#a85423">Fall</a>
@@ -231,8 +234,8 @@
   <section class="hero">
     <div class="hero-cta">
       <a class="hbtn hbtn-learn" href="#program">🎨 Craft Days</a>
-      <a class="hbtn hbtn-sum" href="#august">☀️ Summer Registration</a>
-      <a class="hbtn hbtn-fall" href="#september">🍂 Fall Registration</a>
+      <a class="hbtn hbtn-sum" href="#august">☀️ Summer Crafts, 9 AM – 2 PM</a>
+      <a class="hbtn hbtn-fall" href="#september">🍂 Fall Crafts, 9 AM – 2 PM</a>
       <a class="hbtn hbtn-work" href="#workshop">🔧 Workshops</a>
     </div>
   </section>
@@ -400,11 +403,11 @@
   if(hero&&st&&("IntersectionObserver" in window)){
     new IntersectionObserver(function(es){ st.classList.toggle("show-nav", !es[0].isIntersecting); },{rootMargin:"-64px 0px 0px 0px",threshold:0}).observe(hero);
   }
-  var b=document.getElementById("hamBtn"), d=document.getElementById("menuDrop");
-  if(b&&d){
-    b.addEventListener("click",function(e){ e.stopPropagation(); d.classList.toggle("open"); });
+  var hams=document.querySelectorAll(".hbtn-ham"), d=document.getElementById("menuDrop");
+  if(hams.length&&d){
+    hams.forEach(function(b){ b.addEventListener("click",function(e){ e.stopPropagation(); d.classList.toggle("open"); }); });
     d.addEventListener("click",function(e){ if(e.target.tagName==="A") d.classList.remove("open"); });
-    document.addEventListener("click",function(e){ if(!d.contains(e.target)&&e.target!==b) d.classList.remove("open"); });
+    document.addEventListener("click",function(e){ if(!d.contains(e.target)&&!e.target.closest(".hbtn-ham")) d.classList.remove("open"); });
   }
 })();
 </script>
