@@ -184,22 +184,36 @@
   .hdrnav{display:flex;gap:6px;justify-content:center;align-items:stretch;max-width:520px;margin:0 auto;max-height:0;overflow:hidden;opacity:0;transition:max-height .28s ease,opacity .22s ease,padding .28s ease;padding:0 12px}
   .stickytop.show-nav .hdrnav{max-height:64px;opacity:1;padding:0 12px 9px}
   .hbtn-mini{flex:1 1 0;max-width:130px;text-align:center;text-decoration:none;color:#fff;font-weight:800;font-size:.75rem;line-height:1;padding:8px 4px;border-radius:8px;white-space:nowrap;box-shadow:0 3px 9px rgba(0,0,0,.22)}
+  .top{position:relative}
+  .hbtn-ham{position:absolute;left:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.32);border-radius:8px;font-size:1.15rem;line-height:1;padding:5px 11px;cursor:pointer}
+  .menudrop{position:absolute;top:100%;left:8px;z-index:60;background:#123526;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 26px rgba(0,0,0,.38);border-radius:12px;padding:8px;display:none;min-width:200px}
+  .menudrop.open{display:block}
+  .menudrop a{display:block;color:#eaf0eb;text-decoration:none;font-weight:700;font-size:.95rem;padding:10px 14px;border-radius:8px;white-space:nowrap}
+  .menudrop a:hover,.menudrop a:active{background:rgba(255,255,255,.13)}
 </style>
 </head>
 <body>
 <div class="stickytop">
   <header class="top">
     <div class="brand">Waterbear Field School</div>
+    <button class="hbtn-ham" id="hamBtn" aria-label="Open menu">☰</button>
   </header>
-  <div class="chips">
-    <button class="chip" data-t="program">🎨 Craft Days</button>
-    <button class="chip" data-t="august">☀️ Summer</button>
-    <button class="chip" data-t="september">🍂 Fall</button>
-    <button class="chip" data-t="workshop">🔧 Workshops</button>
-    <button class="chip" data-t="project">🛠️ Projects</button>
-    <button class="chip" data-t="journal">📓 Journal</button>
-    <button class="chip" data-t="about">ℹ️ About</button>
-  </div>
+  <nav class="hdrnav">
+    <a class="hbtn-mini" href="#program" style="background:#3f7d54">Craft Days</a>
+    <a class="hbtn-mini" href="#august" style="background:#c8891a">Summer</a>
+    <a class="hbtn-mini" href="#september" style="background:#a85423">Fall</a>
+    <a class="hbtn-mini" href="#workshop" style="background:#3b6fb0">Workshops</a>
+  </nav>
+  <nav class="menudrop" id="menuDrop">
+    <a href="#program">🎨 Craft Days</a>
+    <a href="#august">☀️ Summer</a>
+    <a href="#september">🍂 Fall</a>
+    <a href="#workshop">🔧 Workshops</a>
+    <a href="#project">🛠️ Projects</a>
+    <a href="#meetup">🌲 Meetups</a>
+    <a href="#journal">📓 Journal</a>
+    <a href="#about">ℹ️ About</a>
+  </nav>
 </div>
 
 <div class="wrap">
@@ -378,6 +392,20 @@
   if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var i=0;
   setInterval(function(){ if(document.hidden) return; sl[i].classList.remove("on"); i=(i+1)%sl.length; sl[i].classList.add("on"); },3400);
+})();
+</script>
+<script>
+(function(){
+  var hero=document.querySelector(".hero"), st=document.querySelector(".stickytop");
+  if(hero&&st&&("IntersectionObserver" in window)){
+    new IntersectionObserver(function(es){ st.classList.toggle("show-nav", !es[0].isIntersecting); },{rootMargin:"-64px 0px 0px 0px",threshold:0}).observe(hero);
+  }
+  var b=document.getElementById("hamBtn"), d=document.getElementById("menuDrop");
+  if(b&&d){
+    b.addEventListener("click",function(e){ e.stopPropagation(); d.classList.toggle("open"); });
+    d.addEventListener("click",function(e){ if(e.target.tagName==="A") d.classList.remove("open"); });
+    document.addEventListener("click",function(e){ if(!d.contains(e.target)&&e.target!==b) d.classList.remove("open"); });
+  }
 })();
 </script>
 </body>
