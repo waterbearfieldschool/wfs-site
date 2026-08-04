@@ -154,6 +154,15 @@
   .chip{background:rgba(255,255,255,.10);color:#eaf0eb;border-color:rgba(255,255,255,.30)}
   .sellist{text-align:left;max-width:270px;margin:10px auto;padding-left:22px}
   .sellist li{margin:5px 0;color:var(--ink);font-weight:600}
+  .bgrid{border-collapse:collapse;width:auto;margin:14px auto 2px}
+  .bgrid th,.bgrid td{border:1px solid var(--line);padding:10px 14px;text-align:center}
+  .bgrid thead th{font-weight:800;font-size:.85rem}
+  .bgrid tbody th{font-weight:700;font-size:.8rem;color:var(--ink);text-align:left;white-space:nowrap;background:#faf6ef}
+  .bgrid td{cursor:pointer}
+  .bgrid td:hover{background:#f7f2e9}
+  .cbx{display:inline-block;width:22px;height:22px;border:2px solid #cdb79c;border-radius:6px;vertical-align:middle;transition:.12s;position:relative}
+  .bcell.on .cbx{background:var(--cc);border-color:var(--cc)}
+  .bcell.on .cbx::after{content:"\2713";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px}
 </style>
 </head>
 <body>
