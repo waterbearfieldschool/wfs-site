@@ -1,0 +1,154 @@
+---
+permalink: "/"
+layout: false
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waterbear Field School — hands-on day programs</title>
+<meta name="description" content="Hands-on day programs for kids (ages 6–12) and their grown-ups — woodworking, fiber, clay, nature, music, and art.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1f241f;--bg:#f7f7f2;--muted:#6b7168;--accent:#1c4d3a;--accent-d:#123526;--link:#0b6b50;--sun:#e0a92b;--line:#e5e6e0;--card:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+  a{color:inherit}
+  .top{display:flex;flex-direction:column;align-items:center;gap:10px;padding:15px 26px;background:rgba(247,247,242,.95);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30;backdrop-filter:blur(6px)}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--accent);letter-spacing:-.01em;text-align:center}
+  .brand small{display:block;font-weight:500;font-size:.68rem;color:var(--muted)}
+  .top nav{margin-left:0;display:flex;gap:18px;font-size:.92rem;font-weight:600}
+  .top nav a{text-decoration:none;color:var(--muted)}.top nav a:hover{color:var(--accent)}
+  .top .cta{background:var(--accent);color:#fff;padding:8px 16px;border-radius:8px}
+  .hero{text-align:center;padding:50px 24px 24px;background:linear-gradient(180deg,#e9f1ea,#f7f7f2)}
+  .hero .tag{display:inline-block;background:#fff;color:var(--accent);font-weight:700;font-size:.85rem;padding:6px 15px;border-radius:999px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .hero h1{font-size:clamp(2rem,5vw,3rem);color:var(--accent-d);line-height:1.06;margin-bottom:12px;letter-spacing:-.02em}
+  .hero p{max-width:620px;margin:0 auto 20px;color:var(--muted);font-size:1.1rem}
+  .hero .go{display:inline-block;background:var(--accent);color:#fff;font-weight:700;text-decoration:none;padding:.75rem 1.5rem;border-radius:10px}
+  .wrap{max-width:960px;margin:0 auto;padding:30px 24px}
+  h2.sec{font-size:1.5rem;color:var(--accent-d);text-align:center;margin-bottom:4px}
+  .sec-sub{text-align:center;color:var(--muted);margin-bottom:24px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.cards{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.cards{grid-template-columns:1fr}.top nav{display:none}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+  .card .band{color:#fff;padding:12px 16px 10px;text-align:center}
+  .card .band .day{font-size:1.4rem;font-weight:800;line-height:1}
+  .card .band .theme{font-weight:600;font-size:.95rem;opacity:.95;margin-top:3px}
+  .card .body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+  .card .when{font-size:.82rem;color:var(--muted);font-weight:600;margin-bottom:8px}
+  .card .desc{font-size:.9rem;color:var(--ink);flex:1}
+  .card .foot{display:flex;gap:8px;margin-top:14px}
+  .card .price{font-weight:800;color:var(--accent-d)}.card .price small{font-weight:600;color:var(--muted);font-size:.75rem}
+  .note{background:#eef3ee;border:1px solid #d8e5da;border-radius:12px;padding:16px 18px;color:var(--accent-d);font-size:.95rem;text-align:center;margin-top:22px}
+  .note a{color:var(--accent);font-weight:700}
+  .field{background:#fff;border-top:1px solid var(--line);margin-top:36px;padding:34px 24px}
+  .field-in{max-width:960px;margin:0 auto}
+  .field h2{font-size:1.15rem;color:var(--accent-d);margin-bottom:3px}
+  .field .lead{color:var(--muted);font-size:.9rem;margin-bottom:16px}
+  .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:640px){.mini{grid-template-columns:1fr}}
+  .mc{border:1px solid var(--line);border-radius:11px;padding:14px;text-decoration:none;display:block}
+  .mc .k{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--sun)}
+  .mc h4{font-size:.98rem;color:var(--ink);margin:4px 0 3px}.mc p{color:var(--muted);font-size:.85rem}
+  .mc .more{color:var(--accent);font-weight:700;font-size:.82rem;margin-top:6px;display:inline-block}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 24px}
+  footer a{color:var(--accent);font-weight:600;text-decoration:none}
+
+  .btn-reg{flex:1;background:var(--accent);color:#fff;border:none;font-weight:700;font-size:.85rem;padding:9px 8px;border-radius:8px;cursor:pointer}
+  .btn-reg:hover{background:var(--accent-d)}
+  .btn-info{flex:1;background:#fff;color:var(--accent);border:1.5px solid var(--accent);font-weight:700;font-size:.85rem;padding:9px 8px;border-radius:8px;cursor:pointer}
+  .btn-info:hover{background:#eef3ee}
+  .wb-ov{display:none;position:fixed;inset:0;background:rgba(20,30,22,.55);z-index:100;align-items:center;justify-content:center;padding:20px}
+  .wb-ov.on{display:flex}
+  .wb-modal{background:#fff;border-radius:16px;max-width:420px;padding:28px 26px;text-align:center;box-shadow:0 12px 44px rgba(0,0,0,.28)}
+  .wb-modal h3{color:var(--accent-d);font-size:1.3rem;margin-bottom:8px}
+  .wb-modal p{color:var(--muted);margin-bottom:18px}
+  .wb-modal a.em{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:11px 22px;border-radius:9px}
+  .wb-modal button.cl{display:block;margin:14px auto 0;background:none;border:none;color:var(--muted);cursor:pointer;font-size:.88rem;text-decoration:underline}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">🐻 Waterbear Field School<small>hands-on day programs · ages 6–12 · caregivers welcome, drop-off available</small></div>
+  <nav><a href="#programs">Programs</a><a href="/journal/">Journal</a><a href="/history/#projects">Projects</a><a href="mailto:info@waterbearfieldschool.org" class="cta">Get in touch</a></nav>
+</header>
+
+<section class="hero">
+  <div class="tag">🌿 Hands-on, outdoors · ages 6–12 + their grown-ups</div>
+  <h1>Come make something with us.</h1>
+  <p>Hands-on day programs where kids and their grown-ups build, craft, and explore — a different craft each day of the week. Grown-ups and caregivers welcome; drop-off available.</p>
+  <a class="go" href="#programs">See the programs ↓</a>
+</section>
+
+<div class="wrap" id="programs">
+  <h2 class="sec">Our Programs — by weekday</h2>
+  <p class="sec-sub">Each weekday features a different hands-on craft. Grown-ups &amp; caregivers welcome — drop-off available.</p>
+  <div class="cards">
+
+    <article class="card">
+      <div class="band" style="background:#a86f28"><div class="day">Mondays 🪚</div><div class="theme">Woodworking</div></div>
+      <div class="body"><div class="when">3:30–5 PM · Lincoln, MA</div>
+        <div class="desc">Build the shop's own furniture over four weeks — sawhorse → bench → stool → toolbox. Take home real skills and a real piece.</div>
+        <div class="foot"><button class="btn-reg" onclick="wbModal('register')">Register</button><button class="btn-info" onclick="wbModal('info')">More info</button></div></div>
+    </article>
+
+    <article class="card">
+      <div class="band" style="background:#4f5aa6"><div class="day">Tuesdays 🧶</div><div class="theme">Fiber &amp; Cordage</div></div>
+      <div class="body"><div class="when">3:30–5 PM · Lincoln, MA</div>
+        <div class="desc">Spin thread, twist rope on a wooden rope-machine, and lash it into something that stands up. Fiber to finished build.</div>
+        <div class="foot"><button class="btn-reg" onclick="wbModal('register')">Register</button><button class="btn-info" onclick="wbModal('info')">More info</button></div></div>
+    </article>
+
+    <article class="card">
+      <div class="band" style="background:#2c8299"><div class="day">Wednesdays 🏺</div><div class="theme">Clay &amp; Ceramics</div></div>
+      <div class="body"><div class="when">3:30–5 PM · Lincoln, MA</div>
+        <div class="desc">Pinch and coil your first pots, then work up to a bowl on a wheel we build ourselves. Fire and finish your best piece.</div>
+        <div class="foot"><button class="btn-reg" onclick="wbModal('register')">Register</button><button class="btn-info" onclick="wbModal('info')">More info</button></div></div>
+    </article>
+
+    <article class="card">
+      <div class="band" style="background:#3f7d54"><div class="day">Thursdays 🌿</div><div class="theme">Nature &amp; Plants</div></div>
+      <div class="body"><div class="when">3:30–5 PM · Lincoln, MA</div>
+        <div class="desc">Seasonal plant ID — edible, poisonous, useful — plus leaf prints, tree lore, and which wood is good for what.</div>
+        <div class="foot"><button class="btn-reg" onclick="wbModal('register')">Register</button><button class="btn-info" onclick="wbModal('info')">More info</button></div></div>
+    </article>
+
+    <article class="card">
+      <div class="band" style="background:#7b6bb5"><div class="day">Fridays 🎵</div><div class="theme">Music &amp; Instrument-Making</div></div>
+      <div class="body"><div class="when">3:30–5 PM · Lincoln, MA</div>
+        <div class="desc">Build simple instruments — shakers, a hand drum, panpipes, a one-string diddley bow — then learn to play and jam together. Making meets music.</div>
+        <div class="foot"><button class="btn-reg" onclick="wbModal('register')">Register</button><button class="btn-info" onclick="wbModal('info')">More info</button></div></div>
+    </article>
+
+    <article class="card">
+      <div class="band" style="background:#9a5b7a"><div class="day">Saturdays 🎨</div><div class="theme">Art &amp; Making</div></div>
+      <div class="body"><div class="when">10–11:30 AM · Lincoln, MA</div>
+        <div class="desc">A weekend mix — paint at the easel, sculpt in clay, wire up a tiny solar motor. The catch-all making day.</div>
+        <div class="foot"><button class="btn-reg" onclick="wbModal('register')">Register</button><button class="btn-info" onclick="wbModal('info')">More info</button></div></div>
+    </article>
+
+  </div>
+  <div class="note">🌱 Grown-ups welcome to stay, or drop off. A recreational, hands-on program — <em>not a licensed school or daycare.</em><br>Registration opening soon — <a href="mailto:info@waterbearfieldschool.org">email us to hear first</a>.</div>
+</div>
+
+<footer>Waterbear Field School · Lincoln, MA · <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a></footer>
+
+<div class="wb-ov" id="wbov" onclick="if(event.target===this)wbClose()">
+  <div class="wb-modal">
+    <h3 id="wbT"></h3><p id="wbB"></p>
+    <a class="em" id="wbE" href="mailto:info@waterbearfieldschool.org">Email us &rarr;</a>
+    <button class="cl" onclick="wbClose()">Close</button>
+  </div>
+</div>
+<script>
+function wbModal(k){var t=document.getElementById('wbT'),b=document.getElementById('wbB'),e=document.getElementById('wbE');
+ if(k==='register'){t.textContent='Registration opens soon \ud83c\udf31';b.textContent="We're finalizing our programming. Send us your email and we'll let you know the moment sign-ups are live.";e.href="mailto:info@waterbearfieldschool.org?subject=Let%20me%20know%20when%20registration%20opens";}
+ else{t.textContent='Want to know more?';b.textContent="Happy to tell you all about it \u2014 email us with any questions and we'll be right in touch.";e.href="mailto:info@waterbearfieldschool.org?subject=More%20info%20about%20your%20programs";}
+ document.getElementById('wbov').classList.add('on');}
+function wbClose(){document.getElementById('wbov').classList.remove('on');}
+</script>
+</body>
+</html>

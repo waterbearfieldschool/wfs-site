@@ -1,7 +1,31 @@
 # scripts/
 
-Utility scripts for the site. Safe to run locally; most are idempotent and
-touch a single file in `src/assets/`.
+Utility scripts for the site.
+
+## `wfs-edit`
+
+Guarded git wrapper for safe pull/push on this repo across multiple
+devices (laptop, Pi, Telegram-driven edits). Designed so multi-device
+edits don't accidentally clobber each other.
+
+Three commands:
+
+```bash
+wfs-edit pull              # fetch + fast-forward; aborts if working tree is dirty
+wfs-edit push "<message>"  # commit -A + push; auto-rebases once if push is rejected
+wfs-edit status            # ahead/behind + working-tree changes
+```
+
+**Setup on a fresh checkout:** symlink the script into your PATH so
+`wfs-edit` is callable from anywhere:
+
+```bash
+ln -s "$(pwd)/scripts/wfs-edit" ~/.local/bin/wfs-edit
+```
+
+The canonical script lives in the repo so it travels with whatever
+device pulls a fresh checkout. The symlink keeps the command-name
+location stable across hosts.
 
 ## `update-meshcore-nodes.sh`
 

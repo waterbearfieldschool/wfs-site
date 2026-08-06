@@ -1,0 +1,214 @@
+---
+layout: layouts/home.njk
+title: "Waterbear Field School"
+description: "Outdoor Resilience Skill-Share for Kids and Adults"
+image: /assets/images/biketrailer/full_system.webp
+---
+
+<div class="slideshow-container">
+  <div class="slideshow">
+    <!-- Roaming - Beach -->
+    <div class="slide active">
+      <img src="/assets/images/roaming/beach_slideshow.webp" alt="Field exploration at the beach" />
+    </div>
+    <!-- Farm Day 2025 -->
+    <div class="slide">
+      <img src="/assets/images/farmday/Farm_Day_2025_Square.jpg" alt="Farm Day 2025" />
+    </div>
+    <!-- Roaming - Fires -->
+    <div class="slide">
+      <img src="/assets/images/roaming/fires_slideshow.webp" alt="Learning to build fires" />
+    </div>
+    <!-- DIY Radio Communicators -->
+    <div class="slide">
+      <img src="/assets/images/diy-communicators/main.webp" alt="DIY Radio Communicators Workshop" />
+    </div>
+    <!-- Solar 101 -->
+    <div class="slide">
+      <img src="/assets/images/projects/solar101.jpg" alt="Solar 101 Workshop" />
+    </div>
+    <div class="slide">
+      <img src="/assets/images/solar/motors.jpg" alt="Solar 101 - Motors and panels" />
+    </div>
+    <!-- Bike Trailer -->
+    <div class="slide">
+      <img src="/assets/images/biketrailer/full_system.webp" alt="DIY Bike Trailer" />
+    </div>
+  </div>
+  <div class="slideshow-dots">
+    <span class="dot active" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+    <span class="dot" onclick="currentSlide(6)"></span>
+    <span class="dot" onclick="currentSlide(7)"></span>
+  </div>
+</div>
+
+<section style="margin-bottom: 2rem;" id="journal">
+  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
+    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Journal</h2>
+    <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
+    <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">Latest updates from Waterbear Field School</p>
+    <div class="grid">
+      {% for post in collections.recentJournal %}
+      <article class="card" style="overflow: hidden;">
+        {% if post.data.image %}
+        <a href="{{ post.url }}" class="thumb" aria-label="{{ post.data.title }}">
+          <img src="{{ post.data.image }}" alt="{{ post.data.title }}" />
+        </a>
+        {% endif %}
+        <div class="card-content">
+          <time datetime="{{ post.date.toISOString() }}" style="color: var(--muted); font-size: 0.8rem;">
+            {{ post.date.toDateString() }}
+          </time>
+          <h3 style="margin: 0.25rem 0 0.5rem; font-size: 1rem;"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+          {% if post.data.excerpt %}
+          <p style="color: var(--muted); font-size: 0.85rem; margin: 0; line-height: 1.4;">{{ post.data.excerpt }}</p>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 1rem;">
+      <a href="/journal/" style="color: var(--accent); font-size: 0.95rem;">View all posts →</a>
+    </div>
+  </div>
+</section>
+
+<section style="margin-bottom: 2rem;" id="workshops">
+  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
+    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Workshops</h2>
+    <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
+    <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">Our workshops are typically held outdoors, in most weather. Pricing, format, and location vary by workshop and by teacher. Click on a workshop below to find out more!</p>
+    <div class="grid">
+    {% for p in collections.allWorkshops %}{% if p.data.current %}
+    <article class="card workshop-card" data-foundation="{{ p.data.foundations[0] if p.data.foundations else '' }}">
+      {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
+      <div class="workshop-foundation-band" data-foundation="{{ f }}">
+        {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+      </div>
+      {% endif %}{% endfor %}{% endif %}
+      {% if p.data.workshopDate %}<div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
+        {{ p.data.workshopDate }}
+      </div>{% endif %}
+      {% if p.data.location %}<div style="background: var(--card); text-align: center; font-size: 0.9rem; color: var(--link); padding: 0 14px 8px 14px;">{{ p.data.location }}</div>{% endif %}
+      <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
+        {% if p.data.image %}
+          <img src="{{ p.data.image }}" alt="{{ p.data.title }}" />
+        {% else %}
+          [FIELD SCHOOL]
+        {% endif %}
+      </a>
+      <div class="card-content">
+        <h3 style="text-align: center;"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
+        {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
+        <div style="text-align: center; margin-top: auto; padding-top: 12px;">
+          <a href="{{ p.url }}" style="display: inline-block; background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Learn more</a>
+        </div>
+      </div>
+    </article>
+    {% endif %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section style="margin-bottom: 2rem;" id="recently">
+  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
+    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Recently</h2>
+    <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
+    <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">Here are some workshops we've held in the past, and may offer again soon. Click through to see photos and details!</p>
+    <div class="grid">
+    {% for event in collections.allEvents %}
+    <article class="card workshop-card" data-foundation="{{ event.data.foundations[0] if event.data.foundations else '' }}">
+      {% if event.data.foundations %}{% for f in event.data.foundations %}{% if loop.first %}
+      <div class="workshop-foundation-band" data-foundation="{{ f }}">
+        {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+      </div>
+      {% endif %}{% endfor %}{% endif %}
+      {% if event.data.category %}<div class="upcoming-workshop-label">{{ event.data.category }}</div>{% endif %}
+      <div style="background: var(--card); color: var(--accent); text-align: center; padding: 8px 14px 2px 14px; font-weight: 600; font-size: 1rem;">
+        {{ event.date | displayDate }}
+      </div>
+      {% if event.data.location %}<div style="background: var(--card); text-align: center; font-size: 0.9rem; color: var(--link); padding: 0 14px 8px 14px;">{{ event.data.location }}</div>{% endif %}
+      <a href="{{ event.url }}" class="thumb" aria-label="{{ event.data.title }}">
+        {% if event.data.image %}<img src="{{ event.data.image }}" alt="{{ event.data.title }}" />{% endif %}
+      </a>
+      <div class="card-content">
+        <h3 style="text-align: center;"><a href="{{ event.url }}">{{ event.data.title }}</a></h3>
+        {% if event.data.meta %}<div class="meta-description">{{ event.data.meta }}</div>{% endif %}
+      </div>
+    </article>
+    {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section style="margin-bottom: 2rem;" id="projects">
+  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
+    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Projects</h2>
+    <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
+    <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">Ongoing projects and upcoming workshops. If you'd be interested to attend (or teach) any of them — or have ideas for other projects — please reach out!</p>
+    <p class="contact-email" style="text-align: center; margin: 0 auto 1rem;">
+      <a href="mailto:info@waterbearfieldschool.org?subject=Project%20Inquiry">info@waterbearfieldschool.org</a>
+    </p>
+
+    <div class="grid">
+      {# Upcoming workshops #}
+      {% for p in collections.allWorkshops %}{% if not p.data.current %}
+      <article class="card workshop-card" data-foundation="{{ p.data.foundations[0] if p.data.foundations else '' }}">
+        {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
+        <div class="workshop-foundation-band" data-foundation="{{ f }}">
+          {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+        </div>
+        {% endif %}{% endfor %}{% endif %}
+        {% if p.data.category %}<div class="upcoming-workshop-label">{{ p.data.category }}</div>{% endif %}
+        <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">
+          {% if p.data.image %}<img src="{{ p.data.image }}" alt="{{ p.data.title }}" />{% else %}[FIELD SCHOOL]{% endif %}
+        </a>
+        <div class="card-content">
+          <h3 style="text-align: center;"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
+          {% if p.data.meta %}<div class="meta-description">{{ p.data.meta }}</div>{% endif %}
+        </div>
+      </article>
+      {% endif %}{% endfor %}
+
+      {# Projects from markdown files #}
+      {% for proj in collections.recentEvents %}
+      <article class="card project-card" data-foundation="{{ proj.data.foundations[0] if proj.data.foundations else '' }}">
+        {% if proj.data.foundations %}{% for f in proj.data.foundations %}{% if loop.first %}
+        <div class="workshop-foundation-band" data-foundation="{{ f }}">
+          {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+        </div>
+        {% endif %}{% endfor %}{% endif %}
+        <a href="{{ proj.url }}" class="thumb" aria-label="{{ proj.data.title }}">
+          {% if proj.data.image %}<img src="{{ proj.data.image }}" alt="{{ proj.data.title }}" />{% endif %}
+        </a>
+        <div class="card-content">
+          <h3 style="text-align: center;"><a href="{{ proj.url }}">{{ proj.data.title }}</a></h3>
+          {% if proj.data.meta %}<div class="meta-description">{{ proj.data.meta }}</div>{% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section style="margin-bottom: 2rem;" id="foundations">
+  <div style="background: var(--card); border: 1px solid var(--hair); border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow);">
+    <h2 style="color: var(--accent); font-size: 1.4rem; text-align: center; margin: 0 0 0.5rem;">Foundations</h2>
+    <p style="text-align: center; margin: 0 0 0.5rem;"><a href="#" style="font-size: 0.8rem; color: var(--muted);">↑ Back to Top</a></p>
+    <p style="color: var(--muted); text-align: center; max-width: 600px; margin: 0 auto 1rem;">We're building a comprehensive curriculum for practical resilience - foundations covering the essential systems that sustain households and communities.</p>
+    <div class="grid foundations-grid" style="gap: 10px;">
+      {% for p in collections.allFoundations %}
+      <a href="{{ p.url }}" class="foundation-card foundation-mini-card" data-foundation="{{ p.data.foundation }}" style="display: block; background: var(--card); border-radius: 12px; padding: 1rem; text-decoration: none; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+        <div class="foundation-emoji" style="font-size: 1.5rem; margin-bottom: 4px;">{{ foundationInfo[p.data.foundation].emoji }}</div>
+        <div class="foundation-title" style="font-weight: 600; color: var(--fg); font-size: 0.9rem;">{{ p.data.title }}</div>
+      </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
