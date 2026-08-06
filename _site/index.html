@@ -215,8 +215,16 @@
   .menudrop.open{display:block}
   .menudrop a{display:block;color:#eaf0eb;text-decoration:none;font-weight:700;font-size:.95rem;padding:10px 14px;border-radius:8px;white-space:nowrap}
   .menudrop a:hover,.menudrop a:active{background:rgba(255,255,255,.13)}
-  @media(min-width:561px){.showcase{max-width:420px;aspect-ratio:2.5/1;margin-top:6px}.hero{margin:12px auto 8px}.hero-cta{gap:8px}.hbtn{padding:12px 22px;font-size:1.06rem}}
+  @media(min-width:561px) and (max-width:959px){.wrap{padding-top:6px}.showcase{max-width:460px;aspect-ratio:2.7/1;margin:2px auto 0}.hero{max-width:460px;margin:8px auto 6px;padding:0}.hero-cta{gap:6px}.hbtn{padding:9px 22px;font-size:1.02rem}}
   @media(max-width:560px){.showcase{aspect-ratio:16/9;margin:10px 18px 0}.hero{margin-top:14px}.hero-cta{gap:10px}.hbtn{padding:14px 20px;font-size:1.08rem}}
+  /* wide screens: rotating image left (larger), calls to action right */
+  @media(min-width:960px){
+    .herowrap{display:flex;align-items:center;justify-content:center;gap:48px;max-width:1120px;margin:22px auto 6px;padding:0 30px}
+    .showcase{flex:1 1 520px;max-width:640px;margin:0;aspect-ratio:3/2}
+    .hero{flex:0 0 380px;margin:0;padding:0}
+    .hero-cta{gap:12px}
+    .hbtn{padding:15px 22px;font-size:1.12rem}
+  }
   .stickytop.show-nav .top{padding-bottom:2px}
 </style>
 </head>
@@ -245,6 +253,7 @@
 
 <div class="wrap">
 
+  <div class="herowrap">
   <a class="showcase" href="#fielddays">
     <div class="sc-slide on" style="background-image:url(/v6img/pg-wood.jpg)"><span class="sc-label">Woodworking</span></div>
     <div class="sc-slide" style="background-image:url(/v6img/ws-rain.jpg)"><span class="sc-label">Working with Water</span></div>
@@ -265,6 +274,7 @@
       <a class="hbtn" href="#about" style="background:#1c6b4a">ℹ️ About</a>
     </div>
   </section>
+  </div>
 
         <section class="sec sec-program" id="fielddays" data-name="Field Days" data-blurb="A mix of craft topics each morning, plus Build & Repair in the afternoon." data-accent="#a86f28" data-tint="#e9f0e4" data-bd="#cfe0c8">
     <h2 class="grp">🎨 What are Field Days?</h2>
