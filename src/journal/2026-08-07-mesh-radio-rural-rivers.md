@@ -3,7 +3,7 @@ title: "Mesh radio with Rural Rivers"
 date: 2026-08-07
 layout: layouts/post.njk
 tags: journal
-image: /assets/images/journal/2026-08-07-mesh-radio-rural-rivers/water-level-sensor.jpg
+image: /assets/images/journal/2026-08-07-mesh-radio-rural-rivers/mesh-radio-system-diagram.jpg
 excerpt: "A low-cost, off-grid water-level sensor for community flood monitoring — built with the Rural Rivers project in Vermont."
 draft: false
 foundations:
@@ -11,7 +11,7 @@ foundations:
   - water
 ---
 
-![An illustrated ultrasonic water-level sensor — a white weatherproof enclosure mounted on a wooden beam, with a sensor cone pointing down toward the water below](/assets/images/journal/2026-08-07-mesh-radio-rural-rivers/water-level-sensor.jpg)
+![System diagram — a Rook ultrasonic sender transmits over LoRa mesh radio to a Heltec V3 receiver, which relays the readings over WiFi to the Bayou cloud store](/assets/images/journal/2026-08-07-mesh-radio-rural-rivers/mesh-radio-system-diagram.jpg)
 
 We're teaming up with the **[Rural Rivers / Mapping for Resilience](https://sites.dartmouth.edu/mappingforresilience/)** project on low-cost, community-run flood monitoring.
 
