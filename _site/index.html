@@ -297,7 +297,7 @@
     <p class="seclead">Register for individual <a href="#fielddays" style="color:#9a6f14;font-weight:700;text-decoration:underline">Field Days</a>.</p>
     <ul class="reglist">
       <li><b>Time:</b> 10 AM to 2 PM</li>
-      <li><b>Cost:</b> $20 per participant <span class="note">(suggested; sliding scale at checkout)</span></li>
+      <li><b>Cost:</b> Pay what you can — suggested $20 per participant.</li>
       <li><b>No drop-off:</b> adult caregivers must accompany children under 14 (but caregivers can attend for free!)</li>
       <li><b>Safety, waivers, weather:</b> you can find out more about these topics in the <a href="#policies" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Policies</a> section.</li>
     </ul>
@@ -325,7 +325,7 @@
     <p class="seclead" style="margin:2px auto 4px">Register for a weekday, by the month — <a href="#fielddays" style="color:#a85423;font-weight:700;text-decoration:underline">Field Days</a> you can count on, to build community and work on longer-term projects together.</p>
     <ul class="reglist">
       <li><b>Time:</b> 10 AM to 2 PM</li>
-      <li><b>Cost:</b> $100 per weekday block — one weekday for the whole month <span class="note">(suggested; sliding scale at checkout)</span></li>
+      <li><b>Cost:</b> Pay what you can — suggested $100 per weekday block (one weekday for the whole month).</li>
       <li><b>No drop-off:</b> adult caregivers must accompany children under 14 (but caregivers can attend for free!)</li>
       <li><b>Safety, waivers, weather:</b> you can find out more about these topics in the <a href="#policies" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Policies</a> section.</li>
     </ul>
@@ -350,9 +350,8 @@
       <article class="card"><img class="cardimg" src="/v6img/jr-sailing.jpg" alt=""><div class="body"><h3>Sailing &amp; STEM at Edgewood</h3><div class="when">May 20, 2026</div><div class="desc">Scoping 2026 STEM workshops — mesh radio and a dock-mounted water-level sensor.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-20-sailing-stem-edgewood/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/jr-solar.jpg" alt=""><div class="body"><h3>Girl Scouts: Intro to Solar</h3><div class="when">May 16, 2026</div><div class="desc">An Intro to Solar Power workshop with a Girl Scout troop in West Medford.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-16-girl-scouts-solar/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/jr-trailer.jpg" alt=""><div class="body"><h3>WFS mobile trailer takes shape</h3><div class="when">May 10, 2026</div><div class="desc">A window, a new roof, and getting ready for solar.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-10-wfs-mobile-trailer/">Read →</a></div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/jr-uv254jam.jpg" alt=""><div class="body"><h3>UV-254 Jam Session</h3><div class="when">Apr 26, 2026</div><div class="desc">An open-science jam session with the UV-254 water-quality instrument.</div><div class="foot"><a class="btn-reg" href="/journal/2026-04-26-uv254-jam/">Read →</a></div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/jr-uv254jam.jpg" alt=""><div class="body"><h3>Water Quality Jam Session</h3><div class="when">Apr 26, 2026</div><div class="desc">An open-science jam session with the UV-254 water-quality instrument.</div><div class="foot"><a class="btn-reg" href="/journal/2026-04-26-uv254-jam/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/jr-meshradio.jpg" alt=""><div class="body"><h3>Setting up mesh radio at HHF</h3><div class="when">Apr 26, 2026</div><div class="desc">A breadboarded MeshCore node on a hilltop — two repeaters on the first try.</div><div class="foot"><a class="btn-reg" href="/journal/2026-04-26-mesh-radio-hhf/">Read →</a></div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/jr-uv254lod.jpg" alt=""><div class="body"><h3>UV-254: limits of detection</h3><div class="when">Apr 25, 2026</div><div class="desc">Picnic-table open science — calibration curves for the UV-254 instrument.</div><div class="foot"><a class="btn-reg" href="/journal/2026-04-25-uv254-limits-of-detection/">Read →</a></div></div></article>
     </div>
     <div class="morelink"><a href="/journal/">Read more journal entries &rarr;</a></div>
   </section>
@@ -422,13 +421,13 @@
   function updcal(){ var n=document.querySelectorAll('.dayrow.sel').length; document.getElementById('calcount').textContent = n? (n+' day'+(n>1?'s':'')+' · $'+(n*20)) : 'No days selected'; }
   function reg(){ var n=document.querySelectorAll('.dayrow.sel').length; var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
     if(!n){ t.textContent='Pick your days first'; b.textContent='Check the days you want, then register.'; }
-    else { t.textContent='Registration opens soon 🌱'; var items=[].slice.call(document.querySelectorAll('.dayrow.sel')).map(function(x){return '<li>'+x.querySelector('.ddate').textContent+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' day'+(n>1?'s':'')+' at $20/day — <b>$'+(n*20)+'</b> total:</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your days the moment sign-ups are live.</div>'; }
+    else { t.textContent='Registration opens soon 🌱'; var items=[].slice.call(document.querySelectorAll('.dayrow.sel')).map(function(x){return '<li>'+x.querySelector('.ddate').textContent+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' day'+(n>1?'s':'')+' — suggested <b>$'+(n*20)+'</b> total (pay what you can):</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your days the moment sign-ups are live.</div>'; }
     e.href='mailto:info@waterbearfieldschool.org?subject=Field%20Day%20registration'; document.getElementById('ov').classList.add('on'); }
   function togblock(b){ b.classList.toggle('on'); segupd(); }
   function segupd(){ var n=document.querySelectorAll('.blockbtn.on').length; var el=document.getElementById('segcount'); if(el) el.textContent = n? (n+' block'+(n>1?'s':'')+' · $'+(n*100)) : 'No blocks selected'; }
   function segreg(){ var sel=[].slice.call(document.querySelectorAll('.bgrid td.on')); var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
     if(!sel.length){ t.textContent='Pick your blocks first'; b.textContent='Tap a cell — a weekday and a month — to select a block.'; }
-    else { t.textContent='Registration opens soon 🌱'; var n=sel.length; var items=sel.map(function(x){return '<li>'+x.dataset.day+' · '+x.dataset.block+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' block'+(n>1?'s':'')+' at $100/block — <b>$'+(n*100)+'</b> total:</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your spots the moment sign-ups are live.</div>'; }
+    else { t.textContent='Registration opens soon 🌱'; var n=sel.length; var items=sel.map(function(x){return '<li>'+x.dataset.day+' · '+x.dataset.block+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' block'+(n>1?'s':'')+' — suggested <b>$'+(n*100)+'</b> total (pay what you can):</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your spots the moment sign-ups are live.</div>'; }
     e.href='mailto:info@waterbearfieldschool.org?subject=Field%20Day%20monthly%20registration'; document.getElementById('ov').classList.add('on'); }
   function selcell(td){ td.classList.toggle('on'); refresh(); }
   function refresh(){
