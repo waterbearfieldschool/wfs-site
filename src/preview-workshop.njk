@@ -1,0 +1,75 @@
+---
+pagination:
+  data: workshops
+  size: 1
+  alias: w
+permalink: "/w/{{ w.slug }}/"
+layout: false
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ w.title }} — Waterbear Field School</title>
+<meta name="description" content="{{ w.blurb }}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>{% include "wfs-preview.css" %}</style>
+</head>
+<body>
+  <div class="stickytop">
+    <div class="top">
+      <div class="brand">Waterbear Field School<small>Hands-on learning &amp; building, near Lincoln, MA</small></div>
+    </div>
+  </div>
+
+  <div class="backbar"><a href="/#schedule">← All Field Days</a></div>
+
+  <div class="wdetail">
+    <div class="whero">
+      <img src="{{ w.img }}" alt="{{ w.title }}">
+      <div class="wband" style="background:linear-gradient(transparent,{{ w.color }}f2)"><h1>{{ w.emoji }} {{ w.title }}</h1></div>
+    </div>
+
+    <p class="wblurb">{{ w.blurb }}</p>
+
+    <div class="wsec">
+      <h2>About this session</h2>
+      {% for p in w.about %}<p>{{ p }}</p>{% endfor %}
+    </div>
+
+    <div class="wsec">
+      <h2>Upcoming dates — register for a day</h2>
+      <div class="wsessions">
+        {% for s in w.sessions %}
+        <div class="wsess">
+          <span class="wswhen">📅 {{ s.day }}<small>{{ s.time }} · {{ s.place }}</small></span>
+          <a class="btn-reg" href="{{ s.reg }}">Register →</a>
+        </div>
+        {% endfor %}
+      </div>
+      <p style="margin-top:10px;font-size:.9rem;color:var(--muted)">Free, and all welcome — just show up. Registering only helps us plan and lets us send you the exact address.</p>
+    </div>
+
+    <div class="wsec">
+      <h2>Where</h2>
+      <p><b>{{ w.location }}</b><br>{{ w.locationNote }}</p>
+    </div>
+
+    <div class="wsec">
+      <h2>Who it's for</h2>
+      <p>{{ w.forWhom }}</p>
+    </div>
+
+    <div class="wsec">
+      <h2>What to bring</h2>
+      <p>{{ w.bring }}</p>
+    </div>
+
+    <div class="wsec">
+      <p>Questions, or want to teach or host a session? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:{{ w.color }};font-weight:700;text-decoration:underline">Email us</a>.</p>
+    </div>
+  </div>
+</body>
+</html>

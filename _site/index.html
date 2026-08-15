@@ -226,6 +226,18 @@
     .hbtn{padding:15px 22px;font-size:1.12rem}
   }
   .stickytop.show-nav .top{padding-bottom:2px}
+  .dayrow-item{display:flex;align-items:center;gap:12px;width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:6px 0}
+  .dayrow-item .ddate{font-weight:700;white-space:nowrap;flex:none;width:96px;color:var(--accent-d)}
+  .dayrow-item .dtopic{font-weight:600;flex:1;min-width:0;color:var(--ink);text-decoration:none}
+  .dayrow-item .dtopic:hover{text-decoration:underline;color:#9a6f14}
+  .dayrow-item .dloc{color:var(--muted);font-weight:400;font-size:.85em}
+  .dayrow-item .dreg{flex:none;background:#1c6b4a;color:#fff;font-weight:700;font-size:.8rem;padding:6px 12px;border-radius:7px;text-decoration:none;white-space:nowrap}
+  .dayrow-item .dreg:hover{background:#155239}
+  @media(max-width:560px){.dayrow-item{flex-wrap:wrap;gap:6px 10px;padding:10px 12px}.dayrow-item .ddate{width:auto;order:1}.dayrow-item .dreg{order:2;margin-left:auto}.dayrow-item .dtopic{order:3;flex:1 0 100%;font-size:.95rem}}
+  .sessdates{margin-top:8px;border-top:1px solid var(--line);padding-top:6px}
+  .sd{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:4px 0}
+  .sd-when{font-size:.84rem;color:var(--accent-d);font-weight:600}
+  .sd .btn-reg{flex:none;font-size:.76rem;padding:5px 11px;margin:0}
 </style>
 </head>
 <body>
@@ -234,17 +246,15 @@
     <button class="hbtn-ham" aria-label="Open menu">☰</button>
     <div class="brand">Waterbear Field School</div>
   </header>
-  <nav class="hdrnav">
+    <nav class="hdrnav">
     <button class="hbtn-ham" aria-label="Open menu">☰</button>
-    <a class="hbtn-mini" href="#fielddays" style="background:#3f7d54">Field Days</a>
-    <a class="hbtn-mini" href="#byday" style="background:#c8891a">By Day</a>
-    <a class="hbtn-mini" href="#bymonth" style="background:#a85423">By Month</a>
+    <a class="hbtn-mini" href="#schedule" style="background:#c8891a">Schedule</a>
+    <a class="hbtn-mini" href="#journal" style="background:#4f6675">Field Notes</a>
     <a class="hbtn-mini" href="#about" style="background:#1c6b4a">About</a>
   </nav>
-  <nav class="menudrop" id="menuDrop">
-    <a href="#fielddays">🎨 Field Days</a>
-    <a href="#byday">📅 Register by Day</a>
-    <a href="#bymonth">🗓️ Register by Month</a>
+    <nav class="menudrop" id="menuDrop">
+    <a href="#schedule">📅 Upcoming Field Days</a>
+    <a href="#what-are-field-days">🎨 What are Field Days?</a>
     <a href="#journal">📓 Field Notes</a>
     <a href="#policies">📋 Policies &amp; Resources</a>
     <a href="#about">ℹ️ About</a>
@@ -254,7 +264,7 @@
 <div class="wrap">
 
   <div class="herowrap">
-  <a class="showcase" href="#fielddays">
+  <a class="showcase" href="#what-are-field-days">
     <div class="sc-slide on" style="background-image:url(/v6img/pg-wood.jpg)"><span class="sc-label">Woodworking</span></div>
     <div class="sc-slide" style="background-image:url(/v6img/ws-rain.jpg)"><span class="sc-label">Working with Water</span></div>
     <div class="sc-slide" style="background-image:url(/v6img/pg-fiber.jpg)"><span class="sc-label">Fiber Arts</span></div>
@@ -266,9 +276,7 @@
 
   <section class="hero">
     <div class="hero-cta">
-      <a class="hbtn hbtn-learn" href="#fielddays">🎨 Field Days</a>
-      <a class="hbtn hbtn-sum" href="#byday">📅 Register by Day</a>
-      <a class="hbtn hbtn-fall" href="#bymonth">🗓️ Register by Month</a>
+      <a class="hbtn hbtn-sum" href="#schedule">📅 Upcoming Field Days</a>
       <a class="hbtn hbtn-work" href="#journal">📓 Field Notes</a>
       <a class="hbtn" href="#policies" style="background:#4f6675">📋 Policies &amp; Resources</a>
       <a class="hbtn" href="#about" style="background:#1c6b4a">ℹ️ About</a>
@@ -276,67 +284,34 @@
   </section>
   </div>
 
-        <section class="sec sec-program" id="fielddays" data-name="Field Days" data-blurb="A mix of craft topics each morning, plus Build & Repair in the afternoon." data-accent="#a86f28" data-tint="#e9f0e4" data-bd="#cfe0c8">
-    <h2 class="grp">🎨 Field Days</h2>
-    <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+, running <b>10 AM to 2 PM</b>. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Come for a single day or make it a weekly rhythm: <a href="#byday" style="color:#9a6f14;font-weight:700;text-decoration:underline">Register by Day</a> or <a href="#bymonth" style="color:#a85423;font-weight:700;text-decoration:underline">Register by Month</a>. You can also read about recent Field Day and Field School projects in the <a href="#journal" style="color:#4f6675;font-weight:700;text-decoration:underline">Field Notes</a>, or find out more about our philosophy and approach in the <a href="#policies" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Policies and Resources</a> section.</p>
-    <div class="cards">
-      <article class="card"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">🪚 Woodworking</div></div><div class="body"><div class="desc">Learn basic woodworking techniques using simple hand tools.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/ws-rain.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">💧 Working with Water</div></div><div class="body"><div class="desc">Water filters, rain catchment, pumps: cleaning and redirecting water to make it useful at home and on the farm.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-fiber.jpg" alt=""><div class="band" style="background:#4f5aa6"><div class="day">🧶 Fiber Arts</div></div><div class="body"><div class="desc">Weaving, rope-making, and sewing — fiber into cordage and cloth.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pj-humanpower.jpg" alt=""><div class="band" style="background:#8a5a2f"><div class="day">🛠️ Sculpture &amp; Fabrication</div></div><div class="body"><div class="desc">Clay, carving, molds, and making — shaping and fabricating by hand.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌿 Plants &amp; Animals</div></div><div class="body"><div class="desc">Studying plants and animal habitats in nature.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">🎵 Music &amp; Instrument Making</div></div><div class="body"><div class="desc">Music jams; learn to build and play simple instruments together.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-art.jpg" alt=""><div class="band" style="background:#9a5b7a"><div class="day">🎨 Painting &amp; Drawing</div></div><div class="body"><div class="desc">Drawing and painting sessions — we might even make our own easels and paper!</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pj-trailer.jpg" alt=""><div class="band" style="background:#c05a2a"><div class="day">🔧 Build &amp; Repair</div></div><div class="body"><div class="desc">Learn how to build and repair useful objects at home and on the farm.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/mt-hike.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🗺️ Maps &amp; Hiking</div></div><div class="body"><div class="desc">Learn to use and make maps for navigation on local trails.</div></div></article>
-    </div>
-  </section>
+        
 
-    <section class="sec sec-august" id="byday" data-name="Register by Day" data-blurb="Pick the individual days you'd like — Tue/Wed/Thu, 10 AM – 2 PM.">
-    <h2 class="grp">📅 Register by Day</h2>
-    <p class="seclead">Register for individual <a href="#fielddays" style="color:#9a6f14;font-weight:700;text-decoration:underline">Field Days</a>.</p>
-    <ul class="reglist">
-      <li><b>Time:</b> 10 AM to 2 PM</li>
-      <li><b>Cost:</b> Pay what you can — suggested $20 per participant.</li>
-      <li><b>No drop-off:</b> adult caregivers must accompany children under 14 (but caregivers can attend for free!)</li>
-      <li><b>Safety, Waivers, &amp; Weather:</b> you can find out more about these topics in the <a href="#policies" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Policies</a> section.</li>
-    </ul>
+  <section class="sec sec-august" id="schedule" data-name="Schedule" data-blurb="Upcoming Field Days — free, all welcome.">
+    <h2 class="grp">📅 Upcoming Field Days</h2>
+    <p class="seclead"><b>Free, and all welcome — just show up.</b> Field Days run <b>10 AM to 2 PM</b>, for adults and kids 6+ (an adult stays with under-14s). Chip in for materials if you like — nothing required.</p>
     <div class="cal">
       <div class="wk"><div class="wklabel">Week of Aug 17</div>
-        <button class="dayrow" data-d="Tue Aug 18"><span class="dchk"></span><span class="ddate">Tue · Aug 18</span></button>
-        <button class="dayrow" data-d="Wed Aug 19"><span class="dchk"></span><span class="ddate">Wed · Aug 19</span></button>
-        <button class="dayrow" data-d="Thu Aug 20"><span class="dchk"></span><span class="ddate">Thu · Aug 20</span></button>
+        <div class="dayrow-item"><span class="ddate">Wed · Aug 19</span><a class="dtopic" href="#topic-solar">☀️ Solar Power &amp; Electronics Bench <span class="dloc">· Somerville</span></a></div>
+        <div class="dayrow-item"><span class="ddate">Thu · Aug 20</span><a class="dtopic" href="#topic-woodworking">🪚 Woodworking <span class="dloc">· Somerville</span></a></div>
+        <div class="dayrow-item"><span class="ddate">Fri · Aug 21</span><a class="dtopic" href="#topic-music">🎵 Music &amp; Instrument Making <span class="dloc">· Somerville</span></a></div>
       </div>
       <div class="wk"><div class="wklabel">Week of Aug 24</div>
-        <button class="dayrow" data-d="Tue Aug 25"><span class="dchk"></span><span class="ddate">Tue · Aug 25</span></button>
-        <button class="dayrow" data-d="Wed Aug 26"><span class="dchk"></span><span class="ddate">Wed · Aug 26</span></button>
-        <button class="dayrow" data-d="Thu Aug 27"><span class="dchk"></span><span class="ddate">Thu · Aug 27</span></button>
-      </div>
-      <div class="wk"><div class="wklabel">Week of Aug 31</div>
-        <button class="dayrow" data-d="Tue Sep 1"><span class="dchk"></span><span class="ddate">Tue · Sep 1</span></button>
-        <button class="dayrow" data-d="Wed Sep 2"><span class="dchk"></span><span class="ddate">Wed · Sep 2</span></button>
-        <button class="dayrow" data-d="Thu Sep 3"><span class="dchk"></span><span class="ddate">Thu · Sep 3</span></button>
+        <div class="dayrow-item"><span class="ddate">Tue · Aug 25</span><a class="dtopic" href="#topic-woodworking">🪚 Woodworking <span class="dloc">· Somerville</span></a></div>
+        <div class="dayrow-item"><span class="ddate">Wed · Aug 26</span><a class="dtopic" href="#topic-solar">☀️ Solar Power &amp; Electronics Bench <span class="dloc">· Somerville</span></a></div>
+        <div class="dayrow-item"><span class="ddate">Thu · Aug 27</span><a class="dtopic" href="#topic-plantid">🌿 Plant ID &amp; Mapping <span class="dloc">· Somerville</span></a></div>
+        <div class="dayrow-item"><span class="ddate">Fri · Aug 28</span><a class="dtopic" href="#topic-music">🎵 Music &amp; Instrument Making <span class="dloc">· Somerville</span></a></div>
       </div>
     </div>
-    <div class="calbar"><span id="calcount">No days selected</span><button class="btn-reg" style="flex:none;padding:9px 18px" onclick="reg()">Register selected</button></div>
-  </section>
-      <section class="sec sec-september" id="bymonth" data-name="Register by Month" data-blurb="Commit to a weekday (Tue/Wed/Thu) for a whole month — see it on the calendar.">
-    <h2 class="grp">🗓️ Register by Month</h2>
-    <p class="seclead" style="margin:2px auto 4px">Register for a weekday, by the month — e.g. &ldquo;every Tuesday for a month&rdquo; — <a href="#fielddays" style="color:#a85423;font-weight:700;text-decoration:underline">Field Days</a> you can count on, to build community and work on longer-term projects together.</p>
-    <ul class="reglist">
-      <li><b>Time:</b> 10 AM to 2 PM</li>
-      <li><b>Cost:</b> Pay what you can — suggested $100 per weekday block (one weekday for the whole month).</li>
-      <li><b>No drop-off:</b> adult caregivers must accompany children under 14 (but caregivers can attend for free!)</li>
-      <li><b>Safety, Waivers, &amp; Weather:</b> you can find out more about these topics in the <a href="#policies" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Policies</a> section.</li>
-    </ul>
-    <table class="bgrid"><thead><tr><th></th><th style="color:#2c8299">Tuesdays</th><th style="color:#a85423">Wednesdays</th><th style="color:#3f7d54">Thursdays</th></tr></thead><tbody><tr><th>September</th><td class="bcell" style="--cc:#2c8299" data-day="Tuesdays" data-block="September" data-color="#2c8299" data-dates="2026-09-01,2026-09-08,2026-09-15,2026-09-22,2026-09-29" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#a85423" data-day="Wednesdays" data-block="September" data-color="#a85423" data-dates="2026-09-02,2026-09-09,2026-09-16,2026-09-23,2026-09-30" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#3f7d54" data-day="Thursdays" data-block="September" data-color="#3f7d54" data-dates="2026-09-03,2026-09-10,2026-09-17,2026-09-24" onclick="selcell(this)"><span class="cbx"></span></td></tr><tr><th>October</th><td class="bcell" style="--cc:#2c8299" data-day="Tuesdays" data-block="October" data-color="#2c8299" data-dates="2026-10-06,2026-10-13,2026-10-20,2026-10-27" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#a85423" data-day="Wednesdays" data-block="October" data-color="#a85423" data-dates="2026-10-07,2026-10-14,2026-10-21,2026-10-28" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#3f7d54" data-day="Thursdays" data-block="October" data-color="#3f7d54" data-dates="2026-10-01,2026-10-08,2026-10-15,2026-10-22,2026-10-29" onclick="selcell(this)"><span class="cbx"></span></td></tr><tr><th>November</th><td class="bcell" style="--cc:#2c8299" data-day="Tuesdays" data-block="November" data-color="#2c8299" data-dates="2026-11-03,2026-11-10,2026-11-17,2026-11-24" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#a85423" data-day="Wednesdays" data-block="November" data-color="#a85423" data-dates="2026-11-04,2026-11-11,2026-11-18,2026-11-25" onclick="selcell(this)"><span class="cbx"></span></td><td class="bcell" style="--cc:#3f7d54" data-day="Thursdays" data-block="November" data-color="#3f7d54" data-dates="2026-11-05,2026-11-12,2026-11-19,2026-11-26" onclick="selcell(this)"><span class="cbx"></span></td></tr></tbody></table>
-    <div class="months">
-      <div class="month"><h4>September</h4><div class="cg"><div class="dow">S</div><div class="dow">M</div><div class="dow">T</div><div class="dow">W</div><div class="dow">T</div><div class="dow">F</div><div class="dow">S</div><div class="cell"></div><div class="cell"></div><div class="cell" data-d="2026-09-01">1</div><div class="cell" data-d="2026-09-02">2</div><div class="cell" data-d="2026-09-03">3</div><div class="cell" data-d="2026-09-04">4</div><div class="cell" data-d="2026-09-05">5</div><div class="cell" data-d="2026-09-06">6</div><div class="cell" data-d="2026-09-07">7</div><div class="cell" data-d="2026-09-08">8</div><div class="cell" data-d="2026-09-09">9</div><div class="cell" data-d="2026-09-10">10</div><div class="cell" data-d="2026-09-11">11</div><div class="cell" data-d="2026-09-12">12</div><div class="cell" data-d="2026-09-13">13</div><div class="cell" data-d="2026-09-14">14</div><div class="cell" data-d="2026-09-15">15</div><div class="cell" data-d="2026-09-16">16</div><div class="cell" data-d="2026-09-17">17</div><div class="cell" data-d="2026-09-18">18</div><div class="cell" data-d="2026-09-19">19</div><div class="cell" data-d="2026-09-20">20</div><div class="cell" data-d="2026-09-21">21</div><div class="cell" data-d="2026-09-22">22</div><div class="cell" data-d="2026-09-23">23</div><div class="cell" data-d="2026-09-24">24</div><div class="cell" data-d="2026-09-25">25</div><div class="cell" data-d="2026-09-26">26</div><div class="cell" data-d="2026-09-27">27</div><div class="cell" data-d="2026-09-28">28</div><div class="cell" data-d="2026-09-29">29</div><div class="cell" data-d="2026-09-30">30</div></div></div>
-      <div class="month"><h4>October</h4><div class="cg"><div class="dow">S</div><div class="dow">M</div><div class="dow">T</div><div class="dow">W</div><div class="dow">T</div><div class="dow">F</div><div class="dow">S</div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell" data-d="2026-10-01">1</div><div class="cell" data-d="2026-10-02">2</div><div class="cell" data-d="2026-10-03">3</div><div class="cell" data-d="2026-10-04">4</div><div class="cell" data-d="2026-10-05">5</div><div class="cell" data-d="2026-10-06">6</div><div class="cell" data-d="2026-10-07">7</div><div class="cell" data-d="2026-10-08">8</div><div class="cell" data-d="2026-10-09">9</div><div class="cell" data-d="2026-10-10">10</div><div class="cell" data-d="2026-10-11">11</div><div class="cell" data-d="2026-10-12">12</div><div class="cell" data-d="2026-10-13">13</div><div class="cell" data-d="2026-10-14">14</div><div class="cell" data-d="2026-10-15">15</div><div class="cell" data-d="2026-10-16">16</div><div class="cell" data-d="2026-10-17">17</div><div class="cell" data-d="2026-10-18">18</div><div class="cell" data-d="2026-10-19">19</div><div class="cell" data-d="2026-10-20">20</div><div class="cell" data-d="2026-10-21">21</div><div class="cell" data-d="2026-10-22">22</div><div class="cell" data-d="2026-10-23">23</div><div class="cell" data-d="2026-10-24">24</div><div class="cell" data-d="2026-10-25">25</div><div class="cell" data-d="2026-10-26">26</div><div class="cell" data-d="2026-10-27">27</div><div class="cell" data-d="2026-10-28">28</div><div class="cell" data-d="2026-10-29">29</div><div class="cell" data-d="2026-10-30">30</div><div class="cell" data-d="2026-10-31">31</div></div></div>
-      <div class="month"><h4>November</h4><div class="cg"><div class="dow">S</div><div class="dow">M</div><div class="dow">T</div><div class="dow">W</div><div class="dow">T</div><div class="dow">F</div><div class="dow">S</div><div class="cell" data-d="2026-11-01">1</div><div class="cell" data-d="2026-11-02">2</div><div class="cell" data-d="2026-11-03">3</div><div class="cell" data-d="2026-11-04">4</div><div class="cell" data-d="2026-11-05">5</div><div class="cell" data-d="2026-11-06">6</div><div class="cell" data-d="2026-11-07">7</div><div class="cell" data-d="2026-11-08">8</div><div class="cell" data-d="2026-11-09">9</div><div class="cell" data-d="2026-11-10">10</div><div class="cell" data-d="2026-11-11">11</div><div class="cell" data-d="2026-11-12">12</div><div class="cell" data-d="2026-11-13">13</div><div class="cell" data-d="2026-11-14">14</div><div class="cell" data-d="2026-11-15">15</div><div class="cell" data-d="2026-11-16">16</div><div class="cell" data-d="2026-11-17">17</div><div class="cell" data-d="2026-11-18">18</div><div class="cell" data-d="2026-11-19">19</div><div class="cell" data-d="2026-11-20">20</div><div class="cell" data-d="2026-11-21">21</div><div class="cell" data-d="2026-11-22">22</div><div class="cell" data-d="2026-11-23">23</div><div class="cell" data-d="2026-11-24">24</div><div class="cell" data-d="2026-11-25">25</div><div class="cell" data-d="2026-11-26">26</div><div class="cell" data-d="2026-11-27">27</div><div class="cell" data-d="2026-11-28">28</div><div class="cell" data-d="2026-11-29">29</div><div class="cell" data-d="2026-11-30">30</div></div></div>
+    <p class="sublabel" style="margin-top:18px">What each session is</p>
+    <div class="cards">
+      <article class="card" id="topic-solar"><img class="cardimg" src="/v6img/ws-solar.jpg" alt=""><div class="band" style="background:#2f5a92"><div class="day">☀️ Solar Power &amp; Electronics Bench</div></div><div class="body"><div class="desc">Learn the basics of electricity by hooking up small solar panels, lights, batteries, and motors, and measuring voltage, current, and resistance with a multimeter.</div><div class="foot"><a class="btn-reg" href="/w/solar/">Read more →</a></div></div></article>
+      <article class="card" id="topic-woodworking"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">🪚 Woodworking</div></div><div class="body"><div class="desc">Use simple hand tools to build useful objects like a portable work bench, a toolbox, a birdbox, an easel, a bench.</div><div class="foot"><a class="btn-reg" href="/w/woodworking/">Read more →</a></div></div></article>
+      <article class="card" id="topic-music"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">🎵 Music &amp; Instrument Making</div></div><div class="body"><div class="desc">Learn to build and play simple instruments together.</div><div class="foot"><a class="btn-reg" href="/w/music/">Read more →</a></div></div></article>
+      <article class="card" id="topic-plantid"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌿 Plant ID &amp; Mapping</div></div><div class="body"><div class="desc">Learn the names of some of the trees and plants around you, and how to read, use, and make maps.</div><div class="foot"><a class="btn-reg" href="/w/plant-id/">Read more →</a></div></div></article>
     </div>
-    <div class="calbar"><span id="segcount">No days selected</span><button class="btn-reg" style="flex:none;padding:9px 18px" onclick="segreg()">Register selected</button></div>
+    <p class="seclead" style="margin-top:14px">Want to teach a session or host one? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:#9a6f14;font-weight:700;text-decoration:underline">Email us</a>.</p>
   </section>
+
   <section class="sec sec-journal" id="journal" data-name="Field Notes" data-blurb="Field Days, projects, and builds from the field." data-accent="#4f6675" data-tint="#eef1f4" data-bd="#d6dee5">
     <h2 class="grp">📓 Field Notes</h2>
     <p class="seclead">The story of what we&rsquo;re making and learning — Field Days, ongoing projects, workshops, and builds from the field.</p>
@@ -380,12 +355,27 @@
   <section class="sec sec-about" id="about" data-name="About" data-blurb="What we're about — hands-on, screen-free learning on farms near Lincoln, MA." data-accent="#1c6b4a" data-tint="#eef3ee" data-bd="#dbe6de">
     <h2 class="grp">ℹ️ About</h2>
     <p class="about-lead">Waterbear Field School is hands-on, screen-free learning and building for kids and adults, on farms in the Lincoln, MA area. Ways to take part:</p>
-    <div class="legend">
-      <a class="leg" href="#fielddays" style="border-left-color:#a86f28"><span class="leg-h" style="color:#8a5a20">🎨 Field Days</span><span class="leg-d">A different mix of skills and topics each day.</span></a>
-      <a class="leg" href="#byday" style="border-left-color:#c8891a"><span class="leg-h" style="color:#9a6f14">📅 Register by Day</span><span class="leg-d">Drop in for a single Field Day.</span></a>
-      <a class="leg" href="#bymonth" style="border-left-color:#a85423"><span class="leg-h" style="color:#a85423">🗓️ Register by Month</span><span class="leg-d">A weekly rhythm — a whole month at a time.</span></a>
+
+    <h2 class="grp" id="what-are-field-days" style="font-size:1.5rem;margin-top:24px">🎨 What are Field Days?</h2>
+    <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+, running <b>10 AM to 2 PM</b>. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Everything&rsquo;s free — just show up. See what&rsquo;s coming up on the <a href="#schedule" style="color:#9a6f14;font-weight:700;text-decoration:underline">schedule</a>. You can also read about recent Field Day and Field School projects in the <a href="#journal" style="color:#4f6675;font-weight:700;text-decoration:underline">Field Notes</a>, or find out more about our philosophy and approach in the <a href="#policies" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Policies and Resources</a> section.</p>
+    <div class="cards">
+      <article class="card"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">🪚 Woodworking</div></div><div class="body"><div class="desc">Learn basic woodworking techniques using simple hand tools.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/ws-rain.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">💧 Working with Water</div></div><div class="body"><div class="desc">Water filters, rain catchment, pumps: cleaning and redirecting water to make it useful at home and on the farm.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-fiber.jpg" alt=""><div class="band" style="background:#4f5aa6"><div class="day">🧶 Fiber Arts</div></div><div class="body"><div class="desc">Weaving, rope-making, and sewing — fiber into cordage and cloth.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-humanpower.jpg" alt=""><div class="band" style="background:#8a5a2f"><div class="day">🛠️ Sculpture &amp; Fabrication</div></div><div class="body"><div class="desc">Clay, carving, molds, and making — shaping and fabricating by hand.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌿 Plants &amp; Animals</div></div><div class="body"><div class="desc">Studying plants and animal habitats in nature.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">🎵 Music &amp; Instrument Making</div></div><div class="body"><div class="desc">Music jams; learn to build and play simple instruments together.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-art.jpg" alt=""><div class="band" style="background:#9a5b7a"><div class="day">🎨 Painting &amp; Drawing</div></div><div class="body"><div class="desc">Drawing and painting sessions — we might even make our own easels and paper!</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-trailer.jpg" alt=""><div class="band" style="background:#c05a2a"><div class="day">🔧 Build &amp; Repair</div></div><div class="body"><div class="desc">Learn how to build and repair useful objects at home and on the farm.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/mt-hike.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🗺️ Maps &amp; Hiking</div></div><div class="body"><div class="desc">Learn to use and make maps for navigation on local trails.</div></div></article>
+    </div>
+  
+        <div class="legend">
+      <a class="leg" href="#schedule" style="border-left-color:#c8891a"><span class="leg-h" style="color:#9a6f14">📅 Upcoming Field Days</span><span class="leg-d">Free sessions — see what&rsquo;s coming up.</span></a>
+      <a class="leg" href="#what-are-field-days" style="border-left-color:#a86f28"><span class="leg-h" style="color:#8a5a20">🎨 What are Field Days?</span><span class="leg-d">A different mix of skills and topics each day.</span></a>
       <a class="leg" href="#journal" style="border-left-color:#4f6675"><span class="leg-h" style="color:#4f6675">📓 Field Notes</span><span class="leg-d">Recent Field Days and ongoing projects.</span></a>
-      <a class="leg" href="#policies" style="border-left-color:#1c6b4a"><span class="leg-h" style="color:#1c6b4a">📋 Policies and Resources</span><span class="leg-d">Weather, safety, waivers, and cancellations.</span></a>
+      <a class="leg" href="#policies" style="border-left-color:#1c6b4a"><span class="leg-h" style="color:#1c6b4a">📋 Policies &amp; Resources</span><span class="leg-d">Weather, safety, waivers, and cancellations.</span></a>
+      <a class="leg" href="#about" style="border-left-color:#3f7d54"><span class="leg-h" style="color:#2f6641">ℹ️ About</span><span class="leg-d">What we&rsquo;re about, and how to reach us.</span></a>
     </div>
     <p class="about-foot"><span class="muted">Waterbear Field School operates as a recreational and enrichment program, not a licensed school or daycare. We don&rsquo;t offer &lsquo;drop off&rsquo; — children under 14 must be accompanied by an adult caregiver.</span></p>
     <p class="about-foot" style="margin-top:10px">Questions? <a href="mailto:info@waterbearfieldschool.org" style="color:#1c6b4a;font-weight:700">Email us</a>.</p>
