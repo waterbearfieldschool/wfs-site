@@ -231,13 +231,14 @@ eleventyExcludeFromCollections: true
     .hbtn{padding:15px 22px;font-size:1.12rem}
   }
   .stickytop.show-nav .top{padding-bottom:2px}
-  .dayrow-link{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin:6px 0;text-decoration:none;color:var(--ink);transition:.12s}
-  .dayrow-link:hover{border-color:#c8901f;background:#fdf9ee}
-  .dayrow-link .ddate{font-weight:700;white-space:nowrap;flex:none;width:96px;color:var(--accent-d)}
-  .dayrow-link .dtopic{font-weight:600;flex:1;min-width:0}
-  .dayrow-link .dloc{color:var(--muted);font-weight:400;font-size:.85em}
-  .dayrow-link .darr{color:#c8901f;font-weight:800;flex:none}
-  @media(max-width:560px){.dayrow-link{gap:8px;padding:10px 12px}.dayrow-link .ddate{width:82px;font-size:.9rem}.dayrow-link .dtopic{font-size:.92rem}}
+  .dayrow-item{display:flex;align-items:center;gap:12px;width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:6px 0}
+  .dayrow-item .ddate{font-weight:700;white-space:nowrap;flex:none;width:96px;color:var(--accent-d)}
+  .dayrow-item .dtopic{font-weight:600;flex:1;min-width:0;color:var(--ink);text-decoration:none}
+  .dayrow-item .dtopic:hover{text-decoration:underline;color:#9a6f14}
+  .dayrow-item .dloc{color:var(--muted);font-weight:400;font-size:.85em}
+  .dayrow-item .dreg{flex:none;background:#1c6b4a;color:#fff;font-weight:700;font-size:.8rem;padding:6px 12px;border-radius:7px;text-decoration:none;white-space:nowrap}
+  .dayrow-item .dreg:hover{background:#155239}
+  @media(max-width:560px){.dayrow-item{flex-wrap:wrap;gap:6px 10px;padding:10px 12px}.dayrow-item .ddate{width:auto;order:1}.dayrow-item .dreg{order:2;margin-left:auto}.dayrow-item .dtopic{order:3;flex:1 0 100%;font-size:.95rem}}
 </style>
 </head>
 <body>
@@ -292,12 +293,12 @@ eleventyExcludeFromCollections: true
     <p class="seclead"><b>Free, and all welcome — just show up.</b> Field Days run <b>10 AM to 2 PM</b>, for adults and kids 6+ (an adult stays with under-14s). Chip in for materials if you like — nothing required. Tap a day to see what it is.</p>
     <div class="cal">
       <div class="wk"><div class="wklabel">This week</div>
-        <a class="dayrow-link" href="#topic-plantid"><span class="ddate">Sun · Aug 17</span><span class="dtopic">🌿 Plant ID &amp; Tree Walk <span class="dloc">· Somerville</span></span><span class="darr">→</span></a>
-        <a class="dayrow-link" href="#topic-woodworking"><span class="ddate">Sat · Aug 23</span><span class="dtopic">🪚 Woodworking — Build Day <span class="dloc">· Lincoln</span></span><span class="darr">→</span></a>
+        <div class="dayrow-item"><span class="ddate">Sun · Aug 17</span><a class="dtopic" href="#topic-plantid">🌿 Plant ID &amp; Tree Walk <span class="dloc">· Somerville</span></a><a class="dreg" href="mailto:info@waterbearfieldschool.org?subject=Register:%20Plant%20ID%20%26%20Tree%20Walk%20(Sun%20Aug%2017)">Register →</a></div>
+        <div class="dayrow-item"><span class="ddate">Sat · Aug 23</span><a class="dtopic" href="#topic-woodworking">🪚 Woodworking — Build Day <span class="dloc">· Lincoln</span></a><a class="dreg" href="mailto:info@waterbearfieldschool.org?subject=Register:%20Woodworking%20Build%20Day%20(Sat%20Aug%2023)">Register →</a></div>
       </div>
       <div class="wk"><div class="wklabel">Next week</div>
-        <a class="dayrow-link" href="#topic-salon"><span class="ddate">Fri · Aug 29</span><span class="dtopic">🍂 Farm Salon <span class="dloc">· Lincoln · 4–6 PM</span></span><span class="darr">→</span></a>
-        <a class="dayrow-link" href="#topic-solar"><span class="ddate">Sat · Aug 30</span><span class="dtopic">☀️ Solar &amp; Electronics Bench <span class="dloc">· Lincoln</span></span><span class="darr">→</span></a>
+        <div class="dayrow-item"><span class="ddate">Fri · Aug 29</span><a class="dtopic" href="#topic-salon">🍂 Farm Salon <span class="dloc">· Lincoln · 4–6 PM</span></a><a class="dreg" href="mailto:info@waterbearfieldschool.org?subject=Register:%20Farm%20Salon%20(Fri%20Aug%2029)">Register →</a></div>
+        <div class="dayrow-item"><span class="ddate">Sat · Aug 30</span><a class="dtopic" href="#topic-solar">☀️ Solar &amp; Electronics Bench <span class="dloc">· Lincoln</span></a><a class="dreg" href="mailto:info@waterbearfieldschool.org?subject=Register:%20Solar%20%26%20Electronics%20Bench%20(Sat%20Aug%2030)">Register →</a></div>
       </div>
     </div>
     <p class="sublabel" style="margin-top:18px">What each session is</p>
