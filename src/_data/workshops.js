@@ -25,8 +25,8 @@ module.exports = [
     location: "Somerville, MA",
     locationNote: "Exact address sent when you register.",
     sessions: [
-      { day: "Wed · Aug 19", time: "10 AM–2 PM", place: "Somerville", reg: reg("Solar Power & Electronics Bench", "Wed Aug 19") },
-      { day: "Wed · Aug 26", time: "10 AM–2 PM", place: "Somerville", reg: reg("Solar Power & Electronics Bench", "Wed Aug 26") },
+      { day: "Wed · Aug 19", time: "10 AM–1 PM", place: "Somerville", reg: reg("Solar Power & Electronics Bench", "Wed Aug 19") },
+      { day: "Wed · Aug 26", time: "10 AM–1 PM", place: "Somerville", reg: reg("Solar Power & Electronics Bench", "Wed Aug 26") },
     ],
   },
   {
@@ -45,8 +45,8 @@ module.exports = [
     location: "Somerville, MA",
     locationNote: "Exact address sent when you register.",
     sessions: [
-      { day: "Thu · Aug 20", time: "10 AM–2 PM", place: "Somerville", reg: reg("Woodworking", "Thu Aug 20") },
-      { day: "Tue · Aug 25", time: "10 AM–2 PM", place: "Somerville", reg: reg("Woodworking", "Tue Aug 25") },
+      { day: "Thu · Aug 20", time: "10 AM–1 PM", place: "Somerville", reg: reg("Woodworking", "Thu Aug 20") },
+      { day: "Tue · Aug 25", time: "10 AM–1 PM", place: "Somerville", reg: reg("Woodworking", "Tue Aug 25") },
     ],
   },
   {
@@ -65,8 +65,8 @@ module.exports = [
     location: "Somerville, MA",
     locationNote: "Exact address sent when you register.",
     sessions: [
-      { day: "Fri · Aug 21", time: "10 AM–2 PM", place: "Somerville", reg: reg("Music", "Fri Aug 21") },
-      { day: "Fri · Aug 28", time: "10 AM–2 PM", place: "Somerville", reg: reg("Music", "Fri Aug 28") },
+      { day: "Fri · Aug 21", time: "10 AM–1 PM", place: "Somerville", reg: reg("Music", "Fri Aug 21") },
+      { day: "Fri · Aug 28", time: "10 AM–1 PM", place: "Somerville", reg: reg("Music", "Fri Aug 28") },
     ],
   },
   {
@@ -85,7 +85,7 @@ module.exports = [
     location: "Somerville, MA — Prospect Hill",
     locationNote: "Meeting spot sent when you register.",
     sessions: [
-      { day: "Thu · Aug 27", time: "10 AM–12 PM", place: "Somerville (Prospect Hill)", reg: reg("Plant ID & Mapping", "Thu Aug 27") },
+      { day: "Thu · Aug 27", time: "10 AM–1 PM", place: "Somerville (Prospect Hill)", reg: reg("Plant ID & Mapping", "Thu Aug 27") },
     ],
   },
 ];
