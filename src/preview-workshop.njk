@@ -33,43 +33,41 @@ eleventyExcludeFromCollections: true
     </div>
 
     <p class="wblurb">{{ w.blurb }}</p>
+    <p style="color:var(--muted);margin:-10px 0 22px;font-size:.92rem">{{ w.sessions | length }} upcoming day{% if w.sessions | length != 1 %}s{% endif %} — each is its own project. Jump to the one you want:</p>
 
-    <div class="wsec">
-      <h2>About this session</h2>
-      {% for p in w.about %}<p>{{ p }}</p>{% endfor %}
+    <div class="daynav">
+      {% for s in w.sessions %}<a href="#day-{{ s.date }}" class="daychip" style="border-color:{{ w.color }}">{{ s.day }} · {{ s.project or w.title }}</a>{% endfor %}
     </div>
 
-    <div class="wsec">
-      <h2>Upcoming dates — register for a day</h2>
-      <div class="wsessions">
-        {% for s in w.sessions %}
-        <div class="wsess">
-          <span class="wswhen">📅 {{ s.day }}<small>{{ s.time }} · {{ s.place }}</small></span>
-          <a class="btn-reg" href="{{ s.reg }}">Register →</a>
-        </div>
-        {% endfor %}
+    {% for s in w.sessions %}
+    <section class="daycard" id="day-{{ s.date }}">
+      <div class="daycard-band" style="background:{{ w.color }}">
+        <span class="dc-when">📅 {{ s.day }} · {{ s.time }}</span>
+        <a class="btn-reg dc-reg" href="/register/?day={{ s.date }}">Register →</a>
       </div>
-      <p style="margin-top:10px;font-size:.9rem;color:var(--muted)">Free, and all welcome — just show up. Registering only helps us plan and lets us send you the exact address.</p>
-    </div>
+      <div class="daycard-body">
+        <h2>{{ w.emoji }} {{ s.project or w.title }}</h2>
+        {% set about = s.about or w.about %}
+        {% for p in about %}<p>{{ p }}</p>{% endfor %}
 
-    <div class="wsec">
-      <h2>Where</h2>
-      <p><b>{{ w.location }}</b><br>{{ w.locationNote }}</p>
-    </div>
+        {% if s.materials %}
+        <p class="dc-mat"><b>Take yours home:</b> {{ s.materials.label }} — <span class="dc-fee">materials, suggested ${{ s.materials.fee }} · register in advance</span></p>
+        {% endif %}
 
-    <div class="wsec">
-      <h2>Who it's for</h2>
-      <p>{{ w.forWhom }}</p>
-    </div>
+        <dl class="dc-facts">
+          <div><dt>When</dt><dd>{{ s.day }} · {{ s.time }}</dd></div>
+          <div><dt>Where</dt><dd>{{ s.location or w.location }}<br><span class="muted">{{ s.locationNote or w.locationNote }}</span></dd></div>
+          <div><dt>Who</dt><dd>{{ s.forWhom or w.forWhom }}</dd></div>
+          <div><dt>Bring</dt><dd>{{ s.bring or w.bring }}</dd></div>
+        </dl>
 
-    <div class="wsec">
-      <h2>What to bring</h2>
-      <p>{{ w.bring }}</p>
-    </div>
+        <a class="btn-reg" href="/register/?day={{ s.date }}">Register for this day →</a>
+      </div>
+    </section>
+    {% endfor %}
 
-    <div class="wsec">
-      <p>Questions, or want to teach or host a session? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:{{ w.color }};font-weight:700;text-decoration:underline">Email us</a>.</p>
-    </div>
+    <p style="margin:26px 0 0;color:var(--muted)"><b>Registration is always free.</b> If you'd like to take home a finished kit, we ask you to cover the materials and register in advance so we can have it ready for you.</p>
+    <p style="margin:10px 0 0;color:var(--muted)">Want to teach or host a session? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:{{ w.color }};font-weight:700;text-decoration:underline">Email us</a>.</p>
   </div>
 </body>
 </html>

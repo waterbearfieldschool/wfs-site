@@ -243,6 +243,47 @@ eleventyExcludeFromCollections: true
   .sd{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:4px 0}
   .sd-when{font-size:.84rem;color:var(--accent-d);font-weight:600}
   .sd .btn-reg{flex:none;font-size:.76rem;padding:5px 11px;margin:0}
+  /* ---- RSVP prototype ---- */
+  #rsvp{border-top:1px solid var(--line)}
+  .rsvpform{max-width:460px;margin:16px auto 0;display:flex;flex-direction:column;gap:11px;text-align:left}
+  .rsvpform label{font-weight:600;font-size:.9rem;color:var(--accent-d)}
+  .rsvpform select,.rsvpform input[type=email],.rsvpform input[type=text]{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:9px;font:inherit;background:#fff;margin-top:4px}
+  .rsvpform .rvcheck{flex-direction:row;display:flex;align-items:center;gap:8px;font-weight:500;color:var(--ink)}
+  .rsvpform .rvcheck input{margin:0;width:auto}
+  .rsvpform button{align-self:flex-start;font-size:.95rem;padding:11px 22px;border:none;cursor:pointer}
+  .rsvpform button:disabled{opacity:.5;cursor:default}
+  .rvmsg{font-size:.9rem;font-weight:600;min-height:1.2em}
+  /* ---- one card per day ---- */
+  .daycards{display:flex;flex-direction:column;gap:14px;max-width:680px;margin:6px auto 0;text-align:left}
+  .daycard2{display:flex;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card);box-shadow:0 3px 12px rgba(0,0,0,.05);scroll-margin-top:84px}
+  .daycard2>img{width:150px;flex:none;object-fit:cover}
+  .dc2-main{padding:14px 16px;flex:1;min-width:0}
+  .dc2-cat{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;padding:2px 9px;border-radius:999px;display:inline-block;margin-bottom:7px}
+  .dc2-date{font-weight:800;color:var(--accent-d);font-size:.96rem;margin-bottom:7px}
+  .dc2-main h3{font-size:1.12rem;color:var(--accent-d);margin:0 0 3px}
+  .dc2-meta{font-size:.85rem;color:var(--muted);font-weight:600;margin-bottom:8px}
+  .dc2-blurb{font-size:.92rem;margin:0 0 9px}
+  .dc2-take{display:inline-block;font-size:.79rem;font-weight:600;color:var(--accent-d);background:#f3f6f1;border:1px dashed var(--line);border-radius:8px;padding:3px 10px;margin-bottom:11px}
+  .dc2-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .dc2-actions .btn-reg{margin:0}
+  .dc2-details{font-size:.86rem}
+  .dc2-details summary{cursor:pointer;color:var(--muted);font-weight:600;list-style:none}
+  .dc2-details summary::-webkit-details-marker{display:none}
+  .dc2-details[open] summary{color:var(--accent)}
+  .dc2-more{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+  .dc2-more p{margin:0 0 9px;max-width:560px}
+  .dc2-facts{display:grid;grid-template-columns:1fr 1fr;gap:9px 18px;margin-top:10px}
+  .dc2-facts dt{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1px}
+  .dc2-facts dd{font-size:.86rem;line-height:1.4}
+  @media(max-width:560px){.daycard2{flex-direction:column}.daycard2>img{width:100%;height:150px}}
+  .glance{display:flex;gap:26px;max-width:680px;margin:4px auto 24px;flex-wrap:wrap}
+  .glance-wk{flex:1;min-width:230px}
+  .glance-wklabel{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 4px 8px}
+  .glance-row{display:flex;gap:9px;align-items:baseline;padding:6px 9px;border-radius:8px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+  .glance-row:last-child{border-bottom:none}
+  .glance-row:hover{background:#eef2ec}
+  .glance-row .g-date{font-weight:700;color:var(--accent-d);white-space:nowrap;font-size:.84rem;flex:none}
+  .glance-row .g-proj{font-size:.86rem;font-weight:600;min-width:0}
 </style>
 </head>
 <body>
@@ -293,29 +334,58 @@ eleventyExcludeFromCollections: true
 
   <section class="sec sec-august" id="schedule" data-name="Schedule" data-blurb="Upcoming Field Days — free, all welcome.">
     <h2 class="grp">📅 Upcoming Field Days</h2>
-    <p class="seclead"><b>Free, and all welcome — just show up.</b> Field Days run <b>10 AM to 1 PM</b>, for adults and kids 6+ (an adult stays with under-14s). Chip in for materials if you like — nothing required.</p>
-    <div class="cal">
-      <div class="wk"><div class="wklabel">Week of Aug 17</div>
-        <div class="dayrow-item"><span class="ddate">Wed · Aug 19</span><a class="dtopic" href="#topic-solar">☀️ Solar Power &amp; Electronics Bench <span class="dloc">· Somerville</span></a></div>
-        <div class="dayrow-item"><span class="ddate">Thu · Aug 20</span><a class="dtopic" href="#topic-woodworking">🪚 Woodworking <span class="dloc">· Somerville</span></a></div>
-        <div class="dayrow-item"><span class="ddate">Fri · Aug 21</span><a class="dtopic" href="#topic-music">🎵 Music &amp; Instrument Making <span class="dloc">· Somerville</span></a></div>
+    <p class="seclead"><b>Free, and all welcome — just show up.</b> Field Days run <b>10 AM to 1 PM</b>, for adults and kids 6+ (an adult stays with under-14s). Registration is always free. If you&rsquo;d like to take home a finished kit, we ask you to cover the materials and register in advance so we can have it ready for you.</p>
+    <p class="sublabel" style="margin-top:6px">Two weeks at a glance — tap a day for details</p>
+    <div class="glance">
+      <div class="glance-wk"><span class="glance-wklabel">Week of Aug 17</span>
+        {%- for s in sessions %}{% if s.date < "2026-08-24" %}
+        <a class="glance-row" href="#day-{{ s.date }}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.emoji }} {{ s.short }}</span></a>
+        {% endif %}{%- endfor %}
       </div>
-      <div class="wk"><div class="wklabel">Week of Aug 24</div>
-        <div class="dayrow-item"><span class="ddate">Tue · Aug 25</span><a class="dtopic" href="#topic-woodworking">🪚 Woodworking <span class="dloc">· Somerville</span></a></div>
-        <div class="dayrow-item"><span class="ddate">Wed · Aug 26</span><a class="dtopic" href="#topic-solar">☀️ Solar Power &amp; Electronics Bench <span class="dloc">· Somerville</span></a></div>
-        <div class="dayrow-item"><span class="ddate">Thu · Aug 27</span><a class="dtopic" href="#topic-plantid">🌿 Plant ID &amp; Mapping <span class="dloc">· Somerville</span></a></div>
-        <div class="dayrow-item"><span class="ddate">Fri · Aug 28</span><a class="dtopic" href="#topic-music">🎵 Music &amp; Instrument Making <span class="dloc">· Somerville</span></a></div>
+      <div class="glance-wk"><span class="glance-wklabel">Week of Aug 24</span>
+        {%- for s in sessions %}{% if s.date >= "2026-08-24" %}
+        <a class="glance-row" href="#day-{{ s.date }}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.emoji }} {{ s.short }}</span></a>
+        {% endif %}{%- endfor %}
       </div>
     </div>
-    <p class="sublabel" style="margin-top:18px">What each session is</p>
-    <div class="cards">
-      <article class="card" id="topic-solar"><img class="cardimg" src="/v6img/ws-solar.jpg" alt=""><div class="band" style="background:#2f5a92"><div class="day">☀️ Solar Power &amp; Electronics Bench</div></div><div class="body"><div class="desc">Learn the basics of electricity by hooking up small solar panels, lights, batteries, and motors, and measuring voltage, current, and resistance with a multimeter.</div><div class="foot"><a class="btn-reg" href="/w/solar/">Read more →</a></div></div></article>
-      <article class="card" id="topic-woodworking"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">🪚 Woodworking</div></div><div class="body"><div class="desc">Use simple hand tools to build useful objects like a portable work bench, a toolbox, a birdbox, an easel, a bench.</div><div class="foot"><a class="btn-reg" href="/w/woodworking/">Read more →</a></div></div></article>
-      <article class="card" id="topic-music"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">🎵 Music &amp; Instrument Making</div></div><div class="body"><div class="desc">Learn to build and play simple instruments together.</div><div class="foot"><a class="btn-reg" href="/w/music/">Read more →</a></div></div></article>
-      <article class="card" id="topic-plantid"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌿 Plant ID &amp; Mapping</div></div><div class="body"><div class="desc">Learn the names of some of the trees and plants around you, and how to read, use, and make maps.</div><div class="foot"><a class="btn-reg" href="/w/plant-id/">Read more →</a></div></div></article>
+
+    <div class="daycards">
+      {%- for s in sessions %}
+      <article class="daycard2" id="day-{{ s.date }}">
+        <img src="{{ s.img }}" alt="">
+        <div class="dc2-main">
+          <div class="dc2-date">📅 {{ s.day }} · {{ s.time }}</div>
+          <span class="dc2-cat" style="background:{{ s.color }}">{{ s.emoji }} {{ s.category }}</span>
+          <h3>{{ s.title }}</h3>
+          <div class="dc2-meta">{{ s.place }}</div>
+          <p class="dc2-blurb">{{ s.cardBlurb }}</p>
+          {% if s.materials %}<span class="dc2-take">🎒 Take yours home — {{ s.materials.label }} · materials ${{ s.materials.fee }} · register in advance</span>{% endif %}
+          <div class="dc2-actions">
+            <a class="btn-reg" href="/register/?day={{ s.date }}">Register →</a>
+            <details class="dc2-details"><summary>More details ▾</summary>
+              <div class="dc2-more">
+                {% for p in s.about %}<p>{{ p }}</p>{% endfor %}
+                <dl class="dc2-facts">
+                  <div><dt>Where</dt><dd>{{ s.location }}<br><span style="color:var(--muted)">{{ s.locationNote }}</span></dd></div>
+                  <div><dt>Who</dt><dd>{{ s.forWhom }}</dd></div>
+                  <div><dt>Bring</dt><dd>{{ s.bring }}</dd></div>
+                  <div><dt>When</dt><dd>{{ s.day }} · {{ s.time }}</dd></div>
+                </dl>
+              </div>
+            </details>
+          </div>
+        </div>
+      </article>
+      {%- endfor %}
     </div>
     <p class="seclead" style="margin-top:14px">Want to teach a session or host one? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:#9a6f14;font-weight:700;text-decoration:underline">Email us</a>.</p>
   </section>
+  <section class="sec" id="rsvp" data-name="Register" data-blurb="Get weather/updates — free, optional.">
+    <h2 class="grp">✋ Register &amp; get updates</h2>
+    <p class="seclead">Free and optional — register to hold a spot, reserve take-home materials in advance, or just get weather &amp; schedule updates.</p>
+    <div style="text-align:center"><a class="btn-reg" style="display:inline-block;font-size:1rem;padding:13px 28px" href="/register/">Register for Field Days →</a></div>
+  </section>
+
 
   <section class="sec sec-journal" id="journal" data-name="Field Notes" data-blurb="Field Days, projects, and builds from the field." data-accent="#4f6675" data-tint="#eef1f4" data-bd="#d6dee5">
     <h2 class="grp">📓 Field Notes</h2>
@@ -460,5 +530,6 @@ eleventyExcludeFromCollections: true
   }
 })();
 </script>
+
 </body>
 </html>
