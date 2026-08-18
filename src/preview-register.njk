@@ -53,7 +53,7 @@ eleventyExcludeFromCollections: true
         {% for s in sessions %}
         <div class="sgroup" data-date="{{ s.date }}">
           <label class="srow"><input type="checkbox" class="sess" name="sess" value="{{ s.label }}" data-date="{{ s.date }}"><span class="sx-emoji">{{ s.emoji }}</span><span class="sx"><b>{{ s.day }}</b> · {{ s.title }}<small>{{ s.time }} · {{ s.place }}</small></span></label>
-          {% if s.materials %}<label class="matrow" data-date="{{ s.date }}"><input type="checkbox" class="mat" data-date="{{ s.date }}"> I&rsquo;d like to take mine home — {{ s.materials.label }} <span class="matfee">(materials, suggested ${{ s.materials.fee }})</span></label>{% endif %}
+          {% if s.materials %}<label class="matrow" data-date="{{ s.date }}"><input type="checkbox" class="mat" data-date="{{ s.date }}"> I&rsquo;d like to take mine home — {{ s.materials.label }} <span class="matfee">({% if s.materials.pay == "on-site" %}${{ s.materials.fee }} materials, paid on-site{% else %}materials, suggested ${{ s.materials.fee }}{% endif %})</span></label>{% endif %}
         </div>
         {% endfor %}
       </div>

@@ -51,7 +51,11 @@ eleventyExcludeFromCollections: true
         {% for p in about %}<p>{{ p }}</p>{% endfor %}
 
         {% if s.materials %}
+        {% if s.materials.note %}
+        <p class="dc-mat">{{ s.materials.note }}</p>
+        {% else %}
         <p class="dc-mat"><b>Take yours home:</b> {{ s.materials.label }} — <span class="dc-fee">materials, suggested ${{ s.materials.fee }} · register in advance</span></p>
+        {% endif %}
         {% endif %}
 
         <dl class="dc-facts">

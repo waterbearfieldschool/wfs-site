@@ -359,7 +359,7 @@ eleventyExcludeFromCollections: true
           <h3>{{ s.title }}</h3>
           <div class="dc2-meta">{{ s.place }}</div>
           <p class="dc2-blurb">{{ s.cardBlurb }}</p>
-          {% if s.materials %}<span class="dc2-take">🎒 Take yours home — {{ s.materials.label }} · materials ${{ s.materials.fee }} · register in advance</span>{% endif %}
+          {% if s.materials %}<span class="dc2-take">🎒 {% if s.materials.note %}{{ s.materials.note }}{% else %}Take yours home — {{ s.materials.label }} · materials ${{ s.materials.fee }} · register in advance{% endif %}</span>{% endif %}
           <div class="dc2-actions">
             <a class="btn-reg" href="/register/?day={{ s.date }}">Register →</a>
             <details class="dc2-details"><summary>More details ▾</summary>
