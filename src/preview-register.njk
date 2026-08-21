@@ -19,7 +19,6 @@ eleventyExcludeFromCollections: true
   .sgroup{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
   .srow{display:flex;align-items:center;gap:11px;padding:13px 15px;cursor:pointer}
   .srow input{width:18px;height:18px;flex:none;margin:0;accent-color:var(--accent)}
-  .srow .sx-emoji{font-size:1.15rem;flex:none}
   .srow .sx{display:flex;flex-direction:column;line-height:1.25}
   .srow .sx b{color:var(--accent-d)}
   .srow .sx small{color:var(--muted);font-size:.82rem;font-weight:500}
@@ -44,7 +43,7 @@ eleventyExcludeFromCollections: true
   <div class="backbar"><a href="/#schedule">← Back to the schedule</a></div>
 
   <div class="rwrap">
-    <h1 style="font-size:1.6rem;color:var(--accent-d);margin:8px 0 4px">✋ Register for Field Days</h1>
+    <h1 style="font-size:1.6rem;color:var(--accent-d);margin:8px 0 4px">Register for Field Days</h1>
     <p class="rlead">It&rsquo;s free to come and learn — you never have to pay. Registering just helps us plan, lets us send you the exact address, and lets us reach you about weather holds. <b>Pick any days you&rsquo;d like</b>, enter your email once, and you&rsquo;re set.</p>
 
     <form id="regForm">
@@ -52,7 +51,7 @@ eleventyExcludeFromCollections: true
         <label class="srow keeprow"><input type="checkbox" id="keepPosted" value="Not sure yet — keep me posted"><span class="sx"><b>Not sure yet</b> — just keep me posted<small>Get weather &amp; schedule updates for all Field Days</small></span></label>
         {% for s in sessions %}
         <div class="sgroup" data-date="{{ s.date }}">
-          <label class="srow"><input type="checkbox" class="sess" name="sess" value="{{ s.label }}" data-date="{{ s.date }}"><span class="sx-emoji">{{ s.emoji }}</span><span class="sx"><b>{{ s.day }}</b> · {{ s.title }}<small>{{ s.time }} · {{ s.place }}</small></span></label>
+          <label class="srow"><input type="checkbox" class="sess" name="sess" value="{{ s.label }}" data-date="{{ s.date }}"><span class="sx"><b>{{ s.day }}</b> · {{ s.title }}<small>{{ s.time }} · {{ s.place }}</small></span></label>
           {% if s.materials %}<label class="matrow" data-date="{{ s.date }}"><input type="checkbox" class="mat" data-date="{{ s.date }}"> I&rsquo;d like to take mine home — {{ s.materials.label }} <span class="matfee">({% if s.materials.pay == "on-site" %}${{ s.materials.fee }} materials, paid on-site{% else %}materials, suggested ${{ s.materials.fee }}{% endif %})</span></label>{% endif %}
         </div>
         {% endfor %}

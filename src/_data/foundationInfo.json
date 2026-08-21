@@ -1,52 +1,42 @@
 {
   "air": {
     "name": "Air",
-    "emoji": "🌬️",
     "inWinter2026": true
   },
   "energy": {
     "name": "Energy",
-    "emoji": "⚡",
     "inWinter2026": true
   },
   "water": {
     "name": "Water",
-    "emoji": "💧",
     "inWinter2026": false
   },
   "food": {
     "name": "Food",
-    "emoji": "🌱",
     "inWinter2026": false
   },
   "shelter": {
     "name": "Shelter",
-    "emoji": "🏠",
     "inWinter2026": false
   },
   "heating-cooling": {
     "name": "Heating/Cooling",
-    "emoji": "🌡️",
     "inWinter2026": false
   },
   "communication": {
     "name": "Communication",
-    "emoji": "📡",
     "inWinter2026": true
   },
   "fabrication": {
     "name": "Fabrication",
-    "emoji": "🔧",
     "inWinter2026": false
   },
   "transport": {
     "name": "Transport",
-    "emoji": "🚲",
     "inWinter2026": true
   },
   "craft": {
     "name": "Arts & Crafts",
-    "emoji": "🎨",
     "inWinter2026": false
   }
 }

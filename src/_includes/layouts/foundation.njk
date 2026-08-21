@@ -11,7 +11,7 @@
     <article class="card workshop-card" data-foundation="{{ p.data.foundations[0] }}">
       {% if p.data.foundations %}{% for f in p.data.foundations %}{% if loop.first %}
       <div class="workshop-foundation-band" data-foundation="{{ f }}">
-        {{ foundationInfo[f].emoji }} {{ foundationInfo[f].name }}
+        {{ foundationInfo[f].name }}
       </div>
       {% endif %}{% endfor %}{% endif %}
       <a href="{{ p.url }}" class="thumb" aria-label="{{ p.data.title }}">

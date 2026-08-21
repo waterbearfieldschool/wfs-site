@@ -254,13 +254,17 @@
   .daycard2>img{width:150px;flex:none;object-fit:cover}
   .dc2-main{padding:14px 16px;flex:1;min-width:0}
   .dc2-cat{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;padding:2px 9px;border-radius:999px;display:inline-block;margin-bottom:7px}
-  .dc2-date{font-weight:800;color:var(--accent-d);font-size:.96rem;margin-bottom:7px}
+  .dc2-date{display:block;width:fit-content;font-weight:800;color:var(--accent-d);font-size:.96rem;margin-bottom:7px;text-decoration:none}
+  .dc2-date:hover{text-decoration:underline}
   .dc2-main h3{font-size:1.12rem;color:var(--accent-d);margin:0 0 3px}
   .dc2-meta{font-size:.85rem;color:var(--muted);font-weight:600;margin-bottom:8px}
   .dc2-blurb{font-size:.92rem;margin:0 0 9px}
   .dc2-take{display:inline-block;font-size:.79rem;font-weight:600;color:var(--accent-d);background:#f3f6f1;border:1px dashed var(--line);border-radius:8px;padding:3px 10px;margin-bottom:11px}
   .dc2-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
   .dc2-actions .btn-reg{margin:0}
+  .dc2-main h3 a{color:inherit;text-decoration:none}
+  .dc2-main h3 a:hover{text-decoration:underline}
+  .daycard2.target{outline:2px solid #c8901f;box-shadow:0 0 0 4px #fdf3d6,0 3px 12px rgba(0,0,0,.05)}
   .dc2-details{font-size:.86rem}
   .dc2-details summary{cursor:pointer;color:var(--muted);font-weight:600;list-style:none}
   .dc2-details summary::-webkit-details-marker{display:none}
@@ -294,11 +298,11 @@
     <a class="hbtn-mini" href="#about" style="background:#1c6b4a">About</a>
   </nav>
     <nav class="menudrop" id="menuDrop">
-    <a href="#schedule">📅 Upcoming Field Days</a>
-    <a href="#what-are-field-days">🎨 What are Field Days?</a>
-    <a href="#journal">📓 Field Notes</a>
-    <a href="#policies">📋 Policies &amp; Resources</a>
-    <a href="#about">ℹ️ About</a>
+    <a href="#schedule">Upcoming Field Days</a>
+    <a href="#what-are-field-days">What are Field Days?</a>
+    <a href="#journal">Field Notes</a>
+    <a href="#policies">Policies &amp; Resources</a>
+    <a href="#about">About</a>
   </nav>
 </div>
 
@@ -317,10 +321,10 @@
 
   <section class="hero">
     <div class="hero-cta">
-      <a class="hbtn hbtn-sum" href="#schedule">📅 Upcoming Field Days</a>
-      <a class="hbtn hbtn-work" href="#journal">📓 Field Notes</a>
-      <a class="hbtn" href="#policies" style="background:#4f6675">📋 Policies &amp; Resources</a>
-      <a class="hbtn" href="#about" style="background:#1c6b4a">ℹ️ About</a>
+      <a class="hbtn hbtn-sum" href="#schedule">Upcoming Field Days</a>
+      <a class="hbtn hbtn-work" href="#journal">Field Notes</a>
+      <a class="hbtn" href="#policies" style="background:#4f6675">Policies &amp; Resources</a>
+      <a class="hbtn" href="#about" style="background:#1c6b4a">About</a>
     </div>
   </section>
   </div>
@@ -328,26 +332,26 @@
         
 
   <section class="sec sec-august" id="schedule" data-name="Schedule" data-blurb="Upcoming Field Days — free, all welcome.">
-    <h2 class="grp">📅 Upcoming Field Days</h2>
-    <p class="seclead"><b>Free, and all welcome — just show up.</b> Field Days run <b>10 AM to 1 PM</b>, for adults and kids 6+ (an adult stays with under-14s). Registration is always free. If you&rsquo;d like to take home a finished kit, we ask you to cover the materials and register in advance so we can have it ready for you.</p>
+    <h2 class="grp">Upcoming Field Days</h2>
+    <p class="seclead"><b>Free, and all welcome — just show up.</b> Field Days run <b>10 AM to 1 PM</b>, for adults and kids 6+ (an adult caregiver needs to accompany kids under 14). Registration is always free. If you&rsquo;d like to take home a finished kit, we ask you to cover the materials and register in advance so we can have it ready for you.</p>
     <p class="sublabel" style="margin-top:6px">Two weeks at a glance — tap a day for details</p>
     <div class="glance">
       <div class="glance-wk"><span class="glance-wklabel">Week of Aug 17</span>
-        <a class="glance-row" href="#day-2026-08-19"><span class="g-date">Wed · Aug 19</span><span class="g-proj">☀️ Solar</span></a>
+        <a class="glance-row" href="/w/solar/2026-08-19/"><span class="g-date">Wed · Aug 19</span><span class="g-proj">Solar</span></a>
         
-        <a class="glance-row" href="#day-2026-08-20"><span class="g-date">Thu · Aug 20</span><span class="g-proj">🪚 Woodworking</span></a>
+        <a class="glance-row" href="/w/woodworking/2026-08-20/"><span class="g-date">Thu · Aug 20</span><span class="g-proj">Woodworking</span></a>
         
-        <a class="glance-row" href="#day-2026-08-21"><span class="g-date">Fri · Aug 21</span><span class="g-proj">🎵 Music</span></a>
+        <a class="glance-row" href="/w/music/2026-08-21/"><span class="g-date">Fri · Aug 21</span><span class="g-proj">Music</span></a>
         
       </div>
       <div class="glance-wk"><span class="glance-wklabel">Week of Aug 24</span>
-        <a class="glance-row" href="#day-2026-08-25"><span class="g-date">Tue · Aug 25</span><span class="g-proj">🪚 Woodworking</span></a>
+        <a class="glance-row" href="/w/woodworking/2026-08-25/"><span class="g-date">Tue · Aug 25</span><span class="g-proj">Woodworking</span></a>
         
-        <a class="glance-row" href="#day-2026-08-26"><span class="g-date">Wed · Aug 26</span><span class="g-proj">☀️ Solar</span></a>
+        <a class="glance-row" href="/w/solar/2026-08-26/"><span class="g-date">Wed · Aug 26</span><span class="g-proj">Solar</span></a>
         
-        <a class="glance-row" href="#day-2026-08-27"><span class="g-date">Thu · Aug 27</span><span class="g-proj">🌿 Plant ID</span></a>
+        <a class="glance-row" href="/w/plant-id/2026-08-27/"><span class="g-date">Thu · Aug 27</span><span class="g-proj">Plant ID</span></a>
         
-        <a class="glance-row" href="#day-2026-08-28"><span class="g-date">Fri · Aug 28</span><span class="g-proj">🎵 Music</span></a>
+        <a class="glance-row" href="/w/zines/2026-08-28/"><span class="g-date">Fri · Aug 28</span><span class="g-proj">Zines</span></a>
         
       </div>
     </div>
@@ -356,12 +360,12 @@
       <article class="daycard2" id="day-2026-08-19">
         <img src="/v6img/ws-solar.jpg" alt="">
         <div class="dc2-main">
-          <div class="dc2-date">📅 Wed · Aug 19 · 10 AM–1 PM</div>
-          <span class="dc2-cat" style="background:#2f5a92">☀️ Solar Power &amp; Electronics Bench</span>
-          <h3>Solar Power &amp; Electronics Bench</h3>
+          <a class="dc2-date" href="/w/solar/2026-08-19/">Wed · Aug 19 · 10 AM–1 PM</a>
+          <span class="dc2-cat" style="background:#2f5a92">Solar Power &amp; Electronics Bench</span>
+          <h3><a href="/w/solar/2026-08-19/">Solar Power &amp; Electronics Bench</a></h3>
           <div class="dc2-meta">Lincoln Park, Somerville</div>
           <p class="dc2-blurb">Learn the basics of electricity by hooking up small solar panels, lights, batteries, and motors, and measuring voltage, current, and resistance with a multimeter.</p>
-          <span class="dc2-take">🎒 Free to learn! If you&#39;d like to take home a solar panel + motor kit, please register and expect to pay $25 materials cost on-site.</span>
+          <span class="dc2-take">Free to learn! If you&#39;d like to take home a solar panel + motor kit, please register and expect to pay $25 materials cost on-site.</span>
           <div class="dc2-actions">
             <a class="btn-reg" href="/register/?day=2026-08-19">Register →</a>
             <details class="dc2-details"><summary>More details ▾</summary>
@@ -369,7 +373,7 @@
                 <p>We start from the very beginning — what a volt is, what a battery actually does — and build up, part by part, hooking up small solar panels, lights, batteries, and motors.</p><p>Along the way you&#39;ll get comfortable with a multimeter, measuring voltage, current, and resistance for yourself. Nothing is a black box: by the end you&#39;ll understand every wire.</p>
                 <dl class="dc2-facts">
                   <div><dt>Where</dt><dd>Lincoln Park, Somerville<br><span style="color:var(--muted)">Exact address sent when you register.</span></dd></div>
-                  <div><dt>Who</dt><dd>Adults and kids 6+ (an adult stays with under‑14s). No experience needed.</dd></div>
+                  <div><dt>Who</dt><dd>Adults and kids 6+ (an adult caregiver needs to accompany kids under 14)</dd></div>
                   <div><dt>Bring</dt><dd>Just yourself — tools and parts are provided.</dd></div>
                   <div><dt>When</dt><dd>Wed · Aug 19 · 10 AM–1 PM</dd></div>
                 </dl>
@@ -381,12 +385,12 @@
       <article class="daycard2" id="day-2026-08-20">
         <img src="/v6img/ws-toolbox.jpg" alt="">
         <div class="dc2-main">
-          <div class="dc2-date">📅 Thu · Aug 20 · 10 AM–1 PM</div>
-          <span class="dc2-cat" style="background:#a86f28">🪚 Woodworking</span>
-          <h3>Build a Toolbox</h3>
+          <a class="dc2-date" href="/w/woodworking/2026-08-20/">Thu · Aug 20 · 10 AM–1 PM</a>
+          <span class="dc2-cat" style="background:#a86f28">Woodworking</span>
+          <h3><a href="/w/woodworking/2026-08-20/">Build a Toolbox</a></h3>
           <div class="dc2-meta">Lincoln Park, Somerville</div>
           <p class="dc2-blurb">A friendly first build: a wooden toolbox to carry your tools. We&#39;ll cover measuring, sawing, drilling, and joining — the core hand-tool skills — on a project you can finish in a morning.</p>
-          <span class="dc2-take">🎒 Free to learn -- just show up!  (But if you&#39;d like to take home a toolbox, please register so we can reserve materials for you, and expect to pay $35 on site.)</span>
+          <span class="dc2-take">Free to learn -- just show up!  (But if you&#39;d like to take home a toolbox, please register so we can reserve materials for you, and expect to pay $35 on site.)</span>
           <div class="dc2-actions">
             <a class="btn-reg" href="/register/?day=2026-08-20">Register →</a>
             <details class="dc2-details"><summary>More details ▾</summary>
@@ -394,7 +398,7 @@
                 <p>A friendly first build: a wooden toolbox to carry your tools. We&#39;ll cover measuring, sawing, drilling, and joining — the core hand-tool skills — on a project you can finish in a morning.</p><p>You&#39;ll take your finished toolbox home.</p>
                 <dl class="dc2-facts">
                   <div><dt>Where</dt><dd>Lincoln Park, Somerville<br><span style="color:var(--muted)">Exact address sent when you register.</span></dd></div>
-                  <div><dt>Who</dt><dd>Adults and kids 6+ (an adult stays with under‑14s). Good for first‑timers.</dd></div>
+                  <div><dt>Who</dt><dd>Adults and kids 6+ (an adult caregiver needs to accompany kids under 14). Good for first‑timers.</dd></div>
                   <div><dt>Bring</dt><dd>Closed‑toe shoes. Tools and wood are provided.</dd></div>
                   <div><dt>When</dt><dd>Thu · Aug 20 · 10 AM–1 PM</dd></div>
                 </dl>
@@ -406,12 +410,12 @@
       <article class="daycard2" id="day-2026-08-21">
         <img src="/v6img/pg-music.jpg" alt="">
         <div class="dc2-main">
-          <div class="dc2-date">📅 Fri · Aug 21 · 10 AM–1 PM</div>
-          <span class="dc2-cat" style="background:#7b6bb5">🎵 Music &amp; Instrument Making</span>
-          <h3>Music &amp; Instrument Making</h3>
+          <a class="dc2-date" href="/w/music/2026-08-21/">Fri · Aug 21 · 10 AM–1 PM</a>
+          <span class="dc2-cat" style="background:#7b6bb5">Music &amp; Instrument Making</span>
+          <h3><a href="/w/music/2026-08-21/">Music &amp; Instrument Making</a></h3>
           <div class="dc2-meta">Lincoln Park, Somerville</div>
           <p class="dc2-blurb">Learn to build and play simple instruments together.</p>
-          <span class="dc2-take">🎒 Free to learn!  If you&#39;d like to take home an instrument, please register in advance, and expect to pay $15 on-site.</span>
+          <span class="dc2-take">Free to learn!  If you&#39;d like to take home an instrument, please register in advance, and expect to pay $15 on-site.</span>
           <div class="dc2-actions">
             <a class="btn-reg" href="/register/?day=2026-08-21">Register →</a>
             <details class="dc2-details"><summary>More details ▾</summary>
@@ -419,7 +423,7 @@
                 <p>Part jam session, part workshop: we build simple instruments from everyday materials, then play them together.</p><p>No musical background needed — the point is to make sound, make something, and have fun doing it as a group.</p>
                 <dl class="dc2-facts">
                   <div><dt>Where</dt><dd>Lincoln Park, Somerville<br><span style="color:var(--muted)">Exact address sent when you register.</span></dd></div>
-                  <div><dt>Who</dt><dd>All ages welcome (an adult stays with under‑14s).</dd></div>
+                  <div><dt>Who</dt><dd>All ages welcome (an adult caregiver needs to accompany kids under 14).</dd></div>
                   <div><dt>Bring</dt><dd>An instrument if you have one — otherwise we&#39;ll make some.</dd></div>
                   <div><dt>When</dt><dd>Fri · Aug 21 · 10 AM–1 PM</dd></div>
                 </dl>
@@ -431,12 +435,12 @@
       <article class="daycard2" id="day-2026-08-25">
         <img src="/v6img/ws-workbench.jpg" alt="">
         <div class="dc2-main">
-          <div class="dc2-date">📅 Tue · Aug 25 · 10 AM–1 PM</div>
-          <span class="dc2-cat" style="background:#a86f28">🪚 Woodworking</span>
-          <h3>Build a Workbench</h3>
+          <a class="dc2-date" href="/w/woodworking/2026-08-25/">Tue · Aug 25 · 10 AM–1 PM</a>
+          <span class="dc2-cat" style="background:#a86f28">Woodworking</span>
+          <h3><a href="/w/woodworking/2026-08-25/">Build a Workbench</a></h3>
           <div class="dc2-meta">Lincoln Park, Somerville</div>
           <p class="dc2-blurb">Step up to a sturdy, portable workbench for the mobile woodshop — we&#39;ll cut, assemble, and finish it together.</p>
-          <span class="dc2-take">🎒 Free to learn, just show up!  If you&#39;d like to take home your own workbench, please register in advance, and expect to pay $35 on-site for materials.</span>
+          <span class="dc2-take">Free to learn, just show up!  If you&#39;d like to take home your own workbench, please register in advance, and expect to pay $35 on-site for materials.</span>
           <div class="dc2-actions">
             <a class="btn-reg" href="/register/?day=2026-08-25">Register →</a>
             <details class="dc2-details"><summary>More details ▾</summary>
@@ -444,7 +448,7 @@
                 <p>Step up to a sturdy, portable workbench for the mobile woodshop — we&#39;ll cut, assemble, and finish it together.</p><p>A bigger build; nice if you&#39;ve done a little woodworking before, but beginners are welcome too.</p>
                 <dl class="dc2-facts">
                   <div><dt>Where</dt><dd>Lincoln Park, Somerville<br><span style="color:var(--muted)">Exact address sent when you register.</span></dd></div>
-                  <div><dt>Who</dt><dd>Adults and kids 6+ (an adult stays with under‑14s). Good for first‑timers.</dd></div>
+                  <div><dt>Who</dt><dd>Adults and kids 6+ (an adult caregiver needs to accompany kids under 14). Good for first‑timers.</dd></div>
                   <div><dt>Bring</dt><dd>Closed‑toe shoes. Tools and wood are provided.</dd></div>
                   <div><dt>When</dt><dd>Tue · Aug 25 · 10 AM–1 PM</dd></div>
                 </dl>
@@ -456,12 +460,12 @@
       <article class="daycard2" id="day-2026-08-26">
         <img src="/v6img/ws-solar.jpg" alt="">
         <div class="dc2-main">
-          <div class="dc2-date">📅 Wed · Aug 26 · 10 AM–1 PM</div>
-          <span class="dc2-cat" style="background:#2f5a92">☀️ Solar Power &amp; Electronics Bench</span>
-          <h3>Solar Power &amp; Electronics Bench</h3>
+          <a class="dc2-date" href="/w/solar/2026-08-26/">Wed · Aug 26 · 10 AM–1 PM</a>
+          <span class="dc2-cat" style="background:#2f5a92">Solar Power &amp; Electronics Bench</span>
+          <h3><a href="/w/solar/2026-08-26/">Solar Power &amp; Electronics Bench</a></h3>
           <div class="dc2-meta">Lincoln Park, Somerville</div>
           <p class="dc2-blurb">Learn the basics of electricity by hooking up small solar panels, lights, batteries, and motors, and measuring voltage, current, and resistance with a multimeter.</p>
-          <span class="dc2-take">🎒 Free to learn! If you&#39;d like to take home a solar panel + motor kit, please register and expect to pay $25 materials cost on-site.</span>
+          <span class="dc2-take">Free to learn! If you&#39;d like to take home a solar panel + motor kit, please register and expect to pay $25 materials cost on-site.</span>
           <div class="dc2-actions">
             <a class="btn-reg" href="/register/?day=2026-08-26">Register →</a>
             <details class="dc2-details"><summary>More details ▾</summary>
@@ -469,7 +473,7 @@
                 <p>We start from the very beginning — what a volt is, what a battery actually does — and build up, part by part, hooking up small solar panels, lights, batteries, and motors.</p><p>Along the way you&#39;ll get comfortable with a multimeter, measuring voltage, current, and resistance for yourself. Nothing is a black box: by the end you&#39;ll understand every wire.</p>
                 <dl class="dc2-facts">
                   <div><dt>Where</dt><dd>Lincoln Park, Somerville<br><span style="color:var(--muted)">Exact address sent when you register.</span></dd></div>
-                  <div><dt>Who</dt><dd>Adults and kids 6+ (an adult stays with under‑14s). No experience needed.</dd></div>
+                  <div><dt>Who</dt><dd>Adults and kids 6+ (an adult caregiver needs to accompany kids under 14)</dd></div>
                   <div><dt>Bring</dt><dd>Just yourself — tools and parts are provided.</dd></div>
                   <div><dt>When</dt><dd>Wed · Aug 26 · 10 AM–1 PM</dd></div>
                 </dl>
@@ -481,9 +485,9 @@
       <article class="daycard2" id="day-2026-08-27">
         <img src="/v6img/pg-nature.jpg" alt="">
         <div class="dc2-main">
-          <div class="dc2-date">📅 Thu · Aug 27 · 10 AM–1 PM</div>
-          <span class="dc2-cat" style="background:#3f7d54">🌿 Plant ID &amp; Mapping</span>
-          <h3>Plant ID &amp; Mapping</h3>
+          <a class="dc2-date" href="/w/plant-id/2026-08-27/">Thu · Aug 27 · 10 AM–1 PM</a>
+          <span class="dc2-cat" style="background:#3f7d54">Plant ID &amp; Mapping</span>
+          <h3><a href="/w/plant-id/2026-08-27/">Plant ID &amp; Mapping</a></h3>
           <div class="dc2-meta">Umbrello Hay Field, Lincoln, MA</div>
           <p class="dc2-blurb">Learn the names of some of the trees and plants around you, and how to read, use, and make maps.</p>
           
@@ -494,7 +498,7 @@
                 <p>A walking session: we learn the names of the trees and plants around us — how to tell them apart, and what people have used them for over time.</p><p>We&#39;ll also learn to read and use maps of where we are, and start making our own. Bring your curiosity and comfortable shoes.</p>
                 <dl class="dc2-facts">
                   <div><dt>Where</dt><dd>Umbrello Hay Field, Lincoln, MA<br><span style="color:var(--muted)">Meeting spot sent when you register.</span></dd></div>
-                  <div><dt>Who</dt><dd>All ages welcome (an adult stays with under‑14s).</dd></div>
+                  <div><dt>Who</dt><dd>All ages welcome (an adult caregiver needs to accompany kids under 14).</dd></div>
                   <div><dt>Bring</dt><dd>Comfortable walking shoes, water, and weather‑appropriate clothing.</dd></div>
                   <div><dt>When</dt><dd>Thu · Aug 27 · 10 AM–1 PM</dd></div>
                 </dl>
@@ -504,23 +508,23 @@
         </div>
       </article>
       <article class="daycard2" id="day-2026-08-28">
-        <img src="/v6img/pg-music.jpg" alt="">
+        <img src="/v6img/ws-zines.png" alt="">
         <div class="dc2-main">
-          <div class="dc2-date">📅 Fri · Aug 28 · 10 AM–1 PM</div>
-          <span class="dc2-cat" style="background:#7b6bb5">🎵 Music &amp; Instrument Making</span>
-          <h3>Music &amp; Instrument Making</h3>
+          <a class="dc2-date" href="/w/zines/2026-08-28/">Fri · Aug 28 · 10 AM–1 PM</a>
+          <span class="dc2-cat" style="background:#b0413e">Zines &amp; Printmaking</span>
+          <h3><a href="/w/zines/2026-08-28/">Zines &amp; Printmaking</a></h3>
           <div class="dc2-meta">Lincoln Park, Somerville</div>
-          <p class="dc2-blurb">Learn to build and play simple instruments together.</p>
-          <span class="dc2-take">🎒 Free to learn!  If you&#39;d like to take home an instrument, please register in advance, and expect to pay $15 on-site.</span>
+          <p class="dc2-blurb">Make small zines and booklets using simple needle-and-thread binding, and learn how to lay out your material so your zines are easy to print.</p>
+          
           <div class="dc2-actions">
             <a class="btn-reg" href="/register/?day=2026-08-28">Register →</a>
             <details class="dc2-details"><summary>More details ▾</summary>
               <div class="dc2-more">
-                <p>Part jam session, part workshop: we build simple instruments from everyday materials, then play them together.</p><p>No musical background needed — the point is to make sound, make something, and have fun doing it as a group.</p>
+                <p>We&#39;ll use simple needle-and-thread binding techniques to make small zines and booklets you can take home.</p><p>Along the way you&#39;ll learn how to lay out your material so zines are easy to print — and easy to share.</p>
                 <dl class="dc2-facts">
                   <div><dt>Where</dt><dd>Lincoln Park, Somerville<br><span style="color:var(--muted)">Exact address sent when you register.</span></dd></div>
-                  <div><dt>Who</dt><dd>All ages welcome (an adult stays with under‑14s).</dd></div>
-                  <div><dt>Bring</dt><dd>An instrument if you have one — otherwise we&#39;ll make some.</dd></div>
+                  <div><dt>Who</dt><dd>All ages welcome (an adult caregiver needs to accompany kids under 14). No experience needed.</dd></div>
+                  <div><dt>Bring</dt><dd>Just yourself — paper, needles, thread, and printing materials are provided.</dd></div>
                   <div><dt>When</dt><dd>Fri · Aug 28 · 10 AM–1 PM</dd></div>
                 </dl>
               </div>
@@ -532,20 +536,20 @@
     <p class="seclead" style="margin-top:14px">Want to teach a session or host one? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:#9a6f14;font-weight:700;text-decoration:underline">Email us</a>.</p>
   </section>
   <section class="sec" id="rsvp" data-name="Register" data-blurb="Get weather/updates — free, optional.">
-    <h2 class="grp">✋ Register &amp; get updates</h2>
+    <h2 class="grp">Register &amp; get updates</h2>
     <p class="seclead">Free and optional — register to hold a spot, reserve take-home materials in advance, or just get weather &amp; schedule updates.</p>
     <div style="text-align:center"><a class="btn-reg" style="display:inline-block;font-size:1rem;padding:13px 28px" href="/register/">Register for Field Days →</a></div>
   </section>
 
 
   <section class="sec sec-journal" id="journal" data-name="Field Notes" data-blurb="Field Days, projects, and builds from the field." data-accent="#4f6675" data-tint="#eef1f4" data-bd="#d6dee5">
-    <h2 class="grp">📓 Field Notes</h2>
+    <h2 class="grp">Field Notes</h2>
     <p class="seclead">The story of what we&rsquo;re making and learning — Field Days, ongoing projects, workshops, and builds from the field.</p>
     <div class="cards">
       <article class="card"><img class="cardimg" src="/assets/images/journal/2026-08-07-mesh-radio-rural-rivers/mesh-radio-system-diagram.jpg" alt=""><div class="body"><h3>Mesh radio with Rural Rivers</h3><div class="when">Aug 7, 2026</div><div class="desc">A low-cost, off-grid water-level sensor for community flood monitoring — with the Rural Rivers project in Vermont.</div><div class="foot"><a class="btn-reg" href="/journal/2026-08-07-mesh-radio-rural-rivers/">Read →</a></div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pj-humanpower.jpg" alt=""><div class="band" style="background:#8a5a2f"><div class="day">🛠️ Human-Powered Machines</div><div class="theme">Ongoing project</div></div><div class="body"><div class="desc">Pedal- and treadle-powered tools we design and build — grain mills, a treadle scroll saw, and more.</div><div class="foot"><a class="btn-reg" href="/journal/">Read →</a></div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pj-offgrid.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">📡 Off-grid Sensing</div><div class="theme">Ongoing project</div></div><div class="body"><div class="desc">Greenhouse temperature and water-level / flood alerts over mesh radio, no internet needed.</div><div class="foot"><a class="btn-reg" href="/journal/">Read →</a></div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pj-biochar.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">💧 Biochar Water Filters</div><div class="theme">Ongoing project</div></div><div class="body"><div class="desc">DIY water filtration from locally-made biochar — cheap, effective, and evolving.</div><div class="foot"><a class="btn-reg" href="/journal/">Read →</a></div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-humanpower.jpg" alt=""><div class="band" style="background:#8a5a2f"><div class="day">Human-Powered Machines</div><div class="theme">Ongoing project</div></div><div class="body"><div class="desc">Pedal- and treadle-powered tools we design and build — grain mills, a treadle scroll saw, and more.</div><div class="foot"><a class="btn-reg" href="/journal/">Read →</a></div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-offgrid.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">Off-grid Sensing</div><div class="theme">Ongoing project</div></div><div class="body"><div class="desc">Greenhouse temperature and water-level / flood alerts over mesh radio, no internet needed.</div><div class="foot"><a class="btn-reg" href="/journal/">Read →</a></div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-biochar.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">Biochar Water Filters</div><div class="theme">Ongoing project</div></div><div class="body"><div class="desc">DIY water filtration from locally-made biochar — cheap, effective, and evolving.</div><div class="foot"><a class="btn-reg" href="/journal/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/jr-radiocase.jpg" alt=""><div class="body"><h3>New radio case for the HHF monitor</h3><div class="when">May 26, 2026</div><div class="desc">Dick at Artisans Asylum donated a mesh-radio case for the cause.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-26-hhf-coolbot-radio-case/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/jr-toaster.jpg" alt=""><div class="body"><h3>Toaster-oven reflow at Artisans Asylum</h3><div class="when">May 21, 2026</div><div class="desc">Testing toaster-oven reflow-soldering techniques at Artisans Asylum.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-21-toaster-oven-reflow/">Read →</a></div></div></article>
       <article class="card"><img class="cardimg" src="/v6img/jr-sailing.jpg" alt=""><div class="body"><h3>Sailing &amp; STEM at Edgewood</h3><div class="when">May 20, 2026</div><div class="desc">Scoping 2026 STEM workshops — mesh radio and a dock-mounted water-level sensor.</div><div class="foot"><a class="btn-reg" href="/journal/2026-05-20-sailing-stem-edgewood/">Read →</a></div></div></article>
@@ -558,18 +562,18 @@
   </section>
 
   <section class="sec sec-about" id="policies" data-name="Policies &amp; Resources" data-blurb="Weather, safety, waivers, and cancellations." data-accent="#1c6b4a" data-tint="#eef3ee" data-bd="#dbe6de">
-    <h2 class="grp">📋 Policies &amp; Resources</h2>
+    <h2 class="grp">Policies &amp; Resources</h2>
     <p class="seclead">A few things to know before you join us for a Field Day — plus guides and resources to explore and build on your own.</p>
     <div class="policy">
-      <h3>🌦️ Let&rsquo;s Be Outside</h3>
+      <h3>Let&rsquo;s Be Outside</h3>
       <p>Field Days are outdoor programs, and we&rsquo;ll be outside in all but extreme conditions. We keep an eye on the forecast, choose sheltered spots when we can, and take breaks as needed — but the best thing you can do is come dressed for the weather. Layers, sturdy closed-toe shoes, rain gear, sun protection, and a water bottle go a long way. We&rsquo;ll always let you know if a day calls for anything special.</p>
-      <h3>🦺 Safety</h3>
+      <h3>Safety</h3>
       <p>Every Field Day follows established safety procedures, and our facilitators are trained in them. We review expectations with participants at the start of each day, keep group sizes manageable, and make sure the tools and activities are appropriate for the ages taking part. We don&rsquo;t offer &lsquo;drop off&rsquo; — children under 14 must be accompanied by an adult caregiver, who shares responsibility for their child&rsquo;s safety and participation.</p>
-      <h3>✍️ Waivers</h3>
+      <h3>Waivers</h3>
       <p>All participants (or a parent/guardian, for minors) complete a waiver form before their first Field Day. We&rsquo;ll share the form ahead of time so you can fill it out in advance and we can get started without paperwork on the day.</p>
     </div>
     <div class="policy" style="margin-top:6px">
-      <h3>🔧 Resources</h3>
+      <h3>Resources</h3>
       <ul>
         <li><a class="em-accent" href="/zines/">Zines &amp; guides</a> — free, hand-made booklets on the basic science and engineering behind resilience skills (solar, water, heating, and more). Read online or print your own.</li>
       </ul>
@@ -579,29 +583,29 @@
   </section>
 
   <section class="sec sec-about" id="about" data-name="About" data-blurb="What we're about — hands-on, screen-free learning on farms near Lincoln, MA." data-accent="#1c6b4a" data-tint="#eef3ee" data-bd="#dbe6de">
-    <h2 class="grp">ℹ️ About</h2>
+    <h2 class="grp">About</h2>
     <p class="about-lead">Waterbear Field School is hands-on, screen-free learning and building for kids and adults, on farms in the Lincoln, MA area. Ways to take part:</p>
 
-    <h2 class="grp" id="what-are-field-days" style="font-size:1.5rem;margin-top:24px">🎨 What are Field Days?</h2>
+    <h2 class="grp" id="what-are-field-days" style="font-size:1.5rem;margin-top:24px">What are Field Days?</h2>
     <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+, running <b>10 AM to 1 PM</b>. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Everything&rsquo;s free — just show up. See what&rsquo;s coming up on the <a href="#schedule" style="color:#9a6f14;font-weight:700;text-decoration:underline">schedule</a>. You can also read about recent Field Day and Field School projects in the <a href="#journal" style="color:#4f6675;font-weight:700;text-decoration:underline">Field Notes</a>, or find out more about our philosophy and approach in the <a href="#policies" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Policies and Resources</a> section.</p>
     <div class="cards">
-      <article class="card"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">🪚 Woodworking</div></div><div class="body"><div class="desc">Learn basic woodworking techniques using simple hand tools.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/ws-rain.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">💧 Working with Water</div></div><div class="body"><div class="desc">Water filters, rain catchment, pumps: cleaning and redirecting water to make it useful at home and on the farm.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-fiber.jpg" alt=""><div class="band" style="background:#4f5aa6"><div class="day">🧶 Fiber Arts</div></div><div class="body"><div class="desc">Weaving, rope-making, and sewing — fiber into cordage and cloth.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pj-humanpower.jpg" alt=""><div class="band" style="background:#8a5a2f"><div class="day">🛠️ Sculpture &amp; Fabrication</div></div><div class="body"><div class="desc">Clay, carving, molds, and making — shaping and fabricating by hand.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🌿 Plants &amp; Animals</div></div><div class="body"><div class="desc">Studying plants and animal habitats in nature.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">🎵 Music &amp; Instrument Making</div></div><div class="body"><div class="desc">Music jams; learn to build and play simple instruments together.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-art.jpg" alt=""><div class="band" style="background:#9a5b7a"><div class="day">🎨 Painting &amp; Drawing</div></div><div class="body"><div class="desc">Drawing and painting sessions — we might even make our own easels and paper!</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pj-trailer.jpg" alt=""><div class="band" style="background:#c05a2a"><div class="day">🔧 Build &amp; Repair</div></div><div class="body"><div class="desc">Learn how to build and repair useful objects at home and on the farm.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/mt-hike.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">🗺️ Maps &amp; Hiking</div></div><div class="body"><div class="desc">Learn to use and make maps for navigation on local trails.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">Woodworking</div></div><div class="body"><div class="desc">Learn basic woodworking techniques using simple hand tools.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/ws-rain.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">Working with Water</div></div><div class="body"><div class="desc">Water filters, rain catchment, pumps: cleaning and redirecting water to make it useful at home and on the farm.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-fiber.jpg" alt=""><div class="band" style="background:#4f5aa6"><div class="day">Fiber Arts</div></div><div class="body"><div class="desc">Weaving, rope-making, and sewing — fiber into cordage and cloth.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-humanpower.jpg" alt=""><div class="band" style="background:#8a5a2f"><div class="day">Sculpture &amp; Fabrication</div></div><div class="body"><div class="desc">Clay, carving, molds, and making — shaping and fabricating by hand.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">Plants &amp; Animals</div></div><div class="body"><div class="desc">Studying plants and animal habitats in nature.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">Music &amp; Instrument Making</div></div><div class="body"><div class="desc">Music jams; learn to build and play simple instruments together.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-art.jpg" alt=""><div class="band" style="background:#9a5b7a"><div class="day">Painting &amp; Drawing</div></div><div class="body"><div class="desc">Drawing and painting sessions — we might even make our own easels and paper!</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-trailer.jpg" alt=""><div class="band" style="background:#c05a2a"><div class="day">Build &amp; Repair</div></div><div class="body"><div class="desc">Learn how to build and repair useful objects at home and on the farm.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/mt-hike.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">Maps &amp; Hiking</div></div><div class="body"><div class="desc">Learn to use and make maps for navigation on local trails.</div></div></article>
     </div>
   
         <div class="legend">
-      <a class="leg" href="#schedule" style="border-left-color:#c8891a"><span class="leg-h" style="color:#9a6f14">📅 Upcoming Field Days</span><span class="leg-d">Free sessions — see what&rsquo;s coming up.</span></a>
-      <a class="leg" href="#what-are-field-days" style="border-left-color:#a86f28"><span class="leg-h" style="color:#8a5a20">🎨 What are Field Days?</span><span class="leg-d">A different mix of skills and topics each day.</span></a>
-      <a class="leg" href="#journal" style="border-left-color:#4f6675"><span class="leg-h" style="color:#4f6675">📓 Field Notes</span><span class="leg-d">Recent Field Days and ongoing projects.</span></a>
-      <a class="leg" href="#policies" style="border-left-color:#1c6b4a"><span class="leg-h" style="color:#1c6b4a">📋 Policies &amp; Resources</span><span class="leg-d">Weather, safety, waivers, and cancellations.</span></a>
-      <a class="leg" href="#about" style="border-left-color:#3f7d54"><span class="leg-h" style="color:#2f6641">ℹ️ About</span><span class="leg-d">What we&rsquo;re about, and how to reach us.</span></a>
+      <a class="leg" href="#schedule" style="border-left-color:#c8891a"><span class="leg-h" style="color:#9a6f14">Upcoming Field Days</span><span class="leg-d">Free sessions — see what&rsquo;s coming up.</span></a>
+      <a class="leg" href="#what-are-field-days" style="border-left-color:#a86f28"><span class="leg-h" style="color:#8a5a20">What are Field Days?</span><span class="leg-d">A different mix of skills and topics each day.</span></a>
+      <a class="leg" href="#journal" style="border-left-color:#4f6675"><span class="leg-h" style="color:#4f6675">Field Notes</span><span class="leg-d">Recent Field Days and ongoing projects.</span></a>
+      <a class="leg" href="#policies" style="border-left-color:#1c6b4a"><span class="leg-h" style="color:#1c6b4a">Policies &amp; Resources</span><span class="leg-d">Weather, safety, waivers, and cancellations.</span></a>
+      <a class="leg" href="#about" style="border-left-color:#3f7d54"><span class="leg-h" style="color:#2f6641">About</span><span class="leg-d">What we&rsquo;re about, and how to reach us.</span></a>
     </div>
     <p class="about-foot"><span class="muted">Waterbear Field School operates as a recreational and enrichment program, not a licensed school or daycare. We don&rsquo;t offer &lsquo;drop off&rsquo; — children under 14 must be accompanied by an adult caregiver.</span></p>
     <p class="about-foot" style="margin-top:10px">Questions? <a href="mailto:info@waterbearfieldschool.org" style="color:#1c6b4a;font-weight:700">Email us</a>.</p>
@@ -632,13 +636,13 @@
   function updcal(){ var n=document.querySelectorAll('.dayrow.sel').length; document.getElementById('calcount').textContent = n? (n+' day'+(n>1?'s':'')+' · $'+(n*20)) : 'No days selected'; }
   function reg(){ var n=document.querySelectorAll('.dayrow.sel').length; var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
     if(!n){ t.textContent='Pick your days first'; b.textContent='Check the days you want, then register.'; }
-    else { t.textContent='Registration opens soon 🌱'; var items=[].slice.call(document.querySelectorAll('.dayrow.sel')).map(function(x){return '<li>'+x.querySelector('.ddate').textContent+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' day'+(n>1?'s':'')+' — suggested <b>$'+(n*20)+'</b> total (pay what you can):</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your days the moment sign-ups are live.</div>'; }
+    else { t.textContent='Registration opens soon '; var items=[].slice.call(document.querySelectorAll('.dayrow.sel')).map(function(x){return '<li>'+x.querySelector('.ddate').textContent+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' day'+(n>1?'s':'')+' — suggested <b>$'+(n*20)+'</b> total (pay what you can):</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your days the moment sign-ups are live.</div>'; }
     e.href='mailto:info@waterbearfieldschool.org?subject=Field%20Day%20registration'; document.getElementById('ov').classList.add('on'); }
   function togblock(b){ b.classList.toggle('on'); segupd(); }
   function segupd(){ var n=document.querySelectorAll('.blockbtn.on').length; var el=document.getElementById('segcount'); if(el) el.textContent = n? (n+' block'+(n>1?'s':'')+' · $'+(n*100)) : 'No blocks selected'; }
   function segreg(){ var sel=[].slice.call(document.querySelectorAll('.bgrid td.on')); var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
     if(!sel.length){ t.textContent='Pick your blocks first'; b.textContent='Tap a cell — a weekday and a month — to select a block.'; }
-    else { t.textContent='Registration opens soon 🌱'; var n=sel.length; var items=sel.map(function(x){return '<li>'+x.dataset.day+' · '+x.dataset.block+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' block'+(n>1?'s':'')+' — suggested <b>$'+(n*100)+'</b> total (pay what you can):</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your spots the moment sign-ups are live.</div>'; }
+    else { t.textContent='Registration opens soon '; var n=sel.length; var items=sel.map(function(x){return '<li>'+x.dataset.day+' · '+x.dataset.block+'</li>';}).join(''); b.innerHTML='<div style="margin-bottom:6px">You picked '+n+' block'+(n>1?'s':'')+' — suggested <b>$'+(n*100)+'</b> total (pay what you can):</div><ul class="sellist">'+items+'</ul><div style="margin-top:8px">Send your email and we&rsquo;ll confirm your spots the moment sign-ups are live.</div>'; }
     e.href='mailto:info@waterbearfieldschool.org?subject=Field%20Day%20monthly%20registration'; document.getElementById('ov').classList.add('on'); }
   function selcell(td){ td.classList.toggle('on'); refresh(); }
   function refresh(){
@@ -647,7 +651,7 @@
     var n=document.querySelectorAll('.bgrid td.on').length; var el=document.getElementById('segcount'); if(el) el.textContent = n?(n+' block'+(n>1?'s':'')+' · $'+(n*100)):'No blocks selected';
   }
   function m(k){var t=document.getElementById('mt'),b=document.getElementById('mb'),e=document.getElementById('me');
-   if(k==='r'){t.textContent='Registration opens soon 🌱';b.textContent="We're finalizing our programming. Send us your email and we'll let you know the moment sign-ups are live.";e.href="mailto:info@waterbearfieldschool.org?subject=Let%20me%20know%20when%20registration%20opens";}
+   if(k==='r'){t.textContent='Registration opens soon ';b.textContent="We're finalizing our programming. Send us your email and we'll let you know the moment sign-ups are live.";e.href="mailto:info@waterbearfieldschool.org?subject=Let%20me%20know%20when%20registration%20opens";}
    else{t.textContent='Want to know more?';b.textContent="Happy to tell you all about it — email us with any questions and we'll be right in touch.";e.href="mailto:info@waterbearfieldschool.org?subject=More%20info";}
    document.getElementById('ov').classList.add('on');}
   function cl(){document.getElementById('ov').classList.remove('on');}
@@ -679,6 +683,22 @@
     document.addEventListener("click",function(e){ if(!d.contains(e.target)&&!e.target.closest(".hbtn-ham")) d.classList.remove("open"); });
     var brand=document.querySelector(".brand"); if(brand){ brand.style.cursor="pointer"; brand.setAttribute("role","button"); brand.addEventListener("click",function(){ window.scrollTo({top:0,behavior:"smooth"}); }); }
   }
+})();
+</script>
+<script>
+(function(){
+  function mark(){
+    var id = (location.hash || "").replace(/^#/, "");
+    document.querySelectorAll(".daycard2.target").forEach(function(el){ el.classList.remove("target"); });
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add("target");
+    var det = el.querySelector("details");
+    if (det) det.open = true;
+  }
+  mark();
+  window.addEventListener("hashchange", mark);
 })();
 </script>
 

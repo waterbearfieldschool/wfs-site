@@ -14,7 +14,6 @@ module.exports = workshops
         category: w.title,
         short: w.short || w.title,
         topic: w.title,
-        emoji: w.emoji,
         color: w.color,
         img: s.img || w.img,
         date: s.date,
@@ -32,6 +31,8 @@ module.exports = workshops
         // value stored in the rsvps.session column:
         label: `${s.day} — ${project}`,
         materials: s.materials || null,
+        // shareable page for this specific day:
+        path: `/w/${w.slug}/${s.date}/`,
       };
     })
   )

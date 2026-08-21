@@ -237,12 +237,14 @@
   @media(max-width:520px){.whero img{height:200px}.whero .wband h1{font-size:1.35rem}}
 
   /* ---- workshop per-day sections ---- */
+  .more-days:not(:has(a)){display:none}
   .daynav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
   .daychip{font-size:.84rem;font-weight:600;color:var(--accent-d);text-decoration:none;border:1px solid var(--line);border-left-width:4px;border-radius:8px;padding:7px 12px;background:var(--card)}
   .daychip:hover{background:#f0f3ee}
   .daycard{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:0 0 18px;background:var(--card);box-shadow:0 3px 12px rgba(0,0,0,.05);scroll-margin-top:90px}
   .daycard-band{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 16px;color:#fff}
-  .daycard-band .dc-when{font-weight:700;font-size:.92rem}
+  .daycard-band .dc-when{font-weight:700;font-size:.92rem;color:#fff;text-decoration:none}
+  .daycard-band a.dc-when:hover{text-decoration:underline}
   .daycard-band .dc-reg{flex:none;margin:0;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.5);color:#fff;font-size:.8rem;padding:6px 13px}
   .daycard-body{padding:18px 20px 22px}
   .daycard-body h2{font-size:1.35rem;color:var(--accent-d);margin:0 0 10px}
@@ -254,3 +256,8 @@
   .dc-facts dd{font-size:.9rem;line-height:1.4}
   .dc-facts .muted{color:var(--muted);font-size:.84rem}
   @media(max-width:520px){.dc-facts{grid-template-columns:1fr}}
+  .daycard.target,.daycard2.target{outline:2px solid #c8901f;box-shadow:0 0 0 4px #fdf3d6,0 3px 12px rgba(0,0,0,.05)}
+  .daycard-body h2 a{color:inherit;text-decoration:none}
+  .daycard-body h2 a:hover{text-decoration:underline}
+  .dc2-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .dc2-actions .btn-reg{margin:0;flex:none}
