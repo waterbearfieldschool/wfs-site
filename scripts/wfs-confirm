@@ -27,6 +27,7 @@ import subprocess
 import sys
 import urllib.request
 import urllib.error
+from email.message import EmailMessage
 from datetime import datetime, timezone
 
 PROJECT   = "https://jhgcnqmzbphzpxgtojti.supabase.co"
@@ -168,9 +169,13 @@ def send(to, subject, body):
     # normally allows this for any address on the same domain; if it starts
     # refusing the mismatch, add a dedicated msmtp account for info@ and point
     # MSMTP_ACC at it.
-    msg = ("From: %s\nTo: %s\nReply-To: %s\nSubject: %s\n"
-           "Content-Type: text/plain; charset=utf-8\n\n%s\n"
-           % (FROM, to, FROM_ADDR, subject))
+    m = EmailMessage()
+    m["From"] = FROM
+    m["To"] = to
+    m["Reply-To"] = FROM_ADDR
+    m["Subject"] = subject
+    m.set_content(body)
+    msg = m.as_string()
     out = subprocess.run(
         ["msmtp", "-a", MSMTP_ACC, "--from", FROM_ADDR, "--", to],
         input=msg, text=True, capture_output=True)
