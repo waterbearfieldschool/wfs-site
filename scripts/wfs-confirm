@@ -93,7 +93,7 @@ def addresses():
     return data
 
 
-def api(key, method, path, body=None):
+def api(key, method, path, body=None, soft=False):
     req = urllib.request.Request(
         PROJECT + "/rest/v1/" + path,
         method=method,
@@ -110,7 +110,10 @@ def api(key, method, path, body=None):
             raw = r.read().decode()
             return json.loads(raw) if raw else []
     except urllib.error.HTTPError as e:
-        die("%s %s -> %s %s" % (method, path, e.code, e.read().decode()[:300]))
+        body_txt = e.read().decode()
+        if soft:
+            return None
+        die("%s %s -> %s %s" % (method, path, e.code, body_txt[:300]))
 
 
 def compose(row, sess, addr):
@@ -138,9 +141,15 @@ def compose(row, sess, addr):
         ("Location", place["address"]),
         ("Meet",     place.get("meeting", "")),
         ("Parking",  place.get("parking", "")),
-        ("People",   "%d %s" % (party, "person" if party == 1 else "people")),
+        ("Number of registrants", str(party)),
     ]
-    if row.get("wants_materials"):
+    # kit_count is the real number; wants_materials is the old boolean. Fall
+    # back to it so this reads sensibly on rows written before the column
+    # existed, rather than inventing a count we don't have.
+    kits = row.get("kit_count")
+    if kits:
+        details.append(("Number of kits", str(kits)))
+    elif kits is None and row.get("wants_materials"):
         details.append(("Take-home kit", "reserved for you"))
     details = [(k, v) for k, v in details if str(v).strip()]
 
@@ -253,10 +262,15 @@ def main():
 
     key  = secret_key()
 
-    pending = api(key, "GET",
-                  "rsvps?select=id,name,email,session,session_date,party_size,"
-                  "wants_materials,created_at&confirmation_sent_at=is.null"
-                  "&order=created_at")
+    # kit_count only exists once the kit-count migration has run; without it
+    # the mailer still works, it just can't print a number
+    base = ("rsvps?select=id,name,email,session,session_date,party_size,"
+            "wants_materials,%screated_at&confirmation_sent_at=is.null"
+            "&order=created_at")
+    pending = api(key, "GET", base % "kit_count,", soft=True)
+    if pending is None:
+        pending = api(key, "GET", base % "")
+        log("note: kit_count column not present — kit numbers unavailable")
     if limit:
         pending = pending[:limit]
 
