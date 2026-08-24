@@ -114,13 +114,16 @@ def api(key, method, path, body=None):
 
 
 def compose(row, sess, addr):
+    """Returns (subject, plain_text, html). Labels are bold in the HTML part;
+    the plain part keeps the same labels so it reads the same way in a client
+    that won't render HTML."""
     s = sess.get(row.get("session_date"))
     if not s:
-        return None, None, "no session data for %s" % row.get("session_date")
+        return None, None, None, "no session data for %s" % row.get("session_date")
 
     place = addr.get(s["place"]) or addr.get(s["location"]) or {}
     if not place.get("address"):
-        return None, None, "no address configured for %r" % s["place"]
+        return None, None, None, "no address configured for %r" % s["place"]
 
     party = row.get("party_size") or 1
     name  = (row.get("name") or "").strip() or "there"
@@ -128,54 +131,84 @@ def compose(row, sess, addr):
 
     subject = "You're registered — %s, %s" % (s["title"], s["day"])
 
-    lines = [
-        "Hi %s," % first,
-        "",
-        "You're registered. Here are the details, including the exact address:",
-        "",
-        "  %s" % s["title"],
-        "  %s · %s" % (s["day"], s["time"]),
-        "  %s" % place["address"],
-    ]
-    if place.get("meeting"):
-        lines.append("  Meet: %s" % place["meeting"])
-    if place.get("parking"):
-        lines.append("  Parking: %s" % place["parking"])
-
-    lines += [
-        "",
-        "  %d %s" % (party, "person" if party == 1 else "people"),
+    # (label, value) — order matters, and empties are dropped
+    details = [
+        ("Workshop", s["title"]),
+        ("Date",     "%s · %s" % (s["day"], s["time"])),
+        ("Location", place["address"]),
+        ("Meet",     place.get("meeting", "")),
+        ("Parking",  place.get("parking", "")),
+        ("People",   "%d %s" % (party, "person" if party == 1 else "people")),
     ]
     if row.get("wants_materials"):
-        lines.append("  Take-home kit reserved for you")
+        details.append(("Take-home kit", "reserved for you"))
+    details = [(k, v) for k, v in details if str(v).strip()]
 
-    lines += [
-        "",
-        "What to bring: %s" % s.get("bring", "Just yourself."),
-        "Who it's for: %s" % s.get("forWhom", "All welcome."),
-        "",
-        "If you can't make it after all, just reply to this email — we'll free",
-        "up your spot for someone else.",
-        "",
-        "See you there,",
-        "Waterbear Field School",
-        "waterbearfieldschool.org",
+    notes = [
+        ("What to bring", s.get("bring", "Just yourself.")),
+        ("Who it's for",  s.get("forWhom", "All welcome.")),
     ]
-    return subject, "\n".join(lines), None
+
+    lead    = "You're registered. Here are the details, including the exact address:"
+    closing = ("If you can't make it after all, just reply to this email — "
+               "we'll free up your spot for someone else.")
+
+    text = ["Hi %s," % first, "", lead, ""]
+    text += ["  *%s:* %s" % (k, v) for k, v in details]
+    text += [""]
+    text += ["*%s:* %s" % (k, v) for k, v in notes]
+    text += ["", closing, "", "See you there,",
+             "Waterbear Field School", "waterbearfieldschool.org"]
+    text = "\n".join(text)
+
+    def esc(x):
+        return (str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+    rows_html = "".join(
+        '<div style="margin:2px 0"><strong>%s:</strong> %s</div>' % (esc(k), esc(v))
+        for k, v in details)
+    notes_html = "".join(
+        '<div style="margin:6px 0"><strong>%s:</strong> %s</div>' % (esc(k), esc(v))
+        for k, v in notes)
+
+    html = (
+        '<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;'
+        'font-size:15px;line-height:1.5;color:#1f241f">'
+        '<p>Hi %s,</p>'
+        '<p>%s</p>'
+        '<div style="margin:16px 0 16px 16px">%s</div>'
+        '%s'
+        '<p>%s</p>'
+        '<p>See you there,<br>Waterbear Field School<br>'
+        '<a href="https://waterbearfieldschool.org">waterbearfieldschool.org</a></p>'
+        '</div>'
+    ) % (esc(first), esc(lead), rows_html, notes_html, esc(closing))
+
+    return subject, text, html, None
 
 
-def send(to, subject, body):
-    # Authenticate as the configured account but send as info@. Dreamhost
-    # normally allows this for any address on the same domain; if it starts
-    # refusing the mismatch, add a dedicated msmtp account for info@ and point
-    # MSMTP_ACC at it.
+def build_message(to, subject, text, html):
+    """The real MIME message. Kept separate from send() so --dry-run exercises
+    it too — the previous version only built the message inside send(), so a
+    formatting bug there survived every dry run and only surfaced on a live
+    send."""
     m = EmailMessage()
     m["From"] = FROM
     m["To"] = to
     m["Reply-To"] = FROM_ADDR
     m["Subject"] = subject
-    m.set_content(body)
-    msg = m.as_string()
+    m.set_content(text)
+    if html:
+        m.add_alternative(html, subtype="html")
+    return m
+
+
+def send(to, subject, text, html):
+    # Authenticate as the configured account but send as info@. Dreamhost
+    # normally allows this for any address on the same domain; if it starts
+    # refusing the mismatch, add a dedicated msmtp account for info@ and point
+    # MSMTP_ACC at it.
+    msg = build_message(to, subject, text, html).as_string()
     out = subprocess.run(
         ["msmtp", "-a", MSMTP_ACC, "--from", FROM_ADDR, "--", to],
         input=msg, text=True, capture_output=True)
@@ -200,19 +233,19 @@ def main():
         sample = {"id": "sample", "name": "Sample Person",
                   "email": test_to, "party_size": 2, "wants_materials": True,
                   "session_date": sorted(sess)[0]}
-        subject, body, problem = compose(sample, sess, addr)
+        subject, text, html, problem = compose(sample, sess, addr)
         if problem:
             die("could not build the sample: %s" % problem)
         subject = "[test] " + subject
         if dry:
+            msg = build_message(test_to, subject, text, html)
             print("\n" + "=" * 68)
-            print("To: %s" % test_to)
-            print("From: %s" % FROM)
-            print("Subject: %s" % subject)
+            for h in ("From", "To", "Reply-To", "Subject"):
+                print("%s: %s" % (h, msg[h]))
             print("-" * 68)
-            print(body)
+            print(text)
             return
-        err = send(test_to, subject, body)
+        err = send(test_to, subject, text, html)
         if err:
             die("send failed — %s" % err)
         log("test email sent to %s" % test_to)
@@ -234,20 +267,24 @@ def main():
     log("%d to send%s" % (len(pending), " (dry run)" if dry else ""))
 
     for row in pending:
-        subject, body, problem = compose(row, sess, addr)
+        subject, text, html, problem = compose(row, sess, addr)
         if problem:
             log("SKIP id=%s — %s" % (row["id"], problem))
             continue
 
         if dry:
+            # build the real MIME message so a fault here can't hide from a dry run
+            msg = build_message(row["email"], subject, text, html)
             print("\n" + "=" * 68)
-            print("To: %s" % row["email"])
-            print("Subject: %s" % subject)
+            for h in ("From", "To", "Reply-To", "Subject"):
+                print("%s: %s" % (h, msg[h]))
+            print("parts: %s" % ", ".join(p.get_content_type() for p in msg.walk()
+                                          if p.get_content_maintype() != "multipart"))
             print("-" * 68)
-            print(body)
+            print(text)
             continue
 
-        err = send(row["email"], subject, body)
+        err = send(row["email"], subject, text, html)
         if err:
             log("FAILED id=%s to=%s — %s" % (row["id"], row["email"], err))
             continue
