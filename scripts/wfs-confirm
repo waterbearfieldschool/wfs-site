@@ -1,0 +1,256 @@
+#!/usr/bin/env python3
+"""wfs-confirm — send confirmation emails for new Field Day registrations.
+
+Reads rsvps rows that haven't been confirmed yet, emails each person the
+details they can't get anywhere else (the exact address), and stamps the row so
+it's never sent twice.
+
+Runs on the Pi from cron. Needs the Supabase *secret* key, because anonymous
+select on rsvps is deliberately revoked — see journal/topics/wfs-capacity-sql.sql.
+
+  wfs-confirm --dry-run          show what would be sent; send nothing, touch nothing
+  wfs-confirm --test-to ADDRESS  send one sample email to ADDRESS and stop —
+                                 proves the From line and deliverability without
+                                 touching anyone's registration
+  wfs-confirm                    send, and stamp confirmation_sent_at
+  wfs-confirm --limit 1          a cautious first live run
+
+Config:
+  secret key   pass  supabase/wfs-secret
+  addresses    ~/iris/private/wfs-addresses.json
+  session data read live from the wfs-site repo, so it can never drift
+"""
+
+import json
+import os
+import subprocess
+import sys
+import urllib.request
+import urllib.error
+from datetime import datetime, timezone
+
+PROJECT   = "https://jhgcnqmzbphzpxgtojti.supabase.co"
+PASS_KEY  = "supabase/wfs-secret"
+ADDRESSES = os.environ.get("WFS_ADDRESSES",
+                           os.path.expanduser("~/iris/private/wfs-addresses.json"))
+REPO      = os.path.expanduser("~/gitwork/wfs-site")
+NODE      = os.path.expanduser("~/.nvm/versions/node/v24.15.0/bin/node")
+MSMTP_ACC = "waterbear"          # which msmtp account authenticates
+FROM_ADDR = "info@waterbearfieldschool.org"
+FROM      = "Waterbear Field School <%s>" % FROM_ADDR
+LOG       = os.path.expanduser("~/iris/logs/wfs-confirm.log")
+
+
+def log(msg):
+    line = "%s  %s" % (datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ"), msg)
+    print(line)
+    try:
+        os.makedirs(os.path.dirname(LOG), exist_ok=True)
+        with open(LOG, "a") as f:
+            f.write(line + "\n")
+    except OSError:
+        pass
+
+
+def die(msg, code=1):
+    log("ERROR " + msg)
+    sys.exit(code)
+
+
+def secret_key():
+    try:
+        out = subprocess.run(["pass", PASS_KEY], capture_output=True, text=True, timeout=20)
+    except FileNotFoundError:
+        die("`pass` is not installed")
+    if out.returncode != 0:
+        die("no secret key at `pass %s` — add it with:\n"
+            "    pass insert %s" % (PASS_KEY, PASS_KEY))
+    return out.stdout.strip().splitlines()[0]
+
+
+def sessions():
+    """Session details straight from the site's own data, so the email can
+    never disagree with the page someone registered on."""
+    js = ("const s=require('./src/_data/sessions.js');"
+          "console.log(JSON.stringify(s));")
+    node = NODE if os.path.exists(NODE) else "node"
+    out = subprocess.run([node, "-e", js], cwd=REPO, capture_output=True, text=True)
+    if out.returncode != 0:
+        die("could not read session data from %s:\n%s" % (REPO, out.stderr.strip()))
+    return {s["date"]: s for s in json.loads(out.stdout)}
+
+
+def addresses():
+    if not os.path.exists(ADDRESSES):
+        die("no address file at %s" % ADDRESSES)
+    with open(ADDRESSES) as f:
+        data = json.load(f)
+    blanks = [k for k, v in data.items()
+              if isinstance(v, dict) and str(v.get("address", "")).startswith("FILL ME IN")]
+    if blanks:
+        die("addresses still unfilled in %s for: %s" % (ADDRESSES, ", ".join(blanks)))
+    return data
+
+
+def api(key, method, path, body=None):
+    req = urllib.request.Request(
+        PROJECT + "/rest/v1/" + path,
+        method=method,
+        data=json.dumps(body).encode() if body is not None else None,
+        headers={
+            "apikey": key,
+            "Authorization": "Bearer " + key,
+            "Content-Type": "application/json",
+            "Prefer": "return=representation",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            raw = r.read().decode()
+            return json.loads(raw) if raw else []
+    except urllib.error.HTTPError as e:
+        die("%s %s -> %s %s" % (method, path, e.code, e.read().decode()[:300]))
+
+
+def compose(row, sess, addr):
+    s = sess.get(row.get("session_date"))
+    if not s:
+        return None, None, "no session data for %s" % row.get("session_date")
+
+    place = addr.get(s["place"]) or addr.get(s["location"]) or {}
+    if not place.get("address"):
+        return None, None, "no address configured for %r" % s["place"]
+
+    party = row.get("party_size") or 1
+    name  = (row.get("name") or "").strip() or "there"
+    first = name.split()[0]
+
+    subject = "You're registered — %s, %s" % (s["title"], s["day"])
+
+    lines = [
+        "Hi %s," % first,
+        "",
+        "You're registered. Here are the details, including the exact address:",
+        "",
+        "  %s" % s["title"],
+        "  %s · %s" % (s["day"], s["time"]),
+        "  %s" % place["address"],
+    ]
+    if place.get("meeting"):
+        lines.append("  Meet: %s" % place["meeting"])
+    if place.get("parking"):
+        lines.append("  Parking: %s" % place["parking"])
+
+    lines += [
+        "",
+        "  %d %s" % (party, "person" if party == 1 else "people"),
+    ]
+    if row.get("wants_materials"):
+        lines.append("  Take-home kit reserved for you")
+
+    lines += [
+        "",
+        "What to bring: %s" % s.get("bring", "Just yourself."),
+        "Who it's for: %s" % s.get("forWhom", "All welcome."),
+        "",
+        "If you can't make it after all, just reply to this email — we'll free",
+        "up your spot for someone else.",
+        "",
+        "See you there,",
+        "Waterbear Field School",
+        "waterbearfieldschool.org",
+    ]
+    return subject, "\n".join(lines), None
+
+
+def send(to, subject, body):
+    # Authenticate as the configured account but send as info@. Dreamhost
+    # normally allows this for any address on the same domain; if it starts
+    # refusing the mismatch, add a dedicated msmtp account for info@ and point
+    # MSMTP_ACC at it.
+    msg = ("From: %s\nTo: %s\nReply-To: %s\nSubject: %s\n"
+           "Content-Type: text/plain; charset=utf-8\n\n%s\n"
+           % (FROM, to, FROM_ADDR, subject))
+    out = subprocess.run(
+        ["msmtp", "-a", MSMTP_ACC, "--from", FROM_ADDR, "--", to],
+        input=msg, text=True, capture_output=True)
+    if out.returncode != 0:
+        return out.stderr.strip() or "msmtp exited %d" % out.returncode
+    return None
+
+
+def main():
+    dry   = "--dry-run" in sys.argv
+    test_to = None
+    if "--test-to" in sys.argv:
+        test_to = sys.argv[sys.argv.index("--test-to") + 1]
+    limit = None
+    if "--limit" in sys.argv:
+        limit = int(sys.argv[sys.argv.index("--limit") + 1])
+
+    sess = sessions()
+    addr = addresses()
+
+    if test_to:
+        sample = {"id": "sample", "name": "Sample Person",
+                  "email": test_to, "party_size": 2, "wants_materials": True,
+                  "session_date": sorted(sess)[0]}
+        subject, body, problem = compose(sample, sess, addr)
+        if problem:
+            die("could not build the sample: %s" % problem)
+        subject = "[test] " + subject
+        if dry:
+            print("\n" + "=" * 68)
+            print("To: %s" % test_to)
+            print("From: %s" % FROM)
+            print("Subject: %s" % subject)
+            print("-" * 68)
+            print(body)
+            return
+        err = send(test_to, subject, body)
+        if err:
+            die("send failed — %s" % err)
+        log("test email sent to %s" % test_to)
+        return
+
+    key  = secret_key()
+
+    pending = api(key, "GET",
+                  "rsvps?select=id,name,email,session,session_date,party_size,"
+                  "wants_materials,created_at&confirmation_sent_at=is.null"
+                  "&order=created_at")
+    if limit:
+        pending = pending[:limit]
+
+    if not pending:
+        log("nothing to send")
+        return
+
+    log("%d to send%s" % (len(pending), " (dry run)" if dry else ""))
+
+    for row in pending:
+        subject, body, problem = compose(row, sess, addr)
+        if problem:
+            log("SKIP id=%s — %s" % (row["id"], problem))
+            continue
+
+        if dry:
+            print("\n" + "=" * 68)
+            print("To: %s" % row["email"])
+            print("Subject: %s" % subject)
+            print("-" * 68)
+            print(body)
+            continue
+
+        err = send(row["email"], subject, body)
+        if err:
+            log("FAILED id=%s to=%s — %s" % (row["id"], row["email"], err))
+            continue
+
+        api(key, "PATCH", "rsvps?id=eq.%s" % row["id"],
+            {"confirmation_sent_at": datetime.now(timezone.utc).isoformat()})
+        log("sent id=%s to=%s (%s)" % (row["id"], row["email"], row["session_date"]))
+
+
+if __name__ == "__main__":
+    main()

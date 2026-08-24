@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+"""wfs-roster — who has registered for what.
+
+Anonymous read on rsvps is revoked, so this uses the secret key from
+`pass supabase/wfs-secret`. Nothing here writes.
+
+  wfs-roster                  everything, grouped by day
+  wfs-roster --pending        only rows with no confirmation sent yet
+  wfs-roster --orphans        only rows with no session_date (legacy/test rows)
+  wfs-roster --day 2026-08-19 one day
+  wfs-roster --mask           hide email addresses (for sharing a screenshot)
+"""
+
+import json
+import os
+import subprocess
+import sys
+import urllib.request
+import urllib.error
+from collections import defaultdict
+
+PROJECT = "https://jhgcnqmzbphzpxgtojti.supabase.co"
+
+
+def key():
+    out = subprocess.run(["pass", "supabase/wfs-secret"],
+                         capture_output=True, text=True, timeout=20)
+    if out.returncode != 0:
+        sys.exit("no secret key at `pass supabase/wfs-secret`")
+    return out.stdout.strip().splitlines()[0]
+
+
+def get(k, path, soft=False):
+    req = urllib.request.Request(PROJECT + "/rest/v1/" + path,
+                                 headers={"apikey": k, "Authorization": "Bearer " + k})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read().decode() or "[]")
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        if soft:
+            return None
+        sys.exit("%s -> %s %s" % (path, e.code, body[:200]))
+
+
+def mask(addr):
+    if "@" not in addr:
+        return addr
+    user, dom = addr.split("@", 1)
+    return (user[:2] + "…" if len(user) > 2 else user) + "@" + dom
+
+
+def main():
+    a = sys.argv
+    masked  = "--mask" in a
+    pending = "--pending" in a
+    orphans = "--orphans" in a
+    day     = a[a.index("--day") + 1] if "--day" in a else None
+
+    k = key()
+    # confirmation_sent_at only exists once wfs-confirmation-email.sql has run
+    cols = ("id,name,email,session,session_date,party_size,wants_materials,"
+            "confirmation_sent_at,created_at")
+    rows = get(k, "rsvps?select=%s&order=created_at" % cols, soft=True)
+    have_confirm = rows is not None
+    if not have_confirm:
+        cols = "id,name,email,session,session_date,party_size,wants_materials,created_at"
+        rows = get(k, "rsvps?select=%s&order=created_at" % cols)
+        print("note: confirmation_sent_at column not added yet "
+              "(run wfs-confirmation-email.sql) — confirmation status unknown")
+    caps = {c["date"]: c for c in get(k, "session_counts?select=date,capacity,taken,remaining")}
+
+    if pending:
+        rows = [r for r in rows if not r.get("confirmation_sent_at")]
+    if orphans:
+        rows = [r for r in rows if not r.get("session_date")]
+    if day:
+        rows = [r for r in rows if r.get("session_date") == day]
+
+    if not rows:
+        print("no matching registrations")
+        return
+
+    groups = defaultdict(list)
+    for r in rows:
+        groups[r.get("session_date") or "(no session_date — legacy row)"].append(r)
+
+    total_people = 0
+    for date in sorted(groups, key=str):
+        rs = groups[date]
+        head = str(date)
+        cap = caps.get(date)
+        if cap:
+            head += "   %d of %d taken, %d left" % (cap["taken"], cap["capacity"], cap["remaining"])
+        else:
+            head += "   (not in session_caps — register() would refuse this day)"
+        print("\n" + head)
+        same = len({r.get("session") for r in rs}) == 1
+        if same:
+            print("  " + (rs[0].get("session") or ""))
+        print("  " + "-" * 74)
+        for r in rs:
+            if not same:
+                print("  · %s" % (r.get("session") or "(no session)"))
+            people = r.get("party_size") or 1
+            total_people += people
+            flags = []
+            if r.get("wants_materials"):
+                flags.append("kit")
+            if have_confirm and not r.get("confirmation_sent_at"):
+                flags.append("NOT CONFIRMED")
+            email = r.get("email") or ""
+            print("  %-22s %-30s %2d  %s" % (
+                (r.get("name") or "(no name)")[:22],
+                mask(email) if masked else email[:30],
+                people,
+                ", ".join(flags)))
+
+    print("\n%d row%s, %d %s total" % (
+        len(rows), "" if len(rows) == 1 else "s",
+        total_people, "person" if total_people == 1 else "people"))
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,15 @@
+{
+  "_comment": "TEMPLATE. Copy to ~/iris/private/wfs-addresses.json and fill in. The real file is deliberately NOT in this repo — the site only ever says 'exact address sent when you register', and the addresses are the thing registration buys. Keys must match the `place` values in src/_data/workshops.js exactly, or wfs-confirm will refuse to send for that session.",
+
+  "Lincoln Park, Somerville": {
+    "address": "FILL ME IN — street address",
+    "meeting": "FILL ME IN — where exactly to meet, e.g. 'by the big oak at the north gate'",
+    "parking": "FILL ME IN — or leave empty string"
+  },
+
+  "Umbrello Hay Field, Lincoln, MA": {
+    "address": "FILL ME IN — street address",
+    "meeting": "FILL ME IN — where exactly to meet",
+    "parking": "FILL ME IN — or leave empty string"
+  }
+}

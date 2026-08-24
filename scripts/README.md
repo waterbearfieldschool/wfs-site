@@ -27,6 +27,68 @@ The canonical script lives in the repo so it travels with whatever
 device pulls a fresh checkout. The symlink keeps the command-name
 location stable across hosts.
 
+## `wfs-confirm`
+
+Sends the confirmation email for a new Field Day registration — the one that
+carries the exact address, which the site deliberately withholds until someone
+registers. Without this, registering tells a person nothing they can act on.
+
+```bash
+wfs-confirm --dry-run          # show what would be sent; send nothing, stamp nothing
+wfs-confirm --test-to you@…    # one sample email, touches no registration
+wfs-confirm --limit 1          # a cautious first live run
+wfs-confirm                    # send, and stamp confirmation_sent_at
+```
+
+Session details (title, day, time, what to bring) are read live from
+`src/_data/sessions.js` via node, so the email can't drift from the page
+someone registered on. Addresses are merged from a private file — see
+`wfs-addresses.example.json` below.
+
+Needs the Supabase **secret** key, because anonymous select on `rsvps` is
+revoked on purpose:
+
+```bash
+pass insert -e supabase/wfs-secret
+```
+
+Each row is stamped `confirmation_sent_at` once sent, so a rerun can never
+double-send. Meant to run from cron on the Pi; sends via msmtp as
+`info@waterbearfieldschool.org`.
+
+## `wfs-roster`
+
+Read-only view of who has registered for what. Uses the same secret key.
+
+```bash
+wfs-roster                     # everything, grouped by day
+wfs-roster --pending           # only those awaiting a confirmation email
+wfs-roster --orphans           # rows with no session_date (legacy/imported)
+wfs-roster --day 2026-08-19    # one day
+wfs-roster --mask              # hide email addresses, for screenshots
+```
+
+Shows capacity beside each day, and flags any day missing from `session_caps` —
+that combination makes a day look registerable while `register()` silently
+refuses it, which is otherwise easy to miss.
+
+## `wfs-addresses.example.json`
+
+Template for the real meeting points. Copy it and fill it in:
+
+```bash
+cp scripts/wfs-addresses.example.json ~/iris/private/wfs-addresses.json
+chmod 600 ~/iris/private/wfs-addresses.json
+```
+
+The real file is kept **out of this repo on purpose** — the addresses are what
+registration actually buys, and the public pages only ever say "exact address
+sent when you register". The template is tracked so the expected shape survives.
+
+Keys must match the `place` values in `src/_data/workshops.js` exactly, or
+`wfs-confirm` refuses to send for that session rather than emailing a location
+it isn't sure about.
+
 ## `update-meshcore-nodes.sh`
 
 Refreshes the static MeshCore node snapshot used by the **Mesh Network Path**
