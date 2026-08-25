@@ -119,6 +119,20 @@ eleventyExcludeFromCollections: true
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>{% include "wfs-basket.js" %}</script>
   <script>{% include "wfs-basket-ui.js" %}</script>
+  <script>
+  // A day that has already happened must not be registerable.
+  (function(){
+    if(!window.wfsIsPast || !window.wfsIsPast('{{ s.date }}')) return;
+    var tix=document.getElementById('tix'), bar=document.querySelector('.tixbar');
+    if(tix){
+      tix.innerHTML='<div class="tix-head"><h2>This Field Day has passed</h2></div>'+
+        '<div class="trow"><span class="tinfo"><b>Registration is closed</b>'+
+        '<small>Have a look at what is coming up instead.</small></span>'+
+        '<a class="btn-reg" href="/v3/" style="flex:none">Upcoming days &rarr;</a></div>';
+    }
+    if(bar) bar.remove();
+  })();
+  </script>
   <script>{% include "wfs-v3-panel.js" %}</script>
 </body>
 </html>

@@ -16,6 +16,20 @@
   var SESSIONS={ {% for s in sessions %}"{{ s.date }}":{{ s.label | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %} };
   var KEY='wfs.basket.v1', WHO='wfs.who.v1';
 
+  /* ---------------- past days ----------------
+   * A static build bakes in the date it was built, so it cannot be trusted to
+   * know what "today" is. Decide in the browser instead, against the visitor's
+   * actual clock — and register() refuses past dates as well, because a clock
+   * in a browser is not a control.
+   */
+  window.wfsIsPast=function(date){
+    if(!date) return false;
+    var now=new Date();
+    var today=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+
+              '-'+String(now.getDate()).padStart(2,'0');
+    return date < today;
+  };
+
   /* ---------------- capacity ----------------
    * session_counts is a public view — capacity, how many are taken, how many
    * remain. Read for display only; the real enforcement is inside register(),

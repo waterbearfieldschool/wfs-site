@@ -129,7 +129,8 @@
         rate_limited: 'That is a lot of registrations from one address. Email us and we will sort it out.',
         too_busy:     'Things are unusually busy — give it a minute and try again.',
         bad_details:  'Please check the name and email.',
-        bad_party:    'That number of people does not look right.'
+        bad_party:    'That number of people does not look right.',
+        past:         'That Field Day has already happened.'
       }[why];
       say(human || ('Sorry — ' + why), true);
       return;

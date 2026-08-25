@@ -571,6 +571,26 @@ eleventyExcludeFromCollections: true
 <script>{% if variant.hybrid %}{% include "wfs-basket.js" %}{% elif variant.ticketed %}{% include "wfs-tickets.js" %}{% else %}{% include "wfs-register.js" %}{% endif %}</script>
 {% if variant.hybrid %}<script>{% include "wfs-basket-ui.js" %}</script>
 <script>
+  // Hide Field Days that have already happened. Done here rather than at build
+  // time because a static build only knows the date it was built on.
+  (function(){
+    if(!window.wfsIsPast) return;
+    var hidden=0;
+    document.querySelectorAll('.daycard2').forEach(function(c){
+      var d=(c.id||'').replace('day-','');
+      if(window.wfsIsPast(d)){ c.style.display='none'; hidden++; }
+    });
+    document.querySelectorAll('.glance-row').forEach(function(a){
+      var m=/\/(\d{4}-\d{2}-\d{2})\//.exec(a.getAttribute('href')||'');
+      if(m && window.wfsIsPast(m[1])) a.style.display='none';
+    });
+    document.querySelectorAll('.glance-wk').forEach(function(w){
+      if(!w.querySelector('.glance-row:not([style*="none"])')) w.style.display='none';
+    });
+    if(hidden) console.log('[wfs] hid '+hidden+' past Field Day(s)');
+  })();
+</script>
+<script>
   // live "N spots left" on the Field Day cards
   document.addEventListener('wfs.counts', function(e){
     var counts=e.detail||{};
