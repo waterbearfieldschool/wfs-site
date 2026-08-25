@@ -6,6 +6,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Waterbear Field School website - a static site built with Eleventy (11ty) using Nunjucks templating.
 
+## Registration
+
+Field Day registration — the flow, the database, the keys, and how to add a new
+workshop — is documented in **`docs/REGISTRATION.md`**. Read that before
+touching anything under `src/_includes/wfs-*`, `src/_data/workshops.js`, or
+`supabase/`.
+
+The short version: capacity and the rules are enforced in Postgres, not in the
+browser; Snipcart is only a payment step; and adding a Field Day means editing
+`workshops.js` **and** adding a `session_caps` row, or the day silently refuses
+every registration.
+
 ## Commands
 
 - **Development server**: `npm run dev` (starts at http://localhost:8080 with hot reload)
