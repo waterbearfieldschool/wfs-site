@@ -1,0 +1,35 @@
+{# Snipcart products for /v3/ — PAID lines only.
+
+   The free "Pay what you can" registration is deliberately absent: in this
+   variant an all-free basket is written straight to Supabase and Snipcart is
+   never involved, so there is nothing for it to price. Snipcart's only job here
+   is taking money. #}
+<div hidden aria-hidden="true">
+  {%- for s in sessions %}
+  {%- for t in registrationTypes %}{% if t.price > 0 %}
+  {%- set p = s.ticketPrice if (t.id == "standard" and s.ticketPrice) else t.price %}
+  <button class="snipcart-add-item" id="def-tix-{{ s.date }}-{{ t.id }}"
+    data-item-id="tix-{{ s.date }}-{{ t.id }}"
+    data-item-name="{{ s.cartName }} · {{ t.label }}"
+    data-item-price="{{ p }}.00"
+    data-item-url="{{ site.url }}/v3/"
+    data-item-description="{{ t.blurb }}"
+    data-item-quantity="1">tix</button>
+  {%- endif %}{% endfor %}
+  {%- if s.materials %}
+  <button class="snipcart-add-item" id="def-kit-{{ s.date }}"
+    data-item-id="kit-{{ s.date }}"
+    data-item-name="{{ s.cartName }} · Take-home kit"
+    data-item-price="{{ s.materials.fee }}.00"
+    data-item-url="{{ site.url }}/v3/"
+    data-item-description="Materials for {{ s.materials.label }}, reserved for you on {{ s.day }}."
+    data-item-quantity="1">kit</button>
+  {%- endif %}
+  {%- endfor %}
+</div>
+
+{# Uses site.snipcartApiKey deliberately. The other key in this repo's history,
+   1068235b-…, is the LIVE key — it is the one edge-blog uses to take real money
+   for kits. It must never appear on a prototype page. #}
+<div id="snipcart" data-api-key="{{ site.snipcartApiKey }}" data-config-modal-style="side" data-config-add-product-behavior="none" hidden></div>
+<script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>

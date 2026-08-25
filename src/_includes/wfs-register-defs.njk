@@ -1,0 +1,35 @@
+{# Hidden Snipcart product definitions.
+
+   Registration is NOT sold here — it's free and goes straight to Supabase.
+   Snipcart only handles money: pre-paid take-home kits (per session, so we know
+   how many to prepare) and voluntary contributions (generic, not tied to a day).
+
+   data-item-url is absolute and points at the production homepage: Snipcart
+   validates prices by fetching that URL from its own servers, so it must be a
+   publicly reachable address, not whatever host you're previewing on. #}
+<div hidden aria-hidden="true">
+  {%- for s in sessions %}{% if s.materials %}
+  <button class="snipcart-add-item" id="def-kit-{{ s.date }}"
+    data-item-id="kit-{{ s.date }}"
+    data-item-name="{{ s.cartName }} · Take-home kit"
+    data-item-price="{{ s.materials.fee }}.00"
+    data-item-url="{{ site.url }}/"
+    data-item-description="Materials for {{ s.materials.label }}, reserved for you on {{ s.day }}."
+    data-item-quantity="1">kit</button>
+  {%- endif %}{% endfor %}
+  {%- for amt in contributionAmounts %}
+  <button class="snipcart-add-item" id="def-contribution-{{ amt }}"
+    data-item-id="contribution-{{ amt }}"
+    data-item-name="Contribution — ${{ amt }}"
+    data-item-price="{{ amt }}.00"
+    data-item-url="{{ site.url }}/"
+    data-item-description="A voluntary contribution to Waterbear Field School. Keeps Field Days free for everyone."
+    data-item-quantity="1">c{{ amt }}</button>
+  {%- endfor %}
+</div>
+
+{# Uses site.snipcartApiKey deliberately. The other key in this repo's history,
+   1068235b-…, is the LIVE key — it is the one edge-blog uses to take real money
+   for kits. It must never appear on a prototype page. #}
+<div id="snipcart" data-api-key="{{ site.snipcartApiKey }}" data-config-modal-style="side" data-config-add-product-behavior="none" hidden></div>
+<script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
