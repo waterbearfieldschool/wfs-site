@@ -66,3 +66,6 @@
   .dc2-spots:empty{display:none}
   .dc2-spots.low{color:#a8551f}
   .dc2-spots.full{color:#b23}
+  .protobar .protoreset{margin-left:10px;background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:6px;font:inherit;font-size:.78rem;font-weight:700;padding:3px 9px;cursor:pointer}
+  .protobar .protoreset:hover:not(:disabled){background:rgba(255,255,255,.28)}
+  .protobar .protoreset:disabled{opacity:.6;cursor:default}

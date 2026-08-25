@@ -1,0 +1,124 @@
+---
+pagination:
+  data: sessions
+  size: 1
+  alias: s
+permalink: "/v3/{{ s.slug }}/{{ s.date }}/"
+layout: false
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>{{ s.title }} · {{ s.day }} — Waterbear Field School</title>
+<meta name="description" content="{{ s.cardBlurb }}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+<style>{% include "wfs-preview.css" %}
+{% include "wfs-tickets.css" %}
+{% include "wfs-basket.css" %}
+</style>
+</head>
+<body>
+  {% include "wfs-protobar.njk" %}
+  <div class="stickytop">
+    <div class="top">
+      <a class="brand" href="/v3/" style="text-decoration:none">Waterbear Field School<small>Hands-on learning &amp; building, near Lincoln, MA</small></a>
+      <button class="cartbtn" id="cartBtn" hidden>Cart <span class="cnum" id="cartNum">0</span></button>
+    </div>
+  </div>
+
+  <div class="backbar"><a href="/v3/">&larr; All Field Days</a></div>
+
+  <div class="wdetail">
+    <div class="whero">
+      <img src="{{ s.img }}" alt="{{ s.title }}">
+      <div class="wband" style="background:linear-gradient(transparent,{{ s.color }}f2)"><h1>{{ s.title }}</h1></div>
+    </div>
+
+    <p class="wblurb">{{ s.day }} · {{ s.time }} · {{ s.place }}</p>
+
+    <div class="wsec">
+      {% for p in s.about %}<p>{{ p }}</p>{% endfor %}
+    </div>
+
+    <dl class="dc-facts">
+      <div><dt>When</dt><dd>{{ s.day }} · {{ s.time }}</dd></div>
+      <div><dt>Where</dt><dd>{{ s.location }}<br><span class="muted">{{ s.locationNote }}</span></dd></div>
+      <div><dt>Who</dt><dd>{{ s.forWhom }}</dd></div>
+      <div><dt>Bring</dt><dd>{{ s.bring }}</dd></div>
+    </dl>
+
+    <div class="tix" id="tix" data-date="{{ s.date }}" data-title="{{ s.title }}" data-label="{{ s.label }}">
+      <div class="tix-head">
+        <h2>Choose a Registration Type:</h2>
+        <p class="tixcap" id="tixCap"></p>
+      </div>
+
+      {%- for t in registrationTypes %}
+      {%- set p = s.ticketPrice if (t.id == "standard" and s.ticketPrice) else t.price %}
+      <div class="trow{% if t.price == 0 %} tfree{% endif %}"
+           data-def="def-tix-{{ s.date }}-{{ t.id }}"
+           data-pid="tix-{{ s.date }}-{{ t.id }}"
+           data-unit="{{ p }}"
+           data-kind="reg"
+           data-line="{{ s.cartName }}"
+           data-sub="{{ t.label }}">
+        <span class="tinfo"><b>{{ t.label }}</b><small>{{ t.blurb }}</small></span>
+        <span class="tprice">{% if p > 0 %}${{ p }}{% else %}Free{% endif %}</span>
+        <span class="qctl">
+          <button type="button" class="qbtn" data-step="-1" aria-label="one fewer">&minus;</button>
+          <output class="qnum">0</output>
+          <button type="button" class="qbtn" data-step="1" aria-label="one more">+</button>
+        </span>
+      </div>
+      {%- endfor %}
+
+      {%- if s.materials %}
+      <div class="tsub">Take-home kit (optional):</div>
+      <div class="trow tkit"
+           data-def="def-kit-{{ s.date }}"
+           data-pid="kit-{{ s.date }}"
+           data-unit="{{ s.materials.fee }}"
+           data-kind="kit"
+           data-line="{{ s.cartName }}"
+           data-sub="Take-home kit — {{ s.kitName }}">
+        <span class="tinfo"><b>{{ s.kitName }}</b><small>Pre-paid so we can prepare yours. Add one per thing you&rsquo;d like to take home.</small></span>
+        <span class="tprice">${{ s.materials.fee }}<small>each</small></span>
+        <span class="qctl">
+          <button type="button" class="qbtn" data-step="-1" aria-label="one fewer">&minus;</button>
+          <output class="qnum">0</output>
+          <button type="button" class="qbtn" data-step="1" aria-label="one more">+</button>
+        </span>
+      </div>
+      {%- endif %}
+    </div>
+
+    <div class="tixbar">
+      <span class="tixsum" id="tixSum"><b>Nothing selected</b><small>Choose a registration above</small></span>
+      <button class="tixgo" id="tixGo" type="button" disabled>Add to my registrations</button>
+    </div>
+
+    <p class="tixnote">Add as many days as you like, then finish up in one go. <b>If nothing you picked costs money, there&rsquo;s no checkout and no card</b> &mdash; just your name and email.</p>
+
+    <div class="more-days">
+      <p style="color:var(--muted);margin:28px 0 10px;font-size:.92rem">Other {{ s.short }} days:</p>
+      <div class="daynav">{%- for other in sessions -%}{%- if other.slug == s.slug and other.date != s.date -%}<a href="/v3/{{ other.slug }}/{{ other.date }}/" class="daychip" style="border-color:{{ s.color }}">{{ other.day }} · {{ other.title }}</a>{%- endif -%}{%- endfor -%}</div>
+    </div>
+
+    <p style="margin:26px 0 0;color:var(--muted)">Want to teach or host a session? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:{{ s.color }};font-weight:700;text-decoration:underline">Email us</a>.</p>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  {% include "wfs-basket-defs.njk" %}
+  {% include "wfs-basket-panel.njk" %}
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>{% include "wfs-basket.js" %}</script>
+  <script>{% include "wfs-basket-ui.js" %}</script>
+  <script>{% include "wfs-v3-panel.js" %}</script>
+</body>
+</html>

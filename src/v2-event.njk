@@ -1,0 +1,235 @@
+---
+pagination:
+  data: sessions
+  size: 1
+  alias: s
+permalink: "/v2/{{ s.slug }}/{{ s.date }}/"
+layout: false
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>{{ s.title }} · {{ s.day }} — Waterbear Field School</title>
+<meta name="description" content="{{ s.cardBlurb }}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+<style>{% include "wfs-preview.css" %}
+{% include "wfs-tickets.css" %}
+</style>
+</head>
+<body>
+  {% include "wfs-protobar.njk" %}
+  <div class="stickytop">
+    <div class="top">
+      <a class="brand" href="/v2/" style="text-decoration:none">Waterbear Field School<small>Hands-on learning &amp; building, near Lincoln, MA</small></a>
+      <button class="cartbtn" id="cartBtn" hidden>Cart <span class="cnum" id="cartNum">0</span></button>
+    </div>
+  </div>
+
+  <div class="backbar"><a href="/v2/">&larr; All Field Days</a></div>
+
+  <div class="wdetail">
+    <div class="whero">
+      <img src="{{ s.img }}" alt="{{ s.title }}">
+      <div class="wband" style="background:linear-gradient(transparent,{{ s.color }}f2)"><h1>{{ s.title }}</h1></div>
+    </div>
+
+    <p class="wblurb">{{ s.day }} · {{ s.time }} · {{ s.place }}</p>
+
+    <div class="wsec">
+      {% for p in s.about %}<p>{{ p }}</p>{% endfor %}
+    </div>
+
+    <dl class="dc-facts">
+      <div><dt>When</dt><dd>{{ s.day }} · {{ s.time }}</dd></div>
+      <div><dt>Where</dt><dd>{{ s.location }}<br><span class="muted">{{ s.locationNote }}</span></dd></div>
+      <div><dt>Who</dt><dd>{{ s.forWhom }}</dd></div>
+      <div><dt>Bring</dt><dd>{{ s.bring }}</dd></div>
+    </dl>
+
+    <div class="tix" id="tix" data-date="{{ s.date }}" data-title="{{ s.title }}">
+      <div class="tix-head">
+        <h2>Choose a Registration Type:</h2>
+      </div>
+
+      {%- for t in registrationTypes %}
+      {%- set p = s.ticketPrice if (t.id == "standard" and s.ticketPrice) else t.price %}
+      <div class="trow{% if t.price == 0 %} tfree{% endif %}"
+           data-def="def-tix-{{ s.date }}-{{ t.id }}"
+           data-pid="tix-{{ s.date }}-{{ t.id }}"
+           data-unit="{{ p }}"
+           data-kind="reg">
+        <span class="tinfo"><b>{{ t.label }}</b><small>{{ t.blurb }}</small></span>
+        <span class="tprice">{% if p > 0 %}${{ p }}{% else %}Free{% endif %}</span>
+        <span class="qctl">
+          <button type="button" class="qbtn" data-step="-1" aria-label="one fewer">&minus;</button>
+          <output class="qnum">0</output>
+          <button type="button" class="qbtn" data-step="1" aria-label="one more">+</button>
+        </span>
+      </div>
+      {%- endfor %}
+
+      {%- if s.materials %}
+      <div class="tsub">Take-home kit (optional):</div>
+      <div class="trow tkit"
+           data-def="def-kit-{{ s.date }}"
+           data-pid="kit-{{ s.date }}"
+           data-unit="{{ s.materials.fee }}"
+           data-kind="kit">
+        <span class="tinfo"><b>{{ s.kitName }}</b><small>Pre-paid so we can prepare yours. Add one per thing you&rsquo;d like to take home.</small></span>
+        <span class="tprice">${{ s.materials.fee }}<small>each</small></span>
+        <span class="qctl">
+          <button type="button" class="qbtn" data-step="-1" aria-label="one fewer">&minus;</button>
+          <output class="qnum">0</output>
+          <button type="button" class="qbtn" data-step="1" aria-label="one more">+</button>
+        </span>
+      </div>
+      {%- endif %}
+    </div>
+
+    <div class="tixbar">
+      <span class="tixsum" id="tixSum"><b>Nothing selected</b><small>Choose a registration above</small></span>
+      <button class="tixgo" id="tixGo" type="button" disabled>Check out</button>
+    </div>
+
+    <p class="tixnote">Checking out is what registers you &mdash; you&rsquo;ll get a confirmation email with the exact address. Registering for another day? They&rsquo;ll gather in the same cart, so you only check out once.</p>
+
+    <div class="more-days">
+      <p style="color:var(--muted);margin:28px 0 10px;font-size:.92rem">Other {{ s.short }} days:</p>
+      <div class="daynav">{%- for other in sessions -%}{%- if other.slug == s.slug and other.date != s.date -%}<a href="/v2/{{ other.slug }}/{{ other.date }}/" class="daychip" style="border-color:{{ s.color }}">{{ other.day }} · {{ other.title }}</a>{%- endif -%}{%- endfor -%}</div>
+    </div>
+
+    <p style="margin:26px 0 0;color:var(--muted)">Want to teach or host a session? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:{{ s.color }};font-weight:700;text-decoration:underline">Email us</a>.</p>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  {% include "wfs-tickets-defs.njk" %}
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>{% include "wfs-tickets.js" %}</script>
+  <script>
+  (function(){
+    var panel=document.getElementById('tix');
+    var rows=[].slice.call(panel.querySelectorAll('.trow'));
+    var sumEl=document.getElementById('tixSum'), goBtn=document.getElementById('tixGo');
+    var lastCart={count:0, qty:{}};
+    var busy=false, syncing=false;
+
+    function qtyOf(r){ return parseInt(r.querySelector('.qnum').textContent,10)||0; }
+    function setQty(r,n){
+      n=Math.max(0,Math.min(30,n));
+      r.querySelector('.qnum').textContent=n;
+      r.classList.toggle('on', n>0);
+      r.querySelector('.qbtn[data-step="-1"]').disabled=(n===0);
+    }
+
+    function summarise(){
+      var regs=0, kits=0, money=0;
+      rows.forEach(function(r){
+        var n=qtyOf(r), unit=parseInt(r.dataset.unit,10)||0;
+        money+=n*unit;
+        if(r.dataset.kind==='kit') kits+=n; else regs+=n;
+      });
+      var bits=[];
+      if(regs) bits.push(regs+(regs===1?' registration':' registrations'));
+      if(kits)    bits.push(kits+(kits===1?' kit':' kits'));
+      sumEl.innerHTML = regs||kits
+        ? '<b>'+bits.join(' · ')+' · '+(money>0?'$'+money:'Free')+'</b>'+
+          '<small>'+(money>0?'Checkout confirms your place':'Free registration — no card needed')+'</small>'
+        : '<b>Nothing selected</b><small>Choose a registration above</small>';
+      goBtn.disabled = !regs && !kits;
+      return {regs:regs, kits:kits, money:money};
+    }
+
+    // Every change writes straight through to the cart — Eventbrite-style, the
+    // panel and the cart are never out of step.
+    async function sync(){
+      if(syncing) return;
+      syncing=true; busy=true;
+      try{
+        var q=lastCart.qty||{};
+        for(var i=0;i<rows.length;i++){
+          var r=rows[i], want=qtyOf(r), have=q[r.dataset.pid]||0;
+          if(want!==have) await window.wfsSetQty(r.dataset.def, want);
+        }
+      } finally { syncing=false; busy=false; }
+    }
+
+    var pending=null;
+    panel.addEventListener('click', function(e){
+      var b=e.target.closest('.qbtn'); if(!b) return;
+      var r=b.closest('.trow');
+      setQty(r, qtyOf(r)+parseInt(b.dataset.step,10));
+      summarise();
+      clearTimeout(pending);
+      pending=setTimeout(sync, 400);        // debounce rapid +/- taps
+    });
+
+    goBtn.onclick=async function(){
+      clearTimeout(pending);
+      goBtn.disabled=true; var t=goBtn.textContent; goBtn.textContent='One moment…';
+      await sync();
+      goBtn.textContent=t; goBtn.disabled=false;
+      window.wfsCheckout();
+    };
+
+    document.addEventListener('wfs.cart', function(e){
+      lastCart=e.detail;
+      if(busy) return;
+      var q=e.detail.qty||{};
+      var known=rows.some(function(r){ return (q[r.dataset.pid]||0)>0; });
+      if(known){ rows.forEach(function(r){ setQty(r, q[r.dataset.pid]||0); }); summarise(); }
+    });
+
+    // Snipcart's side cart slides in over the page and carries its own checkout
+    // button — two competing checkouts is confusing, and the panel doesn't
+    // reliably outrank a sticky bar in the stacking order. Belt and braces:
+    // wfs-tickets.css forces Snipcart above us, and this folds our bar away
+    // while the panel is up. Detection is by rendered geometry rather than by
+    // class name, which changes between Snipcart theme versions.
+    (function(){
+      var bar=document.querySelector('.tixbar');
+      var root=document.getElementById('snipcart');
+      if(!bar || !root) return;
+
+      function visible(el){
+        if(!el) return false;
+        var cs=getComputedStyle(el);
+        if(cs.display==='none' || cs.visibility==='hidden' || parseFloat(cs.opacity)===0) return false;
+        var r=el.getBoundingClientRect();
+        return r.width>100 && r.height>100 && r.right>0 && r.left<window.innerWidth;
+      }
+      function panelUp(){
+        var cand=root.querySelector('.snipcart-cart, .snipcart-modal, .snipcart__box');
+        if(cand) return visible(cand);
+        return root.children.length>0 && visible(root);
+      }
+
+      var away=null;
+      function check(){
+        var up=panelUp();
+        if(up===away) return;
+        away=up;
+        bar.classList.toggle('away', up);
+      }
+      new MutationObserver(check).observe(root, {childList:true, subtree:true, attributes:true});
+      window.addEventListener('resize', check, {passive:true});
+      document.addEventListener('wfs.cart', check);
+      setInterval(check, 500);          // cheap safety net for close animations
+      check();
+    })();
+
+    // Start empty — nothing is chosen for the visitor. Standard still leads by
+    // being listed first and priced on the listing card; it just isn't pre-filled.
+    // (If this day is already in the cart, the wfs.cart handler above overwrites
+    // these zeros with the real quantities.)
+    rows.forEach(function(r){ setQty(r, 0); });
+    summarise();
+  })();
+  </script>
+</body>
+</html>

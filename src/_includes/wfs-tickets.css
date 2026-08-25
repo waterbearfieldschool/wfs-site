@@ -1,0 +1,96 @@
+  /* ---- /v2/ ticketed prototype (Eventbrite-ish) ---- */
+  .cartbtn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:var(--sun);color:#123526;border:none;border-radius:999px;padding:8px 15px;font-weight:800;font-size:.84rem;cursor:pointer;display:inline-flex;gap:7px;align-items:center;box-shadow:0 3px 10px rgba(0,0,0,.24)}
+  .cartbtn[hidden]{display:none}
+  .cartbtn .cnum{background:#123526;color:#fff;border-radius:999px;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:.74rem;padding:0 5px}
+
+  /* ticket panel */
+  .tix{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden;margin:22px 0 8px;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+  .tix-head{background:#f3f6f1;border-bottom:1px solid var(--line);padding:15px 18px 13px}
+  .tix-head h2{margin:0}
+  .tix-head p{font-size:.85rem;color:var(--muted);margin:3px 0 0}
+  .trow{display:flex;align-items:center;gap:16px;padding:15px 18px 15px 36px;border-bottom:1px solid var(--line)}
+  .trow:last-child{border-bottom:none}
+  .trow.on{background:#f6faf7}
+  .trow.tfree .tprice{color:var(--muted)}
+  .trow.tkit{background:#fbf9f4}
+  .tinfo{flex:1;min-width:0}
+  .tinfo b{display:block;color:var(--accent-d);font-size:.99rem;line-height:1.25}
+  .tinfo small{display:block;color:var(--muted);font-size:.84rem;line-height:1.4;margin-top:2px}
+  .tprice{flex:none;font-weight:800;font-size:1.05rem;color:var(--ink);min-width:62px;text-align:right}
+  .tprice small{display:block;font-weight:500;font-size:.72rem;color:var(--muted)}
+  .qctl{display:inline-flex;align-items:center;gap:4px;flex:none}
+  .qbtn{width:32px;height:32px;border:1.5px solid var(--line);background:#fff;border-radius:8px;font-size:1.15rem;line-height:1;font-weight:800;color:var(--accent);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+  .qbtn:hover:not(:disabled){border-color:var(--accent);background:#f2f7f3}
+  .qbtn:disabled{opacity:.3;cursor:default}
+  .qnum{min-width:30px;text-align:center;font-weight:800;font-size:1.02rem;font-variant-numeric:tabular-nums}
+
+  /* order summary bar */
+  .tixbar{position:sticky;bottom:0;z-index:20;transition:transform .22s ease,opacity .18s ease;background:#fff;border:1px solid var(--line);border-top:2px solid var(--accent);border-radius:0 0 14px 14px;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 -4px 16px rgba(0,0,0,.08);margin-bottom:22px}
+  .tixsum{font-size:.92rem;line-height:1.25;min-width:0}
+  .tixsum b{color:var(--accent-d);font-size:1.08rem;display:block}
+  .tixsum small{color:var(--muted);font-size:.82rem}
+  .tixgo{flex:none;background:var(--accent);color:#fff;border:none;border-radius:10px;font-weight:800;font-size:.98rem;padding:13px 26px;cursor:pointer;white-space:nowrap}
+  .tixgo:hover:not(:disabled){background:var(--accent-d)}
+  .tixgo:disabled{opacity:.45;cursor:default}
+  @media(max-width:520px){
+    .trow{flex-wrap:wrap;gap:8px 12px;padding:13px 14px 13px 24px}
+    .tinfo{flex:1 0 60%}
+    .tprice{min-width:0;text-align:left;order:3}
+    .qctl{margin-left:auto;order:4}
+    .tixbar{flex-direction:column;align-items:stretch;gap:10px}
+    .tixgo{width:100%}
+  }
+
+  .tixbar.away{transform:translateY(130%);opacity:0;pointer-events:none}
+  .tixnote{color:var(--muted);font-size:.87rem;line-height:1.5;max-width:620px;margin:0 0 22px}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:#123526;color:#fff;font-weight:700;font-size:.9rem;padding:12px 20px;border-radius:999px;box-shadow:0 8px 26px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:.25s;z-index:200;max-width:90vw;text-align:center}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* listing cards on the /v2/ homepage */
+  .daycard2 .dc2-from{display:inline-block;font-weight:800;color:var(--accent-d);font-size:.92rem;margin:2px 0 6px}
+  .daycard2 .dc2-from span{font-weight:500;color:var(--muted);font-size:.85em}
+
+  /* compact Snipcart side cart — see wfs-register.css for the reasoning */
+  .snipcart-item-line{padding:8px 0 !important}
+  .snipcart-item-line__container{padding:0 !important;gap:8px !important}
+  .snipcart-item-line__media,.snipcart-item-line__image{display:none !important}
+  .snipcart-item-line__title{font-size:.92rem !important;line-height:1.25 !important}
+  .snipcart-item-line__variants,.snipcart-item-line__description{font-size:.76rem !important;line-height:1.3 !important}
+  .snipcart-item-quantity{transform:scale(.86);transform-origin:left center}
+  .tsub{background:#f3f6f1;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 18px 13px}
+
+  /* Section labels sit in a serif so they read as a different voice from the
+     registration names below them, which stay in Inter. Both labels share a size. */
+  .tix-head h2,
+  .tsub{
+    font-family:Lora,Georgia,"Times New Roman",serif;
+    font-size:1.26rem;
+    font-weight:600;
+    font-style:normal;
+    letter-spacing:0;
+    text-transform:none;
+    color:var(--accent-d);
+    line-height:1.3;
+    position:relative;
+    padding-left:13px;
+  }
+  .tix-head h2::before,
+  .tsub::before{
+    content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+    height:1.05em;width:3px;border-radius:2px;background:var(--accent);
+  }
+  .tix-head p{padding-left:13px}
+
+  /* Snipcart's slide-in panel must always paint above our sticky order bar.
+     Its own stacking doesn't reliably beat a position:sticky element. */
+  #snipcart,
+  .snipcart-modal,
+  .snipcart-cart,
+  .snipcart__box{ z-index:9000 !important }
+
+  /* prototype notice — this variant is shared for feedback, not for real signups */
+  .protobar{background:#7a2f22;color:#fff;text-align:center;font-size:.83rem;font-weight:600;padding:8px 16px;line-height:1.4}
+  .protobar b{font-weight:800}
+  .protobar .protoreset{margin-left:10px;background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:6px;font:inherit;font-size:.78rem;font-weight:700;padding:3px 9px;cursor:pointer}
+  .protobar .protoreset:hover:not(:disabled){background:rgba(255,255,255,.28)}
