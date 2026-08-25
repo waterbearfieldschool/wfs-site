@@ -70,6 +70,11 @@ Deno.serve(async (req) => {
 
   // Only completed orders create registrations. Everything else is
   // acknowledged so Snipcart doesn't retry it forever.
+  // Log every authenticated invocation. Without this a successful run leaves
+  // nothing but "booted"/"shutdown" in the logs, and you end up inferring what
+  // happened from timestamps — which is exactly what we had to do the first time.
+  console.log(`event=${body.eventName} token=${body.content?.token ?? "-"}`);
+
   if (body.eventName !== "order.completed") {
     return Response.json({ ok: true, ignored: body.eventName });
   }
@@ -143,13 +148,21 @@ Deno.serve(async (req) => {
     });
 
     if (error) { console.error("register failed", date, error); results[date] = "error"; }
-    else if (data?.ok) { results[date] = "registered"; }
+    else if (data?.ok) {
+      console.log(`registered ${date} party=${s.party} kits=${s.kits} amount=${s.amount}`);
+      results[date] = "registered";
+    }
     else {
       // 'duplicate' means the browser beat us by less than ten minutes — fine.
       console.warn("register refused", date, data);
       results[date] = data?.reason ?? "refused";
     }
   }
+
+  // One line that says what this invocation actually did, per day. "registered"
+  // means the backstop earned its keep; "already-recorded" means the browser
+  // got there first and this correctly stood down.
+  console.log(`order=${orderToken} email=${email} results=${JSON.stringify(results)}`);
 
   // Always 200 once the token validated: a non-2xx makes Snipcart retry, and
   // retrying won't fix a refusal like 'full'.
