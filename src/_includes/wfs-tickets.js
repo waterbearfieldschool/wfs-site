@@ -164,7 +164,22 @@
     // In this variant checkout IS registration. Direct inserts are revoked, so
     // the roster is written through register() — one call per day in the order,
     // which also re-checks capacity at the moment of writing.
-    Snipcart.events.on('order.completed', async function(order){
+
+    // Snipcart v3 fires cart.confirmed; order.completed is the v2 name and never
+    // fires here — which is why a completed order wrote nothing. Listen for both,
+    // and make the handler idempotent so a double-fire can't double-register.
+    function orderSeen(token){
+      if(!token) return false;
+      try{
+        var done=JSON.parse(localStorage.getItem('wfs.orders.done')||'[]');
+        if(done.indexOf(token)>=0) return true;
+        done.push(token);
+        localStorage.setItem('wfs.orders.done', JSON.stringify(done.slice(-50)));
+      }catch(e){}
+      return false;
+    }
+
+    async function onOrder(order){
       if(!sb) return;
       try{
         var email=(order && (order.email || (order.user && order.user.email))) || '';
@@ -173,6 +188,7 @@
         if(!email) return;
 
         var token=(order && (order.token || order.invoiceNumber)) || null;
+        if(orderSeen(token)) return;
         var items=(order && order.items) || [];
         var kitDates={}, byDate={}, amount={}, kitAmount={}, tier={};
         items.forEach(function(it){
@@ -216,6 +232,9 @@
           else if(!(res.data||{}).ok) console.error('[wfs] register refused', d, res.data);
         }
       }catch(e){ console.error('[wfs] post-order register threw', e); }
+    }
+    ['cart.confirmed','order.completed'].forEach(function(ev){
+      try{ Snipcart.events.on(ev, onOrder); }catch(e){}
     });
   });
 })();

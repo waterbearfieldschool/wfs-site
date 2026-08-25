@@ -216,20 +216,39 @@
 
   document.addEventListener('snipcart.ready', function(){
     if(!window.Snipcart) return;
+
+    // Snipcart v3 fires cart.confirmed; order.completed is the v2 name and never
+    // fires here — which is why a completed order wrote nothing. Listen for both,
+    // and make the handler idempotent so a double-fire can't double-register.
+    function orderSeen(token){
+      if(!token) return false;
+      try{
+        var done=JSON.parse(localStorage.getItem('wfs.orders.done')||'[]');
+        if(done.indexOf(token)>=0) return true;
+        done.push(token);
+        localStorage.setItem('wfs.orders.done', JSON.stringify(done.slice(-50)));
+      }catch(e){}
+      return false;
+    }
+
     // A paid order also carries whatever free lines were in the basket.
-    Snipcart.events.on('order.completed', async function(order){
+    async function onOrder(order){
       try{
         var email=(order && (order.email || (order.user && order.user.email))) || '';
         var name='';
         try{ name=(order.billingAddress && order.billingAddress.fullName) || order.cardHolderName || ''; }catch(e){}
         if(!email) return;
         var token=(order && (order.token || order.invoiceNumber)) || null;
+        if(orderSeen(token)) return;
         var res=await window.wfsCommit(name, email, token);
         if(res.placed && res.placed.length) window.wfsBasket.clear();
         if(res.full && res.full.length){
           console.warn('[wfs] paid order completed but these days were full:', res.full);
         }
       }catch(e){ console.error('[wfs] post-order commit threw', e); }
+    }
+    ['cart.confirmed','order.completed'].forEach(function(ev){
+      try{ Snipcart.events.on(ev, onOrder); }catch(e){}
     });
   });
 
