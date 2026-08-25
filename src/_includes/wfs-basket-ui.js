@@ -123,7 +123,16 @@
     // A day can fill between loading the page and pressing the button, so this
     // has to cope with some days landing and others not.
     if(res.failed && res.failed.length && !res.placed.length){
-      say('Sorry — ' + res.failed[0].msg, true); return;
+      var why=res.failed[0].msg;
+      var human={
+        duplicate:    'Looks like that just went through — check your email before trying again.',
+        rate_limited: 'That is a lot of registrations from one address. Email us and we will sort it out.',
+        too_busy:     'Things are unusually busy — give it a minute and try again.',
+        bad_details:  'Please check the name and email.',
+        bad_party:    'That number of people does not look right.'
+      }[why];
+      say(human || ('Sorry — ' + why), true);
+      return;
     }
     if(!res.placed.length && res.full.length){
       say(res.full.length===1

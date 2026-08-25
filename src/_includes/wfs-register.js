@@ -67,6 +67,9 @@
           : 'Sorry — that day is full.'};
       }
       if(out.reason==='bad_details') return {ok:false, error:'Please check the name and email.'};
+      if(out.reason==='duplicate') return {ok:false, error:'Looks like that just went through — check your email before trying again.'};
+      if(out.reason==='rate_limited') return {ok:false, error:'That is a lot of registrations from one address. Email us and we will sort it out.'};
+      if(out.reason==='too_busy') return {ok:false, error:'Things are unusually busy — give it a minute and try again.'};
       return {ok:false, error:'Could not register ('+(out.reason||'unknown')+').'};
     }
 

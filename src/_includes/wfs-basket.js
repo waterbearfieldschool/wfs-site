@@ -247,9 +247,37 @@
         }
       }catch(e){ console.error('[wfs] post-order commit threw', e); }
     }
-    ['cart.confirmed','order.completed'].forEach(function(ev){
-      try{ Snipcart.events.on(ev, onOrder); }catch(e){}
+    // I have now guessed the event name twice. Bind every plausible candidate —
+    // the idempotency guard makes duplicates harmless — and log whatever fires,
+    // so the next diagnosis comes from evidence rather than from me reasoning
+    // about what the API probably does.
+    ['cart.confirmed','order.completed','order.placed','payment.succeeded',
+     'cart.checkout.completed','order.status.changed'].forEach(function(ev){
+      try{
+        Snipcart.events.on(ev, function(payload){
+          console.log('[wfs] snipcart event fired:', ev, payload);
+          try{ localStorage.setItem('wfs.lastEvent', ev + ' @ ' + new Date().toISOString()); }catch(e){}
+          return onOrder(payload);
+        });
+      }catch(e){ console.warn('[wfs] could not bind', ev, e); }
     });
+
+    // Belt to the events: watch the store directly. Whatever Snipcart calls the
+    // moment of confirmation, the cart ends up carrying an order token — when we
+    // see one we haven't recorded, register from it.
+    try{
+      Snipcart.store.subscribe(function(){
+        var s; try{ s=Snipcart.store.getState(); }catch(e){ return; }
+        var c=s && s.cart;
+        var tok=c && (c.token || c.invoiceNumber);
+        var done=c && (c.status==='Processed' || c.confirmed || s.order);
+        if(tok && done) onOrder(c);
+      });
+    }catch(e){ console.warn('[wfs] could not subscribe to the store', e); }
+
+    // And say plainly in the console what this page is watching for.
+    console.log('[wfs] order handler armed. After a checkout, run:  ' +
+                'localStorage.getItem("wfs.lastEvent")');
   });
 
   announce();
