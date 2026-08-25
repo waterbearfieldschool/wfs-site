@@ -34,5 +34,7 @@
 {# Uses site.snipcartApiKey deliberately. The other key in this repo's history,
    1068235b-…, is the LIVE key — it is the one edge-blog uses to take real money
    for kits. It must never appear on a prototype page. #}
-<div id="snipcart" data-api-key="{{ site.snipcartApiKey }}" data-config-modal-style="side" data-config-add-product-behavior="none" hidden></div>
+{# The TEST key on purpose. /v2/ is an unlisted prototype whose banner tells
+   people not to enter real card details — a live key would make that a lie. #}
+<div id="snipcart" data-api-key="{{ site.snipcartApiKeyTest }}" data-config-modal-style="side" data-config-add-product-behavior="none" hidden></div>
 <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
