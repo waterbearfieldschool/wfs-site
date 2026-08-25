@@ -1,34 +1,94 @@
 (function(){
-  var sb = window.supabase
-    ? supabase.createClient('https://jhgcnqmzbphzpxgtojti.supabase.co',
-                            'sb_publishable_VjYvl7U-fWJO0st6R6W7gg_ep7SNTn6')
-    : null;
-
-  // "tix-2026-08-20-standard" -> {date, tier}
-  function parseTix(id){
-    if(!id || id.indexOf('tix-')!==0) return null;
-    var rest=id.slice(4), cut=rest.lastIndexOf('-');
-    if(cut<0) return null;
-    return { date:rest.slice(0,cut), tier:rest.slice(cut+1) };
-  }
-  window.wfsParseTix=parseTix;
-
-  var SESSIONS={ {% for s in sessions %}"{{ s.date }}":{{ s.label | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %} };
+  var SUPABASE_URL='https://jhgcnqmzbphzpxgtojti.supabase.co';
+  var SUPABASE_KEY='sb_publishable_VjYvl7U-fWJO0st6R6W7gg_ep7SNTn6';
+  var sb = window.supabase ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
   var toastEl=document.getElementById('toast');
   window.wfsToast=function(t){
     if(!toastEl) return;
     toastEl.textContent=t; toastEl.classList.add('show');
     clearTimeout(toastEl._t);
-    toastEl._t=setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
+    toastEl._t=setTimeout(function(){ toastEl.classList.remove('show'); }, 2800);
   };
+
+  /* ---------------- registration (free, Supabase) ---------------- */
+
+  // Remembering who registered for what, so a return visit shows the confirmed
+  // state instead of an empty form. Local to this browser; Supabase is the record.
+  var LSK='wfs.registered.v1';
+  function readReg(){
+    try{ return JSON.parse(localStorage.getItem(LSK)||'{}'); }catch(e){ return {}; }
+  }
+  function writeReg(o){
+    try{ localStorage.setItem(LSK, JSON.stringify(o)); }catch(e){}
+  }
+  window.wfsRegistrationFor=function(date){ return readReg()[date]||null; };
+  window.wfsAllRegistrations=readReg;
+  window.wfsForgetRegistration=function(date){
+    var o=readReg(); delete o[date]; writeReg(o);
+  };
+
+  // Last email/name used, so the second and third day you register are quicker.
+  var WHO='wfs.who.v1';
+  window.wfsWho=function(){
+    try{ return JSON.parse(localStorage.getItem(WHO)||'{}'); }catch(e){ return {}; }
+  };
+  function rememberWho(name,email){
+    try{ localStorage.setItem(WHO, JSON.stringify({name:name,email:email})); }catch(e){}
+  }
+
+  // Direct inserts into rsvps are revoked — register() is the only way in. It
+  // re-checks capacity and writes in one locked transaction.
+  window.wfsRegister=async function(opts){
+    if(!sb) return {ok:false, error:'Registration is unavailable — Supabase did not load.'};
+
+    var res;
+    try{
+      res=await sb.rpc('register', {
+        p_date:  opts.date,
+        p_name:  opts.name,
+        p_email: opts.email,
+        p_party: opts.people,
+        // in this variant the kit is chosen in step 2, after registering, so we
+        // can't know it yet; the paid order is what records it there
+        p_kit:   false
+      });
+    }catch(e){ return {ok:false, error:String(e)}; }
+
+    if(res.error){
+      console.error('[wfs] register failed', res.error);
+      return {ok:false, error:res.error.message||'Something went wrong.'};
+    }
+    var out=res.data||{};
+    if(!out.ok){
+      if(out.reason==='full'){
+        return {ok:false, error: out.remaining>0
+          ? 'Only '+out.remaining+' spot'+(out.remaining===1?'':'s')+' left for that day.'
+          : 'Sorry — that day is full.'};
+      }
+      if(out.reason==='bad_details') return {ok:false, error:'Please check the name and email.'};
+      return {ok:false, error:'Could not register ('+(out.reason||'unknown')+').'};
+    }
+
+    rememberWho(opts.name, opts.email);
+    var o=readReg();
+    o[opts.date]={ people:opts.people, name:opts.name, email:opts.email,
+                   label:opts.label, at:new Date().toISOString() };
+    writeReg(o);
+
+    try{ if(window.Snipcart) await Snipcart.api.cart.update({email:opts.email}); }catch(e){}
+    document.dispatchEvent(new CustomEvent('wfs.registered', {detail:{date:opts.date}}));
+    return {ok:true, remaining:out.remaining};
+  };
+
+  /* ---------------- money (Snipcart) ---------------- */
 
   function cartItems(){
     try{ return Snipcart.store.getState().cart.items.items || []; }catch(e){ return []; }
   }
-  function findLine(pid){
-    var h=cartItems().filter(function(i){ return i.id===pid; });
-    return h.length ? h[0] : null;
+  function findLine(productId){
+    var hit=cartItems().filter(function(i){ return i.id===productId; });
+    return hit.length ? hit[0] : null;
   }
   function defItem(defId){
     var el=document.getElementById(defId);
@@ -47,7 +107,6 @@
 
   window.wfsOpenCart=function(){ if(window.wfsCartAsked) window.wfsCartAsked();
                                  if(window.Snipcart) Snipcart.api.theme.cart.open(); };
-  window.wfsCheckout=window.wfsOpenCart;
 
 
   // Snipcart's cart chrome says "Back to store". This isn't a store, it's a set
@@ -111,14 +170,17 @@
   })();
 
 
-  // Set a product's cart quantity to exactly `qty` (0 removes). Uses the JS API,
-  // not hidden-button clicks — those are fire-and-forget and race when several
-  // registration types change at once.
+  // Set a product's quantity in the cart to exactly `qty` (0 removes it).
+  //
+  // Via the JS API rather than clicking the hidden .snipcart-add-item button:
+  // those clicks are fire-and-forget, and two in quick succession (kit +
+  // contribution) race — the second lands mid-mutation and gets dropped.
+  // add/update/remove return real promises, so awaiting them serialises.
   window.wfsSetQty=async function(defId, qty){
     var item=defItem(defId);
     if(!item) return false;
     if(!window.Snipcart || !Snipcart.api || !Snipcart.api.cart){
-      window.wfsToast('Still loading — try again in a moment.');
+      window.wfsToast('Cart is still loading — try again in a moment.');
       return false;
     }
     var line=findLine(item.id);
@@ -128,7 +190,7 @@
       else { item.quantity=qty; await Snipcart.api.cart.items.add(item); }
       return true;
     }catch(e){
-      console.error('[wfs] cart write failed', defId, qty, item, e);
+      console.error('[wfs] cart write failed', defId, 'qty', qty, item, e);
       window.wfsToast('Sorry — the cart rejected that. Check the console.');
       return false;
     }
@@ -146,76 +208,20 @@
     var btn=document.getElementById('cartBtn'), num=document.getElementById('cartNum');
 
     function refresh(){
-      var n=0, total=0;
-      try{
-        var c=Snipcart.store.getState().cart;
-        n=c.items.count||0; total=c.total||0;
-      }catch(e){ return; }
+      var n=0;
+      try{ n=Snipcart.store.getState().cart.items.count||0; }catch(e){ return; }
       if(btn) btn.hidden = !(n>0);
       if(num) num.textContent = n;
       var qty={};
       cartItems().forEach(function(i){ qty[i.id]=(qty[i.id]||0)+(i.quantity||0); });
-      document.dispatchEvent(new CustomEvent('wfs.cart', {detail:{count:n, total:total, qty:qty}}));
+      document.dispatchEvent(new CustomEvent('wfs.cart', {detail:{count:n, qty:qty}}));
     }
     refresh();
     Snipcart.store.subscribe(refresh);
     if(btn) btn.onclick=window.wfsOpenCart;
 
-    // In this variant checkout IS registration. Direct inserts are revoked, so
-    // the roster is written through register() — one call per day in the order,
-    // which also re-checks capacity at the moment of writing.
-    Snipcart.events.on('order.completed', async function(order){
-      if(!sb) return;
-      try{
-        var email=(order && (order.email || (order.user && order.user.email))) || '';
-        var name='';
-        try{ name=(order.billingAddress && order.billingAddress.fullName) || order.cardHolderName || ''; }catch(e){}
-        if(!email) return;
-
-        var token=(order && (order.token || order.invoiceNumber)) || null;
-        var items=(order && order.items) || [];
-        var kitDates={}, byDate={}, amount={}, kitAmount={}, tier={};
-        items.forEach(function(it){
-          if(it.id && it.id.indexOf('kit-')===0){
-            var d=it.id.slice(4);
-            kitDates[d]=(kitDates[d]||0)+(it.quantity||1);
-          }
-        });
-        items.forEach(function(it){
-          var p=parseTix(it.id);
-          if(!p) return;
-          var q=it.quantity||1, unit=parseFloat(it.unitPrice||it.price||0)||0;
-          byDate[p.date]=(byDate[p.date]||0)+q;
-          amount[p.date]=(amount[p.date]||0)+q*unit;
-          if(!tier[p.date] || unit>0) tier[p.date]=p.tier;
-        });
-        items.forEach(function(it){
-          if(it.id && it.id.indexOf('kit-')===0){
-            var d=it.id.slice(4), q=it.quantity||1;
-            var unit=parseFloat(it.unitPrice||it.price||0)||0;
-            kitAmount[d]=(kitAmount[d]||0)+q*unit;
-          }
-        });
-
-        var dates=Object.keys(byDate);
-        for(var i=0;i<dates.length;i++){
-          var d=dates[i];
-          var res=await sb.rpc('register', {
-            p_date:d, p_name:name, p_email:email,
-            p_party:byDate[d],
-            p_kit:!!kitDates[d],
-            p_kits:kitDates[d]||0,
-            p_meta:{
-              tier:        tier[d] || 'free',
-              amount:      amount[d] || 0,
-              kit_amount:  kitAmount[d] || 0,
-              order_token: token
-            }
-          });
-          if(res.error) console.error('[wfs] register failed', d, res.error);
-          else if(!(res.data||{}).ok) console.error('[wfs] register refused', d, res.data);
-        }
-      }catch(e){ console.error('[wfs] post-order register threw', e); }
-    });
+    // The kit flag used to be an UPDATE on rsvps, which is revoked now. Recording
+    // "who bought a kit" from this variant needs its own function; until then the
+    // Snipcart order is the record of kit purchases.
   });
 })();

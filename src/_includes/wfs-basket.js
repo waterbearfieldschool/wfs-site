@@ -172,8 +172,15 @@
     var el=document.getElementById(defId);
     if(!el) { console.error('[wfs] no product definition', defId); return null; }
     var d=el.dataset;
+    // Everything on the button matters here, not just the obvious fields: we add
+    // through the JS API rather than clicking the button, so anything left out
+    // of this object simply isn't part of the item. data-item-shippable was
+    // being ignored for exactly that reason, and Snipcart kept asking for a
+    // shipping method.
     return { id:d.itemId, name:d.itemName, price:parseFloat(d.itemPrice),
-             url:d.itemUrl, description:d.itemDescription||'', quantity:1 };
+             url:d.itemUrl, description:d.itemDescription||'',
+             shippable: d.itemShippable !== 'false',
+             quantity:1 };
   }
   async function setSnipQty(defId, qty){
     var item=defItem(defId); if(!item) return false;
