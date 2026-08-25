@@ -1,3 +1,6 @@
+  /* Registration panel + basket styling for the live site.
+     (Renamed from wfs-tickets.css when /v2/ was retired — the word "ticket"
+     left the interface a while before the filename caught up.) */
   /* ---- /v2/ ticketed prototype (Eventbrite-ish) ---- */
   .cartbtn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:var(--sun);color:#123526;border:none;border-radius:999px;padding:8px 15px;font-weight:800;font-size:.84rem;cursor:pointer;display:inline-flex;gap:7px;align-items:center;box-shadow:0 3px 10px rgba(0,0,0,.24)}
   .cartbtn[hidden]{display:none}

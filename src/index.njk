@@ -1,9 +1,5 @@
 ---
-pagination:
-  data: siteVariants
-  size: 1
-  alias: variant
-permalink: "{{ variant.permalink }}"
+permalink: "/"
 layout: false
 eleventyExcludeFromCollections: true
 ---
@@ -11,7 +7,6 @@ eleventyExcludeFromCollections: true
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-{% if not variant.hybrid %}<meta name="robots" content="noindex, nofollow">{% endif %}
 <meta property="og:type" content="website">
 <meta property="og:title" content="Waterbear Field School">
 <meta property="og:description" content="Hands-on learning &amp; building, for kids and adults — on farms near Lincoln, MA.">
@@ -293,13 +288,12 @@ eleventyExcludeFromCollections: true
   .glance-row:hover{background:#eef2ec}
   .glance-row .g-date{font-weight:700;color:var(--accent-d);white-space:nowrap;font-size:.84rem;flex:none}
   .glance-row .g-proj{font-size:.86rem;font-weight:600;min-width:0}
-{% if variant.hybrid %}{% include "wfs-tickets.css" %}
-{% include "wfs-basket.css" %}{% elif variant.ticketed %}{% include "wfs-tickets.css" %}{% else %}{% include "wfs-register.css" %}{% endif %}
+{% include "wfs-panel.css" %}
+{% include "wfs-basket.css" %}
 </style>
 <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
 <body>
-{% if not variant.hybrid %}{% include "wfs-protobar.njk" %}{% endif %}
 <div class="stickytop">
   <header class="top">
     <button class="hbtn-ham" aria-label="Open menu">☰</button>
@@ -348,19 +342,18 @@ eleventyExcludeFromCollections: true
 
   <section class="sec sec-august" id="schedule" data-name="Schedule" data-blurb="Upcoming Field Days — free, all welcome.">
     <h2 class="grp">Upcoming Field Days</h2>
-    {% if variant.ticketed %}<p class="seclead"><b>All welcome.</b> Field Days run <b>10 AM to 1 PM</b>, for adults and kids 6+ (an adult caregiver needs to accompany kids under 14). Registration covers materials and keeps the day running &mdash; and if the cost would keep you away, every day has a <b>pay-what-you-can</b> registration, no questions asked.</p>
-    {% else %}<p class="seclead"><b>Free, and all welcome.</b> Field Days run <b>10 AM to 1 PM</b>, for adults and kids 6+ (an adult caregiver needs to accompany kids under 14). Open any day below to register &mdash; it&rsquo;s <b>free and instant</b>, no card, no checkout. Take-home kits are pre-paid so we know how many to prepare, and you can chip in if you&rsquo;d like; both are optional extras that go in a cart.</p>
-    {% endif %}
+    <p class="seclead"><b>All welcome.</b> Field Days run <b>10 AM to 1 PM</b>, for adults and kids 6+ (an adult caregiver needs to accompany kids under 14). Registration covers materials and keeps the day running &mdash; and if the cost would keep you away, every day has a <b>pay-what-you-can</b> registration, no questions asked.</p>
+    
     <p class="sublabel" style="margin-top:6px">Two weeks at a glance — tap a day for details</p>
     <div class="glance">
       <div class="glance-wk"><span class="glance-wklabel">Week of Aug 17</span>
         {%- for s in sessions %}{% if s.date < "2026-08-24" %}
-        <a class="glance-row" href="{% if variant.ticketed %}{% if variant.hybrid %}{{ s.path }}{% else %}/v2/{{ s.slug }}/{{ s.date }}/{% endif %}{% else %}{{ s.path }}{% endif %}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></a>
+        <a class="glance-row" href="{{ s.path }}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></a>
         {% endif %}{%- endfor %}
       </div>
       <div class="glance-wk"><span class="glance-wklabel">Week of Aug 24</span>
         {%- for s in sessions %}{% if s.date >= "2026-08-24" %}
-        <a class="glance-row" href="{% if variant.ticketed %}{% if variant.hybrid %}{{ s.path }}{% else %}/v2/{{ s.slug }}/{{ s.date }}/{% endif %}{% else %}{{ s.path }}{% endif %}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></a>
+        <a class="glance-row" href="{{ s.path }}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></a>
         {% endif %}{%- endfor %}
       </div>
     </div>
@@ -370,14 +363,14 @@ eleventyExcludeFromCollections: true
       <article class="daycard2" id="day-{{ s.date }}">
         <img src="{{ s.img }}" alt="">
         <div class="dc2-main">
-          <a class="dc2-date" href="{% if variant.ticketed %}{% if variant.hybrid %}{{ s.path }}{% else %}/v2/{{ s.slug }}/{{ s.date }}/{% endif %}{% else %}{{ s.path }}{% endif %}">{{ s.day }} · {{ s.time }}</a>
+          <a class="dc2-date" href="{{ s.path }}">{{ s.day }} · {{ s.time }}</a>
           <span class="dc2-cat" style="background:{{ s.color }}">{{ s.category }}</span>
-          <h3><a href="{% if variant.ticketed %}{% if variant.hybrid %}{{ s.path }}{% else %}/v2/{{ s.slug }}/{{ s.date }}/{% endif %}{% else %}{{ s.path }}{% endif %}">{{ s.title }}</a></h3>
+          <h3><a href="{{ s.path }}">{{ s.title }}</a></h3>
           <div class="dc2-meta">{{ s.place }}</div>
           <p class="dc2-blurb">{{ s.cardBlurb }}</p>
-          {% if variant.hybrid %}<span class="dc2-from dc2-spots" data-date="{{ s.date }}"></span>{% elif variant.ticketed %}{% set std = s.ticketPrice or 25 %}<span class="dc2-from">${{ std }}<span> · pay-what-you-can available{% if s.materials %} · kit ${{ s.materials.fee }}{% endif %}</span></span>{% elif s.materials %}<span class="dc2-take">Free to learn. Optional: take home {{ s.materials.label }} — ${{ s.materials.fee }} materials, pre-paid so we can prepare yours.</span>{% endif %}
+          <span class="dc2-from dc2-spots" data-date="{{ s.date }}"></span>{% if s.materials %}<span class="dc2-take">Free to learn. Optional: take home {{ s.materials.label }} — ${{ s.materials.fee }} materials, pre-paid so we can prepare yours.</span>{% endif %}
           <div class="dc2-actions">
-            {% if variant.ticketed %}<a class="btn-reg" href="{% if variant.hybrid %}{{ s.path }}{% else %}/v2/{{ s.slug }}/{{ s.date }}/{% endif %}">Register →</a>{% else %}<a class="btn-reg" href="{{ s.path }}">View &amp; register →</a>{% endif %}
+            <a class="btn-reg" href="{{ s.path }}">Register →</a>
             <details class="dc2-details"><summary>More details ▾</summary>
               <div class="dc2-more">
                 {% for p in s.about %}<p>{{ p }}</p>{% endfor %}
@@ -565,11 +558,11 @@ eleventyExcludeFromCollections: true
 
 <div class="toast" id="toast"></div>
 
-{% if variant.hybrid %}{% include "wfs-basket-defs.njk" %}
-{% include "wfs-basket-panel.njk" %}{% elif variant.ticketed %}{% include "wfs-tickets-defs.njk" %}{% else %}{% include "wfs-register-defs.njk" %}{% endif %}
+{% include "wfs-basket-defs.njk" %}
+{% include "wfs-basket-panel.njk" %}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>{% if variant.hybrid %}{% include "wfs-basket.js" %}{% elif variant.ticketed %}{% include "wfs-tickets.js" %}{% else %}{% include "wfs-register.js" %}{% endif %}</script>
-{% if variant.hybrid %}<script>{% include "wfs-basket-ui.js" %}</script>
+<script>{% include "wfs-basket.js" %}</script>
+<script>{% include "wfs-basket-ui.js" %}</script>
 <script>
   // Hide Field Days that have already happened. Done here rather than at build
   // time because a static build only knows the date it was built on.
@@ -610,16 +603,7 @@ eleventyExcludeFromCollections: true
       if(btn && left<=0){ btn.textContent='Full'; btn.style.background='#8a8f88'; }
     });
   });
-</script>{% endif %}
-{% if not variant.ticketed %}<script>
-  // mark the days this browser has already registered for
-  (function(){
-    var reg=window.wfsAllRegistrations ? window.wfsAllRegistrations() : {};
-    document.querySelectorAll('.daycard2').forEach(function(c){
-      var d=(c.id||'').replace('day-','');
-      if(reg[d]) c.classList.add('registered');
-    });
-  })();
-</script>{% endif %}
+</script>
+
 </body>
 </html>
