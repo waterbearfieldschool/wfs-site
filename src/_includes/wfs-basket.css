@@ -3,18 +3,6 @@
   .cartbtn[hidden]{display:none}
   .cartbtn .cnum{background:#123526;color:#fff;border-radius:999px;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:.74rem;padding:0 5px}
 
-  /* Snipcart's own cart must always sit above our drawer. z-index has no effect
-     on a statically-positioned element, which is why an earlier rule on
-     #snipcart alone did nothing — hence the explicit position here. */
-  #snipcart,
-  .snipcart,
-  .snipcart-modal,
-  .snipcart-modal__container,
-  .snipcart-cart,
-  .snipcart__box{ position:relative; z-index:9500 !important }
-  .snipcart-modal,
-  .snipcart-modal__container{ position:fixed !important }
-
   .bk-ovl{position:fixed;inset:0;background:rgba(18,53,38,.42);z-index:8000;opacity:0;transition:opacity .2s}
   .bk-ovl.on{opacity:1}
   .bk-ovl[hidden]{display:none}
