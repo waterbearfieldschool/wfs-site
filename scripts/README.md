@@ -72,6 +72,29 @@ Shows capacity beside each day, and flags any day missing from `session_caps` â€
 that combination makes a day look registerable while `register()` silently
 refuses it, which is otherwise easy to miss.
 
+## `wfs-check`
+
+Catches drift between the sessions the site renders and the `session_caps`
+table that `register()` enforces capacity from.
+
+```bash
+wfs-check          # report
+wfs-check --quiet  # only complain; exits non-zero if anything is wrong
+```
+
+Two failures it exists for, both silent:
+
+- **A session with no capacity row.** The page renders normally, "spots left"
+  shows nothing, and `register()` refuses every attempt with
+  `unknown_session`. Nobody finds out until someone tries to register.
+- **A drifted label.** `register()` writes `rsvps.session` from
+  `session_caps.label`, so renaming a project in `workshops.js` without
+  updating the row leaves the roster describing the day differently from the
+  site.
+
+`deploy.sh` runs it and refuses to publish if it fails. `WFS_SKIP_CHECK=1`
+overrides.
+
 ## `wfs-addresses.example.json`
 
 Template for the real meeting points. Copy it and fill it in:

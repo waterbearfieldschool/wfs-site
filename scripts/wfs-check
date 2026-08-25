@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+"""wfs-check — catch drift between the site's sessions and the database.
+
+Sessions are authored in src/_data/workshops.js; capacity lives in the
+session_caps table. Nothing keeps the two in step, and the failure is silent:
+add a Field Day, forget the capacity row, and the page renders normally,
+"spots left" shows nothing, and register() refuses every attempt with
+unknown_session. Nobody finds out until a visitor tries.
+
+Exits non-zero if anything is wrong, so it can gate a deploy.
+
+  wfs-check          check and report
+  wfs-check --quiet  only complain
+"""
+
+import json
+import os
+import subprocess
+import sys
+import urllib.request
+import urllib.error
+
+PROJECT = "https://jhgcnqmzbphzpxgtojti.supabase.co"
+# realpath, not abspath: this script is run through a symlink in ~/.local/bin,
+# and abspath would resolve the repo to ~/.local
+REPO    = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+NODE    = os.path.expanduser("~/.nvm/versions/node/v24.15.0/bin/node")
+
+
+def key():
+    out = subprocess.run(["pass", "supabase/wfs-secret"],
+                         capture_output=True, text=True, timeout=20)
+    if out.returncode != 0:
+        sys.exit("wfs-check: no secret key at `pass supabase/wfs-secret`")
+    return out.stdout.strip().splitlines()[0]
+
+
+def sessions():
+    node = NODE if os.path.exists(NODE) else "node"
+    out = subprocess.run(
+        [node, "-e", "console.log(JSON.stringify(require('./src/_data/sessions.js')))"],
+        cwd=REPO, capture_output=True, text=True)
+    if out.returncode != 0:
+        sys.exit("wfs-check: could not read sessions:\n" + out.stderr.strip())
+    return json.loads(out.stdout)
+
+
+def caps(k):
+    req = urllib.request.Request(
+        PROJECT + "/rest/v1/session_caps?select=date,label,capacity,min_to_run",
+        headers={"apikey": k, "Authorization": "Bearer " + k})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read().decode() or "[]")
+    except urllib.error.HTTPError as e:
+        sys.exit("wfs-check: %s %s" % (e.code, e.read().decode()[:200]))
+
+
+def main():
+    quiet = "--quiet" in sys.argv
+    ss = sessions()
+    cc = {c["date"]: c for c in caps(key())}
+    problems = []
+
+    for s in ss:
+        c = cc.get(s["date"])
+        if not c:
+            problems.append(
+                "%s (%s) has no session_caps row — the page will look "
+                "registerable and register() will refuse every attempt"
+                % (s["date"], s["title"]))
+            continue
+        # register() writes rsvps.session from session_caps.label, so a drifted
+        # label means the roster disagrees with the site about what the day is
+        if c["label"] != s["label"]:
+            problems.append(
+                "%s label drift:\n      site: %s\n      db:   %s"
+                % (s["date"], s["label"], c["label"]))
+
+    known = {s["date"] for s in ss}
+    for d in sorted(cc):
+        if d not in known:
+            problems.append("%s is in session_caps but no longer a session — "
+                            "stale row, harmless but confusing" % d)
+
+    if not quiet:
+        print("sessions in the site : %d" % len(ss))
+        print("rows in session_caps : %d" % len(cc))
+
+    if problems:
+        print("\n%d problem%s:" % (len(problems), "" if len(problems) == 1 else "s"))
+        for p in problems:
+            print("  - " + p)
+        print("\nFix: add or correct rows in session_caps, e.g.")
+        print("  insert into public.session_caps (date, label, capacity, min_to_run)")
+        print("  values ('YYYY-MM-DD', '<label exactly as the site has it>', 10, 3)")
+        print("  on conflict (date) do update set label = excluded.label;")
+        sys.exit(1)
+
+    if not quiet:
+        print("\nno drift — every session has a capacity row and the labels match")
+
+
+if __name__ == "__main__":
+    main()

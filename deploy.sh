@@ -9,8 +9,9 @@
 #   1. If there are uncommitted source changes, commits + pushes them via
 #      wfs-edit (which handles rebase-on-reject if origin moved).
 #   2. If there's nothing to commit, syncs from origin so we don't build stale.
-#   3. Runs `npm run build` so _site/ is current with src/.
-#   4. Copies _site/ over the Pages repo (../waterbearfieldschool.github.io/),
+#   3. Checks every session has a capacity row, and stops if not.
+#   4. Wipes and rebuilds _site/ so nothing stale survives.
+#   5. Copies _site/ over the Pages repo (../waterbearfieldschool.github.io/),
 #      commits with your message, and force-pushes.
 
 set -e
@@ -27,11 +28,27 @@ else
   wfs-edit pull
 fi
 
-# 2. Build fresh — never deploy a stale _site/.
+# 2. Refuse to deploy a site whose sessions and capacities disagree.
+#    A session with no session_caps row renders as registerable and then has
+#    every registration refused — silently, until a visitor hits it.
+#    WFS_SKIP_CHECK=1 overrides, for when you know and don't care.
+if [[ -z "${WFS_SKIP_CHECK:-}" ]]; then
+  echo "→ checking sessions against session_caps"
+  if ! ./scripts/wfs-check --quiet; then
+    echo "✗ deploy stopped. Fix the rows above, or re-run with WFS_SKIP_CHECK=1"
+    exit 1
+  fi
+fi
+
+# 3. Build fresh — never deploy a stale _site/.
+#    rm -rf first: Eleventy doesn't clean between builds, so output from deleted
+#    templates lingers and gets published. A /v5/ experiment survived that way,
+#    carrying an API key it should never have had.
 echo "→ building site"
+rm -rf _site
 npm run build
 
-# 3. Deploy to GitHub Pages.
+# 4. Deploy to GitHub Pages.
 PAGES_DIR="../waterbearfieldschool.github.io"
 if [[ ! -d "$PAGES_DIR/.git" ]]; then
   echo "✗ Pages repo not found at $PAGES_DIR — bail out"
