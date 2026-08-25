@@ -54,7 +54,7 @@ eleventyExcludeFromCollections: true
     <section class="daycard" id="day-{{ s.date }}">
       <div class="daycard-band" style="background:{{ w.color }}">
         <a class="dc-when" href="/w/{{ w.slug }}/{{ s.date }}/">{{ s.day }} · {{ s.time }}</a>
-        <a class="btn-reg dc-reg" href="/register/?day={{ s.date }}">Register →</a>
+        <a class="btn-reg dc-reg" href="/w/{{ w.slug }}/{{ s.date }}/">View &amp; register →</a>
       </div>
       <div class="daycard-body">
         <h2><a href="/w/{{ w.slug }}/{{ s.date }}/">{{ s.project or w.title }}</a></h2>
@@ -76,7 +76,7 @@ eleventyExcludeFromCollections: true
           <div><dt>Bring</dt><dd>{{ s.bring or w.bring }}</dd></div>
         </dl>
 
-        <a class="btn-reg" href="/register/?day={{ s.date }}">Register for this day →</a>
+        <a class="btn-reg" href="/w/{{ w.slug }}/{{ s.date }}/">View &amp; register →</a>
       </div>
     </section>
     {% endfor %}

@@ -1,0 +1,31 @@
+{# /v3/ basket drawer — ours, not Snipcart's. Rendered on every /v3/ page. #}
+<div class="bk-ovl" id="bkOvl" hidden></div>
+<aside class="bk" id="bk" hidden aria-label="Your registrations">
+  <header class="bk-top">
+    <h2>Your registrations</h2>
+    <button type="button" class="bk-x" id="bkClose" aria-label="Close">&times;</button>
+  </header>
+
+  <div class="bk-body" id="bkBody"><!-- lines, by JS --></div>
+
+  <div class="bk-foot" id="bkFoot">
+    <div class="bk-tot" id="bkTot"></div>
+
+    <form class="bk-form" id="bkForm" hidden>
+      <p class="bk-formlead" id="bkFormLead">Nothing to pay &mdash; just tell us who&rsquo;s coming.</p>
+      <input type="text"  id="bkName"  class="tin" placeholder="Your name" autocomplete="name">
+      <input type="email" id="bkEmail" class="tin" placeholder="you@example.com" autocomplete="email">
+      <p class="bk-msg" id="bkMsg"></p>
+    </form>
+
+    <button type="button" class="bk-go" id="bkGo">Check out</button>
+    <p class="bk-note" id="bkNote"></p>
+  </div>
+
+  <div class="bk-done" id="bkDone" hidden>
+    <div class="bk-tick">&check;</div>
+    <h3 id="bkDoneH">You&rsquo;re registered</h3>
+    <p id="bkDoneP"></p>
+    <button type="button" class="bk-go ghost" id="bkDoneClose">Close</button>
+  </div>
+</aside>

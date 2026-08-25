@@ -11,7 +11,7 @@ eleventyExcludeFromCollections: true
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-{% if variant.ticketed %}<meta name="robots" content="noindex, nofollow">{% endif %}
+{% if not variant.hybrid %}<meta name="robots" content="noindex, nofollow">{% endif %}
 <meta property="og:type" content="website">
 <meta property="og:title" content="Waterbear Field School">
 <meta property="og:description" content="Hands-on learning &amp; building, for kids and adults — on farms near Lincoln, MA.">
@@ -299,7 +299,7 @@ eleventyExcludeFromCollections: true
 <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
 <body>
-{% if variant.ticketed %}{% include "wfs-protobar.njk" %}{% endif %}
+{% if not variant.hybrid %}{% include "wfs-protobar.njk" %}{% endif %}
 <div class="stickytop">
   <header class="top">
     <button class="hbtn-ham" aria-label="Open menu">☰</button>
@@ -355,12 +355,12 @@ eleventyExcludeFromCollections: true
     <div class="glance">
       <div class="glance-wk"><span class="glance-wklabel">Week of Aug 17</span>
         {%- for s in sessions %}{% if s.date < "2026-08-24" %}
-        <a class="glance-row" href="{% if variant.ticketed %}/{{ variant.key | replace("ticketed","v2") | replace("hybrid","v3") }}/{{ s.slug }}/{{ s.date }}/{% else %}{{ s.path }}{% endif %}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></a>
+        <a class="glance-row" href="{% if variant.ticketed %}{% if variant.hybrid %}{{ s.path }}{% else %}/v2/{{ s.slug }}/{{ s.date }}/{% endif %}{% else %}{{ s.path }}{% endif %}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></a>
         {% endif %}{%- endfor %}
       </div>
       <div class="glance-wk"><span class="glance-wklabel">Week of Aug 24</span>
         {%- for s in sessions %}{% if s.date >= "2026-08-24" %}
-        <a class="glance-row" href="{% if variant.ticketed %}/{{ variant.key | replace("ticketed","v2") | replace("hybrid","v3") }}/{{ s.slug }}/{{ s.date }}/{% else %}{{ s.path }}{% endif %}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></a>
+        <a class="glance-row" href="{% if variant.ticketed %}{% if variant.hybrid %}{{ s.path }}{% else %}/v2/{{ s.slug }}/{{ s.date }}/{% endif %}{% else %}{{ s.path }}{% endif %}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></a>
         {% endif %}{%- endfor %}
       </div>
     </div>
@@ -370,14 +370,14 @@ eleventyExcludeFromCollections: true
       <article class="daycard2" id="day-{{ s.date }}">
         <img src="{{ s.img }}" alt="">
         <div class="dc2-main">
-          <a class="dc2-date" href="{% if variant.ticketed %}/{{ variant.key | replace("ticketed","v2") | replace("hybrid","v3") }}/{{ s.slug }}/{{ s.date }}/{% else %}{{ s.path }}{% endif %}">{{ s.day }} · {{ s.time }}</a>
+          <a class="dc2-date" href="{% if variant.ticketed %}{% if variant.hybrid %}{{ s.path }}{% else %}/v2/{{ s.slug }}/{{ s.date }}/{% endif %}{% else %}{{ s.path }}{% endif %}">{{ s.day }} · {{ s.time }}</a>
           <span class="dc2-cat" style="background:{{ s.color }}">{{ s.category }}</span>
-          <h3><a href="{% if variant.ticketed %}/{{ variant.key | replace("ticketed","v2") | replace("hybrid","v3") }}/{{ s.slug }}/{{ s.date }}/{% else %}{{ s.path }}{% endif %}">{{ s.title }}</a></h3>
+          <h3><a href="{% if variant.ticketed %}{% if variant.hybrid %}{{ s.path }}{% else %}/v2/{{ s.slug }}/{{ s.date }}/{% endif %}{% else %}{{ s.path }}{% endif %}">{{ s.title }}</a></h3>
           <div class="dc2-meta">{{ s.place }}</div>
           <p class="dc2-blurb">{{ s.cardBlurb }}</p>
           {% if variant.hybrid %}<span class="dc2-from dc2-spots" data-date="{{ s.date }}"></span>{% elif variant.ticketed %}{% set std = s.ticketPrice or 25 %}<span class="dc2-from">${{ std }}<span> · pay-what-you-can available{% if s.materials %} · kit ${{ s.materials.fee }}{% endif %}</span></span>{% elif s.materials %}<span class="dc2-take">Free to learn. Optional: take home {{ s.materials.label }} — ${{ s.materials.fee }} materials, pre-paid so we can prepare yours.</span>{% endif %}
           <div class="dc2-actions">
-            {% if variant.ticketed %}<a class="btn-reg" href="/{{ variant.key | replace("ticketed","v2") | replace("hybrid","v3") }}/{{ s.slug }}/{{ s.date }}/">Register →</a>{% else %}<a class="btn-reg" href="{{ s.path }}">View &amp; register →</a>{% endif %}
+            {% if variant.ticketed %}<a class="btn-reg" href="{% if variant.hybrid %}{{ s.path }}{% else %}/v2/{{ s.slug }}/{{ s.date }}/{% endif %}">Register →</a>{% else %}<a class="btn-reg" href="{{ s.path }}">View &amp; register →</a>{% endif %}
             <details class="dc2-details"><summary>More details ▾</summary>
               <div class="dc2-more">
                 {% for p in s.about %}<p>{{ p }}</p>{% endfor %}

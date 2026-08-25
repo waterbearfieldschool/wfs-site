@@ -31,6 +31,19 @@ module.exports = workshops
         // value stored in the rsvps.session column:
         label: `${s.day} — ${project}`,
         materials: s.materials || null,
+        // display name for the kit, from materials.label:
+        //   "a toolbox" -> "Toolbox", "solar panel + motor kit" -> "Solar panel + motor kit"
+        kitName: s.materials
+          ? (function (l) {
+              var s2 = l.replace(/^(a|an|the)\s+/i, "");
+              return s2.charAt(0).toUpperCase() + s2.slice(1);
+            })(s.materials.label)
+          : null,
+        // short forms, for cart lines where the full title wraps:
+        //   day     "Thu · Aug 20"      ->  dayShort "Aug 20"
+        //   title   "Build a Toolbox"   ->  cartName "Toolbox · Aug 20"
+        dayShort: s.day.replace(/^[^·]*·\s*/, ""),
+        cartName: `${s.shortTitle || w.cartShort || w.short || w.title} · ${s.day.replace(/^[^·]*·\s*/, "")}`,
         // shareable page for this specific day:
         path: `/w/${w.slug}/${s.date}/`,
       };

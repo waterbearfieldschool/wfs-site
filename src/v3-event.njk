@@ -3,7 +3,7 @@ pagination:
   data: sessions
   size: 1
   alias: s
-permalink: "/v3/{{ s.slug }}/{{ s.date }}/"
+permalink: "{{ s.path }}"
 layout: false
 eleventyExcludeFromCollections: true
 ---
@@ -11,7 +11,6 @@ eleventyExcludeFromCollections: true
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
 <title>{{ s.title }} · {{ s.day }} — Waterbear Field School</title>
 <meta name="description" content="{{ s.cardBlurb }}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,15 +22,14 @@ eleventyExcludeFromCollections: true
 </style>
 </head>
 <body>
-  {% include "wfs-protobar.njk" %}
   <div class="stickytop">
     <div class="top">
-      <a class="brand" href="/v3/" style="text-decoration:none">Waterbear Field School<small>Hands-on learning &amp; building, near Lincoln, MA</small></a>
+      <a class="brand" href="/" style="text-decoration:none">Waterbear Field School<small>Hands-on learning &amp; building, near Lincoln, MA</small></a>
       <button class="cartbtn" id="cartBtn" hidden>Cart <span class="cnum" id="cartNum">0</span></button>
     </div>
   </div>
 
-  <div class="backbar"><a href="/v3/">&larr; All Field Days</a></div>
+  <div class="backbar"><a href="/">&larr; All Field Days</a></div>
 
   <div class="wdetail">
     <div class="whero">
@@ -106,7 +104,7 @@ eleventyExcludeFromCollections: true
 
     <div class="more-days">
       <p style="color:var(--muted);margin:28px 0 10px;font-size:.92rem">Other {{ s.short }} days:</p>
-      <div class="daynav">{%- for other in sessions -%}{%- if other.slug == s.slug and other.date != s.date -%}<a href="/v3/{{ other.slug }}/{{ other.date }}/" class="daychip" style="border-color:{{ s.color }}">{{ other.day }} · {{ other.title }}</a>{%- endif -%}{%- endfor -%}</div>
+      <div class="daynav">{%- for other in sessions -%}{%- if other.slug == s.slug and other.date != s.date -%}<a href="{{ other.path }}" class="daychip" style="border-color:{{ s.color }}">{{ other.day }} · {{ other.title }}</a>{%- endif -%}{%- endfor -%}</div>
     </div>
 
     <p style="margin:26px 0 0;color:var(--muted)">Want to teach or host a session? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:{{ s.color }};font-weight:700;text-decoration:underline">Email us</a>.</p>
@@ -128,7 +126,7 @@ eleventyExcludeFromCollections: true
       tix.innerHTML='<div class="tix-head"><h2>This Field Day has passed</h2></div>'+
         '<div class="trow"><span class="tinfo"><b>Registration is closed</b>'+
         '<small>Have a look at what is coming up instead.</small></span>'+
-        '<a class="btn-reg" href="/v3/" style="flex:none">Upcoming days &rarr;</a></div>';
+        '<a class="btn-reg" href="/" style="flex:none">Upcoming days &rarr;</a></div>';
     }
     if(bar) bar.remove();
   })();

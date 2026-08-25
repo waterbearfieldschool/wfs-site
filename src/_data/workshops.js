@@ -12,6 +12,7 @@
 module.exports = [
   {
     slug: "solar",
+    cartShort: "Solar Bench",
     title: "Solar Power & Electronics Bench",
     short: "Solar",
     color: "#2f5a92",
@@ -36,6 +37,7 @@ module.exports = [
   },
   {
     slug: "woodworking",
+    cartShort: "Woodworking",
     title: "Woodworking",
     short: "Woodworking",
     color: "#a86f28",
@@ -51,7 +53,7 @@ module.exports = [
     locationNote: "Exact address sent when you register.",
     sessions: [
       { date: "2026-08-20", day: "Thu · Aug 20", time: "10 AM–1 PM", place: "Lincoln Park, Somerville",
-        project: "Build a Toolbox", img: "/v6img/ws-toolbox.jpg",
+        project: "Build a Toolbox", shortTitle: "Toolbox", img: "/v6img/ws-toolbox.jpg",
         about: [
           "A friendly first build: a wooden toolbox to carry your tools. We'll cover measuring, sawing, drilling, and joining — the core hand-tool skills — on a project you can finish in a morning.",
           "You'll take your finished toolbox home.",
@@ -59,7 +61,7 @@ module.exports = [
         materials: { label: "a toolbox", fee: 35, pay: "on-site",
           note: "Free to learn -- just show up!  (But if you'd like to take home a toolbox, please register so we can reserve materials for you, and expect to pay $35 on site.)" } },
       { date: "2026-08-25", day: "Tue · Aug 25", time: "10 AM–1 PM", place: "Lincoln Park, Somerville",
-        project: "Build a Workbench", img: "/v6img/ws-workbench.jpg",
+        project: "Build a Workbench", shortTitle: "Workbench", img: "/v6img/ws-workbench.jpg",
         about: [
           "Step up to a sturdy, portable workbench for the mobile woodshop — we'll cut, assemble, and finish it together.",
           "A bigger build; nice if you've done a little woodworking before, but beginners are welcome too.",
@@ -70,6 +72,7 @@ module.exports = [
   },
   {
     slug: "music",
+    cartShort: "Instrument Making",
     title: "Music & Instrument Making",
     short: "Music",
     color: "#7b6bb5",
@@ -91,6 +94,7 @@ module.exports = [
   },
   {
     slug: "zines",
+    cartShort: "Zines",
     title: "Zines & Printmaking",
     short: "Zines",
     color: "#b0413e",
@@ -111,6 +115,7 @@ module.exports = [
   },
   {
     slug: "plant-id",
+    cartShort: "Plant ID",
     title: "Plant ID & Mapping",
     short: "Plant ID",
     color: "#3f7d54",
