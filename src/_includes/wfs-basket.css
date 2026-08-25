@@ -1,0 +1,80 @@
+  /* ---- /v3/ own basket ---- */
+  .cartbtn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:var(--sun);color:#123526;border:none;border-radius:999px;padding:8px 15px;font-weight:800;font-size:.84rem;cursor:pointer;display:inline-flex;gap:7px;align-items:center;box-shadow:0 3px 10px rgba(0,0,0,.24)}
+  .cartbtn[hidden]{display:none}
+  .cartbtn .cnum{background:#123526;color:#fff;border-radius:999px;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:.74rem;padding:0 5px}
+
+  /* Snipcart's own cart must always sit above our drawer. z-index has no effect
+     on a statically-positioned element, which is why an earlier rule on
+     #snipcart alone did nothing — hence the explicit position here. */
+  #snipcart,
+  .snipcart,
+  .snipcart-modal,
+  .snipcart-modal__container,
+  .snipcart-cart,
+  .snipcart__box{ position:relative; z-index:9500 !important }
+  .snipcart-modal,
+  .snipcart-modal__container{ position:fixed !important }
+
+  .bk-ovl{position:fixed;inset:0;background:rgba(18,53,38,.42);z-index:8000;opacity:0;transition:opacity .2s}
+  .bk-ovl.on{opacity:1}
+  .bk-ovl[hidden]{display:none}
+  .bk{position:fixed;top:0;right:0;bottom:0;width:min(420px,92vw);background:var(--bg);z-index:8100;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.22);transform:translateX(100%);transition:transform .24s ease}
+  .bk.on{transform:none}
+  .bk[hidden]{display:none}
+  .bk-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;background:#123526;color:#fff}
+  .bk-top h2{font-family:Lora,Georgia,serif;font-size:1.18rem;font-weight:600;margin:0}
+  .bk-x{background:none;border:none;color:#fff;font-size:1.7rem;line-height:1;cursor:pointer;padding:0 4px}
+  .bk-body{flex:1;overflow-y:auto;padding:6px 18px}
+
+  .bkline{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .bkline:last-child{border-bottom:none}
+  .bkline .bkl-x{flex:1;min-width:0}
+  .bkline .bkl-x b{display:block;color:var(--accent-d);font-size:.95rem;line-height:1.25}
+  .bkline .bkl-x small{display:block;color:var(--muted);font-size:.8rem;margin-top:1px}
+  .bkline .bkl-x b a{color:inherit;text-decoration:none}
+  .bkline .bkl-x b a:hover{text-decoration:underline}
+  .bkline .bkl-x .bkl-q{color:var(--accent);font-weight:800}
+  .bkline .bkl-p{flex:none;font-weight:800;font-size:.92rem;min-width:52px;text-align:right}
+  .bkline .bkl-p.free{color:var(--muted);font-weight:600}
+  .bkline .bkl-rm{flex:none;width:28px;height:28px;border:1px solid var(--line);background:#fff;border-radius:7px;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center}
+  .bkline .bkl-rm:hover{border-color:#b23;color:#b23;background:#fdf4f3}
+  .bk-empty{color:var(--muted);text-align:center;padding:40px 10px;font-size:.93rem;line-height:1.5}
+
+  .bk-foot{border-top:1px solid var(--line);background:var(--card);padding:14px 18px 18px}
+  .bk-tot{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+  .bk-tot span{color:var(--muted);font-size:.88rem}
+  .bk-tot b{font-size:1.3rem;color:var(--accent-d)}
+  .bk-form[hidden]{display:none}
+  .bk-formlead{color:var(--muted);font-size:.86rem;line-height:1.45;margin:0 0 9px}
+  .bk-form .tin{display:block;width:100%;border:1.5px solid var(--line);border-radius:9px;padding:11px 13px;font:inherit;font-size:.95rem;background:#fff;margin-bottom:8px}
+  .bk-form .tin:focus{outline:none;border-color:var(--accent)}
+  .bk-msg{min-height:1.1em;font-size:.85rem;color:var(--muted);margin:2px 0 0;line-height:1.4}
+  .bk-msg.bad{color:#b23}
+  .bk-go{width:100%;background:var(--accent);color:#fff;border:none;border-radius:10px;font-weight:800;font-size:1rem;padding:14px;cursor:pointer;margin-top:4px}
+  .bk-go:hover:not(:disabled){background:var(--accent-d)}
+  .bk-go:disabled{opacity:.45;cursor:default}
+  .bk-go.ghost{background:none;color:var(--accent);border:1.5px solid var(--accent)}
+  .bk-note{color:var(--muted);font-size:.8rem;text-align:center;margin:9px 0 0;line-height:1.45}
+
+  .bk-done{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 26px;gap:6px}
+  .bk-done[hidden]{display:none}
+  .bk-tick{width:52px;height:52px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;font-weight:800;margin-bottom:6px}
+  .bk-done h3{font-family:Lora,Georgia,serif;font-size:1.35rem;color:var(--accent-d);font-weight:600}
+  .bk-done p{color:var(--muted);font-size:.93rem;line-height:1.5;margin-bottom:14px}
+  .bk-done .bk-go{width:auto;padding:11px 26px}
+
+  /* prototype notice */
+  .protobar{background:#7a2f22;color:#fff;text-align:center;font-size:.83rem;font-weight:600;padding:8px 16px;line-height:1.4}
+  .protobar b{font-weight:800}
+
+  /* capacity */
+  .tixcap{font-size:.86rem;font-weight:700;color:var(--accent);margin:4px 0 0;padding-left:13px}
+  .tixcap.low{color:#a8551f}
+  .tixcap.full{color:#b23}
+  .tixcap:empty{display:none}
+  .trow.soldout{opacity:.5}
+  .trow.soldout .tprice{text-decoration:line-through}
+  .dc2-spots{margin-left:0}
+  .dc2-spots:empty{display:none}
+  .dc2-spots.low{color:#a8551f}
+  .dc2-spots.full{color:#b23}
