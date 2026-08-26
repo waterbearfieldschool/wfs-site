@@ -131,6 +131,7 @@ module.exports = [
     locationNote: "Meeting spot sent when you register.",
     sessions: [
       { date: "2026-08-27", day: "Thu · Aug 27", time: "10 AM–1 PM", place: "Umbrello Hay Field, Lincoln, MA",
+        bring: "A backpack, comfortable walking shoes, water, and weather\u2011appropriate clothing.",
         materials: null },
     ],
   },

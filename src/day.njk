@@ -93,7 +93,12 @@ eleventyExcludeFromCollections: true
       <button class="tixgo" id="tixGo" type="button" disabled>Add to my registrations</button>
     </div>
 
-
+    <dl class="dc-facts">
+      <div><dt>When</dt><dd>{{ s.day }} · {{ s.time }}</dd></div>
+      <div><dt>Where</dt><dd>{{ s.location }}<br><span class="muted">{{ s.locationNote }}</span></dd></div>
+      <div><dt>Who</dt><dd>{{ s.forWhom }}</dd></div>
+      <div><dt>Bring</dt><dd>{{ s.bring }}</dd></div>
+    </dl>
 
     <p style="margin:26px 0 0;color:var(--muted)">Want to teach or host a session? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:{{ s.color }};font-weight:700;text-decoration:underline">Email us</a>.</p>
 
