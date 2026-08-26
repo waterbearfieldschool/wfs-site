@@ -112,8 +112,6 @@ eleventyExcludeFromCollections: true
   .sublabel{text-align:center;font-weight:800;color:var(--accent-d);margin:18px auto 2px;font-size:1rem}
   /* the heading for the schedule list: bigger, and indented to sit over the
      list rather than floating centred above it */
-  .schedlabel{text-align:left;font-size:1.22rem;max-width:720px;margin:20px auto 8px;padding-left:18px}
-  @media(max-width:560px){.schedlabel{padding-left:10px;font-size:1.12rem}}
   .reglist{list-style:none;max-width:440px;margin:10px auto 6px;padding:0;text-align:left}
   .reglist li{position:relative;padding:5px 0 5px 20px;color:var(--ink);font-size:.92rem;line-height:1.4}
   .reglist li::before{content:"•";position:absolute;left:4px;color:var(--accent);font-weight:800}
@@ -248,7 +246,6 @@ eleventyExcludeFromCollections: true
   .sd-when{font-size:.84rem;color:var(--accent-d);font-weight:600}
   .sd .btn-reg{flex:none;font-size:.76rem;padding:5px 11px;margin:0}
   /* ---- RSVP prototype ---- */
-  #rsvp{border-top:1px solid var(--line)}
   .rsvpform{max-width:460px;margin:16px auto 0;display:flex;flex-direction:column;gap:11px;text-align:left}
   .rsvpform label{font-weight:600;font-size:.9rem;color:var(--accent-d)}
   .rsvpform select,.rsvpform input[type=email],.rsvpform input[type=text]{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:9px;font:inherit;background:#fff;margin-top:4px}
@@ -268,7 +265,6 @@ eleventyExcludeFromCollections: true
   .dc2-main h3{font-size:1.12rem;color:var(--accent-d);margin:0 0 3px}
   .dc2-meta{font-size:.85rem;color:var(--muted);font-weight:600;margin-bottom:8px}
   .dc2-blurb{font-size:.92rem;margin:0 0 9px}
-  .dc2-take{display:inline-block;font-size:.79rem;font-weight:600;color:var(--accent-d);background:#f3f6f1;border:1px dashed var(--line);border-radius:8px;padding:3px 10px;margin-bottom:11px}
   .dc2-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
   .dc2-actions .btn-reg{margin:0}
   .dc2-main h3 a{color:inherit;text-decoration:none}
@@ -284,14 +280,18 @@ eleventyExcludeFromCollections: true
   .dc2-facts dt{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1px}
   .dc2-facts dd{font-size:.86rem;line-height:1.4}
   @media(max-width:560px){.daycard2{flex-direction:column}.daycard2>img{width:100%;height:150px}}
-  .glance{display:flex;gap:26px;max-width:680px;margin:4px auto 24px;flex-wrap:wrap}
-  .glance-wk{flex:1;min-width:230px}
-  .glance-wklabel{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 4px 8px}
-  .glance-row{display:flex;gap:9px;align-items:baseline;padding:6px 9px;border-radius:8px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+  .glance{max-width:680px;margin:4px auto 24px}
+  .glance-wk{margin-bottom:18px}
+  .glance-wk:last-child{margin-bottom:0}
+  .glance-month{display:block;text-align:center;font-size:1.24rem;font-weight:800;color:var(--accent-d);margin:0 0 8px}
+  @media(max-width:560px){.glance-month{font-size:1.12rem}}
+  .glance-row{display:block;padding:8px 9px;border-radius:8px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
   .glance-row:last-child{border-bottom:none}
   .glance-row:hover{background:#eef2ec}
+  .glance-row .g-main{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
   .glance-row .g-date{font-weight:700;color:var(--accent-d);white-space:nowrap;font-size:.84rem;flex:none}
   .glance-row .g-proj{font-size:.86rem;font-weight:600;min-width:0}
+  .glance-row .g-when{display:block;font-size:.78rem;color:var(--muted);margin-top:1px}
 {% include "wfs-panel.css" %}
 {% include "wfs-basket.css" %}
 </style>
@@ -348,18 +348,24 @@ eleventyExcludeFromCollections: true
     <h2 class="grp">Upcoming Field Days</h2>
     <p class="seclead"><b>All welcome.</b> Field Days run <b>10 AM to 1 PM</b>, for adults and kids 6+ (an adult caregiver needs to accompany kids under 14). Registration covers materials and keeps the day running &mdash; and if the cost would keep you away, every day has a <b>pay-what-you-can</b> registration, no questions asked.</p>
     
-    <p class="sublabel schedlabel">Scheduled Field Days:</p>
     <div class="glance">
-      <div class="glance-wk"><span class="glance-wklabel">Week of Aug 17</span>
-        {%- for s in sessions %}{% if s.date < "2026-08-24" %}
-        <a class="glance-row" href="{{ s.path }}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></a>
-        {% endif %}{%- endfor %}
+      {%- set shown = "" %}
+      {%- for s in sessions %}
+      {%- if s.month != shown %}
+        {%- if shown != "" %}
       </div>
-      <div class="glance-wk"><span class="glance-wklabel">Week of Aug 24</span>
-        {%- for s in sessions %}{% if s.date >= "2026-08-24" %}
-        <a class="glance-row" href="{{ s.path }}"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></a>
-        {% endif %}{%- endfor %}
+        {%- endif %}
+      <div class="glance-wk" data-month="{{ s.month }}">
+        <span class="glance-month">{{ s.month }}</span>
+        {%- set shown = s.month %}
+      {%- endif %}
+        <a class="glance-row" href="{{ s.path }}">
+          <span class="g-main"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></span>
+          <span class="g-when">{{ s.time }} · {{ s.place }}</span>
+        </a>
+      {%- endfor %}
       </div>
+    </div>
     </div>
 
     <div class="daycards">
@@ -372,7 +378,7 @@ eleventyExcludeFromCollections: true
           <h3><a href="{{ s.path }}">{{ s.title }}</a></h3>
           <div class="dc2-meta">{{ s.place }}</div>
           <p class="dc2-blurb">{{ s.cardBlurb }}</p>
-          <span class="dc2-from dc2-spots" data-date="{{ s.date }}"></span>{% if s.materials %}<span class="dc2-take">Free to learn. Optional: take home {{ s.materials.label }} — ${{ s.materials.fee }} materials, pre-paid so we can prepare yours.</span>{% endif %}
+          <span class="dc2-from dc2-spots" data-date="{{ s.date }}"></span>
           <div class="dc2-actions">
             <a class="btn-reg" href="{{ s.path }}">Register →</a>
             <details class="dc2-details"><summary>More details ▾</summary>
@@ -393,12 +399,6 @@ eleventyExcludeFromCollections: true
     </div>
     <p class="seclead" style="margin-top:14px">Want to teach a session or host one? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:#9a6f14;font-weight:700;text-decoration:underline">Email us</a>.</p>
   </section>
-  <section class="sec" id="rsvp" data-name="Register" data-blurb="Get weather/updates — free, optional.">
-    <h2 class="grp">Register &amp; get updates</h2>
-    <p class="seclead">Free and optional — register to hold a spot, reserve take-home materials in advance, or just get weather &amp; schedule updates.</p>
-    <div style="text-align:center"><a class="btn-reg" style="display:inline-block;font-size:1rem;padding:13px 28px" href="/register/">Register for Field Days →</a></div>
-  </section>
-
 
   <section class="sec sec-journal" id="journal" data-name="Field Notes" data-blurb="Field Days, projects, and builds from the field." data-accent="#4f6675" data-tint="#eef1f4" data-bd="#d6dee5">
     <h2 class="grp">Field Notes</h2>

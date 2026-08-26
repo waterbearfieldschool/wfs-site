@@ -43,6 +43,16 @@ module.exports = workshops
         //   day     "Thu · Aug 20"      ->  dayShort "Aug 20"
         //   title   "Build a Toolbox"   ->  cartName "Toolbox · Aug 20"
         dayShort: s.day.replace(/^[^·]*·\s*/, ""),
+        // month heading for the schedule list, e.g. "August" or "January 2027".
+        // The year is only shown when it isn't the current one, so the common
+        // case stays uncluttered.
+        month: (function (iso) {
+          const d = new Date(iso + "T12:00:00");
+          const name = d.toLocaleString("en-US", { month: "long" });
+          return d.getFullYear() === new Date().getFullYear()
+            ? name
+            : `${name} ${d.getFullYear()}`;
+        })(s.date),
         cartName: `${s.shortTitle || w.cartShort || w.short || w.title} · ${s.day.replace(/^[^·]*·\s*/, "")}`,
         // shareable page for this specific day:
         path: `/w/${w.slug}/${s.date}/`,
