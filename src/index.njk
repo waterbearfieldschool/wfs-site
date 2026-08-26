@@ -110,6 +110,10 @@ eleventyExcludeFromCollections: true
   .blockbtn.on{background:#a85423;color:#fff}
   .blockbtn.on::after{content:" ✓"}
   .sublabel{text-align:center;font-weight:800;color:var(--accent-d);margin:18px auto 2px;font-size:1rem}
+  /* the heading for the schedule list: bigger, and indented to sit over the
+     list rather than floating centred above it */
+  .schedlabel{text-align:left;font-size:1.22rem;max-width:720px;margin:20px auto 8px;padding-left:18px}
+  @media(max-width:560px){.schedlabel{padding-left:10px;font-size:1.12rem}}
   .reglist{list-style:none;max-width:440px;margin:10px auto 6px;padding:0;text-align:left}
   .reglist li{position:relative;padding:5px 0 5px 20px;color:var(--ink);font-size:.92rem;line-height:1.4}
   .reglist li::before{content:"•";position:absolute;left:4px;color:var(--accent);font-weight:800}
@@ -344,7 +348,7 @@ eleventyExcludeFromCollections: true
     <h2 class="grp">Upcoming Field Days</h2>
     <p class="seclead"><b>All welcome.</b> Field Days run <b>10 AM to 1 PM</b>, for adults and kids 6+ (an adult caregiver needs to accompany kids under 14). Registration covers materials and keeps the day running &mdash; and if the cost would keep you away, every day has a <b>pay-what-you-can</b> registration, no questions asked.</p>
     
-    <p class="sublabel" style="margin-top:6px">Two weeks at a glance — tap a day for details</p>
+    <p class="sublabel schedlabel">Scheduled Field Days:</p>
     <div class="glance">
       <div class="glance-wk"><span class="glance-wklabel">Week of Aug 17</span>
         {%- for s in sessions %}{% if s.date < "2026-08-24" %}
