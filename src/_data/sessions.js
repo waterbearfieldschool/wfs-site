@@ -16,6 +16,7 @@ module.exports = workshops
         topic: w.title,
         color: w.color,
         img: s.img || w.img,
+        ogImg: "/v6img/og/" + (s.img || w.img).split("/").pop().replace(/\.[^.]+$/, "") + ".jpg",
         date: s.date,
         day: s.day,
         time: s.time,
