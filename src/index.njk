@@ -354,7 +354,10 @@ eleventyExcludeFromCollections: true
   <section class="sec sec-august" id="schedule" data-name="Schedule" data-blurb="Upcoming Field Days — free, all welcome.">
     <h2 class="grp">Upcoming Field Days</h2>
     <p class="seclead"><b>All welcome.</b> Field Days run <b>10 AM to 1 PM</b>, for adults and kids 6+ (an adult caregiver needs to accompany kids under 14). Registration covers materials and keeps the day running &mdash; and if the cost would keep you away, every day has a <b>pay-what-you-can</b> registration, no questions asked.</p>
+    <p class="seclead" id="leadShort" hidden>Hands-on, outdoors and screen-free &mdash; for adults and kids 6+.</p>
     
+    <p class="noday" id="noDays" hidden>No Field Days on the calendar just now. New dates go up here &mdash; or <a href="mailto:info@waterbearfieldschool.org?subject=Let%20me%20know%20about%20new%20Field%20Days">email us</a> and we&rsquo;ll let you know when they do.</p>
+
     <div class="glance">
       {%- set shown = "" %}
       {%- for s in sessions %}
@@ -588,6 +591,19 @@ eleventyExcludeFromCollections: true
     document.querySelectorAll('.glance-wk').forEach(function(w){
       if(!w.querySelector('.glance-row:not([style*="none"])')) w.style.display='none';
     });
+    // With nothing left to show, the full lead describes days that don't exist
+    // and the section is just a heading over a gap. Swap in a short lead and
+    // say plainly that there's nothing on, with a way to hear about the next.
+    var anyLeft = [].slice.call(document.querySelectorAll('.daycard2'))
+                    .some(function(c){ return c.style.display !== 'none'; });
+    if(!anyLeft){
+      var full=document.querySelector('#schedule .seclead');
+      var short=document.getElementById('leadShort');
+      var none=document.getElementById('noDays');
+      if(full) full.hidden=true;
+      if(short) short.hidden=false;
+      if(none) none.hidden=false;
+    }
     if(hidden) console.log('[wfs] hid '+hidden+' past Field Day(s)');
   })();
 </script>
