@@ -48,10 +48,10 @@
       capEl.textContent='This day is full.';
       capEl.className='tixcap full';
     } else if(left<=3){
-      capEl.textContent='Only '+left+(left===1?' spot':' spots')+' left.';
+      capEl.textContent='Only '+left+(left===1?' spot':' spots')+' available.';
       capEl.className='tixcap low';
     } else {
-      capEl.textContent=left+' spots left.';
+      capEl.textContent=left+(left===1?' spot':' spots')+' available.';
       capEl.className='tixcap';
     }
     rows.forEach(function(r){

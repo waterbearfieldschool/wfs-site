@@ -256,13 +256,13 @@ eleventyExcludeFromCollections: true
   .rvmsg{font-size:.9rem;font-weight:600;min-height:1.2em}
   /* ---- one card per day ---- */
   .daycards{display:flex;flex-direction:column;gap:14px;max-width:680px;margin:6px auto 0;text-align:left}
-  .daycard2{display:flex;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card);box-shadow:0 3px 12px rgba(0,0,0,.05);scroll-margin-top:84px}
+  .daycard2{display:flex;border:1px solid #cdb684;border-radius:14px;overflow:hidden;background:var(--card);box-shadow:0 3px 12px rgba(0,0,0,.05);scroll-margin-top:84px}
   .daycard2>img{width:150px;flex:none;object-fit:cover}
   .dc2-main{padding:14px 16px;flex:1;min-width:0}
-  .dc2-cat{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;padding:2px 9px;border-radius:999px;display:inline-block;margin-bottom:7px}
   .dc2-date{display:block;width:fit-content;font-weight:800;color:var(--accent-d);font-size:.96rem;margin-bottom:7px;text-decoration:none}
   .dc2-date:hover{text-decoration:underline}
-  .dc2-main h3{font-size:1.12rem;color:var(--accent-d);margin:0 0 3px}
+  .dc2-main h3{font-size:1.42rem;line-height:1.2;color:var(--accent-d);margin:2px 0 4px}
+  @media(max-width:560px){.dc2-main h3{font-size:1.28rem}}
   .dc2-meta{font-size:.85rem;color:var(--muted);font-weight:600;margin-bottom:8px}
   .dc2-blurb{font-size:.92rem;margin:0 0 9px}
   .dc2-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
@@ -274,6 +274,9 @@ eleventyExcludeFromCollections: true
   .dc2-details summary{cursor:pointer;color:var(--muted);font-weight:600;list-style:none}
   .dc2-details summary::-webkit-details-marker{display:none}
   .dc2-details[open] summary{color:var(--accent)}
+  .dc2-details summary .d-less{display:none}
+  .dc2-details[open] summary .d-more{display:none}
+  .dc2-details[open] summary .d-less{display:inline}
   .dc2-more{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
   .dc2-more p{margin:0 0 9px;max-width:560px}
   .dc2-facts{display:grid;grid-template-columns:1fr 1fr;gap:9px 18px;margin-top:10px}
@@ -285,13 +288,17 @@ eleventyExcludeFromCollections: true
   .glance-wk:last-child{margin-bottom:0}
   .glance-month{display:block;text-align:center;font-size:1.24rem;font-weight:800;color:var(--accent-d);margin:0 0 8px}
   @media(max-width:560px){.glance-month{font-size:1.12rem}}
-  .glance-row{display:block;padding:8px 9px;border-radius:8px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
-  .glance-row:last-child{border-bottom:none}
-  .glance-row:hover{background:#eef2ec}
-  .glance-row .g-main{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
-  .glance-row .g-date{font-weight:700;color:var(--accent-d);white-space:nowrap;font-size:.84rem;flex:none}
-  .glance-row .g-proj{font-size:.86rem;font-weight:600;min-width:0}
-  .glance-row .g-when{display:block;font-size:.78rem;color:var(--muted);margin-top:1px}
+  .glance-row{display:block;padding:9px 12px;margin-bottom:8px;border:1px solid #cdb684;border-radius:10px;background:var(--card);text-decoration:none;color:var(--ink);transition:.12s}
+  .glance-row:last-child{margin-bottom:0}
+  .glance-row:hover{border-color:var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .glance-row .g-main{display:flex;gap:12px;align-items:baseline}
+  .glance-row .g-date{font-weight:600;color:var(--muted);white-space:nowrap;font-size:.82rem;flex:0 0 106px}
+  .glance-row .g-proj{font-size:.98rem;font-weight:800;color:var(--accent-d);min-width:0}
+  .glance-row .g-when{display:block;font-size:.78rem;color:var(--muted);margin-top:2px;padding-left:118px}
+  @media(max-width:520px){
+    .glance-row .g-date{flex-basis:92px}
+    .glance-row .g-when{padding-left:0}
+  }
 {% include "wfs-panel.css" %}
 {% include "wfs-basket.css" %}
 </style>
@@ -359,13 +366,12 @@ eleventyExcludeFromCollections: true
         <span class="glance-month">{{ s.month }}</span>
         {%- set shown = s.month %}
       {%- endif %}
-        <a class="glance-row" href="{{ s.path }}">
+        <a class="glance-row" href="#day-{{ s.date }}">
           <span class="g-main"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></span>
           <span class="g-when">{{ s.time }} · {{ s.place }}</span>
         </a>
       {%- endfor %}
       </div>
-    </div>
     </div>
 
     <div class="daycards">
@@ -374,14 +380,12 @@ eleventyExcludeFromCollections: true
         <img src="{{ s.img }}" alt="">
         <div class="dc2-main">
           <a class="dc2-date" href="{{ s.path }}">{{ s.day }} · {{ s.time }}</a>
-          <span class="dc2-cat" style="background:{{ s.color }}">{{ s.category }}</span>
           <h3><a href="{{ s.path }}">{{ s.title }}</a></h3>
           <div class="dc2-meta">{{ s.place }}</div>
           <p class="dc2-blurb">{{ s.cardBlurb }}</p>
-          <span class="dc2-from dc2-spots" data-date="{{ s.date }}"></span>
           <div class="dc2-actions">
-            <a class="btn-reg" href="{{ s.path }}">Register →</a>
-            <details class="dc2-details"><summary>More details ▾</summary>
+            <a class="btn-reg" href="{{ s.path }}">Register</a>
+            <details class="dc2-details"><summary><span class="d-more">More details ▾</span><span class="d-less">Fewer details ▴</span></summary>
               <div class="dc2-more">
                 {% for p in s.about %}<p>{{ p }}</p>{% endfor %}
                 <dl class="dc2-facts">
@@ -578,7 +582,7 @@ eleventyExcludeFromCollections: true
       if(window.wfsIsPast(d)){ c.style.display='none'; hidden++; }
     });
     document.querySelectorAll('.glance-row').forEach(function(a){
-      var m=/\/(\d{4}-\d{2}-\d{2})\//.exec(a.getAttribute('href')||'');
+      var m=/(\d{4}-\d{2}-\d{2})/.exec(a.getAttribute('href')||'');
       if(m && window.wfsIsPast(m[1])) a.style.display='none';
     });
     document.querySelectorAll('.glance-wk').forEach(function(w){
@@ -588,21 +592,14 @@ eleventyExcludeFromCollections: true
   })();
 </script>
 <script>
-  // live "N spots left" on the Field Day cards
+  // The spot count is deliberately not shown on the homepage. A full day
+  // still says so on its button, so nobody clicks through to a dead end.
   document.addEventListener('wfs.counts', function(e){
     var counts=e.detail||{};
     document.querySelectorAll('.daycard2').forEach(function(c){
       var d=(c.id||'').replace('day-',''), row=counts[d];
       if(!row) return;
-      var el=c.querySelector('.dc2-spots');
-      if(!el) return;
       var left=row.remaining;
-      // spots bold, the pricing note muted — the treatment the price line had.
-      // "Full · sliding scale" would read oddly, so a full day just says Full.
-      el.innerHTML = left<=0
-        ? 'Full'
-        : left+(left===1?' spot left':' spots left')+'<span> · sliding scale</span>';
-      el.className='dc2-from dc2-spots'+(left<=0?' full':(left<=3?' low':''));
       var btn=c.querySelector('.btn-reg');
       if(btn && left<=0){ btn.textContent='Full'; btn.style.background='#8a8f88'; }
     });

@@ -43,13 +43,6 @@ eleventyExcludeFromCollections: true
       {% for p in s.about %}<p>{{ p }}</p>{% endfor %}
     </div>
 
-    <dl class="dc-facts">
-      <div><dt>When</dt><dd>{{ s.day }} · {{ s.time }}</dd></div>
-      <div><dt>Where</dt><dd>{{ s.location }}<br><span class="muted">{{ s.locationNote }}</span></dd></div>
-      <div><dt>Who</dt><dd>{{ s.forWhom }}</dd></div>
-      <div><dt>Bring</dt><dd>{{ s.bring }}</dd></div>
-    </dl>
-
     <div class="tix" id="tix" data-date="{{ s.date }}" data-title="{{ s.title }}" data-label="{{ s.label }}">
       <div class="tix-head">
         <h2>Choose a Registration Type:</h2>
@@ -100,14 +93,11 @@ eleventyExcludeFromCollections: true
       <button class="tixgo" id="tixGo" type="button" disabled>Add to my registrations</button>
     </div>
 
-    <p class="tixnote">Add as many days as you like, then finish up in one go. <b>If nothing you picked costs money, there&rsquo;s no checkout and no card</b> &mdash; just your name and email.</p>
 
-    <div class="more-days">
-      <p style="color:var(--muted);margin:28px 0 10px;font-size:.92rem">Other {{ s.short }} days:</p>
-      <div class="daynav">{%- for other in sessions -%}{%- if other.slug == s.slug and other.date != s.date -%}<a href="{{ other.path }}" class="daychip" style="border-color:{{ s.color }}">{{ other.day }} · {{ other.title }}</a>{%- endif -%}{%- endfor -%}</div>
-    </div>
 
     <p style="margin:26px 0 0;color:var(--muted)">Want to teach or host a session? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:{{ s.color }};font-weight:700;text-decoration:underline">Email us</a>.</p>
+
+    <p class="backfoot"><a href="/">&larr; All Field Days</a></p>
   </div>
 
   <div class="toast" id="toast"></div>
