@@ -61,12 +61,21 @@ double-send. Meant to run from cron on the Pi; sends via msmtp as
 Read-only view of who has registered for what. Uses the same secret key.
 
 ```bash
+wfs-roster --today             # just today's Field Day — the morning-of view
 wfs-roster                     # everything, grouped by day
 wfs-roster --pending           # only those awaiting a confirmation email
 wfs-roster --orphans           # rows with no session_date (legacy/imported)
 wfs-roster --day 2026-08-19    # one day
 wfs-roster --mask              # hide email addresses, for screenshots
 ```
+
+Each row shows the party size, any take-home kits, the registration type and
+what was paid; each day ends with a one-line total — how many people, how many
+kits to prepare, how much was taken.
+
+`--today` uses the Field Day's own date in Lincoln rather than the Pi's UTC
+date. Those differ for five hours every evening, which is exactly when you
+would be checking the next day's list.
 
 Shows capacity beside each day, and flags any day missing from `session_caps` —
 that combination makes a day look registerable while `register()` silently

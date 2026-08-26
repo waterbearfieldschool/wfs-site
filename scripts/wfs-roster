@@ -4,6 +4,7 @@
 Anonymous read on rsvps is revoked, so this uses the secret key from
 `pass supabase/wfs-secret`. Nothing here writes.
 
+  wfs-roster --today          just today's Field Day — the morning-of view
   wfs-roster                  everything, grouped by day
   wfs-roster --pending        only rows with no confirmation sent yet
   wfs-roster --orphans        only rows with no session_date (legacy/test rows)
@@ -56,11 +57,16 @@ def main():
     pending = "--pending" in a
     orphans = "--orphans" in a
     day     = a[a.index("--day") + 1] if "--day" in a else None
+    if "--today" in a:
+        # the Field Day's date in Lincoln, not the Pi's UTC date — they differ
+        # for five hours every evening, exactly when you'd check tomorrow's list
+        from datetime import datetime, timezone, timedelta
+        day = (datetime.now(timezone.utc) - timedelta(hours=4)).strftime("%Y-%m-%d")
 
     k = key()
     # confirmation_sent_at only exists once wfs-confirmation-email.sql has run
     cols = ("id,name,email,session,session_date,party_size,wants_materials,"
-            "confirmation_sent_at,created_at")
+            "kit_count,tier,amount_paid,kit_amount,confirmation_sent_at,created_at")
     rows = get(k, "rsvps?select=%s&order=created_at" % cols, soft=True)
     have_confirm = rows is not None
     if not have_confirm:
@@ -99,14 +105,26 @@ def main():
         if same:
             print("  " + (rs[0].get("session") or ""))
         print("  " + "-" * 74)
+        kit_total = [0]
+        money_total = [0.0]
         for r in rs:
             if not same:
                 print("  · %s" % (r.get("session") or "(no session)"))
             people = r.get("party_size") or 1
             total_people += people
+            kits = r.get("kit_count")
+            if kits is None:                       # rows predating kit_count
+                kits = 1 if r.get("wants_materials") else 0
+            kit_total[0] += kits
+            paid = float(r.get("amount_paid") or 0) + float(r.get("kit_amount") or 0)
+            money_total[0] += paid
             flags = []
-            if r.get("wants_materials"):
-                flags.append("kit")
+            if kits:
+                flags.append("%d kit%s" % (kits, "" if kits == 1 else "s"))
+            if r.get("tier"):
+                flags.append(r["tier"])
+            if paid:
+                flags.append("$%g" % paid)
             if have_confirm and not r.get("confirmation_sent_at"):
                 flags.append("NOT CONFIRMED")
             email = r.get("email") or ""
@@ -115,6 +133,14 @@ def main():
                 mask(email) if masked else email[:30],
                 people,
                 ", ".join(flags)))
+
+        day_people = sum((x.get("party_size") or 1) for x in rs)
+        bits = ["%d %s" % (day_people, "person" if day_people == 1 else "people")]
+        if kit_total[0]:
+            bits.append("%d kit%s to prepare" % (kit_total[0], "" if kit_total[0] == 1 else "s"))
+        if money_total[0]:
+            bits.append("$%g taken" % money_total[0])
+        print("  → " + " · ".join(bits))
 
     print("\n%d row%s, %d %s total" % (
         len(rows), "" if len(rows) == 1 else "s",
