@@ -74,3 +74,6 @@
   .noday a{color:#9a6f14;font-weight:700}
   .noday[hidden]{display:none}
   .seclead[hidden]{display:none}
+
+  .bk-opt{display:flex;align-items:flex-start;gap:8px;margin:2px 0 4px;font-size:.86rem;color:var(--muted);line-height:1.35;cursor:pointer}
+  .bk-opt input{width:16px;height:16px;flex:none;margin:1px 0 0;accent-color:var(--accent)}

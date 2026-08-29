@@ -111,7 +111,7 @@
     return m ? m[1] : null;
   }
 
-  window.wfsCommit=async function(name, email, orderToken){
+  window.wfsCommit=async function(name, email, orderToken, wantsUpdates){
     if(!sb) return {ok:false, error:'Supabase did not load.'};
 
     // how many kits per day, not merely whether any
@@ -154,7 +154,8 @@
             tier:        tier[d] || 'free',
             amount:      amount[d] || 0,
             kit_amount:  kitAmount[d] || 0,
-            order_token: orderToken || null
+            order_token: orderToken || null,
+            updates:     !!wantsUpdates
           }
         });
       }catch(e){ failed.push({date:d, msg:String(e)}); continue; }

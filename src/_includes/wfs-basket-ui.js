@@ -115,7 +115,8 @@
       emailEl.focus(); return;
     }
     goBtn.disabled=true; goBtn.textContent='Registering…'; say('');
-    var res=await window.wfsCommit(name, email);
+    var upd=document.getElementById('bkUpdates');
+    var res=await window.wfsCommit(name, email, null, upd && upd.checked);
     goBtn.disabled=false; goBtn.textContent='Register — free';
 
     if(res.error){ say('Sorry — '+res.error, true); return; }

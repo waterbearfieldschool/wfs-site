@@ -164,6 +164,10 @@ eleventyExcludeFromCollections: true
   .card h3{font-size:1.1rem;color:var(--accent-d);margin:2px 0 4px}
   .card .photo{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.92)}
   .card .foot{display:flex;gap:8px;margin-top:13px}
+  a.card-link{text-decoration:none;color:inherit;transition:.15s}
+  a.card-link:hover{transform:translateY(-2px);box-shadow:0 9px 24px rgba(0,0,0,.13)}
+  .card .cardgo{margin-top:10px;font-weight:800;font-size:.86rem;color:var(--accent)}
+  a.card-link:hover .cardgo{text-decoration:underline}
   .btn-reg{flex:1;background:var(--accent);color:#fff;border:none;font-weight:700;font-size:.85rem;padding:9px 8px;border-radius:8px;cursor:pointer;display:block;text-align:center;text-decoration:none}
   .btn-reg:hover{background:var(--accent-d)}
   .btn-info{flex:1;background:#fff;color:var(--accent);border:1.5px solid var(--accent);font-weight:700;font-size:.85rem;padding:9px 8px;border-radius:8px;cursor:pointer}
@@ -454,15 +458,18 @@ eleventyExcludeFromCollections: true
     <h2 class="grp" id="what-are-field-days" style="font-size:1.5rem;margin-top:24px">What are Field Days?</h2>
     <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+, running <b>10 AM to 1 PM</b>. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Everything&rsquo;s free — just show up. See what&rsquo;s coming up on the <a href="#schedule" style="color:#9a6f14;font-weight:700;text-decoration:underline">schedule</a>. You can also read about recent Field Day and Field School projects in the <a href="#journal" style="color:#4f6675;font-weight:700;text-decoration:underline">Field Notes</a>, or find out more about our philosophy and approach in the <a href="#philosophy" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Philosophy &amp; Resources</a> section.</p>
     <div class="cards">
-      <article class="card"><img class="cardimg" src="/v6img/pg-wood.jpg" alt=""><div class="band" style="background:#a86f28"><div class="day">Woodworking</div></div><div class="body"><div class="desc">Learn basic woodworking techniques using simple hand tools.</div></div></article>
+      {%- for w in workshops %}
+      <a class="card card-link" href="/w/{{ w.slug }}/">
+        <img class="cardimg" src="{{ w.img }}" alt="">
+        <div class="band" style="background:{{ w.color }}"><div class="day">{{ w.title }}</div></div>
+        <div class="body"><div class="desc">{{ w.blurb }}</div><div class="cardgo">See dates &amp; register &rarr;</div></div>
+      </a>
+      {%- endfor %}
       <article class="card"><img class="cardimg" src="/v6img/ws-rain.jpg" alt=""><div class="band" style="background:#2c8299"><div class="day">Working with Water</div></div><div class="body"><div class="desc">Water filters, rain catchment, pumps: cleaning and redirecting water to make it useful at home and on the farm.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-fiber.jpg" alt=""><div class="band" style="background:#4f5aa6"><div class="day">Fiber Arts</div></div><div class="body"><div class="desc">Weaving, rope-making, and sewing — fiber into cordage and cloth.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pj-humanpower.jpg" alt=""><div class="band" style="background:#8a5a2f"><div class="day">Sculpture &amp; Fabrication</div></div><div class="body"><div class="desc">Clay, carving, molds, and making — shaping and fabricating by hand.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-nature.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">Plants &amp; Animals</div></div><div class="body"><div class="desc">Studying plants and animal habitats in nature.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-music.jpg" alt=""><div class="band" style="background:#7b6bb5"><div class="day">Music &amp; Instrument Making</div></div><div class="body"><div class="desc">Music jams; learn to build and play simple instruments together.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pg-art.jpg" alt=""><div class="band" style="background:#9a5b7a"><div class="day">Painting &amp; Drawing</div></div><div class="body"><div class="desc">Drawing and painting sessions — we might even make our own easels and paper!</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/pj-trailer.jpg" alt=""><div class="band" style="background:#c05a2a"><div class="day">Build &amp; Repair</div></div><div class="body"><div class="desc">Learn how to build and repair useful objects at home and on the farm.</div></div></article>
-      <article class="card"><img class="cardimg" src="/v6img/mt-hike.jpg" alt=""><div class="band" style="background:#3f7d54"><div class="day">Maps &amp; Hiking</div></div><div class="body"><div class="desc">Learn to use and make maps for navigation on local trails.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-fiber.jpg" alt=""><div class="band" style="background:#4f5aa6"><div class="day">Fiber Arts</div></div><div class="body"><div class="desc">Sewing, mending, knitting and weaving — making and repairing the things we wear.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-humanpower.jpg" alt=""><div class="band" style="background:#8a5a2f"><div class="day">Sculpture &amp; Fabrication</div></div><div class="body"><div class="desc">Wire, metal and found materials — making objects that hold their own shape.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pg-art.jpg" alt=""><div class="band" style="background:#9a5b7a"><div class="day">Painting &amp; Drawing</div></div><div class="body"><div class="desc">Observational drawing and painting, outdoors and from life.</div></div></article>
+      <article class="card"><img class="cardimg" src="/v6img/pj-trailer.jpg" alt=""><div class="band" style="background:#c05a2a"><div class="day">Build &amp; Repair</div></div><div class="body"><div class="desc">Fixing what we already own — tools, bikes, household things — instead of replacing them.</div></div></article>
     </div>
   
         <div class="legend">
