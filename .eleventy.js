@@ -17,15 +17,16 @@ module.exports = function(eleventyConfig) {
     }
   });
 
-  // Field Days that have actually happened, newest first.
-  // Drives the "what we've been doing" section on the homepage and the /s/ pages.
-  // `happened: false` keeps a session that was cancelled out of the record without
-  // deleting the file; `draft: true` holds back one whose recap isn't written yet.
+  // Every Field Day, newest first, for the Recent Field Days grid.
+  //
+  // Deliberately NOT filtered by date here. A static build only knows the date
+  // it was built on, so a day that passes before the next deploy would be stuck
+  // in Upcoming and missing from Recent. Instead every session is rendered and
+  // the ones that have not happened yet are marked hidden at build time; the
+  // page then re-decides against the visitor's own clock. Correct without
+  // JavaScript, and correct without a rebuild.
   eleventyConfig.addCollection("pastSessions", (api) =>
-    api
-      .getFilteredByTag("session")
-      .filter((item) => item.data.happened && !item.data.draft)
-      .sort((a, b) => b.date - a.date)
+    api.getFilteredByTag("session").sort((a, b) => b.date - a.date)
   );
 
   // The sessions belonging to one workshop category. Sessions live in

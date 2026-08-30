@@ -23,8 +23,6 @@ materials:
   note: >-
     Free to learn, just show up!  If you'd like to take home your own workbench,
     please register in advance, and expect to pay $35 on-site for materials.
-happened: true
 photos: []
 ---
 
-## What we did

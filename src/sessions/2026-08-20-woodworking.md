@@ -23,8 +23,6 @@ materials:
     Free to learn -- just show up!  (But if you'd like to take home a toolbox,
     please register so we can reserve materials for you, and expect to pay $35
     on site.)
-happened: true
 photos: []
 ---
 
-## What we did

@@ -468,7 +468,7 @@ eleventyExcludeFromCollections: true
     {%- if collections.pastSessions.length %}
     <div class="cards">
       {%- for s in collections.pastSessions %}
-      <article class="card">
+      <article class="card pastday" data-date="{{ s.data.sessionSlug | truncate(10, true, "") }}"{% if not s.data.isPast %} hidden{% endif %}>
         <img class="cardimg" src="{% if s.data.photos and s.data.photos.length %}{{ s.data.photoDir }}{{ s.data.photos[0] }}{% else %}{{ s.data.img }}{% endif %}" alt="" loading="lazy">
         <div class="body">
           <h3>{{ s.data.heading }}</h3>
@@ -636,6 +636,22 @@ eleventyExcludeFromCollections: true
 <script>{% include "wfs-basket.js" %}</script>
 <script>{% include "wfs-basket-ui.js" %}</script>
 <script>{% include "wfs-subscribe.js" %}</script>
+<script>
+  // Move Field Days into Recent as their date passes, without waiting for a
+  // rebuild. Every session is in the DOM; the build hid the ones that had not
+  // happened yet, and this re-decides against the visitor's own clock.
+  (function(){
+    if(!window.wfsIsPast) return;
+    var shown=0;
+    document.querySelectorAll('.pastday').forEach(function(c){
+      var past=window.wfsIsPast(c.dataset.date);
+      c.hidden=!past;
+      if(past) shown++;
+    });
+    var sec=document.getElementById('journal');
+    if(sec) sec.hidden = shown===0;
+  })();
+</script>
 <script>
   // Hide Field Days that have already happened. Done here rather than at build
   // time because a static build only knows the date it was built on.

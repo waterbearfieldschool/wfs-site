@@ -13,8 +13,9 @@
 //     only field that keeps the date.
 //
 //   * Defining `permalink` here OVERRIDES the global draft handling in
-//     .eleventy.js for these pages, so the draft check is repeated below.
-//     Without it every unfinished stub publishes.
+//     .eleventy.js. That is fine: these pages have no draft state. A session
+//     file is the listing before the day and the write-up after it, and an
+//     unwritten write-up is a normal publishable state, not a stub.
 //
 //   * It also overrides `permalink: false` set in a file's own front matter
 //     (README.md), so that is honoured explicitly too.
@@ -32,9 +33,19 @@ module.exports = {
     sessionSlug: slugOf,
 
     permalink: (data) => {
-      if (data.draft) return false;            // stub, not ready to publish
       if (data.permalink === false) return false; // e.g. README.md
       return `/s/${slugOf(data)}/`;
+    },
+
+    // Whether the day has been and gone. This is the BUILD-time answer, used to
+    // decide what to render; the page corrects it against the visitor's own
+    // clock, because a static build only knows the date it was built on.
+    isPast: (data) => {
+      const now = new Date();
+      const today = now.getFullYear() + "-" +
+        String(now.getMonth() + 1).padStart(2, "0") + "-" +
+        String(now.getDate()).padStart(2, "0");
+      return slugOf(data).slice(0, 10) < today;
     },
 
     photoDir: (data) => `/assets/images/sessions/${slugOf(data)}/`,
