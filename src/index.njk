@@ -259,6 +259,9 @@ eleventyExcludeFromCollections: true
   .rsvpform button:disabled{opacity:.5;cursor:default}
   .rvmsg{font-size:.9rem;font-weight:600;min-height:1.2em}
   /* ---- one card per day ---- */
+  .monthhead{text-align:center;font-size:1.24rem;font-weight:800;color:var(--accent-d);margin:14px 0 -2px}
+  .monthhead:first-child{margin-top:0}
+  @media(max-width:560px){.monthhead{font-size:1.12rem}}
   .daycards{display:flex;flex-direction:column;gap:14px;max-width:680px;margin:6px auto 0;text-align:left}
   .daycard2{display:flex;border:1px solid #cdb684;border-radius:14px;overflow:hidden;background:var(--card);box-shadow:0 3px 12px rgba(0,0,0,.05);scroll-margin-top:84px}
   .daycard2>img{width:150px;flex:none;object-fit:cover}
@@ -287,22 +290,6 @@ eleventyExcludeFromCollections: true
   .dc2-facts dt{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1px}
   .dc2-facts dd{font-size:.86rem;line-height:1.4}
   @media(max-width:560px){.daycard2{flex-direction:column}.daycard2>img{width:100%;height:150px}}
-  .glance{max-width:680px;margin:4px auto 24px}
-  .glance-wk{margin-bottom:18px}
-  .glance-wk:last-child{margin-bottom:0}
-  .glance-month{display:block;text-align:center;font-size:1.24rem;font-weight:800;color:var(--accent-d);margin:0 0 8px}
-  @media(max-width:560px){.glance-month{font-size:1.12rem}}
-  .glance-row{display:block;padding:9px 12px;margin-bottom:8px;border:1px solid #cdb684;border-radius:10px;background:var(--card);text-decoration:none;color:var(--ink);transition:.12s}
-  .glance-row:last-child{margin-bottom:0}
-  .glance-row:hover{border-color:var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.07)}
-  .glance-row .g-main{display:flex;gap:12px;align-items:baseline}
-  .glance-row .g-date{font-weight:600;color:var(--muted);white-space:nowrap;font-size:.82rem;flex:0 0 106px}
-  .glance-row .g-proj{font-size:.98rem;font-weight:800;color:var(--accent-d);min-width:0}
-  .glance-row .g-when{display:block;font-size:.78rem;color:var(--muted);margin-top:2px;padding-left:118px}
-  @media(max-width:520px){
-    .glance-row .g-date{flex-basis:92px}
-    .glance-row .g-when{padding-left:0}
-  }
 {% include "wfs-panel.css" %}
 {% include "wfs-basket.css" %}
 
@@ -415,28 +402,14 @@ eleventyExcludeFromCollections: true
     
     <p class="noday" id="noDays" hidden><b>Stay tuned.</b> No Field Days on the calendar just now &mdash; new dates go up here. <a href="#newsletter">Get an email when they do &rarr;</a></p>
 
-    <div class="glance">
-      {%- set shown = "" %}
-      {%- for s in sessions %}
-      {%- if s.month != shown %}
-        {%- if shown != "" %}
-      </div>
-        {%- endif %}
-      <div class="glance-wk" data-month="{{ s.month }}">
-        <span class="glance-month">{{ s.month }}</span>
-        {%- set shown = s.month %}
-      {%- endif %}
-        <a class="glance-row" href="#day-{{ s.date }}">
-          <span class="g-main"><span class="g-date">{{ s.day }}</span><span class="g-proj">{{ s.short }}</span></span>
-          <span class="g-when">{{ s.time }} · {{ s.place }}</span>
-        </a>
-      {%- endfor %}
-      </div>
-    </div>
-
     <div class="daycards">
+      {%- set shownMonth = "" %}
       {%- for s in sessions %}
-      <article class="daycard2" id="day-{{ s.date }}">
+      {%- if s.month != shownMonth %}
+      <h3 class="monthhead" data-month="{{ s.month }}">{{ s.month }}</h3>
+      {%- set shownMonth = s.month %}
+      {%- endif %}
+      <article class="daycard2" id="day-{{ s.date }}" data-month="{{ s.month }}">
         <img src="{{ s.img }}" alt="">
         <div class="dc2-main">
           <a class="dc2-date" href="{{ s.path }}">{{ s.day }} · {{ s.time }}</a>
@@ -663,12 +636,12 @@ eleventyExcludeFromCollections: true
       var d=(c.id||'').replace('day-','');
       if(window.wfsIsPast(d)){ c.style.display='none'; hidden++; }
     });
-    document.querySelectorAll('.glance-row').forEach(function(a){
-      var m=/(\d{4}-\d{2}-\d{2})/.exec(a.getAttribute('href')||'');
-      if(m && window.wfsIsPast(m[1])) a.style.display='none';
-    });
-    document.querySelectorAll('.glance-wk').forEach(function(w){
-      if(!w.querySelector('.glance-row:not([style*="none"])')) w.style.display='none';
+    // a month heading with every day under it gone is a heading over nothing
+    document.querySelectorAll('.monthhead').forEach(function(h){
+      var m=h.dataset.month;
+      var any=[].slice.call(document.querySelectorAll('.daycard2[data-month="'+m+'"]'))
+                .some(function(c){ return c.style.display!=='none'; });
+      h.style.display = any ? '' : 'none';
     });
     // With nothing left to show, the full lead describes days that don't exist
     // and the section is just a heading over a gap. Swap in a short lead and

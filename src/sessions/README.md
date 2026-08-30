@@ -32,6 +32,16 @@ Photos live in `src/assets/images/sessions/<same-name-as-this-file>/`.
 taking the last place at once. `deploy.sh` runs `wfs-sync-caps --apply` to push
 your value across. You never write SQL for this.
 
+## Adding a file? Restart the dev server
+
+`_data/sessions.js` reads this directory once, when Node first requires it.
+Eleventy's watcher reloads templates but not that cached module, so **a brand
+new session file will not appear on the dev server until you restart it**. The
+day simply will not be there, which looks like the file being wrong.
+
+Editing an existing file's front matter has the same problem. `npm run build`
+is a fresh process and always sees everything.
+
 ## Gotchas
 
 - The `date:` field is for reading. **The filename is authoritative** — YAML
