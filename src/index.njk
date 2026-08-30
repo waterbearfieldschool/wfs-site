@@ -388,8 +388,8 @@ eleventyExcludeFromCollections: true
     <a class="pastlead" href="{{ lead.url }}">
       <img src="{% if lead.data.photos and lead.data.photos.length %}{{ lead.data.photoDir }}{{ lead.data.photos[0] }}{% else %}{{ lead.data.img }}{% endif %}" alt="">
       <div class="pastlead-body">
-        <span class="pasttag" style="background:{{ lead.data.color }}">{{ lead.data.categoryLabel }}</span>
-        <h3>{{ lead.data.project }}</h3>
+        <span class="pasttag" style="background:{{ lead.data.color }}">{{ lead.data.categoryShort }}</span>
+        <h3>{{ lead.data.heading }}</h3>
         <div class="pastwhen">{{ lead.data.day }} &middot; {{ lead.data.place }}</div>
         <p>{{ lead.data.cardText }}</p>
         <span class="cardgo">Read what we did &rarr;</span>
@@ -402,8 +402,8 @@ eleventyExcludeFromCollections: true
       <a class="pastcard" href="{{ s.url }}">
         <img src="{% if s.data.photos and s.data.photos.length %}{{ s.data.photoDir }}{{ s.data.photos[0] }}{% else %}{{ s.data.img }}{% endif %}" alt="" loading="lazy">
         <div class="pastcard-body">
-          <span class="pasttag" style="background:{{ s.data.color }}">{{ s.data.categoryLabel }}</span>
-          <h4>{{ s.data.project }}</h4>
+          <span class="pasttag" style="background:{{ s.data.color }}">{{ s.data.categoryShort }}</span>
+          <h4>{{ s.data.heading }}</h4>
           <div class="pastwhen">{{ s.data.day }}</div>
         </div>
       </a>

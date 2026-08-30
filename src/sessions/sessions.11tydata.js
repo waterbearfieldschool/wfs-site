@@ -41,6 +41,17 @@ module.exports = {
 
     color: (data) => (bySlug[data.workshop] || {}).color || "#1c4d3a",
     categoryLabel: (data) => (bySlug[data.workshop] || {}).title || "Field Day",
+    // short form for the pill on a card — the full title ("Solar Power &
+    // Electronics Bench") wraps to two lines and swamps a small tile
+    categoryShort: (data) =>
+      (bySlug[data.workshop] || {}).short ||
+      (bySlug[data.workshop] || {}).title ||
+      "Field Day",
+    // what the card and the page call this session: its own project if it has
+    // one, otherwise the category title. Solar days have no distinct project,
+    // so without this their cards render with a pill and no heading.
+    heading: (data) =>
+      data.project || (bySlug[data.workshop] || {}).title || "Field Day",
     // the session's own image if it has one, else the category's
     img: (data) => data.img || (bySlug[data.workshop] || {}).img,
     // card text: the session's summary if written, else the category blurb
