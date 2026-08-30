@@ -41,4 +41,4 @@ The contrast is itself the lesson: these two nodes are presumably not very far a
 
 - Pick a permanent siting spot near the high point
 - Note: same device on flat ground a few hundred yards away likely sees neither repeater — the hilltop is doing real work
-- Get a couple more nodes into the hands of folks at HHF (Hanan & co.) so this becomes a *network*, not a *demo*
+- Get a couple more nodes into the hands of folks at HHF (Hannan & co.) so this becomes a *network*, not a *demo*

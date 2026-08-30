@@ -26,7 +26,7 @@ module.exports = [
     ],
     forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14).",
     bring: "Closed\u2011toe shoes and weather\u2011appropriate clothing. Tools and parts are provided.",
-    location: "Hanan Healthy Foods, Lincoln, MA",
+    location: "Hannan Healthy Foods, Lincoln, MA",
     locationNote: "Exact address sent when you register."
   },
   {
