@@ -10,6 +10,6 @@ module.exports = [
   // No-cost, but not nothing: instead of paying, you offer to lead a session on
   // something you know. The day page asks what, and the answer rides along on
   // the registration so we can follow it up.
-  { id: "teach",     label: "Teach a session",   price: 0, teach: true,
-    blurb: "Free \u2014 in exchange, tell us something you could teach one day." },
+  { id: "teach",     label: "Teach a Future Session", price: 0, teach: true,
+    blurb: "Share some skill or idea with us sometime soon." },
 ];
