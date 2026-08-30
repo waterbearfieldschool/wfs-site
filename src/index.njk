@@ -344,6 +344,9 @@ eleventyExcludeFromCollections: true
   .submsg.good{color:var(--accent)}
   .submsg.bad{color:#a3402f}
   .subfine{margin-top:9px;color:var(--muted);font-size:.83rem}
+
+  .hbtn-alt{display:block;text-align:center;text-decoration:none;margin-top:4px;padding:11px 18px;border-radius:12px;border:1.5px dashed #b9c2b6;background:transparent;color:var(--accent);font-weight:700;font-size:.95rem;transition:.14s}
+  .hbtn-alt:hover{border-color:var(--accent);background:#eef3ee}
 </style>
 <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
@@ -401,6 +404,9 @@ eleventyExcludeFromCollections: true
       <a class="hbtn hbtn-sum" href="#schedule">Upcoming Field Days</a>
       <a class="hbtn hbtn-work" href="#journal">Recent Field Days</a>
       <a class="hbtn" href="#about" style="background:#1c6b4a">About</a>
+      {#- An action, not a destination — so it is styled apart from the three
+          navigation buttons rather than becoming a fourth one. -#}
+      <a class="hbtn-alt" href="#newsletter">Get the newsletter &rarr;</a>
     </div>
   </section>
   </div>
@@ -487,7 +493,7 @@ eleventyExcludeFromCollections: true
   <section class="sec sec-sub" id="newsletter" data-name="Newsletter" data-blurb="Hear when new Field Days go up." data-accent="#3f7d54" data-tint="#eef3ee" data-bd="#dbe6de">
     <h2 class="grp">Sign up for our newsletter</h2>
     <div class="subwrap">
-      <p class="seclead">Field Days go up a few weeks ahead and usually cap at ten people &mdash; we&rsquo;ll email you when new dates are posted.</p>
+      <p class="seclead">New Field Days as they go up &mdash; a few weeks ahead, usually capped at ten people &mdash; plus other local events, workshops and happenings we come across that this crowd tends to like.</p>
       <form class="subform" id="subForm" novalidate>
         <input id="subName" type="text" name="name" placeholder="Your name (optional)" autocomplete="name">
         <input id="subEmail" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
