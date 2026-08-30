@@ -26,7 +26,8 @@ eleventyExcludeFromCollections: true
 <meta name="twitter:image" content="{{ site.url }}{{ w.img }}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>{% include "wfs-preview.css" %}</style>
+<style>{% include "wfs-preview.css" %}  .pastmark{opacity:.75;font-weight:600}
+</style>
 </head>
 <body>
   <div class="stickytop">
@@ -45,16 +46,16 @@ eleventyExcludeFromCollections: true
 
     {%- set ws = sessions | forWorkshop(w.slug) %}
     <p class="wblurb">{{ w.blurb }}</p>
-    <p style="color:var(--muted);margin:-10px 0 22px;font-size:.92rem">{{ ws | length }} upcoming day{% if ws | length != 1 %}s{% endif %} — each is its own project. Jump to the one you want:</p>
+    <p style="color:var(--muted);margin:-10px 0 22px;font-size:.92rem"><span id="dayCount">{{ ws | length }}</span> day<span id="dayCountS">{% if ws | length != 1 %}s{% endif %}</span> — each is its own project. Jump to the one you want:</p>
 
     <div class="daynav">
-      {% for s in ws %}<a href="/w/{{ w.slug }}/{{ s.date }}/" class="daychip" style="border-color:{{ w.color }}">{{ s.day }} · {{ s.project or w.title }}</a>{% endfor %}
+      {% for s in ws %}<a href="/w/{{ w.slug }}/{{ s.date }}/" class="daychip" data-date="{{ s.date }}" style="border-color:{{ w.color }}"><span class="pastmark"{% if not s.isPast %} hidden{% endif %}>(Past) </span>{{ s.day }} · {{ s.project or w.title }}</a>{% endfor %}
     </div>
 
     {% for s in ws %}
     <section class="daycard" id="day-{{ s.date }}">
       <div class="daycard-band" style="background:{{ w.color }}">
-        <a class="dc-when" href="/w/{{ w.slug }}/{{ s.date }}/">{{ s.day }} · {{ s.time }}</a>
+        <a class="dc-when" href="/w/{{ w.slug }}/{{ s.date }}/" data-date="{{ s.date }}"><span class="pastmark"{% if not s.isPast %} hidden{% endif %}>(Past) </span>{{ s.day }} · {{ s.time }}</a>
         <a class="btn-reg dc-reg" href="/w/{{ w.slug }}/{{ s.date }}/">View &amp; register →</a>
       </div>
       <div class="daycard-body">
@@ -85,5 +86,24 @@ eleventyExcludeFromCollections: true
     <p style="margin:26px 0 0;color:var(--muted)"><b>Registration is always free.</b> If you'd like to take home a finished kit, we ask you to cover the materials and register in advance so we can have it ready for you.</p>
     <p style="margin:10px 0 0;color:var(--muted)">Want to teach or host a session? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:{{ w.color }};font-weight:700;text-decoration:underline">Email us</a>.</p>
   </div>
+<script>
+  // A static build only knows the date it was built on, so the (Past) markers
+  // are re-decided here against the visitor's clock — and the day count with
+  // them, since a page listing two days one of which has gone should not
+  // announce two.
+  (function(){
+    var n=new Date();
+    var today=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+    var upcoming=0, seen={};
+    document.querySelectorAll('[data-date] > .pastmark').forEach(function(m){
+      var d=m.parentNode.dataset.date, past=d<today;
+      m.hidden=!past;
+      if(!past && !seen[d]){ seen[d]=1; upcoming++; }
+    });
+    var c=document.getElementById('dayCount'), s=document.getElementById('dayCountS');
+    if(c){ c.textContent=upcoming; }
+    if(s){ s.textContent = upcoming===1 ? '' : 's'; }
+  })();
+</script>
 </body>
 </html>

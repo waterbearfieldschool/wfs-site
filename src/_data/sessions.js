@@ -97,8 +97,17 @@ module.exports = fs
       cartName: `${fm.shortTitle || w.cartShort || w.short || w.title} · ${fm.day.replace(/^[^·]*·\s*/, "")}`,
       // shareable registration page for this specific day
       path: `/w/${w.slug}/${date}/`,
-      // the write-up, if one has been published
-      recapPath: fm.draft ? null : `/s/${file.replace(/\.md$/, "")}/`,
+      // the write-up page for this day
+      recapPath: `/s/${file.replace(/\.md$/, "")}/`,
+      // Whether the day has been and gone, as of the BUILD. Pages that use this
+      // correct it against the visitor's clock, because a static build only
+      // knows the date it was built on.
+      isPast: date < (function () {
+        const n = new Date();
+        return n.getFullYear() + "-" +
+          String(n.getMonth() + 1).padStart(2, "0") + "-" +
+          String(n.getDate()).padStart(2, "0");
+      })(),
     };
   })
   .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
