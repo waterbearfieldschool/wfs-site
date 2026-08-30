@@ -162,10 +162,19 @@ def compose(row, sess, addr):
     closing = ("If you can't make it after all, just reply to this email — "
                "we'll free up your spot for someone else.")
 
+    # Asked at registration, and again here for anyone who left it blank. What
+    # comes back decides what gets scheduled next, so it is worth two chances.
+    ask = None
+    if not (row.get("learn_next") or "").strip():
+        ask = ("One question, if you have a moment: what would you like to learn "
+               "next? Anything at all — we plan around these. Just reply.")
+
     text = ["Hi %s," % first, "", lead, ""]
     text += ["  *%s:* %s" % (k, v) for k, v in details]
     text += [""]
     text += ["*%s:* %s" % (k, v) for k, v in notes]
+    if ask:
+        text += ["", ask]
     text += ["", closing, "", "See you there,",
              "Waterbear Field School", "waterbearfieldschool.org"]
     text = "\n".join(text)
@@ -187,11 +196,15 @@ def compose(row, sess, addr):
         '<p>%s</p>'
         '<div style="margin:16px 0 16px 16px">%s</div>'
         '%s'
+        '%s'
         '<p>%s</p>'
         '<p>See you there,<br>Waterbear Field School<br>'
         '<a href="https://waterbearfieldschool.org">waterbearfieldschool.org</a></p>'
         '</div>'
-    ) % (esc(first), esc(lead), rows_html, notes_html, esc(closing))
+    ) % (esc(first), esc(lead), rows_html, notes_html,
+         ('<p style="margin-top:16px;padding:12px 14px;background:#f3f6f3;'
+          'border-radius:8px">%s</p>' % esc(ask)) if ask else '',
+         esc(closing))
 
     return subject, text, html, None
 
@@ -265,7 +278,7 @@ def main():
     # kit_count only exists once the kit-count migration has run; without it
     # the mailer still works, it just can't print a number
     base = ("rsvps?select=id,name,email,session,session_date,party_size,"
-            "wants_materials,%screated_at&confirmation_sent_at=is.null"
+            "wants_materials,learn_next,%screated_at&confirmation_sent_at=is.null"
             "&order=created_at")
     pending = api(key, "GET", base % "kit_count,", soft=True)
     if pending is None:

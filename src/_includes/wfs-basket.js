@@ -14,7 +14,7 @@
     : null;
 
   var SESSIONS={ {% for s in sessions %}"{{ s.date }}":{{ s.label | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %} };
-  var KEY='wfs.basket.v1', WHO='wfs.who.v1', UPD='wfs.updates.v1', TEACH='wfs.teach.v1';
+  var KEY='wfs.basket.v1', WHO='wfs.who.v1', UPD='wfs.updates.v1', TEACH='wfs.teach.v1', LEARN='wfs.learn.v1';
 
   /* The updates checkbox lives in our drawer, but on the paid path the
    * registration is written later, at cart.confirmed — by which point Snipcart
@@ -39,6 +39,19 @@
     try{ localStorage.setItem(TEACH, JSON.stringify(all)); }catch(e){}
   };
   window.wfsGetTeach=function(date){ return teachAll()[date] || ''; };
+
+  /* "What would you like to learn next?" — one answer per order, not per day.
+   * Persisted for the same reason as the teach offers: on the paid path the
+   * registration is written after Snipcart has been through the page. */
+  window.wfsSetLearn=function(text){
+    try{
+      if(text && text.trim()) localStorage.setItem(LEARN, text.trim());
+      else localStorage.removeItem(LEARN);
+    }catch(e){}
+  };
+  window.wfsGetLearn=function(){
+    try{ return localStorage.getItem(LEARN) || ''; }catch(e){ return ''; }
+  };
 
   /* ---------------- past days ----------------
    * A static build bakes in the date it was built, so it cannot be trusted to
@@ -182,7 +195,8 @@
             kit_amount:  kitAmount[d] || 0,
             order_token: orderToken || null,
             updates:     !!wantsUpdates,
-            teach:       window.wfsGetTeach(d) || null
+            teach:       window.wfsGetTeach(d) || null,
+            learn_next:  window.wfsGetLearn() || null
           }
         });
       }catch(e){ failed.push({date:d, msg:String(e)}); continue; }
@@ -208,6 +222,7 @@
       }catch(e){ console.warn('[wfs] newsletter opt-in did not save', e); }
       try{ localStorage.removeItem(UPD); }catch(e){}
     }
+    if(placed.length){ try{ localStorage.removeItem(LEARN); }catch(e){} }
     if(placed.length){
       var left=teachAll();
       placed.forEach(function(p){ delete left[p.date]; });

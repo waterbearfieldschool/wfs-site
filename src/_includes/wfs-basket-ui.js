@@ -164,6 +164,14 @@
 
   // remember the updates choice immediately; the paid path reads it back at
   // cart.confirmed, long after this drawer has gone
+  var learn0=document.getElementById('bkLearn');
+  if(learn0){
+    try{ learn0.value = localStorage.getItem('wfs.learn.v1') || ''; }catch(e){}
+    learn0.addEventListener('input', function(){
+      if(window.wfsSetLearn) window.wfsSetLearn(learn0.value);
+    });
+  }
+
   var upd0=document.getElementById('bkUpdates');
   if(upd0){
     // reflect a choice made before a reload, so the box does not silently

@@ -20,6 +20,14 @@
 
     {# Outside #bkForm on purpose: that form is only shown for an all-free
        basket, so a checkbox inside it is invisible to anyone paying. #}
+    {# Asked of everyone, optional, once per order rather than per day. The
+       answers drive what gets scheduled next and fill the newsletter. #}
+    <div class="bk-learn">
+      <label for="bkLearn">What would you like to learn next?</label>
+      <textarea id="bkLearn" rows="2" maxlength="600"
+                placeholder="Anything at all &mdash; we plan around these."></textarea>
+    </div>
+
     <label class="bk-opt" id="bkUpdatesWrap"><input type="checkbox" id="bkUpdates"> Email me when new Field Days are posted</label>
 
     <button type="button" class="bk-go" id="bkGo">Check out</button>

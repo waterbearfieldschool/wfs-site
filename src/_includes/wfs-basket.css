@@ -75,5 +75,9 @@
   .noday[hidden]{display:none}
   .seclead[hidden]{display:none}
 
+  .bk-learn{margin:6px 0 8px}
+  .bk-learn label{display:block;font-size:.86rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+  .bk-learn textarea{width:100%;font:inherit;font-size:.9rem;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);resize:vertical}
+  .bk-learn textarea:focus{outline:none;border-color:var(--accent)}
   .bk-opt{display:flex;align-items:flex-start;gap:8px;margin:2px 0 4px;font-size:.86rem;color:var(--muted);line-height:1.35;cursor:pointer}
   .bk-opt input{width:16px;height:16px;flex:none;margin:1px 0 0;accent-color:var(--accent)}
