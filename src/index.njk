@@ -209,8 +209,8 @@ eleventyExcludeFromCollections: true
   .hbtn-fall{background:#a85423}
   .hbtn-work{background:#3b6fb0}
   .showcase{display:block;position:relative;max-width:680px;margin:12px auto 0;aspect-ratio:3/2;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.16);text-decoration:none;background:#e9e5da}
-  .sc-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .9s ease}
-  .sc-slide.on{opacity:1}
+  .sc-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .9s ease;text-decoration:none;color:inherit;pointer-events:none}
+  .sc-slide.on{opacity:1;pointer-events:auto}
   .sc-label{position:absolute;left:0;right:0;bottom:0;white-space:nowrap;text-align:center;color:#1f241f;font-weight:500;font-size:.9rem;letter-spacing:.01em;padding:6px 16px;background:rgba(255,255,255,.5);backdrop-filter:blur(6px) saturate(1.2);-webkit-backdrop-filter:blur(6px) saturate(1.2);border-top:1px solid rgba(255,255,255,.45)}
   .hero{margin-bottom:20px}
   .hdrnav{display:flex;gap:8px;justify-content:center;align-items:center;max-width:600px;margin:0 auto;max-height:0;overflow-x:auto;overflow-y:hidden;opacity:0;transition:max-height .28s ease,opacity .22s ease,padding .28s ease;padding:0 12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
@@ -356,6 +356,19 @@ eleventyExcludeFromCollections: true
 <div class="wrap">
 
   <div class="herowrap">
+  {#- The hero rotator shows real sessions once any have happened, each slide
+      linking to its own write-up. Until then it falls back to the topic images,
+      so the top of the page is never empty on a fresh install. -#}
+  {%- if collections.pastSessions.length %}
+  <div class="showcase">
+    {%- for s in collections.pastSessions %}
+    <a class="sc-slide{% if loop.first %} on{% endif %}" href="{{ s.url }}"
+       style="background-image:url({% if s.data.photos and s.data.photos.length %}{{ s.data.photoDir }}{{ s.data.photos[0] }}{% else %}{{ s.data.img }}{% endif %})">
+      <span class="sc-label">{{ s.data.heading }} &middot; {{ s.data.dayShort }}</span>
+    </a>
+    {%- endfor %}
+  </div>
+  {%- else %}
   <a class="showcase" href="#what-are-field-days">
     <div class="sc-slide on" style="background-image:url(/v6img/pg-wood.jpg)"><span class="sc-label">Woodworking</span></div>
     <div class="sc-slide" style="background-image:url(/v6img/ws-rain.jpg)"><span class="sc-label">Working with Water</span></div>
@@ -365,6 +378,7 @@ eleventyExcludeFromCollections: true
     <div class="sc-slide" style="background-image:url(/v6img/pg-music.jpg)"><span class="sc-label">Music &amp; Instrument Making</span></div>
     <div class="sc-slide" style="background-image:url(/v6img/pg-art.jpg)"><span class="sc-label">Painting &amp; Drawing</span></div>
   </a>
+  {%- endif %}
 
   <section class="hero">
     <div class="hero-cta">

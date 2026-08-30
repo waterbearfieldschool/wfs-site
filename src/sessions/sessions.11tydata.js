@@ -52,6 +52,8 @@ module.exports = {
     // so without this their cards render with a pill and no heading.
     heading: (data) =>
       data.project || (bySlug[data.workshop] || {}).title || "Field Day",
+    // "Tue · Aug 25" -> "Aug 25", for labels that already carry a separator
+    dayShort: (data) => (data.day || "").replace(/^[^·]*·\s*/, ""),
     // the session's own image if it has one, else the category's
     img: (data) => data.img || (bySlug[data.workshop] || {}).img,
     // card text: the session's summary if written, else the category blurb
