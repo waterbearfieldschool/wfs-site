@@ -44,7 +44,7 @@ def sessions():
     node = NODE if os.path.exists(NODE) else "node"
     out = subprocess.run(
         [node, "-e",
-         "console.log(JSON.stringify(require('./src/_data/sessions.js')))"],
+         "console.log(JSON.stringify(require('./src/_data/sessions.js')()))"],
         cwd=REPO, capture_output=True, text=True)
     if out.returncode != 0:
         sys.exit("wfs-sync-caps: could not read sessions:\n" + out.stderr.strip())

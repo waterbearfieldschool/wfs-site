@@ -29,7 +29,12 @@ const workshops = require("./workshops.js");
 const DIR = path.join(__dirname, "..", "sessions");
 const bySlug = Object.fromEntries(workshops.map((w) => [w.slug, w]));
 
-module.exports = fs
+// Exported as a FUNCTION, not an array. Eleventy calls a data-file function on
+// every build, so adding or editing a session file shows up on the dev server
+// immediately. As a plain array this module was require-cached, the directory
+// was read exactly once, and a new session simply did not appear until the
+// server was restarted — which cost real time twice before this changed.
+module.exports = () => fs
   .readdirSync(DIR)
   .filter((f) => /^\d{4}-\d{2}-\d{2}-.+\.md$/.test(f))
   .map((file) => {

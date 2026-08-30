@@ -32,15 +32,20 @@ Photos live in `src/assets/images/sessions/<same-name-as-this-file>/`.
 taking the last place at once. `deploy.sh` runs `wfs-sync-caps --apply` to push
 your value across. You never write SQL for this.
 
-## Adding a file? Restart the dev server
+## Adding a file just works
 
-`_data/sessions.js` reads this directory once, when Node first requires it.
-Eleventy's watcher reloads templates but not that cached module, so **a brand
-new session file will not appear on the dev server until you restart it**. The
-day simply will not be there, which looks like the file being wrong.
+`_data/sessions.js` exports a *function*, and Eleventy calls a data-file
+function on every build — so a new or edited session file appears on the dev
+server straight away, no restart.
 
-Editing an existing file's front matter has the same problem. `npm run build`
-is a fresh process and always sees everything.
+It used to export a plain array, which Node require-cached: the directory was
+read exactly once, and a new session was invisible until the server was
+restarted. That looked exactly like the file being wrong, and cost real time
+twice before it was changed. Anything else reading this module has to call it:
+`require('./src/_data/sessions.js')()`.
+
+*Deleting* a session still leaves its page on the dev server until the next
+rebuild — touch any file to clear it. Builds and deploys are always correct.
 
 ## Gotchas
 

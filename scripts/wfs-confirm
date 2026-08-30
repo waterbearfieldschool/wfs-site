@@ -72,7 +72,7 @@ def secret_key():
 def sessions():
     """Session details straight from the site's own data, so the email can
     never disagree with the page someone registered on."""
-    js = ("const s=require('./src/_data/sessions.js');"
+    js = ("const s=require('./src/_data/sessions.js')();"
           "console.log(JSON.stringify(s));")
     node = NODE if os.path.exists(NODE) else "node"
     out = subprocess.run([node, "-e", js], cwd=REPO, capture_output=True, text=True)
