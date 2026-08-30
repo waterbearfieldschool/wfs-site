@@ -15,9 +15,12 @@
       <p class="bk-formlead" id="bkFormLead">Nothing to pay &mdash; just tell us who&rsquo;s coming.</p>
       <input type="text"  id="bkName"  class="tin" placeholder="Your name" autocomplete="name">
       <input type="email" id="bkEmail" class="tin" placeholder="you@example.com" autocomplete="email">
-      <label class="bk-opt"><input type="checkbox" id="bkUpdates"> Email me when new Field Days are posted</label>
       <p class="bk-msg" id="bkMsg"></p>
     </form>
+
+    {# Outside #bkForm on purpose: that form is only shown for an all-free
+       basket, so a checkbox inside it is invisible to anyone paying. #}
+    <label class="bk-opt" id="bkUpdatesWrap"><input type="checkbox" id="bkUpdates"> Email me when new Field Days are posted</label>
 
     <button type="button" class="bk-go" id="bkGo">Check out</button>
     <p class="bk-note" id="bkNote"></p>

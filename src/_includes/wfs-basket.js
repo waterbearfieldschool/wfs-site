@@ -14,7 +14,18 @@
     : null;
 
   var SESSIONS={ {% for s in sessions %}"{{ s.date }}":{{ s.label | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %} };
-  var KEY='wfs.basket.v1', WHO='wfs.who.v1';
+  var KEY='wfs.basket.v1', WHO='wfs.who.v1', UPD='wfs.updates.v1';
+
+  /* The updates checkbox lives in our drawer, but on the paid path the
+   * registration is written later, at cart.confirmed — by which point Snipcart
+   * may have re-rendered or reloaded the page and taken the DOM with it. So the
+   * choice is persisted when it is made and read back at commit time. */
+  window.wfsSetUpdates=function(on){
+    try{ localStorage.setItem(UPD, on ? '1' : '0'); }catch(e){}
+  };
+  function storedUpdates(){
+    try{ return localStorage.getItem(UPD)==='1'; }catch(e){ return false; }
+  }
 
   /* ---------------- past days ----------------
    * A static build bakes in the date it was built, so it cannot be trusted to
@@ -112,6 +123,8 @@
   }
 
   window.wfsCommit=async function(name, email, orderToken, wantsUpdates){
+    // the paid path calls this from the order handler with no flag
+    if(wantsUpdates===undefined || wantsUpdates===null) wantsUpdates=storedUpdates();
     if(!sb) return {ok:false, error:'Supabase did not load.'};
 
     // how many kits per day, not merely whether any
@@ -168,6 +181,20 @@
     }
 
     if(placed.length) rememberWho(name, email);
+
+    /* One list. The rsvps.wants_updates flag records what this person chose at
+     * this registration; `subscribers` is what actually gets mailed, so the
+     * opt-in has to land there too or ticking the box does nothing useful.
+     * Best-effort: a failure here must never fail the registration. */
+    if(placed.length && wantsUpdates){
+      try{
+        await sb.rpc('subscribe', {
+          p_email: email, p_name: name, p_meta:{ source:'registration' }
+        });
+      }catch(e){ console.warn('[wfs] newsletter opt-in did not save', e); }
+      try{ localStorage.removeItem(UPD); }catch(e){}
+    }
+
     await window.wfsRefreshCounts();
 
     return {

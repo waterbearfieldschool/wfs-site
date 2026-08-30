@@ -161,4 +161,16 @@
 
   document.addEventListener('wfs.basket', function(){ if(!bk.hidden) render(); else render(); });
   render();
+
+  // remember the updates choice immediately; the paid path reads it back at
+  // cart.confirmed, long after this drawer has gone
+  var upd0=document.getElementById('bkUpdates');
+  if(upd0){
+    // reflect a choice made before a reload, so the box does not silently
+    // disagree with what will actually be sent
+    try{ upd0.checked = localStorage.getItem('wfs.updates.v1')==='1'; }catch(e){}
+    upd0.addEventListener('change', function(){
+      if(window.wfsSetUpdates) window.wfsSetUpdates(upd0.checked);
+    });
+  }
 })();
