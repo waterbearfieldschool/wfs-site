@@ -73,6 +73,10 @@ def ensure_table(tok):
         name       text primary key,
         applied_at timestamptz not null default now()
       );
+      -- anything created in public is exposed through PostgREST unless told
+      -- otherwise; do not leave that to the default
+      alter table public.schema_migrations enable row level security;
+      revoke all on public.schema_migrations from anon, authenticated;
     """)
 
 
