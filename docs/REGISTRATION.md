@@ -64,9 +64,9 @@ The money columns exist so Supabase alone can answer "what is this person
 owed?" without opening orders in Snipcart one at a time. Before they existed, a
 per-day refund meant manual archaeology.
 
-**`session_caps`** — `date · label · capacity · min_to_run`. Capacity lives
-here, not in `workshops.js`, because it has to be enforced somewhere that can't
-be edited by the visitor.
+**`session_caps`** — `date · label · capacity · min_to_run`. Authored in the
+session's markdown file and pushed here by `wfs-sync-caps`, because enforcement
+has to happen somewhere the visitor cannot edit.
 
 **`session_counts`** — a public view: date, capacity, taken, remaining. This is
 what draws "10 spots left". Aggregates only, no personal data, safe to read
@@ -172,79 +172,98 @@ published before.
 
 # Part 2 — adding a Field Day
 
-Three steps. The second is easy to forget and the site will not warn you at
-authoring time — but `deploy.sh` will refuse to publish, which is the safety
-net.
+Two steps: write a file, deploy. Capacity used to be a third step done by
+hand in SQL, and forgetting it made a day look registerable while `register()`
+refused every attempt. `deploy.sh` now syncs it for you and still refuses to
+publish if anything disagrees.
 
-## 1. Add the session in `src/_data/workshops.js`
+## 1. Add the file
 
-Find the workshop (the *category* — Woodworking, Solar) and add a session to
-its `sessions` array:
+One markdown file per Field Day, in `src/sessions/`, named
+`YYYY-MM-DD-<workshop-slug>.md`. **The filename is what sets the date** — the
+`date:` field is there for readability, because YAML parses an unquoted date
+into a timezone-shifted `Date` object.
 
-```js
-{ date: "2026-09-04",              // ISO. This is the identity of the day.
-  day: "Fri · Sep 4",              // shown everywhere
-  time: "10 AM–1 PM",
-  place: "Lincoln Park, Somerville",
-  project: "Build a Birdbox",      // optional: this day's specific project
-  shortTitle: "Birdbox",           // optional: short form for cart lines
-  img: "/v6img/ws-birdbox.jpg",    // optional: falls back to the category image
-  about: [                         // optional: falls back to the category text
-    "First paragraph.",
-    "Second paragraph.",
-  ],
-  materials: { label: "a birdbox", fee: 30 },   // or null for no kit
-},
+```yaml
+---
+date: 2026-09-04
+day: "Fri · Sep 4"                    # shown everywhere
+time: "10 AM–1 PM"
+workshop: woodworking                 # a slug from workshops.js
+place: "Lincoln Park, Somerville"
+capacity: 10
+minToRun: 3
+
+project: "Build a Birdbox"            # optional: this day's specific build
+shortTitle: "Birdbox"                 # optional: short form for cart lines
+img: /v6img/ws-birdbox.jpg            # optional: else the category image
+about:                                # optional: else the category text
+  - "First paragraph."
+  - "Second paragraph."
+materials:                            # or `materials: null` for no kit
+  label: "a birdbox"
+  fee: 30
+
+draft: true                           # the write-up is not ready yet
+happened: false                       # set true once the day has run
+photos: []
+---
+
+## What we did
+
+Written after the day, with photos.
 ```
 
-Only `date`, `day`, `time`, `place` and `materials` are required — everything
-else inherits from the category.
+Only `date`, `day`, `time`, `workshop`, `place` and `materials` are needed —
+everything else falls back to the category in `src/_data/workshops.js`, which
+holds the colour, stock image, blurb, who-it's-for and what-to-bring.
+
+`draft: true` holds back the **write-up page** only. The Field Day still appears
+on the schedule and is fully registerable — which is what you want for a day
+that has not happened yet.
 
 **A new location?** Add the real address to `~/iris/private/wfs-addresses.json`
 too, keyed by the exact `place` string. `wfs-confirm` refuses to email about a
 session whose address it doesn't have, rather than sending someone a Field Day
 with no location.
 
-## 2. Add the capacity row
-
-In the Supabase SQL editor. The `label` must match exactly what the site
-generates — `"<day> — <project or category title>"`:
-
-```sql
-insert into public.session_caps (date, label, capacity, min_to_run)
-values ('2026-09-04', 'Fri · Sep 4 — Build a Birdbox', 10, 3)
-on conflict (date) do update
-  set label = excluded.label, capacity = excluded.capacity;
-```
-
-**If you skip this, the day looks completely normal and every registration is
-refused** with `unknown_session`. Nobody finds out until someone tries. Run
-`wfs-check` and it will tell you the exact label to use.
-
-## 3. Check, then deploy
+## 2. Deploy
 
 ```bash
-wfs-check      # sessions vs session_caps, both directions
 ./deploy.sh "add Sep 4 birdbox"
 ```
 
-`deploy.sh` runs the check itself and stops if anything is wrong.
+That is the whole thing. `deploy.sh` runs `wfs-sync-caps --apply`, which pushes
+the `capacity` and `minToRun` from your file into the `session_caps` table, then
+runs `wfs-check` and refuses to publish if anything still disagrees.
 
-Then look at the live page: the day should appear with "10 spots left".
+To see what the sync would do without doing it:
+
+```bash
+wfs-sync-caps            # dry run
+wfs-sync-caps --apply    # make the changes
+```
+
+**Why capacity lives in the database at all.** `register()` counts existing
+registrations and inserts inside one locked transaction — that is what stops two
+people taking the last place at the same moment. A number in the repo is a
+suggestion the browser can ignore. So the value is *authored* in the markdown and
+*enforced* in Postgres, and the sync keeps the two honest.
 
 ## Changing things
 
 **Prices** — `src/_data/registrationTypes.js`, then deploy. Currently $20
 standard, $40 supporter, free.
 
-**Kit price** — the session's `materials.fee` in `workshops.js`, then deploy.
+**Kit price** — the session's `materials.fee` in its markdown file, then deploy.
 
-**Capacity** — a `session_caps` row. No deploy needed; the page reads it live.
+**Capacity** — `capacity:` in the session's markdown file, then deploy (or run
+`wfs-sync-caps --apply` on its own; the page reads the count live).
 
-**Renaming a project** — change it in `workshops.js` *and* update the matching
-`session_caps.label`. `register()` writes `rsvps.session` from the caps row, so
-if they drift your roster describes the day differently from the site.
-`wfs-check` catches this.
+**Renaming a project** — change `project:` in the markdown file and deploy. The
+sync updates `session_caps.label` to match. This matters because `register()`
+writes `rsvps.session` from the caps row, so a drifted label means your roster
+describes the day differently from the site. `wfs-check` catches it either way.
 
 ## Cancelling a day
 

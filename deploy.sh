@@ -33,6 +33,13 @@ fi
 #    every registration refused — silently, until a visitor hits it.
 #    WFS_SKIP_CHECK=1 overrides, for when you know and don't care.
 if [[ -z "${WFS_SKIP_CHECK:-}" ]]; then
+  # Capacity is authored in each session's markdown front matter, but has to be
+  # enforced in Postgres — register() counts and inserts under a row lock, and
+  # nothing in the repo can do that. This pushes the authored values across
+  # using the secret key, so adding a Field Day never means writing SQL.
+  echo "→ syncing capacities to session_caps"
+  ./scripts/wfs-sync-caps --apply --quiet
+
   echo "→ checking sessions against session_caps"
   if ! ./scripts/wfs-check --quiet; then
     echo "✗ deploy stopped. Fix the rows above, or re-run with WFS_SKIP_CHECK=1"

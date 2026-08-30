@@ -28,6 +28,13 @@ module.exports = function(eleventyConfig) {
       .sort((a, b) => b.date - a.date)
   );
 
+  // The sessions belonging to one workshop category. Sessions live in
+  // src/sessions/*.md and are flattened by _data/sessions.js; workshops.js no
+  // longer carries its own copy, so category pages filter the global list.
+  eleventyConfig.addFilter("forWorkshop", (sessions, slug) =>
+    (sessions || []).filter((s) => s.slug === slug)
+  );
+
   // Format date as "Month Year"
   eleventyConfig.addFilter("displayDate", function(date) {
     return new Date(date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });

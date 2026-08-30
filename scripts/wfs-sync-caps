@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+"""wfs-sync-caps — push authored capacities into the database.
+
+Capacity has to live in Postgres, because register() enforces it under a row
+lock and that is the only thing that stops two people taking the last place at
+once. Anything in the repo is a suggestion the browser can ignore.
+
+But that does not mean YOU have to write SQL. A Field Day is authored as one
+markdown file in src/sessions/, capacity and all; this pushes what those files
+say into session_caps, using the secret key that only exists on this machine.
+So the enforcement stays server-side while the authoring stays in one file.
+
+It only ever inserts or updates rows for days the site knows about. It will not
+delete a row for a day you removed — that could orphan real registrations — and
+wfs-check reports those separately so you can decide.
+
+  wfs-sync-caps             show what would change, change nothing
+  wfs-sync-caps --apply     make the changes
+  wfs-sync-caps --quiet     only speak up if something changed or broke
+"""
+
+import json
+import os
+import subprocess
+import sys
+import urllib.request
+import urllib.error
+
+PROJECT = "https://jhgcnqmzbphzpxgtojti.supabase.co"
+# realpath, not abspath: run through a symlink in ~/.local/bin
+REPO = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+NODE = os.path.expanduser("~/.nvm/versions/node/v24.15.0/bin/node")
+
+
+def key():
+    out = subprocess.run(["pass", "supabase/wfs-secret"],
+                         capture_output=True, text=True, timeout=20)
+    if out.returncode != 0:
+        sys.exit("wfs-sync-caps: no secret key at `pass supabase/wfs-secret`")
+    return out.stdout.strip().splitlines()[0]
+
+
+def sessions():
+    node = NODE if os.path.exists(NODE) else "node"
+    out = subprocess.run(
+        [node, "-e",
+         "console.log(JSON.stringify(require('./src/_data/sessions.js')))"],
+        cwd=REPO, capture_output=True, text=True)
+    if out.returncode != 0:
+        sys.exit("wfs-sync-caps: could not read sessions:\n" + out.stderr.strip())
+    return json.loads(out.stdout)
+
+
+def existing(k):
+    req = urllib.request.Request(
+        PROJECT + "/rest/v1/session_caps?select=date,label,capacity,min_to_run",
+        headers={"apikey": k, "Authorization": "Bearer " + k})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return {c["date"]: c for c in json.loads(r.read().decode() or "[]")}
+    except urllib.error.HTTPError as e:
+        sys.exit("wfs-sync-caps: %s %s" % (e.code, e.read().decode()[:200]))
+
+
+def upsert(k, rows):
+    body = json.dumps(rows).encode()
+    req = urllib.request.Request(
+        PROJECT + "/rest/v1/session_caps?on_conflict=date",
+        data=body, method="POST",
+        headers={"apikey": k, "Authorization": "Bearer " + k,
+                 "Content-Type": "application/json",
+                 "Prefer": "resolution=merge-duplicates,return=minimal"})
+    try:
+        urllib.request.urlopen(req, timeout=30).read()
+    except urllib.error.HTTPError as e:
+        sys.exit("wfs-sync-caps: %s %s" % (e.code, e.read().decode()[:300]))
+
+
+def main():
+    apply_it = "--apply" in sys.argv
+    quiet = "--quiet" in sys.argv
+
+    k = key()
+    have = existing(k)
+    want = [{"date": s["date"], "label": s["label"],
+             "capacity": s["capacity"], "min_to_run": s["minToRun"]}
+            for s in sessions()]
+
+    changes = []
+    for row in want:
+        cur = have.get(row["date"])
+        if cur is None:
+            changes.append(("new", row, None))
+        elif (cur.get("label") != row["label"]
+              or cur.get("capacity") != row["capacity"]
+              or cur.get("min_to_run") != row["min_to_run"]):
+            changes.append(("update", row, cur))
+
+    if not changes:
+        if not quiet:
+            print("session_caps already matches the site (%d days)" % len(want))
+        return 0
+
+    for kind, row, cur in changes:
+        if kind == "new":
+            print("+ %s  cap %s  min %s  %s"
+                  % (row["date"], row["capacity"], row["min_to_run"], row["label"]))
+        else:
+            bits = []
+            if cur.get("label") != row["label"]:
+                bits.append('label "%s" -> "%s"' % (cur.get("label"), row["label"]))
+            if cur.get("capacity") != row["capacity"]:
+                bits.append("capacity %s -> %s" % (cur.get("capacity"), row["capacity"]))
+            if cur.get("min_to_run") != row["min_to_run"]:
+                bits.append("min_to_run %s -> %s" % (cur.get("min_to_run"), row["min_to_run"]))
+            print("~ %s  %s" % (row["date"], "; ".join(bits)))
+
+    if not apply_it:
+        print("\n(dry run — nothing changed. Re-run with --apply)")
+        return 0
+
+    upsert(k, [r for _, r, _ in changes])
+    print("\napplied %d change%s" % (len(changes), "" if len(changes) == 1 else "s"))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

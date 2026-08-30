@@ -91,10 +91,11 @@ def main():
         print("\n%d problem%s:" % (len(problems), "" if len(problems) == 1 else "s"))
         for p in problems:
             print("  - " + p)
-        print("\nFix: add or correct rows in session_caps, e.g.")
-        print("  insert into public.session_caps (date, label, capacity, min_to_run)")
-        print("  values ('YYYY-MM-DD', '<label exactly as the site has it>', 10, 3)")
-        print("  on conflict (date) do update set label = excluded.label;")
+        print("\nFix: push the authored capacities into the database —")
+        print("  wfs-sync-caps            # show what would change")
+        print("  wfs-sync-caps --apply    # make the changes")
+        print("\nCapacity is authored in the session's markdown file, as")
+        print("`capacity:` in its front matter. deploy.sh runs the sync for you.")
         sys.exit(1)
 
     if not quiet:

@@ -3,45 +3,42 @@ permalink: false
 eleventyExcludeFromCollections: true
 ---
 
-# sessions/
+# Field Days
 
-One markdown file per Field Day. **A session lives its whole life in one file:**
-it starts as an upcoming date, the day happens, and then the same file gains
-photos and a few paragraphs. Same URL throughout — so a link someone shared in
-WhatsApp still works, and still shows the right preview.
+One markdown file per Field Day, named `YYYY-MM-DD-<workshop-slug>.md`.
+**This is the only place a Field Day is defined.**
 
-Filename is `YYYY-MM-DD-<workshop>.md`.
+The filename sets the date. `_data/sessions.js` reads these files to build the
+schedule, the registration pages, the cart lines and the confirmation emails;
+`workshops.js` supplies only the category defaults a session doesn't override.
 
-## Front matter
+## The life of a file
 
-Set when the session is scheduled:
+**Before the day** — front matter only. It appears on the schedule and is
+registerable. Keep `draft: true`, which holds back the write-up page but not the
+Field Day itself.
 
-    date, day, time      when
-    workshop             which workshop (matches _data/workshops.js)
-    category             forest | workshop | papercraft
-    project              this day's sub-topic, if it differs from the workshop
-    shortTitle           short form for cart lines
-    place, img, materials
+**After the day** — set `happened: true`, drop the photo filenames into
+`photos:`, write a line of `summary:` and a couple of paragraphs in the body,
+and remove `draft: true`. It now appears under Recent Field Days with its own
+page at `/s/<filename>/`.
 
-Filled in afterwards:
+Photos live in `src/assets/images/sessions/<same-name-as-this-file>/`.
 
-    happened: true       false if it didn't run
-    photos: []           filenames, in the order they should appear
+## Capacity
 
-## Body
+`capacity:` and `minToRun:` are authored here but enforced in Postgres —
+`register()` counts and inserts under a row lock, which is what stops two people
+taking the last place at once. `deploy.sh` runs `wfs-sync-caps --apply` to push
+your value across. You never write SQL for this.
 
-`## What we did` — two or three paragraphs.
-`## Notes for next time` — optional, and for you rather than for visitors.
+## Gotchas
 
-## Photos
-
-Drop them in `~/iris/journal/inbox/photos/<YYYY-MM-DD-workshop>/` — the
-Syncthing folder. They get resized, stripped of EXIF (iPhone photos carry GPS,
-and the address is the thing registration buys) and copied into
-`src/assets/images/sessions/<same-name>/`.
-
-## Status
-
-These files are **not wired into the build yet**. The live site still renders
-from `_data/workshops.js`. Filling these in is safe and changes nothing until
-the restructure lands.
+- The `date:` field is for reading. **The filename is authoritative** — YAML
+  turns an unquoted date into a timezone-shifted `Date`.
+- `draft: true` hides the write-up, *not* the Field Day.
+- `happened: false` keeps a cancelled day out of Recent Field Days without
+  deleting the file.
+- Changing `project:` changes the label that `register()` writes to `rsvps` —
+  the sync keeps `session_caps` in step, and `wfs-check` fails the deploy if
+  anything drifts.

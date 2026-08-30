@@ -43,14 +43,15 @@ eleventyExcludeFromCollections: true
       <div class="wband" style="background:linear-gradient(transparent,{{ w.color }}f2)"><h1>{{ w.title }}</h1></div>
     </div>
 
+    {%- set ws = sessions | forWorkshop(w.slug) %}
     <p class="wblurb">{{ w.blurb }}</p>
-    <p style="color:var(--muted);margin:-10px 0 22px;font-size:.92rem">{{ w.sessions | length }} upcoming day{% if w.sessions | length != 1 %}s{% endif %} — each is its own project. Jump to the one you want:</p>
+    <p style="color:var(--muted);margin:-10px 0 22px;font-size:.92rem">{{ ws | length }} upcoming day{% if ws | length != 1 %}s{% endif %} — each is its own project. Jump to the one you want:</p>
 
     <div class="daynav">
-      {% for s in w.sessions %}<a href="/w/{{ w.slug }}/{{ s.date }}/" class="daychip" style="border-color:{{ w.color }}">{{ s.day }} · {{ s.project or w.title }}</a>{% endfor %}
+      {% for s in ws %}<a href="/w/{{ w.slug }}/{{ s.date }}/" class="daychip" style="border-color:{{ w.color }}">{{ s.day }} · {{ s.project or w.title }}</a>{% endfor %}
     </div>
 
-    {% for s in w.sessions %}
+    {% for s in ws %}
     <section class="daycard" id="day-{{ s.date }}">
       <div class="daycard-band" style="background:{{ w.color }}">
         <a class="dc-when" href="/w/{{ w.slug }}/{{ s.date }}/">{{ s.day }} · {{ s.time }}</a>
