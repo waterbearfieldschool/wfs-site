@@ -350,6 +350,13 @@ eleventyExcludeFromCollections: true
     .herowrap{margin-bottom:8px}
     .hero{margin-bottom:12px}
   }
+
+  /* Section headings get a short rule beneath them so they read as headings
+     rather than as another line of bold text. currentColor, so each section's
+     own accent carries through without repeating the colour here. */
+  .grp::after{content:"";display:block;width:54px;height:3px;border-radius:2px;
+              background:currentColor;opacity:.35;margin:10px auto 0}
+  @media(max-width:560px){.grp::after{width:44px;margin-top:8px}}
 </style>
 <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
@@ -496,7 +503,7 @@ eleventyExcludeFromCollections: true
     <p class="about-lead">Waterbear Field School is a hands-on, outdoors skill-share for kids and adults.</p>
 
     <h2 class="grp" id="what-are-field-days" style="font-size:1.5rem;margin-top:24px">What are Field Days?</h2>
-    <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+, running <b>10 AM to 1 PM</b>. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Every day has a <b>pay-what-you-can</b> registration, no questions asked — registering also reserves your materials and tells us how many to expect. See what&rsquo;s coming up on the <a href="#schedule" style="color:#9a6f14;font-weight:700;text-decoration:underline">schedule</a>. You can also read about recent Field Day and Field School projects in the <a href="#journal" style="color:#4f6675;font-weight:700;text-decoration:underline">Recent Field Days</a>, or find out more about our philosophy and approach in the <a href="#philosophy" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Philosophy &amp; Resources</a> section.</p>
+    <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+, running <b>10 AM to 1 PM</b>. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Every day has a <b>pay-what-you-can</b> registration, no questions asked — registering also reserves your materials and tells us how many to expect. See what&rsquo;s coming up on the <a href="#schedule" style="color:#9a6f14;font-weight:700;text-decoration:underline">schedule</a>. You can also read about recent Field Day and Field School projects in the <a href="#journal" style="color:#4f6675;font-weight:700;text-decoration:underline">Recent Field Days</a>, or find out more about our philosophy and approach in the <a href="#philosophy" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Philosophy &amp; Structure</a> section.</p>
     <div class="cards">
       {%- for w in workshops %}
       <a class="card card-link" href="/w/{{ w.slug }}/">
