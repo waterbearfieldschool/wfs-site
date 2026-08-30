@@ -134,7 +134,9 @@ eleventyExcludeFromCollections: true
   .cg .cell.hl{color:#fff;font-weight:800}
   #september .grp{margin:10px 0 4px} #august .grp{margin:12px 0 6px} #program .grp{margin:12px 0 10px}
   #segcount{font-size:.88rem;line-height:1.2}
-  .grp{font-weight:800;color:var(--accent-d);text-align:center;font-size:1.4rem;margin:26px 0 16px}
+  .grp{font-weight:800;color:var(--accent-d);text-align:center;font-size:1.8rem;margin:26px 0 16px;letter-spacing:-.01em}
+  .subgrp{font-size:1.2rem;margin-top:30px}
+  .subgrp::after{width:40px;height:2px;opacity:.3}
   .about-lead{max-width:760px;margin:8px auto 0;text-align:center;color:var(--accent-d);font-size:clamp(1rem,2.4vw,1.18rem);font-weight:600;line-height:1.4}
   .legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:840px;margin:16px auto 0}
   @media(max-width:560px){.legend{grid-template-columns:1fr}}
@@ -341,7 +343,8 @@ eleventyExcludeFromCollections: true
      section and the next. */
   @media(max-width:560px){
     section.sec{padding:8px 10px 16px;margin-bottom:10px}
-    .grp{font-size:1.24rem;margin:12px 0 8px}
+    .grp{font-size:1.46rem;margin:12px 0 8px}
+    .subgrp{font-size:1.1rem;margin-top:20px}
     .seclead{margin-bottom:10px}
     .cards{gap:12px}
     .daycards{gap:11px}
@@ -502,7 +505,7 @@ eleventyExcludeFromCollections: true
     <h2 class="grp">About</h2>
     <p class="about-lead">Waterbear Field School is a hands-on, outdoors skill-share for kids and adults.</p>
 
-    <h2 class="grp" id="what-are-field-days" style="font-size:1.5rem;margin-top:24px">What are Field Days?</h2>
+    <h2 class="grp subgrp" id="what-are-field-days">What are Field Days?</h2>
     <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+, running <b>10 AM to 1 PM</b>. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Every day has a <b>pay-what-you-can</b> registration, no questions asked — registering also reserves your materials and tells us how many to expect. See what&rsquo;s coming up on the <a href="#schedule" style="color:#9a6f14;font-weight:700;text-decoration:underline">schedule</a>. You can also read about recent Field Day and Field School projects in the <a href="#journal" style="color:#4f6675;font-weight:700;text-decoration:underline">Recent Field Days</a>, or find out more about our philosophy and approach in the <a href="#philosophy" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Philosophy &amp; Structure</a> section.</p>
     <div class="cards">
       {%- for w in workshops %}
@@ -519,7 +522,7 @@ eleventyExcludeFromCollections: true
       <article class="card"><img class="cardimg" src="/v6img/pj-trailer.jpg" alt=""><div class="band" style="background:#c05a2a"><div class="day">Build &amp; Repair</div></div><div class="body"><div class="desc">Fixing what we already own — tools, bikes, household things — instead of replacing them.</div></div></article>
     </div>
   
-    <h2 class="grp" id="philosophy" style="font-size:1.5rem;margin-top:24px">Philosophy &amp; Structure</h2>
+    <h2 class="grp subgrp" id="philosophy">Philosophy &amp; Structure</h2>
     <p class="seclead">A few things to know before you join us for a Field Day.</p>
     <div class="policy">
       <h3>Let&rsquo;s Go Outside!</h3>
