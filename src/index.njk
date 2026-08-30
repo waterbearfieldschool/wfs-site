@@ -331,6 +331,25 @@ eleventyExcludeFromCollections: true
   .submsg.good{color:var(--accent)}
   .submsg.bad{color:#a3402f}
   .subfine{margin-top:9px;color:var(--muted);font-size:.83rem}
+
+  /* The hidden attribute is a user-agent rule, and any author rule beats it —
+     .card sets display:flex, so hidden cards were rendering anyway. */
+  [hidden]{display:none !important}
+
+  /* Mobile: the section padding, heading margins and gaps between sections all
+     stack up, so a phone scrolls through a lot of empty ground between one
+     section and the next. */
+  @media(max-width:560px){
+    section.sec{padding:8px 10px 16px;margin-bottom:10px}
+    .grp{font-size:1.24rem;margin:12px 0 8px}
+    .seclead{margin-bottom:10px}
+    .cards{gap:12px}
+    .daycards{gap:11px}
+    .monthhead{margin:8px 0 -2px}
+    .subwrap{margin-top:0}
+    .herowrap{margin-bottom:8px}
+    .hero{margin-bottom:12px}
+  }
 </style>
 <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
