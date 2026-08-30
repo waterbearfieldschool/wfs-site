@@ -59,6 +59,9 @@ def caps(k):
 def main():
     quiet = "--quiet" in sys.argv
     ss = sessions()
+    # Proposed workshops are deliberately absent from session_caps — they are
+    # being planned, not open. Checking them would report a permanent problem.
+    ss = [s for s in ss if not s.get("proposed")]
     cc = {c["date"]: c for c in caps(key())}
     problems = []
 

@@ -13,6 +13,23 @@
 
 module.exports = [
   {
+    slug: "water",
+    cartShort: "Water",
+    title: "Working with Water",
+    short: "Water",
+    color: "#2c8299",
+    img: "/v6img/ws-rain.jpg",
+    blurb: "Catching rain, moving it, and cleaning it \u2014 the plumbing and practice of making water useful at home and on the farm.",
+    about: [
+      "Rain that lands on a roof is the easiest water you will ever get, and most of it runs straight into a drain. We look at how to catch it, hold it, and get it where it is wanted.",
+      "Hands on the actual fittings: downspouts, diverters, overflow, and the small number of parts that do most of the work."
+    ],
+    forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14).",
+    bring: "Closed\u2011toe shoes and weather\u2011appropriate clothing. Tools and parts are provided.",
+    location: "Hanan Healthy Foods, Lincoln, MA",
+    locationNote: "Exact address sent when you register."
+  },
+  {
     slug: "solar",
     cartShort: "Solar Bench",
     title: "Solar Power & Electronics Bench",

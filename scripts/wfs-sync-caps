@@ -82,9 +82,12 @@ def main():
 
     k = key()
     have = existing(k)
+    # A proposed workshop has no confirmed date and nothing offers to register
+    # for it, so it gets no capacity row. Giving it one would make it look
+    # registerable to anything reading the database.
     want = [{"date": s["date"], "label": s["label"],
              "capacity": s["capacity"], "min_to_run": s["minToRun"]}
-            for s in sessions()]
+            for s in sessions() if not s.get("proposed")]
 
     changes = []
     for row in want:

@@ -360,6 +360,10 @@ eleventyExcludeFromCollections: true
   .grp::after{content:"";display:block;width:54px;height:3px;border-radius:2px;
               background:currentColor;opacity:.35;margin:10px auto 0}
   @media(max-width:560px){.grp::after{width:44px;margin-top:8px}}
+
+  .btn-plan{flex:1;background:#fff;color:#8a5a2b;border:1.5px dashed #cdb684;font-weight:700;font-size:.85rem;padding:9px 8px;border-radius:8px;display:block;text-align:center;text-decoration:none}
+  .btn-plan:hover{border-color:#8a5a2b;background:#fdf7ec}
+  .daycard2.proposed{border-style:dashed}
 </style>
 <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
@@ -438,15 +442,19 @@ eleventyExcludeFromCollections: true
       <h3 class="monthhead" data-month="{{ s.month }}">{{ s.month }}</h3>
       {%- set shownMonth = s.month %}
       {%- endif %}
-      <article class="daycard2" id="day-{{ s.date }}" data-month="{{ s.month }}">
+      <article class="daycard2{% if s.proposed %} proposed{% endif %}" id="day-{{ s.date }}" data-month="{{ s.month }}"{% if s.proposed %} data-proposed="1"{% endif %}>
         <img src="{{ s.img }}" alt="">
         <div class="dc2-main">
-          <a class="dc2-date" href="{{ s.path }}">{{ s.day }} · {{ s.time }}</a>
+          <a class="dc2-date" href="{{ s.path }}">{% if s.proposed %}Date TBA{% else %}{{ s.day }} · {{ s.time }}{% endif %}</a>
           <h3><a href="{{ s.path }}">{{ s.title }}</a></h3>
           <div class="dc2-meta">{{ s.place }}</div>
           <p class="dc2-blurb">{{ s.cardBlurb }}</p>
           <div class="dc2-actions">
+            {%- if s.proposed %}
+            <a class="btn-plan" href="{{ s.path }}">Being planned &mdash; see the idea</a>
+            {%- else %}
             <a class="btn-reg" href="{{ s.path }}">Register</a>
+            {%- endif %}
             <details class="dc2-details"><summary><span class="d-more">More details ▾</span><span class="d-less">Fewer details ▴</span></summary>
               <div class="dc2-more">
                 {% for p in s.about %}<p>{{ p }}</p>{% endfor %}
@@ -454,7 +462,7 @@ eleventyExcludeFromCollections: true
                   <div><dt>Where</dt><dd>{{ s.location }}<br><span style="color:var(--muted)">{{ s.locationNote }}</span></dd></div>
                   <div><dt>Who</dt><dd>{{ s.forWhom }}</dd></div>
                   <div><dt>Bring</dt><dd>{{ s.bring }}</dd></div>
-                  <div><dt>When</dt><dd>{{ s.day }} · {{ s.time }}</dd></div>
+                  <div><dt>When</dt><dd>{% if s.proposed %}Date to be announced{% if s.time %} &middot; likely {{ s.time }}{% endif %}{% else %}{{ s.day }} &middot; {{ s.time }}{% endif %}</dd></div>
                 </dl>
               </div>
             </details>
@@ -662,6 +670,9 @@ eleventyExcludeFromCollections: true
     if(!window.wfsIsPast) return;
     var hidden=0;
     document.querySelectorAll('.daycard2').forEach(function(c){
+      // a proposed workshop carries a placeholder date; hiding it when that
+      // date passes would silently delete something still being planned
+      if(c.dataset.proposed) return;
       var d=(c.id||'').replace('day-','');
       if(window.wfsIsPast(d)){ c.style.display='none'; hidden++; }
     });

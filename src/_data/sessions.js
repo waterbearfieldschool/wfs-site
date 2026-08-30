@@ -14,6 +14,10 @@
 //     future Field Day has no recap yet and must still appear on the schedule.
 //   * `happened`     — only decides whether it shows under Recent Field Days.
 //
+// `proposed: true` marks a workshop that is still being planned: it renders a
+// shareable page and appears under its month as "Date TBA", but is not
+// registerable and never appears under Recent Field Days.
+//
 // The date comes from the FILENAME, not the `date:` front-matter field: YAML
 // parses an unquoted date into a Date object, which then drifts by timezone.
 // The filename is unambiguous, and it is also what names the photo folder.
@@ -73,6 +77,11 @@ module.exports = fs
       // row lock; this is the authored value that wfs-sync-caps pushes there
       capacity: fm.capacity == null ? 10 : fm.capacity,
       minToRun: fm.minToRun == null ? 3 : fm.minToRun,
+      // A workshop that is being planned: it has a page you can share and a
+      // month it is aimed at, but no confirmed date and no registration. It
+      // gets no session_caps row, so register() would refuse it anyway — but
+      // nothing offers to register in the first place.
+      proposed: !!fm.proposed,
       // display name for the kit, from materials.label:
       //   "a toolbox" -> "Toolbox", "solar panel + motor kit" -> "Solar panel + motor kit"
       kitName: fm.materials

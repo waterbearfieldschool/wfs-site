@@ -26,7 +26,12 @@ module.exports = function(eleventyConfig) {
   // page then re-decides against the visitor's own clock. Correct without
   // JavaScript, and correct without a rebuild.
   eleventyConfig.addCollection("pastSessions", (api) =>
-    api.getFilteredByTag("session").sort((a, b) => b.date - a.date)
+    api
+      .getFilteredByTag("session")
+      // a proposed workshop has a placeholder date; it must never drift into
+      // Recent Field Days just because that date went by
+      .filter((item) => !item.data.proposed)
+      .sort((a, b) => b.date - a.date)
   );
 
   // The sessions belonging to one workshop category. Sessions live in
