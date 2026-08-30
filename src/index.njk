@@ -305,6 +305,29 @@ eleventyExcludeFromCollections: true
   }
 {% include "wfs-panel.css" %}
 {% include "wfs-basket.css" %}
+
+  /* --- past sessions ------------------------------------------------- */
+  .pastlead{display:grid;grid-template-columns:1.15fr 1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:.14s;margin-top:6px}
+  .pastlead:hover{border-color:#cfd4cb;box-shadow:0 4px 16px rgba(0,0,0,.07);transform:translateY(-1px)}
+  .pastlead img{width:100%;height:100%;min-height:230px;object-fit:cover;display:block}
+  .pastlead-body{padding:20px 22px;display:flex;flex-direction:column;justify-content:center}
+  .pastlead-body h3{font-size:1.36rem;color:var(--accent-d);margin:9px 0 3px;line-height:1.2}
+  .pastlead-body p{font-size:.92rem;color:var(--ink);margin:9px 0 0}
+  .pasttag{align-self:flex-start;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:3px 9px;border-radius:99px}
+  .pastwhen{color:var(--muted);font-size:.9rem;font-weight:600}
+  .pastgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px;margin-top:13px}
+  .pastcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:.14s}
+  .pastcard:hover{border-color:#cfd4cb;box-shadow:0 4px 14px rgba(0,0,0,.07);transform:translateY(-1px)}
+  .pastcard img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+  .pastcard-body{padding:11px 13px 13px}
+  .pastcard-body h4{font-size:1rem;color:var(--accent-d);margin:7px 0 2px;line-height:1.25}
+  @media(max-width:620px){
+    .pastlead{grid-template-columns:1fr}
+    .pastlead img{min-height:0;aspect-ratio:16/10}
+    .pastlead-body{padding:15px 16px 18px}
+    .pastlead-body h3{font-size:1.18rem}
+    .pastgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  }
 </style>
 <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
@@ -354,6 +377,41 @@ eleventyExcludeFromCollections: true
   </div>
 
         
+
+  {%- set past = collections.pastSessions %}
+  {%- if past.length %}
+  <section class="sec sec-past" id="past" data-name="Past Sessions" data-blurb="What we&rsquo;ve built and learned so far." data-accent="#8a5a2b" data-tint="#f5efe8" data-bd="#e6d8c8">
+    <h2 class="grp">What we&rsquo;ve been doing</h2>
+    <p class="seclead">Every Field Day, written up afterwards with photos &mdash; so you can see what actually happens before you come to one.</p>
+
+    {%- set lead = past[0] %}
+    <a class="pastlead" href="{{ lead.url }}">
+      <img src="{% if lead.data.photos and lead.data.photos.length %}{{ lead.data.photoDir }}{{ lead.data.photos[0] }}{% else %}{{ lead.data.img }}{% endif %}" alt="">
+      <div class="pastlead-body">
+        <span class="pasttag" style="background:{{ lead.data.color }}">{{ lead.data.categoryLabel }}</span>
+        <h3>{{ lead.data.project }}</h3>
+        <div class="pastwhen">{{ lead.data.day }} &middot; {{ lead.data.place }}</div>
+        <p>{{ lead.data.cardText }}</p>
+        <span class="cardgo">Read what we did &rarr;</span>
+      </div>
+    </a>
+
+    {%- if past.length > 1 %}
+    <div class="pastgrid">
+      {%- for s in past %}{%- if not loop.first %}
+      <a class="pastcard" href="{{ s.url }}">
+        <img src="{% if s.data.photos and s.data.photos.length %}{{ s.data.photoDir }}{{ s.data.photos[0] }}{% else %}{{ s.data.img }}{% endif %}" alt="" loading="lazy">
+        <div class="pastcard-body">
+          <span class="pasttag" style="background:{{ s.data.color }}">{{ s.data.categoryLabel }}</span>
+          <h4>{{ s.data.project }}</h4>
+          <div class="pastwhen">{{ s.data.day }}</div>
+        </div>
+      </a>
+      {%- endif %}{%- endfor %}
+    </div>
+    {%- endif %}
+  </section>
+  {%- endif %}
 
   <section class="sec sec-august" id="schedule" data-name="Schedule" data-blurb="Upcoming Field Days — free, all welcome.">
     <h2 class="grp">Upcoming Field Days</h2>

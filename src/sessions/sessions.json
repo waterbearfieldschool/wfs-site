@@ -1,5 +1,0 @@
-{
-  "permalink": false,
-  "eleventyExcludeFromCollections": true,
-  "_comment": "Staged content only. These files are not published until the restructure wires them into the build — without this, Eleventy renders every .md under src/ and the TODO stubs would go live."
-}

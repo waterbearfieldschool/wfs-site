@@ -1,3 +1,8 @@
+---
+permalink: false
+eleventyExcludeFromCollections: true
+---
+
 # sessions/
 
 One markdown file per Field Day. **A session lives its whole life in one file:**

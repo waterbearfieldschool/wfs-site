@@ -17,6 +17,17 @@ module.exports = function(eleventyConfig) {
     }
   });
 
+  // Field Days that have actually happened, newest first.
+  // Drives the "what we've been doing" section on the homepage and the /s/ pages.
+  // `happened: false` keeps a session that was cancelled out of the record without
+  // deleting the file; `draft: true` holds back one whose recap isn't written yet.
+  eleventyConfig.addCollection("pastSessions", (api) =>
+    api
+      .getFilteredByTag("session")
+      .filter((item) => item.data.happened && !item.data.draft)
+      .sort((a, b) => b.date - a.date)
+  );
+
   // Format date as "Month Year"
   eleventyConfig.addFilter("displayDate", function(date) {
     return new Date(date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });

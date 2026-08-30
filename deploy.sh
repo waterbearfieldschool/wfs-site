@@ -48,6 +48,20 @@ echo "→ building site"
 rm -rf _site
 npm run build
 
+# 3b. Refuse to publish a session recap that is still a stub.
+#     Sessions are un-drafted early so they can be previewed on the dev server;
+#     without this, a forgotten `draft:` removal publishes a page reading
+#     "TODO — two or three paragraphs" to the live site.
+if [[ -d _site/s ]]; then
+  stubs=$(grep -rl 'TODO' _site/s/ 2>/dev/null || true)
+  if [[ -n "$stubs" ]]; then
+    echo "✗ deploy stopped — these session pages still contain TODO text:"
+    echo "$stubs" | sed 's|^|    |'
+    echo "  Write the recap, or put 'draft: true' back in the markdown file."
+    exit 1
+  fi
+fi
+
 # 4. Deploy to GitHub Pages.
 PAGES_DIR="../waterbearfieldschool.github.io"
 if [[ ! -d "$PAGES_DIR/.git" ]]; then
