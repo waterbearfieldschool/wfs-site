@@ -14,7 +14,7 @@
     : null;
 
   var SESSIONS={ {% for s in sessions %}"{{ s.date }}":{{ s.label | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %} };
-  var KEY='wfs.basket.v1', WHO='wfs.who.v1', UPD='wfs.updates.v1';
+  var KEY='wfs.basket.v1', WHO='wfs.who.v1', UPD='wfs.updates.v1', TEACH='wfs.teach.v1';
 
   /* The updates checkbox lives in our drawer, but on the paid path the
    * registration is written later, at cart.confirmed — by which point Snipcart
@@ -26,6 +26,19 @@
   function storedUpdates(){
     try{ return localStorage.getItem(UPD)==='1'; }catch(e){ return false; }
   }
+
+  /* What someone offered to teach, keyed by the day they registered for. Kept
+   * out of the basket line so it survives the basket being re-rendered, and so
+   * the paid path can still read it after Snipcart has been through the page. */
+  function teachAll(){
+    try{ return JSON.parse(localStorage.getItem(TEACH)||'{}'); }catch(e){ return {}; }
+  }
+  window.wfsSetTeach=function(date, text){
+    var all=teachAll();
+    if(text && text.trim()) all[date]=text.trim(); else delete all[date];
+    try{ localStorage.setItem(TEACH, JSON.stringify(all)); }catch(e){}
+  };
+  window.wfsGetTeach=function(date){ return teachAll()[date] || ''; };
 
   /* ---------------- past days ----------------
    * A static build bakes in the date it was built, so it cannot be trusted to
@@ -168,7 +181,8 @@
             amount:      amount[d] || 0,
             kit_amount:  kitAmount[d] || 0,
             order_token: orderToken || null,
-            updates:     !!wantsUpdates
+            updates:     !!wantsUpdates,
+            teach:       window.wfsGetTeach(d) || null
           }
         });
       }catch(e){ failed.push({date:d, msg:String(e)}); continue; }
@@ -193,6 +207,11 @@
         });
       }catch(e){ console.warn('[wfs] newsletter opt-in did not save', e); }
       try{ localStorage.removeItem(UPD); }catch(e){}
+    }
+    if(placed.length){
+      var left=teachAll();
+      placed.forEach(function(p){ delete left[p.date]; });
+      try{ localStorage.setItem(TEACH, JSON.stringify(left)); }catch(e){}
     }
 
     await window.wfsRefreshCounts();

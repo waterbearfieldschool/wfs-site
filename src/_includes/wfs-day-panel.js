@@ -15,6 +15,27 @@
     r.querySelector('.qbtn[data-step="-1"]').disabled=(n===0);
   }
 
+  /* The teach option asks for something in place of money, so the box appears
+     with the first place chosen and the answer is remembered per day. */
+  var teachRow=panel.querySelector('.trow[data-pid$="-teach"]');
+  var teachBox=document.getElementById('teachBox');
+  var teachWhat=document.getElementById('teachWhat');
+  var teachMsg=document.getElementById('teachMsg');
+
+  function syncTeach(){
+    if(!teachRow||!teachBox) return;
+    var want=qtyOf(teachRow)>0;
+    teachBox.hidden=!want;
+    if(!want && teachMsg) teachMsg.hidden=true;
+  }
+  if(teachWhat){
+    teachWhat.value = (window.wfsGetTeach && window.wfsGetTeach(DATE)) || '';
+    teachWhat.addEventListener('input', function(){
+      if(window.wfsSetTeach) window.wfsSetTeach(DATE, teachWhat.value);
+      if(teachMsg && teachWhat.value.trim()) teachMsg.hidden=true;
+    });
+  }
+
   function summarise(){
     var regs=0, kits=0, money=0;
     rows.forEach(function(r){
@@ -78,10 +99,17 @@
       }
     }
     setQty(r, qtyOf(r)+step);
+    syncTeach();
     summarise();
   });
 
   goBtn.onclick=function(){
+    // a teach place with nothing offered is just a free place by another name
+    if(teachRow && qtyOf(teachRow)>0 && teachWhat && !teachWhat.value.trim()){
+      if(teachMsg) teachMsg.hidden=false;
+      teachWhat.focus();
+      return;
+    }
     rows.forEach(function(r){
       window.wfsBasket.set(r.dataset.pid, qtyOf(r), {
         kind:  r.dataset.kind,
@@ -101,11 +129,13 @@
     var b=window.wfsBasket.read();
     var any=rows.some(function(r){ return (b[r.dataset.pid]||{}).qty>0; });
     if(any) rows.forEach(function(r){ setQty(r, (b[r.dataset.pid]||{}).qty||0); });
+    syncTeach();
     summarise();
   }
   document.addEventListener('wfs.basket', reflect);
 
   rows.forEach(function(r){ setQty(r,0); });
+  syncTeach();
   showCapacity();
   reflect();
 })();

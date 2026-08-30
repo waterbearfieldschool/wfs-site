@@ -1,0 +1,138 @@
+#!/usr/bin/env python3
+"""wfs-migrate — run SQL migrations against Supabase, in order, exactly once.
+
+Schema changes used to be a .sql file pasted by hand into the Supabase SQL
+editor. That is easy to forget, easy to run twice, easy to run out of order, and
+leaves no record of what the database actually has — the only way to know was to
+remember. Two migrations sat unapplied for days because of it.
+
+Migrations live in supabase/migrations/, named so they sort chronologically:
+
+    0001-capacity.sql
+    0002-confirmation-email.sql
+    ...
+
+Each is run once and recorded in a schema_migrations table. Re-running is a
+no-op. They are ordinary SQL files in the repo, so a schema change is reviewed
+in a diff like everything else.
+
+This talks to the Supabase management API with the personal access token in
+`pass supabase/cli-token` — no CLI to install, no database password to hold.
+
+  wfs-migrate              list what is pending
+  wfs-migrate --apply      run everything pending, in order
+  wfs-migrate --mark NAME  record a migration as applied WITHOUT running it,
+                           for changes already made by hand
+"""
+
+import json
+import os
+import subprocess
+import sys
+import urllib.request
+import urllib.error
+
+REF = "jhgcnqmzbphzpxgtojti"
+API = "https://api.supabase.com/v1/projects/%s/database/query" % REF
+REPO = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+DIR = os.path.join(REPO, "supabase", "migrations")
+
+
+def token():
+    out = subprocess.run(["pass", "supabase/cli-token"],
+                         capture_output=True, text=True, timeout=20)
+    if out.returncode != 0:
+        sys.exit("wfs-migrate: no token at `pass supabase/cli-token`")
+    return out.stdout.strip().splitlines()[0]
+
+
+def run_sql(tok, sql):
+    req = urllib.request.Request(
+        API, data=json.dumps({"query": sql}).encode(), method="POST",
+        headers={"Authorization": "Bearer " + tok,
+                 "Content-Type": "application/json",
+                 # Cloudflare fronts the management API and rejects the default
+                 # Python-urllib agent outright (403, error 1010)
+                 "User-Agent": "wfs-migrate/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            body = r.read().decode()
+            return json.loads(body) if body.strip() else []
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode()
+        try:
+            detail = json.loads(detail).get("message", detail)
+        except Exception:
+            pass
+        raise SystemExit("wfs-migrate: SQL failed (%s)\n  %s" % (e.code, detail[:600]))
+
+
+def ensure_table(tok):
+    run_sql(tok, """
+      create table if not exists public.schema_migrations (
+        name       text primary key,
+        applied_at timestamptz not null default now()
+      );
+    """)
+
+
+def applied(tok):
+    rows = run_sql(tok, "select name from public.schema_migrations;")
+    return {r["name"] for r in rows}
+
+
+def on_disk():
+    if not os.path.isdir(DIR):
+        return []
+    return sorted(f for f in os.listdir(DIR) if f.endswith(".sql"))
+
+
+def record(tok, name):
+    safe = name.replace("'", "''")
+    run_sql(tok, "insert into public.schema_migrations (name) values ('%s') "
+                 "on conflict (name) do nothing;" % safe)
+
+
+def main():
+    args = sys.argv[1:]
+    tok = token()
+    ensure_table(tok)
+
+    if "--mark" in args:
+        name = args[args.index("--mark") + 1]
+        if name not in on_disk():
+            sys.exit("wfs-migrate: no such migration: " + name)
+        record(tok, name)
+        print("marked as applied (not run): " + name)
+        return 0
+
+    done = applied(tok)
+    pending = [f for f in on_disk() if f not in done]
+
+    if not pending:
+        print("up to date — %d migration%s applied"
+              % (len(done), "" if len(done) == 1 else "s"))
+        return 0
+
+    print("%d pending:" % len(pending))
+    for f in pending:
+        print("  " + f)
+
+    if "--apply" not in args:
+        print("\n(nothing run. Re-run with --apply)")
+        return 0
+
+    print()
+    for f in pending:
+        sql = open(os.path.join(DIR, f), encoding="utf-8").read()
+        print("→ %s" % f)
+        run_sql(tok, sql)
+        record(tok, f)
+        print("  applied")
+
+    print("\napplied %d migration%s" % (len(pending), "" if len(pending) == 1 else "s"))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

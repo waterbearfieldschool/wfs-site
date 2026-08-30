@@ -7,6 +7,9 @@ module.exports = [
     blurb: "Covers materials and keeps the day running." },
   { id: "supporter", label: "Supporter",         price: 40,
     blurb: "Covers your spot and quietly pays for someone else's." },
-  { id: "free",      label: "Pay what you can",  price: 0,
-    blurb: "No questions asked. Please take this one if the cost would keep you away." },
+  // No-cost, but not nothing: instead of paying, you offer to lead a session on
+  // something you know. The day page asks what, and the answer rides along on
+  // the registration so we can follow it up.
+  { id: "teach",     label: "Teach a session",   price: 0, teach: true,
+    blurb: "Free \u2014 in exchange, tell us something you could teach one day." },
 ];
