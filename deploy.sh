@@ -55,14 +55,24 @@ echo "→ building site"
 rm -rf _site
 npm run build
 
-# 3b. Refuse to publish a session recap that is still a stub.
-#     Sessions are un-drafted early so they can be previewed on the dev server;
-#     without this, a forgotten `draft:` removal publishes a page reading
-#     "TODO — two or three paragraphs" to the live site.
+# 3b. Refuse to publish a session write-up that has not been written.
+#     Sessions are un-drafted early so they can be previewed on the dev server.
+#     This used to grep for the word TODO, which stopped working the moment the
+#     placeholder text was removed — so it checks the real thing instead: a
+#     write-up whose prose block contains no paragraph at all.
 if [[ -d _site/s ]]; then
-  stubs=$(grep -rl 'TODO' _site/s/ 2>/dev/null || true)
+  stubs=$(python3 - <<'PYEOF'
+import glob, re
+bad = []
+for f in sorted(glob.glob("_site/s/*/index.html")):
+    m = re.search(r'<div class="prose">(.*?)</div>', open(f, encoding="utf-8").read(), re.S)
+    if m and "<p" not in m.group(1):
+        bad.append(f)
+print("\n".join(bad))
+PYEOF
+)
   if [[ -n "$stubs" ]]; then
-    echo "✗ deploy stopped — these session pages still contain TODO text:"
+    echo "✗ deploy stopped — these session write-ups are still empty:"
     echo "$stubs" | sed 's|^|    |'
     echo "  Write the recap, or put 'draft: true' back in the markdown file."
     exit 1

@@ -29,7 +29,8 @@
   .when{color:var(--muted);font-size:.96rem;font-weight:600}
   .summary{margin:14px 0 0;font-size:1.06rem;color:var(--accent-d);font-weight:600;line-height:1.45}
   .hero{width:100%;border-radius:12px;margin:20px 0 4px;display:block}
-  .prose{margin-top:22px}
+  .blurb{margin-top:20px;font-size:1.02rem;color:var(--ink);line-height:1.6}
+  .prose{margin-top:20px}
   .prose h2{font-size:1.16rem;color:var(--accent-d);margin:26px 0 6px}
   .prose p{margin:0 0 12px}
   .prose ul,.prose ol{margin:0 0 12px 22px}
@@ -59,6 +60,8 @@
   <img class="hero" src="{{ photoDir }}{{ photos[0] }}" alt="{{ heading }}">
   {%- endif %}
 
+  {%- if blurb %}<p class="blurb">{{ blurb }}</p>{%- endif %}
+
   <div class="prose">{{ content | safe }}</div>
 
   {%- if photos and photos.length > 1 %}
@@ -74,6 +77,6 @@
   </div>
 </div>
 
-<footer>Waterbear Field School · Lincoln, MA · <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a></footer>
+<footer>Waterbear Field School · Greater Boston, MA · <a href="mailto:info@waterbearfieldschool.org">info@waterbearfieldschool.org</a></footer>
 </body>
 </html>

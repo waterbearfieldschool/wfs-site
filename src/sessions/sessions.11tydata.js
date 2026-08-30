@@ -58,5 +58,8 @@ module.exports = {
     img: (data) => data.img || (bySlug[data.workshop] || {}).img,
     // card text: the session's summary if written, else the category blurb
     cardText: (data) => data.summary || (bySlug[data.workshop] || {}).blurb || "",
+    // the category's own blurb, repeated at the top of the write-up so the page
+    // says what the day was about before it says what happened
+    blurb: (data) => (bySlug[data.workshop] || {}).blurb || "",
   },
 };
