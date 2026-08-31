@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T04:00:31.508958+00:00",
+  "generated_at": "2026-08-31T04:02:57.753388+00:00",
   "source": "https://map.meshcore.io/api/v1/nodes",
   "region": {
     "center": [
@@ -22,14 +22,14 @@
       "adv_lon": -71.3146
     },
     {
-      "public_key": "0359503e85bae09b512033589d1ca1ada604ae96030b0f6bdd1c6af0ae9009fc",
-      "adv_name": "Balch Street Repeater",
-      "adv_lat": 42.5617,
-      "adv_lon": -70.8863
+      "public_key": "02aec246f2449ed5015955ab7eeb7aa293070a7129798018acaca00bfae04b82",
+      "adv_name": "CON-Punkatasset",
+      "adv_lat": 42.4793,
+      "adv_lon": -71.3388
     },
     {
       "public_key": "03958f148f91ebe2f3f4dfaa41efe5743c6d536e932113402b0ff6a95abbb960",
-      "adv_name": "CON-GreatMeadows01",
+      "adv_name": "CON - GreatMeadows",
       "adv_lat": 42.4783,
       "adv_lon": -71.3267
     },
@@ -70,12 +70,6 @@
       "adv_lon": -71.1781
     },
     {
-      "public_key": "0a5d865e90345e7b6628f37ec57861f2728c0477b0ceade8796f224737fd3bed",
-      "adv_name": "Sunset_PT Observer",
-      "adv_lat": 42.2785,
-      "adv_lon": -70.8758
-    },
-    {
       "public_key": "0b0e99f8611a58cf47a54dc7d2bbfc81ef3a3353fe936c6db4c9e69e8d2cd051",
       "adv_name": "BXFD - Wood Hill",
       "adv_lat": 42.6929,
@@ -88,10 +82,10 @@
       "adv_lon": -71.1375
     },
     {
-      "public_key": "0b8937ef2cc8074615d8dc56496d46a53f9e686abd7bdd40f8c6be056f511af0",
-      "adv_name": "Peppercorn Hill",
-      "adv_lat": 42.1831,
-      "adv_lon": -71.5616
+      "public_key": "0c04c04bd13d409dcdfc9d76bf10bcec10eb4fb702c09ec0c43e9900d458b508",
+      "adv_name": "Elostirion",
+      "adv_lat": 42.0628,
+      "adv_lon": -71.1188
     },
     {
       "public_key": "0c11780b865cfd7ddb102387b810e592f22cedd9e4972273612c7a0dd782e2ef",
@@ -112,12 +106,6 @@
       "adv_lon": -71.1205
     },
     {
-      "public_key": "0d0708f92bf7f8f1cb12bd0f2d12af9ad6f2eeef2b91610b22e8d656b1cf6bd4",
-      "adv_name": "Melrose Repeater",
-      "adv_lat": 42.4567,
-      "adv_lon": -71.0631
-    },
-    {
       "public_key": "0fbd60c6a6f81f69e56a019c4f0a0e96947f321052a9bd82ba696a12010299dd",
       "adv_name": "Brookline \ud83d\udc63",
       "adv_lat": 42.3309,
@@ -130,16 +118,16 @@
       "adv_lon": -71.0908
     },
     {
-      "public_key": "0febfbdb88aa781d057355bc7d4447da38e59d9a0909d400c6c7e32ee213e29e",
-      "adv_name": "LUCE | Canton",
-      "adv_lat": 42.1594,
-      "adv_lon": -71.1337
-    },
-    {
       "public_key": "10be858e84c15168b8ce65d2d77e6cfa21635b9eb8497dde8f4edfc88eddde7e",
       "adv_name": "FRA-SAX",
       "adv_lat": 42.313,
       "adv_lon": -71.4094
+    },
+    {
+      "public_key": "11e383a3ab05171724d4fb8968c859849d74d74eed74bd3243483e5fe5c9cf67",
+      "adv_name": "WEL - West",
+      "adv_lat": 42.2919,
+      "adv_lon": -71.3113
     },
     {
       "public_key": "12db9d327339d48b912e13fd14ef06ede47e678447586f5133d2c027226a5bdf",
@@ -166,12 +154,6 @@
       "adv_lon": -71.0918
     },
     {
-      "public_key": "172205b9c7b7b303b50ab824271788fa215266c7fc02874ce06bad531438bd35",
-      "adv_name": "Wilmington Patches Pond",
-      "adv_lat": 42.54,
-      "adv_lon": -71.1747
-    },
-    {
       "public_key": "17f94ff3d4e5012a859524854a0bc51db099784d65df9803df9c249ac816ce35",
       "adv_name": "N-AND-Weir Hill",
       "adv_lat": 42.6937,
@@ -196,10 +178,10 @@
       "adv_lon": -71.59
     },
     {
-      "public_key": "1ba2c2fb8c07b7e56a5fff2b1e05c89f5ef44f7938b86278eca1bd40b5a3a315",
-      "adv_name": "BIL - Fox Hill",
-      "adv_lat": 42.5697,
-      "adv_lon": -71.2516
+      "public_key": "1aac77513d24ed049bb329d9d8ff48bc12c3aaa4601e3071005b6e34fa9598fa",
+      "adv_name": "bc - Dimock",
+      "adv_lat": 42.3198,
+      "adv_lon": -71.0982
     },
     {
       "public_key": "1d1983041e5daa4d81b236e6e7eb351f5307d824217443d0cc03cceae48efbec",
@@ -232,12 +214,6 @@
       "adv_lon": -71.3857
     },
     {
-      "public_key": "2003fcdd3f6f34a8e081025a03176eb96e504131b48cca7c7782bb70e780fbb5",
-      "adv_name": "North Brookline MQTT",
-      "adv_lat": 42.3462,
-      "adv_lon": -71.1315
-    },
-    {
       "public_key": "2104f09d5011385401beabcbddb7ae89778c0b8bfff83f6eb5e78d2a30c6bc3c",
       "adv_name": "ARL - LibraryNorth",
       "adv_lat": 42.4161,
@@ -250,6 +226,12 @@
       "adv_lon": -71.1057
     },
     {
+      "public_key": "24abeccdd9a4a73c26b385581a40e0ab0c29cc3cc26b18b078005d0e9390b763",
+      "adv_name": "R. Peter \ud83d\udce1",
+      "adv_lat": 42.6555,
+      "adv_lon": -71.4966
+    },
+    {
       "public_key": "29330e2f40b7fdb984e30ba3b7d0387bdf91bfe6944f795c6068105703696546",
       "adv_name": "Reverenet-01-Dennis",
       "adv_lat": 42.0884,
@@ -260,6 +242,12 @@
       "adv_name": "OtisREAP2-SS",
       "adv_lat": 42.1493,
       "adv_lon": -71.4806
+    },
+    {
+      "public_key": "29d86e2cee2218405c9a9ae318f5ae73e92e638521eb95a380edd187725d3304",
+      "adv_name": "BUR-MNK-Temp-2",
+      "adv_lat": 42.5223,
+      "adv_lon": -71.187
     },
     {
       "public_key": "2a0a73fb8e0a1b45cd9216bf27e8ee718efa81be8eb135faf2338ebda2520936",
@@ -334,12 +322,6 @@
       "adv_lon": -71.17
     },
     {
-      "public_key": "32b8239fe16d341b0613a3f208d76d71d126b07ea2d40141fd6cf94e344fe888",
-      "adv_name": "Tubepeater Test",
-      "adv_lat": 42.547,
-      "adv_lon": -70.8954
-    },
-    {
       "public_key": "32f43072f6dd2818acbb15684db8df6d121f02ec9fa060140219b6a901e61fd0",
       "adv_name": "LEX-Meagherville",
       "adv_lat": 42.4644,
@@ -370,22 +352,28 @@
       "adv_lon": -70.9934
     },
     {
-      "public_key": "34e06704c6534150430f68ba5f898a1e26f1b3fa48fa6a7763fb582753a0f08e",
-      "adv_name": "WAL-SE Room Server",
-      "adv_lat": 42.3756,
-      "adv_lon": -71.2144
-    },
-    {
       "public_key": "35579ad5b0d887daeedcc0138b57199334baeaa4d0cd1c911c992d50c152e4fd",
       "adv_name": "QUI - Whitwell Repeater",
       "adv_lat": 42.2495,
       "adv_lon": -71.0112
     },
     {
+      "public_key": "362048ce3a0ad5b77e008bf10be54b2cdde187b79acb452c99b3f6152b7a7aeb",
+      "adv_name": "Greenlava Repeater",
+      "adv_lat": 42.563,
+      "adv_lon": -71.3808
+    },
+    {
       "public_key": "37fe99e30ad4b6fcb5241bde05acbec5ddd9b5cac0deaaabdbf3ed36336c05ab",
       "adv_name": "BRK - Coolidge Park",
       "adv_lat": 42.3465,
       "adv_lon": -71.131
+    },
+    {
+      "public_key": "38dd6b98454803a2cf50073ef9e3834ec6f844165d64c2f3922740244e3fdd99",
+      "adv_name": "WEL - TN10",
+      "adv_lat": 42.313,
+      "adv_lon": -71.3287
     },
     {
       "public_key": "38f0ee9de7083a69e993ed466053f0a907c9dcac3a96632354fbfa31f52c0b2b",
@@ -406,6 +394,12 @@
       "adv_lon": -71.6065
     },
     {
+      "public_key": "3c5c417ffaea552b6b13c6cd181b591e158d8bd88827993dbe41de48bc5de928",
+      "adv_name": "EasyPeat",
+      "adv_lat": 42.0706,
+      "adv_lon": -71.1245
+    },
+    {
       "public_key": "3d7d1a0e7c0f3f8485d74fd2b4b4f1bc45edfba2f7dc080bf5f6edf797a5bfd2",
       "adv_name": "Stoneham-RPT1",
       "adv_lat": 42.4777,
@@ -416,6 +410,12 @@
       "adv_name": "NCB1 \ud83c\udfea",
       "adv_lat": 42.354,
       "adv_lon": -71.1845
+    },
+    {
+      "public_key": "3efc3d4dcb98c2e0f324b91b44f3dd98ff9a7dcc900532c719ce16e5ae25bd19",
+      "adv_name": "Squad 6",
+      "adv_lat": 42.3104,
+      "adv_lon": -71.3036
     },
     {
       "public_key": "3f1b6e9505567410094f87bc4d35b8253ae34e7e15c50ce737e813c04b3ce0a4",
@@ -520,6 +520,12 @@
       "adv_lon": -71.062
     },
     {
+      "public_key": "4a0a7a98df2abca120abb397e016e11e777b3d3a9a6a908d7accea8a472cef8c",
+      "adv_name": "ne1cw-mc-tb",
+      "adv_lat": 42.3577,
+      "adv_lon": -71.5848
+    },
+    {
       "public_key": "4ac2563e79e34cdb8fdbd44e3a342fd2c4c75d405085863cce50140e74f6b5f3",
       "adv_name": "FOX - center",
       "adv_lat": 42.0696,
@@ -544,16 +550,16 @@
       "adv_lon": -71.6119
     },
     {
+      "public_key": "4ea581de7323c6b58e9a818d42d2649d4e731c5f0478b4a8fa45c6843d928a69",
+      "adv_name": "CON-NashobaBrooks",
+      "adv_lat": 42.4782,
+      "adv_lon": -71.3805
+    },
+    {
       "public_key": "4ebcf3dce408618798a4ad3999cd05078e7fd630ca87136bdb703ad8c20dd2ed",
       "adv_name": "KlopRoom",
       "adv_lat": 42.6389,
       "adv_lon": -71.2485
-    },
-    {
-      "public_key": "5097421d5da25976157cc6cd28cd7a55f538ab329f108b46c04fbd0a504bb97b",
-      "adv_name": "BOS - Fort Hill",
-      "adv_lat": 42.3277,
-      "adv_lon": -71.0957
     },
     {
       "public_key": "520363e419a2b2d1ca8e0fc239546fd5e7461f10f120d6b12e00381c0409fd85",
@@ -568,10 +574,10 @@
       "adv_lon": -71.1842
     },
     {
-      "public_key": "52f00d8ba8dbd1df8038a0059394e80978768254b6dbbe434fde8ef0fd4f1df7",
-      "adv_name": "Lil Traveler",
-      "adv_lat": 42.3484,
-      "adv_lon": -71.0775
+      "public_key": "5261550f316a2d62ef6ee7cafc4a575fb05dd996169accec3d0beb420e5b2cb7",
+      "adv_name": "Gondolin",
+      "adv_lat": 42.0612,
+      "adv_lon": -71.1156
     },
     {
       "public_key": "536519dad1666e21d9be2a534a7d0c16901a92a0cdc118dd639f39120dd28f6d",
@@ -592,10 +598,22 @@
       "adv_lon": -71.4334
     },
     {
+      "public_key": "559ee229cb7c844e4ac9a5097656f8dc93277b97c5824a8a40e5545ce16dd27b",
+      "adv_name": "MED - Wrights Pond",
+      "adv_lat": 42.4397,
+      "adv_lon": -71.0966
+    },
+    {
       "public_key": "560cd3448e9b570e79db9f5b6db6528cbc370a9062d07f4f426232b836ef2c2c",
       "adv_name": "Concord Room/Repeater",
       "adv_lat": 42.4792,
       "adv_lon": -71.3196
+    },
+    {
+      "public_key": "569a6a41842d7254ed0938f618293749db5702cbb251b6982f2906c205a77e82",
+      "adv_name": "ANDVR-DUGPND-WIO",
+      "adv_lat": 42.6116,
+      "adv_lon": -71.134
     },
     {
       "public_key": "569b7ec639aee020a3ae54965b80e4bd3046b026a2327aa9d2b5fc34bbe21db6",
@@ -658,6 +676,12 @@
       "adv_lon": -71.4549
     },
     {
+      "public_key": "5c814dae7270460f407fca44554613f4d79298068768806607700485e4fa08d9",
+      "adv_name": "ANDVR-DUGPND-RPTR1",
+      "adv_lat": 42.6118,
+      "adv_lon": -71.1345
+    },
+    {
       "public_key": "5d2a649375f9ccee2a67e705397123b6b7eae65e08d303f80fe67480efa6c02b",
       "adv_name": "WAT - Palfrey Base",
       "adv_lat": 42.3696,
@@ -702,8 +726,8 @@
     {
       "public_key": "61d3dce444705358e854e84da132591f3415fdcfdc6617d2fe2cfa2628941a60",
       "adv_name": "Tea-Beam",
-      "adv_lat": 42.4655,
-      "adv_lon": -71.202
+      "adv_lat": 42.4644,
+      "adv_lon": -71.2012
     },
     {
       "public_key": "62bdf6954f8b882fdc031ae45854aa962b7e3073ede91c0a5682405e55da3b2f",
@@ -764,12 +788,6 @@
       "adv_name": "MAY - Presidential",
       "adv_lat": 42.4315,
       "adv_lon": -71.4438
-    },
-    {
-      "public_key": "69424e9de7b4d525cb690ee6921d939fc0f3e2da365f4c10299a65be875b1ac0",
-      "adv_name": "solr",
-      "adv_lat": 42.2954,
-      "adv_lon": -71.1385
     },
     {
       "public_key": "696e9a95971baec72fd69d409368b3320b52dae86b7a53c1c5fb570b0cfa9efb",
@@ -842,12 +860,6 @@
       "adv_name": "\ud83d\ude98Hashtagplus.com/mes",
       "adv_lat": 42.4796,
       "adv_lon": -71.1523
-    },
-    {
-      "public_key": "7244cd85fd46c2b040ceca0cc077fdef98aabedafbc68e956271b7485fb9b8e1",
-      "adv_name": "Boston - North End",
-      "adv_lat": 42.3663,
-      "adv_lon": -71.0546
     },
     {
       "public_key": "72689f77fec119d1b49693055b95eabccb0452efed0172965a8226df562700fc",
@@ -952,12 +964,6 @@
       "adv_lon": -71.3773
     },
     {
-      "public_key": "7ec131706e7d23198bfb474aeb91d8027a4ae9d2454d7733dcb990d6c5ebc6a7",
-      "adv_name": "HUL - Kenberma",
-      "adv_lat": 42.2832,
-      "adv_lon": -70.8741
-    },
-    {
       "public_key": "7efa779e5cce2a7344994f6edd191cdc1adfe4bf10fe50a9376013b074581c34",
       "adv_name": "CMB1 - www.bostonme.sh/",
       "adv_lat": 42.359,
@@ -976,22 +982,10 @@
       "adv_lon": -71.1499
     },
     {
-      "public_key": "7ff2614f8786aa0103fc132d4d36e539d2b16ca855fcf71dca8c942d791cb101",
-      "adv_name": "MAR - Pisgah @ Peak",
-      "adv_lat": 42.36,
-      "adv_lon": -71.6612
-    },
-    {
       "public_key": "8006542e438560760ff68c714c099baaced66f14729a23405e3b33b26ffa7a02",
       "adv_name": "JP - Forest Hills Repea",
       "adv_lat": 42.2961,
       "adv_lon": -71.1108
-    },
-    {
-      "public_key": "81479f78dbd462cb0cd9ee3e7ac28d197918fdbd44823cabd0d94edb7639dc4a",
-      "adv_name": "LOW-Highlands-3",
-      "adv_lat": 42.629,
-      "adv_lon": -71.3216
     },
     {
       "public_key": "8149e7b248b57e2b718015bca5535a06f4bf65ca7c88673673f2ec4ff1894857",
@@ -1012,16 +1006,10 @@
       "adv_lon": -71.0632
     },
     {
-      "public_key": "8338e0c8bc73eec31396b92031e4d0ff970fba1f8035da606f060bd31f070ce2",
-      "adv_name": "Carlisle Repeater",
-      "adv_lat": 42.5147,
-      "adv_lon": -71.3664
-    },
-    {
       "public_key": "83ef4e15400eec02f717395a7dadc5dd248b09990c4c83d76408a2b5bfa52887",
       "adv_name": "East Somerville CatDojo",
       "adv_lat": 42.3862,
-      "adv_lon": -71.0804
+      "adv_lon": -71.0805
     },
     {
       "public_key": "8502691c95362bc7fcefc368b6ee0fa8099a0027c868b8bc2190d2fbd75a41ea",
@@ -1060,12 +1048,6 @@
       "adv_lon": -71.2251
     },
     {
-      "public_key": "8c705291b5dcedf0187190d28b4d77f03a89b7512c7a7fc6222ccbee5da12b8b",
-      "adv_name": "NR Packet Pusher 2",
-      "adv_lat": 42.5774,
-      "adv_lon": -71.0992
-    },
-    {
       "public_key": "8cd6cbcce8f62e2b9d5d8a9b1a4bd70e92ab96f544a9a3e792d742e7a671e042",
       "adv_name": "DAN - Beaver Brook",
       "adv_lat": 42.5786,
@@ -1080,8 +1062,8 @@
     {
       "public_key": "8ec55e5a635c2385995ef9811d56d83f5aa609f5d17cfaec2c535422bb12cadd",
       "adv_name": "ARL - Nourse Observer",
-      "adv_lat": 42.4252,
-      "adv_lon": -71.1834
+      "adv_lat": 42.4258,
+      "adv_lon": -71.1844
     },
     {
       "public_key": "8f322ed9d9c70334137e47122e7f0f561471a371a4bb24243ec1cce810a35cef",
@@ -1094,6 +1076,12 @@
       "adv_name": "Clydoznet06",
       "adv_lat": 42.3444,
       "adv_lon": -71.0624
+    },
+    {
+      "public_key": "905236a84a307ff48c4a6f582ecc5a3c8bab4c7c67257ab91f857ed4136a5f45",
+      "adv_name": "WEL - South East",
+      "adv_lat": 42.314,
+      "adv_lon": -71.2592
     },
     {
       "public_key": "91636b823b758cb22fa7774109defd572fabd99c643b335a6cb3cc6db102f8bd",
@@ -1132,6 +1120,18 @@
       "adv_lon": -71.1417
     },
     {
+      "public_key": "96afd878cd3273c0a9d901d47cf3abfa7a76fbd92f955232390774999f35e986",
+      "adv_name": "BUR-SC-TEST",
+      "adv_lat": 42.5232,
+      "adv_lon": -71.1995
+    },
+    {
+      "public_key": "971d9d3b245f8a59d94873cc7ab70c4f2827c8f882f92390fdb9bd91820ea53e",
+      "adv_name": "T-Beam 1W Repeater",
+      "adv_lat": 42.3556,
+      "adv_lon": -71.5528
+    },
+    {
       "public_key": "975ebd8e4287e5aed4a8568e5f89fc76f6cccb30b2ed0e615530d3642d597566",
       "adv_name": "WAK - Greenwood S",
       "adv_lat": 42.4799,
@@ -1144,16 +1144,22 @@
       "adv_lon": -71.0639
     },
     {
+      "public_key": "9876ed729c7b5b1d91caa3a85968fd6e4d73d2d4cec65a9f4e2420264374d550",
+      "adv_name": "WEL - North",
+      "adv_lat": 42.3221,
+      "adv_lon": -71.2906
+    },
+    {
       "public_key": "994dfef2db231584d9ab4e53263a4b8504e67588e24a9c3e785be746744fd542",
       "adv_name": "MEL - Eagle's Nest",
       "adv_lat": 42.4563,
       "adv_lon": -71.0577
     },
     {
-      "public_key": "9a505ad9512a8d4378f7dddf2c9dda6953f09675a7217b6eaa103c3e0668948b",
-      "adv_name": "NR Packet Pusher ",
-      "adv_lat": 42.5774,
-      "adv_lon": -71.0992
+      "public_key": "9aa6c8ec8992cbcdb1fb6dbbe64363c1e349429a16635f5bc6d9e1f53dcb2e3a",
+      "adv_name": "N Tewksbury",
+      "adv_lat": 42.64,
+      "adv_lon": -71.2482
     },
     {
       "public_key": "9aba16104ce5aac4eb17c658ab5ffb4026b0eb60314864861cef79462b210d74",
@@ -1218,8 +1224,8 @@
     {
       "public_key": "9f3d4349eb00517ef393f49cb2c6d343cbe7997091fb04349819c860fc0f9514",
       "adv_name": "BUR-MNK-Temp-2",
-      "adv_lat": 42.5235,
-      "adv_lon": -71.1848
+      "adv_lat": 42.5219,
+      "adv_lon": -71.196
     },
     {
       "public_key": "9f59b3da3cb646abb3d57efbc8b6955026a87439553ea40ddca64f07b1d1f53a",
@@ -1230,8 +1236,8 @@
     {
       "public_key": "9f7a1f1d052796b315270fd10bb29a87f1c889aa1d1af96edab7841a1eef15ff",
       "adv_name": "BUR-MNK-Temp",
-      "adv_lat": 42.5222,
-      "adv_lon": -71.1865
+      "adv_lat": 42.5221,
+      "adv_lon": -71.1859
     },
     {
       "public_key": "9f9a26fbcab7b8695f158ccba7d159ae012f1ee1927cf44d7727d86ae6c82d7c",
@@ -1246,16 +1252,22 @@
       "adv_lon": -71.187
     },
     {
+      "public_key": "9fe5972c233947d119f0bc622b42aa0fd8eb5f9371a8e5550cbb8ac9b77d164a",
+      "adv_name": "TEMP-MNK-1",
+      "adv_lat": 42.5,
+      "adv_lon": -71.1861
+    },
+    {
       "public_key": "a09b6f3be9a44e5c2fc7b09aa8af70a0940bf1f7938db66a557a1432437b3070",
       "adv_name": "LEX - GreatMeadow",
       "adv_lat": 42.4303,
       "adv_lon": -71.196
     },
     {
-      "public_key": "a0e81fcb2eab0f50e0185da736c110610921974b0d60f66394aeafb198cda978",
-      "adv_name": "abomb Room Server",
-      "adv_lat": 42.5419,
-      "adv_lon": -71.267
+      "public_key": "a25eca64d1f23505a153f2830615a93e2d5a959a3a889d03aa215b05c6fb10c6",
+      "adv_name": "N.Billerica Rancher RPT",
+      "adv_lat": 42.5407,
+      "adv_lon": -71.3045
     },
     {
       "public_key": "a2dd7714a754e039d2db6a60574f38a3477e8af77b47b8b3ee7d82aaf6f23147",
@@ -1296,14 +1308,20 @@
     {
       "public_key": "a5ec0d8ecc0fbbf41e9370decfc1fd0c8c42527a4854e2cff7ee0bf2b0cbbf6c",
       "adv_name": "Zippy the Cat \ud83d\ude3a",
-      "adv_lat": 42.5132,
-      "adv_lon": -71.293
+      "adv_lat": 42.5129,
+      "adv_lon": -71.2931
     },
     {
       "public_key": "a60ecc9cebf20bd39546f9188a305c738cec800ec187893fb4c989c21fe081c8",
       "adv_name": "South Lincoln",
       "adv_lat": 42.4107,
       "adv_lon": -71.3217
+    },
+    {
+      "public_key": "a62fd70bd78c7fb9067435efcd73c7172b59217dabc6c9e38fd2efa39b768a45",
+      "adv_name": "DAN - Test Repeater",
+      "adv_lat": 42.5762,
+      "adv_lon": -70.9627
     },
     {
       "public_key": "a669ed15fd0baf781fb052973b0a6f2e468bd6c259b0d4a655c57452af878fe7",
@@ -1318,10 +1336,28 @@
       "adv_lon": -71.2394
     },
     {
+      "public_key": "a74951efe169062f685b2afed752fad4c8e07092c147a8deb9a12412e8b593e9",
+      "adv_name": "SOM - SpringHill",
+      "adv_lat": 42.392,
+      "adv_lon": -71.1107
+    },
+    {
       "public_key": "a7aa84c9c6ab74d125db64081b404bc526cf545cb3284b5e9aad95ba4b58e093",
       "adv_name": "ivmden-m1",
       "adv_lat": 42.5675,
       "adv_lon": -70.9089
+    },
+    {
+      "public_key": "a82ad718652a4425fcc216b407624149e9e414067ad65bfa5bb47a54b6b428de",
+      "adv_name": "WEL - Hills",
+      "adv_lat": 42.3142,
+      "adv_lon": -71.2718
+    },
+    {
+      "public_key": "aac08d6386d3b4ad538ef4d7b27eef97596530c7d513b30ba5c58dcd03f0faa0",
+      "adv_name": "bc - AAC0",
+      "adv_lat": 42.3181,
+      "adv_lon": -71.0964
     },
     {
       "public_key": "ab8c181e411e34ad4ad712db9dd44463c49a50c1d16c8bcd379387a69e2fb4de",
@@ -1366,6 +1402,12 @@
       "adv_lon": -71.1991
     },
     {
+      "public_key": "acdc0248f7e01caf35b355df6db6182eba88a5aaff44497109909c954dd86623",
+      "adv_name": "bc - Mission Hill",
+      "adv_lat": 42.3291,
+      "adv_lon": -71.1045
+    },
+    {
       "public_key": "af07fc2005e04d08dda921e64985e62201bf974ae0b0e35084b804229ed11a2b",
       "adv_name": "Cambridgeport MA",
       "adv_lat": 42.3605,
@@ -1390,12 +1432,6 @@
       "adv_lon": -71.1998
     },
     {
-      "public_key": "b19b1f34b92db322451057e4957ef2df0d9544cc8a11e8519173fcea41a6d2a1",
-      "adv_name": "NHMesh Bear Hill MA",
-      "adv_lat": 42.6336,
-      "adv_lon": -71.4927
-    },
-    {
       "public_key": "b27cf7bf3fed65e6f25add42332561ebe000ce27531eb14eccedc02f73dc021b",
       "adv_name": "ARL - Heights",
       "adv_lat": 42.4211,
@@ -1406,6 +1442,12 @@
       "adv_name": "OtisREAP",
       "adv_lat": 42.1493,
       "adv_lon": -71.4804
+    },
+    {
+      "public_key": "b49a55bdb0941f46e4fe04e6f32aad6376673d1aa58afdd7f438544c1bc018c0",
+      "adv_name": "BOS-skjegg-OH",
+      "adv_lat": 42.4449,
+      "adv_lon": -71.5901
     },
     {
       "public_key": "b528cc8587832135d3554532eec90b162cd818f4e0e3607290dc265a9d509534",
@@ -1422,8 +1464,8 @@
     {
       "public_key": "b67bc31b388975dd209a68f9265a653c96276fb1a8f739e5740c603358ac19cf",
       "adv_name": "Canopy",
-      "adv_lat": 42.1998,
-      "adv_lon": -71.286
+      "adv_lat": 42.2013,
+      "adv_lon": -71.285
     },
     {
       "public_key": "b6831e46febb95bc9d9757dc5dd1feb5d9aa2f3e92584a2724b034213302b30c",
@@ -1444,16 +1486,16 @@
       "adv_lon": -71.2905
     },
     {
-      "public_key": "b848750436a2ef9b63f9e054a2f4bc83c25efbb1f46dcd703bd8fdff933bdc43",
-      "adv_name": "WES - Trolley Line",
-      "adv_lat": 42.2789,
-      "adv_lon": -71.5786
-    },
-    {
       "public_key": "b9dd91716c63bb2b5617ba37a50a13b3ecc05be7538978216ca84bed02e90304",
       "adv_name": "NEE - Center West",
       "adv_lat": 42.2808,
       "adv_lon": -71.2475
+    },
+    {
+      "public_key": "badf007d217c494f8f54ab55729cbee2c13b47db64b6bea10fc10a5f762be77b",
+      "adv_name": "CON - zaBranch",
+      "adv_lat": 42.479,
+      "adv_lon": -71.3226
     },
     {
       "public_key": "bb08046ec20a991431b533f34b324c275a8d2597c8077c155d997e36a892a419",
@@ -1530,8 +1572,8 @@
     {
       "public_key": "c533d464423f530abafa4e757aec33aa83792c5dfdd41781994609ef50e78cef",
       "adv_name": "Rebleeper",
-      "adv_lat": 42.0662,
-      "adv_lon": -71.112
+      "adv_lat": 42.0645,
+      "adv_lon": -71.1124
     },
     {
       "public_key": "c61ade45ca07fbe5033ced89d38dc4e9f25e5c7e9676a77fe56e38c86cf85fac",
@@ -1546,16 +1588,22 @@
       "adv_lon": -70.854
     },
     {
+      "public_key": "c77cd77f48e8ad783def46196d95b6a66a456b7dc2d75ddb4105cb03989860b8",
+      "adv_name": "saugus repeater",
+      "adv_lat": 42.4688,
+      "adv_lon": -71.0717
+    },
+    {
       "public_key": "c84d6f4428b8703a3d3cd289ee9338b963ae297a0b8feac9907028d3faab00ea",
       "adv_name": "7robots",
       "adv_lat": 42.5291,
       "adv_lon": -71.5565
     },
     {
-      "public_key": "c96c0461a058e28c0d3ef12766c38ac1ebd163497329cdbbebbc16babdae936b",
-      "adv_name": "\u2601\ufe0f Cloudbury",
-      "adv_lat": 42.3856,
-      "adv_lon": -71.4103
+      "public_key": "caf286601021118fbaca3dbff23baef7e97548349d0eb6783ed94d951abcca3a",
+      "adv_name": "Clydoznet10b",
+      "adv_lat": 42.5145,
+      "adv_lon": -71.0869
     },
     {
       "public_key": "cb9788a89a7d5ffe1461014f95e085440d0f54f8c85ca61d8f35604ae67752db",
@@ -1630,6 +1678,12 @@
       "adv_lon": -71.1615
     },
     {
+      "public_key": "d32fffab1334abf1d64a99d66b0ecc6004fb38957b39027799755e4efd281332",
+      "adv_name": "CON-1W",
+      "adv_lat": 42.4804,
+      "adv_lon": -71.3206
+    },
+    {
       "public_key": "d552b97b067ea44eafda87d9e41eb262f1a3020875c0fc8bb565cc516399cc08",
       "adv_name": "NEED - Highland Ave",
       "adv_lat": 42.2987,
@@ -1654,16 +1708,34 @@
       "adv_lon": -71.1018
     },
     {
+      "public_key": "d8e188691638ac4b456e5defe70367308ca74a5efe8f2a549d34c6caeb431789",
+      "adv_name": "Marlborough Winthrop",
+      "adv_lat": 42.3457,
+      "adv_lon": -71.5578
+    },
+    {
       "public_key": "d94b71b56b6fb908d574b83de1bbb080f5ab8279bb4f9a166ff6c820d0dd5465",
       "adv_name": "BEL - Waverly",
       "adv_lat": 42.3901,
       "adv_lon": -71.1804
     },
     {
+      "public_key": "da477fb8f4ad86d8f6fb9bf692fed380b13b029699bbf7ca9237b3725a733b39",
+      "adv_name": "ROASTED PEPPERS Repeate",
+      "adv_lat": 42.5219,
+      "adv_lon": -70.9153
+    },
+    {
       "public_key": "daafc97a66454e38c9a5315f12b2e02f29cebc428342dafad590a63c90d9a73b",
       "adv_name": "MEL - Wyoming 1",
       "adv_lat": 42.4541,
       "adv_lon": -71.0731
+    },
+    {
+      "public_key": "dac38522d33a5cf761e2a96f17f4b37eb68a005e653bf8f5f6c8ea0e847936c6",
+      "adv_name": "CHM - 110",
+      "adv_lat": 42.5899,
+      "adv_lon": -71.3897
     },
     {
       "public_key": "dadedaf6d124a9178bb169f2516d14a7cc91cbc1a7a877f197e7a184e3c8ca53",
@@ -1690,6 +1762,12 @@
       "adv_lon": -71.0097
     },
     {
+      "public_key": "dcfa91b506db14760ec346867666e46d32f3a8ba7dad423e0e390a91630a5c86",
+      "adv_name": "ENV-BWFH",
+      "adv_lat": 42.3019,
+      "adv_lon": -71.1267
+    },
+    {
       "public_key": "dead38b6e45b50ef8c2857dd069b6cd5ff8bf33536544d943164c1e56ff53014",
       "adv_name": "PEL - Jeremy Hill",
       "adv_lat": 42.7472,
@@ -1703,21 +1781,15 @@
     },
     {
       "public_key": "dfbfe7ac10d14063848b4e350a715ea583ecb361a6ddabdb375d9eecc959de04",
-      "adv_name": "CMB1 - StationG3",
+      "adv_name": "CMB1 - Cambridgeport",
       "adv_lat": 42.359,
-      "adv_lon": -71.1002
+      "adv_lon": -71.1001
     },
     {
       "public_key": "dff48aad4753ac6737fe0da8969f80e892978e87df8399c3ebf1ff008f1f3739",
       "adv_name": "SOM - MagouNode",
       "adv_lat": 42.3971,
       "adv_lon": -71.1031
-    },
-    {
-      "public_key": "e04138fd3226340f56430db6ba541e0384848723fea2c847e2dbf9d213130f3d",
-      "adv_name": "MFD - Mystic",
-      "adv_lat": 42.4156,
-      "adv_lon": -71.1322
     },
     {
       "public_key": "e14e2906e2594e3d946dfe7ed66f8a0e20e4daacf2f75f1fd9af8a44e7251a9e",
@@ -1730,12 +1802,6 @@
       "adv_name": "Morency Woods",
       "adv_lat": 42.2865,
       "adv_lon": -71.3994
-    },
-    {
-      "public_key": "e20e1484cfda38246d2b368d23be9bc6d4b30fa67b47d6dde3aa6dfe049d8234",
-      "adv_name": "WAT - TempTEST",
-      "adv_lat": 42.3619,
-      "adv_lon": -71.1521
     },
     {
       "public_key": "e2a419481ee9287db05dba332bf1f62bb14ccec7d3b973297a145fc408fe9157",
@@ -1782,8 +1848,8 @@
     {
       "public_key": "e7e7b5a7a3b24a37440332974703c392e1f1f5b7968ff9338a86291d077983d7",
       "adv_name": "CMB Freshpond",
-      "adv_lat": 42.3848,
-      "adv_lon": -71.135
+      "adv_lat": 42.3849,
+      "adv_lon": -71.1349
     },
     {
       "public_key": "e8638702f12e9586809dddc2b04dfa869826f74e7c71548d2e724c7bff27c64d",
@@ -1802,12 +1868,6 @@
       "adv_name": "Stan45",
       "adv_lat": 42.138,
       "adv_lon": -71.434
-    },
-    {
-      "public_key": "e93e09601bcddb6159d092eb6b30c4ef36c3bd2c4bbe72555505ca0f4bc939f2",
-      "adv_name": "Autonomous Solar Repeat",
-      "adv_lat": 42.3384,
-      "adv_lon": -71.1036
     },
     {
       "public_key": "e94e398efc492597562f03d69ac17a35cbc760727c16d885ee1285cbea48001b",
@@ -1876,16 +1936,10 @@
       "adv_lon": -71.2087
     },
     {
-      "public_key": "f0bb70042dd77b41118c8d89519ddddfb0cf83ed72291c029b5d589799d52d9a",
-      "adv_name": "Xiao_nrf52 Repeater",
-      "adv_lat": 42.3595,
-      "adv_lon": -71.1371
-    },
-    {
-      "public_key": "f1179939910cb4bdc534e26c69e3e0584168e09f6d9c228ec55ea03c31635863",
-      "adv_name": "BOS-LowerJonesHill",
-      "adv_lat": 42.3146,
-      "adv_lon": -71.0601
+      "public_key": "f1886566acd4fd85f27586798f90e687cdc377ff61695ed3911ae4c4d6c620e7",
+      "adv_name": "Bur - Francis Wyman",
+      "adv_lat": 42.5117,
+      "adv_lon": -71.2231
     },
     {
       "public_key": "f21f9744c0b3a997ef5b57e3ec84beb2ec01edaddd2304b94d19ea8265b2625b",
@@ -1910,12 +1964,6 @@
       "adv_name": "F4 Mobile Repeater",
       "adv_lat": 42.3618,
       "adv_lon": -71.0978
-    },
-    {
-      "public_key": "f48d64e31f2b072fee3150cdc516aef6981664a68a5758eaf95dbc9ae83ae271",
-      "adv_name": "DUN - Pleasant St",
-      "adv_lat": 42.6712,
-      "adv_lon": -71.502
     },
     {
       "public_key": "f53ad593fbd02158f9389d9783c2b6b4076af5c31d93389eaaef07e345ec68d7",
@@ -1988,12 +2036,6 @@
       "adv_name": "Miskatonic Mobile",
       "adv_lat": 42.2488,
       "adv_lon": -71.0094
-    },
-    {
-      "public_key": "fe829258b88ae93f90908334231acfcdab21995a2888950a3fbdfd013bf3a59b",
-      "adv_name": "abomb-repeater",
-      "adv_lat": 42.5419,
-      "adv_lon": -71.2667
     }
   ]
 }
