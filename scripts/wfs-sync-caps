@@ -10,12 +10,17 @@ markdown file in src/sessions/, capacity and all; this pushes what those files
 say into session_caps, using the secret key that only exists on this machine.
 So the enforcement stays server-side while the authoring stays in one file.
 
-It only ever inserts or updates rows for days the site knows about. It will not
-delete a row for a day you removed — that could orphan real registrations — and
-wfs-check reports those separately so you can decide.
+It inserts and updates rows for days the site knows about. With --prune it will
+also remove a row whose day no longer exists — but ONLY if nobody registered for
+it. A row with registrations is never touched, because deleting it would orphan
+real people; wfs-check keeps reporting those so you decide by hand.
+
+Moving a Field Day's date is the common case: the new date needs a row, and the
+old one is left behind.
 
   wfs-sync-caps             show what would change, change nothing
   wfs-sync-caps --apply     make the changes
+  wfs-sync-caps --prune     also drop stale rows that have no registrations
   wfs-sync-caps --quiet     only speak up if something changed or broke
 """
 
@@ -62,6 +67,32 @@ def existing(k):
         sys.exit("wfs-sync-caps: %s %s" % (e.code, e.read().decode()[:200]))
 
 
+def booked(k):
+    """Dates that have at least one registration. A capacity row for one of
+    these is never removed, whatever the site says."""
+    req = urllib.request.Request(
+        PROJECT + "/rest/v1/rsvps?select=session_date",
+        headers={"apikey": k, "Authorization": "Bearer " + k})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return {x["session_date"] for x in json.loads(r.read().decode() or "[]")
+                    if x.get("session_date")}
+    except urllib.error.HTTPError as e:
+        sys.exit("wfs-sync-caps: %s %s" % (e.code, e.read().decode()[:200]))
+
+
+def drop(k, date):
+    req = urllib.request.Request(
+        PROJECT + "/rest/v1/session_caps?date=eq." + date,
+        method="DELETE",
+        headers={"apikey": k, "Authorization": "Bearer " + k,
+                 "Prefer": "return=minimal"})
+    try:
+        urllib.request.urlopen(req, timeout=30).read()
+    except urllib.error.HTTPError as e:
+        sys.exit("wfs-sync-caps: %s %s" % (e.code, e.read().decode()[:300]))
+
+
 def upsert(k, rows):
     body = json.dumps(rows).encode()
     req = urllib.request.Request(
@@ -79,6 +110,7 @@ def upsert(k, rows):
 def main():
     apply_it = "--apply" in sys.argv
     quiet = "--quiet" in sys.argv
+    prune = "--prune" in sys.argv
 
     k = key()
     have = existing(k)
@@ -99,11 +131,25 @@ def main():
               or cur.get("min_to_run") != row["min_to_run"]):
             changes.append(("update", row, cur))
 
-    if not changes:
+    # stale rows: a capacity row whose day the site no longer has. Safe to drop
+    # only when nobody registered for it.
+    stale = []
+    if prune:
+        with_people = booked(k)
+        known = {r["date"] for r in want}
+        for d in sorted(set(have) - known):
+            if d in with_people:
+                print("! %s stale, but has registrations — left alone" % d)
+            else:
+                stale.append(d)
+
+    if not changes and not stale:
         if not quiet:
             print("session_caps already matches the site (%d days)" % len(want))
         return 0
 
+    if changes:
+        pass
     for kind, row, cur in changes:
         if kind == "new":
             print("+ %s  cap %s  min %s  %s"
@@ -118,12 +164,20 @@ def main():
                 bits.append("min_to_run %s -> %s" % (cur.get("min_to_run"), row["min_to_run"]))
             print("~ %s  %s" % (row["date"], "; ".join(bits)))
 
+    for d in stale:
+        print("- %s  no longer a session, no registrations" % d)
+
     if not apply_it:
         print("\n(dry run — nothing changed. Re-run with --apply)")
         return 0
 
-    upsert(k, [r for _, r, _ in changes])
-    print("\napplied %d change%s" % (len(changes), "" if len(changes) == 1 else "s"))
+    if changes:
+        upsert(k, [r for _, r, _ in changes])
+    for d in stale:
+        drop(k, d)
+
+    n = len(changes) + len(stale)
+    print("\napplied %d change%s" % (n, "" if n == 1 else "s"))
     return 0
 
 

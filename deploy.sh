@@ -38,7 +38,10 @@ if [[ -z "${WFS_SKIP_CHECK:-}" ]]; then
   # nothing in the repo can do that. This pushes the authored values across
   # using the secret key, so adding a Field Day never means writing SQL.
   echo "→ syncing capacities to session_caps"
-  ./scripts/wfs-sync-caps --apply --quiet
+  # --prune also clears a capacity row whose day no longer exists, which is what
+  # moving a Field Day's date leaves behind. It refuses to touch a row that has
+  # registrations against it.
+  ./scripts/wfs-sync-caps --apply --prune --quiet
 
   echo "→ checking sessions against session_caps"
   if ! ./scripts/wfs-check --quiet; then
