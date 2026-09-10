@@ -1,0 +1,40 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Field Notes — {{ site.name }}</title>
+    <link>{{ site.url }}/journal/</link>
+    <description>News, updates, and stories from Waterbear Field School.</description>
+    <language>en-us</language>
+    <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
+    {%- if collections.journal | length %}
+    <lastBuildDate>{{ collections.journal[0].date | rfc822 }}</lastBuildDate>
+    {%- endif %}
+    {%- for post in collections.journal %}
+    <item>
+      <title>{{ post.data.title }}</title>
+      <link>{{ site.url }}{{ post.url }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+      <pubDate>{{ post.date | rfc822 }}</pubDate>
+      {%- if post.data.excerpt %}
+      <description>{{ post.data.excerpt }}</description>
+      {%- endif %}
+      {%- if post.data.image %}
+      <enclosure url="{{ site.url }}{{ post.data.image }}" type="image/jpeg" length="0" />
+      <media:content url="{{ site.url }}{{ post.data.image }}" medium="image" />
+      {%- endif %}
+      {%- for f in post.data.foundations %}
+      <category>{{ f }}</category>
+      {%- endfor %}
+      <content:encoded><![CDATA[{{ post.templateContent | absoluteUrls(site.url) | safe }}]]></content:encoded>
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>

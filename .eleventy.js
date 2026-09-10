@@ -46,6 +46,21 @@ module.exports = function(eleventyConfig) {
     return new Date(date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
   });
 
+  // Rewrite root-relative URLs to absolute. Needed for the RSS feed: email
+  // clients and feed readers have no site origin to resolve "/assets/..."
+  // against, so images and links must be fully qualified.
+  eleventyConfig.addFilter("absoluteUrls", function (html, base) {
+    if (!html) return html;
+    return String(html)
+      .replace(/(src|href)="\/(?!\/)/g, `$1="${base}/`)
+      .replace(/(srcset)="\/(?!\/)/g, `$1="${base}/`);
+  });
+
+  // RFC-822 date, as required by RSS 2.0 <pubDate>
+  eleventyConfig.addFilter("rfc822", function (date) {
+    return new Date(date).toUTCString();
+  });
+
   // Add filter to check if event is upcoming
   eleventyConfig.addFilter("isUpcoming", function(eventDate) {
     const today = new Date();
