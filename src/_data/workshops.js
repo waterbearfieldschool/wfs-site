@@ -114,4 +114,21 @@ module.exports = [
     location: "Umbrello Hay Field, Lincoln, MA",
     locationNote: "Meeting spot sent when you register.",
   },
+  {
+    slug: "biketrailer",
+    cartShort: "Bike Trailer",
+    title: "Building Bike Trailers",
+    short: "Bike Trailers",
+    color: "#55606b",
+    img: "/v6img/pj-trailer.jpg",
+    blurb: "Build a cargo trailer for a bicycle out of electrical conduit and a pair of recycled kids' bike wheels — about $40 of parts, and it carries real loads.",
+    about: [
+      "A bike trailer is the cheapest cargo capacity there is, and you can make one in a morning. Ours uses two ten‑foot lengths of half‑inch electrical conduit, a pair of recycled 16″ children's bicycle wheels, four laser‑cut steel dropouts, and a handful of bolts — about $40 all in.",
+      "You'll learn to bend conduit, which is the one real skill in it, and then drill, bolt and hitch the frame together. The design comes from Edge Collective and the Somerville Bike Kitchen, and the files are open — so you can make another one, or a bigger one, after you go home."
+    ],
+    forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14). No experience needed.",
+    bring: "Closed‑toe shoes. Bring your bike if you'd like to fit the hitch to it. Tools and parts are provided.",
+    location: "Lincoln Park, Somerville",
+    locationNote: "Exact address sent when you register.",
+  },
 ];
