@@ -3,7 +3,7 @@ date: '2026-09-15'
 day: Tue · Sep 15
 time: 10 AM–1 PM
 workshop: biketrailer
-place: 'Lincoln Park, Somerville'
+place: 'Artisans Asylum, Allston'
 capacity: 8
 minToRun: 3
 project: Building Bike Trailers

@@ -1,0 +1,58 @@
+---
+permalink: "/preview/workshops/"
+layout: false
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Workshops — Waterbear Field School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>{% include "wfs-preview.css" %}
+  /* ---- workshops card grid ---- */
+  .wgwrap{max-width:860px;margin:0 auto;padding:8px 20px 70px}
+  .wglead{color:var(--muted);margin:2px auto 22px;max-width:620px;text-align:center}
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .wcard{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.05);text-decoration:none;color:var(--ink);transition:.15s ease}
+  .wcard:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.10)}
+  .wcard-band{height:6px}
+  .wcard>img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:#e5e6e0}
+  .wcard-body{display:flex;flex-direction:column;flex:1;padding:13px 15px 15px}
+  .wcard-body h2{font-size:1.05rem;color:var(--accent-d);margin:0 0 5px}
+  .wcard-body p{font-size:.87rem;color:var(--muted);margin:0 0 12px;flex:1}
+  .wcard-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:.76rem;font-weight:700}
+  .wcard-meta span{background:#f3f6f1;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--accent-d)}
+  .wcard-more{margin-top:11px;font-weight:700;font-size:.88rem;color:var(--accent)}
+</style>
+</head>
+<body>
+  <div class="stickytop"><div class="top"><div class="brand">Waterbear Field School<small>Workshops</small></div></div></div>
+  <div class="backbar"><a href="/preview/#schedule">← Back to the schedule</a></div>
+
+  <div class="wgwrap">
+    <h1 style="font-size:1.6rem;color:var(--accent-d);margin:8px 0 6px;text-align:center">Workshops</h1>
+    <p class="wglead">Every Field Day is built from one of these workshops. Click through to see what each one covers, photos from past sessions, and upcoming days you can join.</p>
+
+    <div class="wgrid">
+      {% for w in workshops %}
+      <a class="wcard" href="/preview/w/{{ w.slug }}/">
+        <div class="wcard-band" style="background:{{ w.color }}"></div>
+        <img src="{{ w.img }}" alt="{{ w.title }}">
+        <div class="wcard-body">
+          <h2>{{ w.title }}</h2>
+          <p>{{ w.blurb }}</p>
+          <div class="wcard-meta">
+            {% if w.sessions | length %}<span>{{ w.sessions | length }} upcoming day{% if w.sessions | length != 1 %}s{% endif %}</span>{% endif %}
+            {% if w.gallery | length %}<span>{{ w.gallery | length }} photos</span>{% endif %}
+          </div>
+          <div class="wcard-more">Learn more →</div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
