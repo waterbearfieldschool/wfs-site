@@ -26,7 +26,7 @@ module.exports = [
     ],
     forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14).",
     bring: "Closed\u2011toe shoes and weather\u2011appropriate clothing. Tools and parts are provided.",
-    location: "Hannan Healthy Foods, Lincoln, MA",
+    location: "Umbrello Hay Field, Lincoln, MA",
     locationNote: "Exact address sent when you register."
   },
   {
@@ -129,6 +129,74 @@ module.exports = [
     forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14). No experience needed.",
     bring: "Closed‑toe shoes. Bring your bike if you'd like to fit the hitch to it. Tools and parts are provided.",
     location: "Lincoln Park, Somerville",
+    locationNote: "Exact address sent when you register.",
+  },
+  {
+    slug: "coldframe",
+    cartShort: "Cold Frames",
+    title: "Cold Frames & Winter Growing",
+    short: "Cold Frames",
+    color: "#4a7c3f",
+    img: "/v6img/ws-coldframe.jpg",
+    blurb: "Build a cold frame and keep growing food through the cold months \u2014 the simplest season-extending structure there is, and one you can reproduce at home.",
+    about: [
+      "A cold frame is a box with a clear lid, and it is the cheapest way to push a growing season weeks further at both ends. We look at how they work, what makes a good one, and why the old designs settled where they did.",
+      "We design first, then build \u2014 working through the details so the result is something you can copy at home without a plan from us."
+    ],
+    forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14). All skill levels welcome.",
+    bring: "Closed\u2011toe shoes and weather\u2011appropriate clothing. Tools and materials are provided.",
+    location: "Umbrello Hay Field, Lincoln, MA",
+    locationNote: "Exact address sent when you register.",
+  },
+  {
+    slug: "humanpower",
+    cartShort: "Human Power",
+    title: "Human-Powered Machines",
+    short: "Human Power",
+    color: "#8a5a2b",
+    img: "/v6img/pj-humanpower.jpg",
+    blurb: "Pedal and treadle machines \u2014 how they work, what they are good for, and what people have already figured out. Design and demonstration.",
+    about: [
+      "Before small motors were cheap, a lot of useful work was done by legs. Those machines were refined for decades and then mostly forgotten, and the designs still hold up.",
+      "We work from published designs \u2014 Low\u2011Tech Magazine, Farm Hack and others \u2014 look at what makes them work, and demonstrate what we have."
+    ],
+    forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14). All skill levels welcome.",
+    bring: "Closed\u2011toe shoes and weather\u2011appropriate clothing.",
+    location: "Umbrello Hay Field, Lincoln, MA",
+    locationNote: "Exact address sent when you register.",
+  },
+  {
+    slug: "knots",
+    cartShort: "Knots",
+    title: "Knots & Rope Work",
+    short: "Knots",
+    color: "#56707d",
+    img: "/v6img/ws-knots.jpg",
+    blurb: "A handful of knots does almost everything \u2014 hitching, lashing, tensioning, joining. Learn the ones worth knowing and when each is the right one.",
+    about: [
+      "Most people know one knot and use it for everything. A small repertoire \u2014 a bend, a hitch, a loop, a lashing \u2014 covers nearly every job on a farm, a boat or a build site.",
+      "We tie them until the hands remember, then use them on something real: tensioning a line, lashing a frame, rigging a tarp."
+    ],
+    forWhom: "All ages welcome (an adult caregiver needs to accompany kids under 14). No experience needed.",
+    bring: "Just yourself \u2014 rope and cord are provided.",
+    location: "Umbrello Hay Field, Lincoln, MA",
+    locationNote: "Exact address sent when you register.",
+  },
+  {
+    slug: "workbench",
+    cartShort: "Workbench",
+    title: "Build a Workbench",
+    short: "Workbench",
+    color: "#7a5230",
+    img: "/v6img/ws-toolbox.jpg",
+    blurb: "Build a workbench you can carry to the work and put away afterwards \u2014 the one tool that makes every other tool usable.",
+    about: [
+      "A bench is the first tool. Without one you are holding the work with your knee; with one, everything else becomes possible. And a bench that folds is a bench you can take to the job instead of carrying the job to it.",
+      "We build through the design together, working out the details so the result is something you can reproduce at home without a plan from us."
+    ],
+    forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14). All skill levels welcome.",
+    bring: "Closed\u2011toe shoes and weather\u2011appropriate clothing. Tools and materials are provided.",
+    location: "Umbrello Hay Field, Lincoln, MA",
     locationNote: "Exact address sent when you register.",
   },
 ];
