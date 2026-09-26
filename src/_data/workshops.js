@@ -120,7 +120,7 @@ module.exports = [
     title: "Building Bike Trailers",
     short: "Bike Trailers",
     color: "#55606b",
-    img: "/v6img/pj-trailer.jpg",
+    img: "/v6img/ws-biketrailer-patent.jpg",
     blurb: "Build a cargo trailer for a bicycle out of electrical conduit and a pair of recycled kids' bike wheels — about $40 of parts, and it carries real loads.",
     about: [
       "A bike trailer is the cheapest cargo capacity there is, and you can make one in a morning. Ours uses two ten‑foot lengths of half‑inch electrical conduit, a pair of recycled 16″ children's bicycle wheels, four laser‑cut steel dropouts, and a handful of bolts — about $40 all in.",

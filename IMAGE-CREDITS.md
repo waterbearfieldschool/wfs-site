@@ -58,3 +58,16 @@ Artist unknown.
 *Not a workbench — it is a folding card table. Chosen because it is a real shop
 drawing with real dimensions, which is what the session is about.*
 
+## ws-biketrailer-patent.jpg
+US Patent No. 730,193 — W. F. Parker, "Bicycle Trailer Package Carrier," granted
+2 June 1903 (application filed 6 May 1902), sheet 1 of 2.
+
+- Source: US Patent and Trademark Office; widely mirrored, e.g. Google Patents
+  https://patents.google.com/patent/US730193A/en
+- Licence: **public domain** — US patent documents and their drawings are not subject
+  to copyright.
+- Changes: converted to greyscale and near-white lifted to pure white, which removed a
+  yellow search-highlight sitting over the words "BICYCLE TRAILER" in the title. Then
+  fitted whole onto a 700×394 white field from the original 620×475 (0.83× downscale,
+  so it is sharper than the original at card size; nothing cropped).
+
