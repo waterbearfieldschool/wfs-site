@@ -86,7 +86,7 @@ module.exports = [
     title: "Zines & Printmaking",
     short: "Zines",
     color: "#b0413e",
-    img: "/v6img/ws-zines.png",
+    img: "/v6img/ws-zines-press.jpg",
     blurb: "Make small zines and booklets using simple needle-and-thread binding, and learn how to lay out your material so your zines are easy to print.",
     about: [
           "We'll use simple needle-and-thread binding techniques to make small zines and booklets you can take home.",

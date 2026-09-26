@@ -71,3 +71,15 @@ US Patent No. 730,193 — W. F. Parker, "Bicycle Trailer Package Carrier," grant
   fitted whole onto a 700×394 white field from the original 620×475 (0.83× downscale,
   so it is sharper than the original at card size; nothing cropped).
 
+## ws-zines-press.jpg
+Wood engraving of a hand printing press beneath a banner reading
+**"THE TYRANTS FOE, THE PEOPLES FRIEND"** — from an 1826 trade advertisement for
+Edgar W. Davies, book & job printer, no. 65 Broad Street, Boston. Engraver given as
+"Davies". Held in *American Broadsides and Ephemera, Series 1*.
+
+- Source: https://commons.wikimedia.org/wiki/File:1826_EdgarDavies_BroadSt_Boston_detail.png
+- Licence: **public domain**. Confirmed via the Commons API.
+- Changes: cropped to 700×394 from the original 735×459 — a 0.95× downscale trimming
+  43px of height, biased upward to keep the full banner text. The warm paper tone of the
+  original scan is left as it is.
+
