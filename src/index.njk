@@ -378,12 +378,12 @@ eleventyExcludeFromCollections: true
     <nav class="hdrnav">
     <button class="hbtn-ham" aria-label="Open menu">☰</button>
     <a class="hbtn-mini" href="#schedule" style="background:#c8891a">Upcoming</a>
-  {# TEMPORARILY HIDDEN 2026-09-26 — to restore, remove the surrounding Nunjucks comment delimiters : <a class="hbtn-mini" href="#journal" style="background:#4f6675">Recent</a> #}
+    <a class="hbtn-mini" href="#journal" style="background:#4f6675">Recent</a>
     <a class="hbtn-mini" href="#about" style="background:#1c6b4a">About</a>
   </nav>
     <nav class="menudrop" id="menuDrop">
     <a href="#schedule">Upcoming Field Days</a>
-  {# TEMPORARILY HIDDEN 2026-09-26 — to restore, remove the surrounding Nunjucks comment delimiters : <a href="#journal">Recent Field Days</a> #}
+    <a href="#journal">Recent Field Days</a>
     <a href="#newsletter">Newsletter</a>
     <a href="#philosophy">Philosophy &amp; Structure</a>
     <a href="#about">About</a>
@@ -420,7 +420,7 @@ eleventyExcludeFromCollections: true
   <section class="hero">
     <div class="hero-cta">
       <a class="hbtn hbtn-sum" href="#schedule">Upcoming Field Days</a>
-  {# TEMPORARILY HIDDEN 2026-09-26 — to restore, remove the surrounding Nunjucks comment delimiters : <a class="hbtn hbtn-work" href="#journal">Recent Field Days</a> #}
+      <a class="hbtn hbtn-work" href="#journal">Recent Field Days</a>
       <a class="hbtn" href="#newsletter" style="background:#8f7a00">Newsletter</a>
       <a class="hbtn" href="#about" style="background:#1c6b4a">About</a>
     </div>
@@ -475,7 +475,6 @@ eleventyExcludeFromCollections: true
     <p class="seclead" style="margin-top:14px">Want to teach a session or host one? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:#9a6f14;font-weight:700;text-decoration:underline">Email us</a>.</p>
   </section>
 
-  {# ===== TEMPORARILY HIDDEN 2026-09-26 — to restore, remove the surrounding Nunjucks comment delimiters =====
   <section class="sec sec-journal" id="journal" data-name="Recent Field Days" data-blurb="Every Field Day we've run, written up with photos." data-accent="#4f6675" data-tint="#eef1f4" data-bd="#d6dee5">
     <h2 class="grp">Recent Field Days</h2>
     {%- if collections.pastSessions.length %}
@@ -496,7 +495,6 @@ eleventyExcludeFromCollections: true
     <p class="noday">Write-ups go up here after each Field Day.</p>
     {%- endif %}
   </section>
-  #}
 
   <section class="sec sec-sub" id="newsletter" data-name="Newsletter" data-blurb="Hear when new Field Days go up." data-accent="#3f7d54" data-tint="#eef3ee" data-bd="#dbe6de">
     <h2 class="grp">Sign up for our newsletter</h2>
@@ -517,7 +515,7 @@ eleventyExcludeFromCollections: true
     <p class="about-lead">Waterbear Field School is a hands-on, outdoors skill-share for kids and adults.</p>
 
     <h2 class="grp subgrp" id="what-are-field-days">What are Field Days?</h2>
-    <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Every day has a <b>pay-what-you-can</b> registration, no questions asked — registering also reserves your materials and tells us how many to expect. See what&rsquo;s coming up on the <a href="#schedule" style="color:#9a6f14;font-weight:700;text-decoration:underline">schedule</a>. You can also find out more about our philosophy and approach in the <a href="#philosophy" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Philosophy &amp; Structure</a> section.</p>
+    <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Every day has a <b>pay-what-you-can</b> registration, no questions asked — registering also reserves your materials and tells us how many to expect. See what&rsquo;s coming up on the <a href="#schedule" style="color:#9a6f14;font-weight:700;text-decoration:underline">schedule</a>. You can also read about recent Field Day and Field School projects in the <a href="#journal" style="color:#4f6675;font-weight:700;text-decoration:underline">Recent Field Days</a>, or find out more about our philosophy and approach in the <a href="#philosophy" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Philosophy &amp; Structure</a> section.</p>
     {# ===== TEMPORARILY HIDDEN 2026-09-26 — to restore, remove the surrounding Nunjucks comment delimiters =====
     <div class="cards">
       {%- for w in workshops %}

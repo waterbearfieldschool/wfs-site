@@ -103,7 +103,7 @@ module.exports = [
     title: "Plant ID & Mapping",
     short: "Plant ID",
     color: "#3f7d54",
-    img: "/v6img/pg-nature.jpg",
+    img: "/v6img/ws-plantid.jpg",
     blurb: "Learn the names of some of the trees and plants around you, and how to read, use, and make maps.",
     about: [
           "A walking session: we learn the names of the trees and plants around us — how to tell them apart, and what people have used them for over time.",
@@ -188,7 +188,7 @@ module.exports = [
     title: "Build a Workbench",
     short: "Workbench",
     color: "#7a5230",
-    img: "/v6img/ws-toolbox.jpg",
+    img: "/v6img/ws-foldingtable.jpg",
     blurb: "Build a workbench you can carry to the work and put away afterwards \u2014 the one tool that makes every other tool usable.",
     about: [
       "A bench is the first tool. Without one you are holding the work with your knee; with one, everything else becomes possible. And a bench that folds is a bench you can take to the job instead of carrying the job to it.",
