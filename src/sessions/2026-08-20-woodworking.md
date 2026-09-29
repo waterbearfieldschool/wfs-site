@@ -9,6 +9,7 @@ minToRun: 3
 project: Build a Toolbox
 shortTitle: Toolbox
 img: /v6img/ws-toolbox.jpg
+hideBlurb: true
 about:
   - >-
     A friendly first build: a wooden toolbox to carry your tools. We'll cover
@@ -23,6 +24,22 @@ materials:
     Free to learn -- just show up!  (But if you'd like to take home a toolbox,
     please register so we can reserve materials for you, and expect to pay $35
     on site.)
-photos: []
+summary: >-
+  A morning in Lincoln Park building wooden toolboxes — measuring, sawing,
+  drilling and joining, and everyone carried theirs home at the end.
+photos:
+  - 01-carrying.jpg
+  - 02-lumber.jpg
+  - 03-hauling.jpg
+  - 04-tools.jpg
+  - 05-sawing.jpg
+  - 06-drilling.jpg
+  - 07-finished.jpg
+  - 08-sawdust.jpg
+  - 09-inuse.jpg
+  - 10-park.jpg
 ---
 
+The lumber came to the park by bike, and by lunchtime it was toolboxes. Measuring,
+sawing, drilling and joining — the four things most hand-tool work is made of —
+learned on something you can carry away the same morning.

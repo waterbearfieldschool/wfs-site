@@ -6,6 +6,7 @@ workshop: biketrailer
 place: 'Artisans Asylum, Allston'
 capacity: 8
 minToRun: 3
+hideBlurb: true
 project: Building Bike Trailers
 shortTitle: Bike Trailer
 about:
@@ -26,5 +27,21 @@ about:
     make arrangements with us at the workshop to purchase the materials to build
     your own.
 materials: null
-photos: []
+summary: >-
+  The first cargo trailer build, at Artisans Asylum — conduit bent by hand into a
+  frame, plywood cut for the deck, and wheels fitted by the end of the session.
+photos:
+  - 01-frame.jpg
+  - 02-bending.jpg
+  - 03-ground.jpg
+  - 04-shaped.jpg
+  - 05-drilling.jpg
+  - 06-bench.jpg
+  - 07-wheel.jpg
+  - 08-assembly.jpg
+  - 09-wheels.jpg
 ---
+
+Bending conduit is the one real skill in a trailer, and it is mostly a matter of
+leaning on it in the right place. Everything after that is drilling, bolting and
+checking the thing sits square.

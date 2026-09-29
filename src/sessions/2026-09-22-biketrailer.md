@@ -6,6 +6,7 @@ workshop: biketrailer
 place: 'Lincoln Park, Somerville'
 capacity: 8
 minToRun: 3
+hideBlurb: true
 project: Building Bike Trailers
 shortTitle: Bike Trailer
 about:
@@ -26,5 +27,21 @@ about:
     make arrangements with us at the workshop to purchase the materials to build
     your own.
 materials: null
-photos: []
+summary: >-
+  A second run at the cargo trailer in Lincoln Park — conduit bent, wheels laced
+  on, plywood decked, and hitched to a bike by the end of the morning.
+photos:
+  - 01-riding.jpg
+  - 02-tools.jpg
+  - 03-bench.jpg
+  - 04-fitting.jpg
+  - 05-working.jpg
+  - 06-deck.jpg
+  - 07-trailer.jpg
+  - 08-hitched.jpg
+  - 09-away.jpg
 ---
+
+Two ten-foot lengths of half-inch conduit, a pair of recycled wheels, four laser-cut
+dropouts and a handful of bolts. The test is simple enough: hitch it to a bike and
+ride it across the court.
