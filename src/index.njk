@@ -202,9 +202,13 @@ eleventyExcludeFromCollections: true
   html{scroll-behavior:smooth}
   .sec{scroll-margin-top:118px}
   .hero{max-width:540px;margin:22px auto 10px;padding:0 18px;text-align:center}
-  .hero-tag{color:var(--accent-d);font-size:1.06rem;font-weight:600;line-height:1.42;margin:0 auto 18px;max-width:460px}
-  .hero-cta{display:flex;flex-direction:column;gap:12px}
-  .hbtn{display:block;text-decoration:none;font-weight:800;font-size:1.14rem;padding:17px 20px;border-radius:14px;color:#fff;box-shadow:0 5px 16px rgba(0,0,0,.10);transition:.15s}
+  .hero-tag{color:var(--accent-d);font-size:1.0rem;font-weight:600;line-height:1.38;margin:0 auto 14px;max-width:460px}
+  @media(max-width:480px){.hero{margin-top:14px;padding:0 14px}.hero-card{padding:14px 15px;margin-bottom:12px}.hero-tag{font-size:.94rem;line-height:1.34;margin-bottom:12px}.hero-sub{font-size:.8rem}.hbtn{font-size:.88rem;padding:11px 8px}.hero-cta{gap:8px}}
+  .hero-card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 18px;margin:0 auto 14px;max-width:460px;box-shadow:0 4px 14px rgba(0,0,0,.07);text-align:center}
+  .hero-card .hero-tag{margin-bottom:0}
+  .hero-sub{margin:8px 0 0;color:var(--muted);font-size:.84rem;font-weight:700;letter-spacing:.01em}
+  .hero-cta{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .hbtn{display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;font-weight:800;font-size:.95rem;line-height:1.2;padding:12px 10px;border-radius:11px;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.10);transition:.15s}
   .hbtn small{display:block;font-weight:600;font-size:.8rem;opacity:.92;margin-top:2px}
   .hbtn:hover{transform:translateY(-2px);box-shadow:0 9px 24px rgba(0,0,0,.17)}
   .hbtn-learn{background:#3f7d54}
@@ -418,6 +422,10 @@ eleventyExcludeFromCollections: true
   {%- endif %}
 
   <section class="hero">
+    <div class="hero-card">
+      <p class="hero-tag">At <b>Waterbear Field School</b>, we build useful things outdoors, together &mdash; on farms and in parks near Boston, MA.</p>
+      <p class="hero-sub">All ages 6+ &middot; all skill levels &middot; free to attend</p>
+    </div>
     <div class="hero-cta">
       <a class="hbtn hbtn-sum" href="#schedule">Upcoming Field Days</a>
       <a class="hbtn hbtn-work" href="#journal">Recent Field Days</a>
