@@ -91,6 +91,7 @@ eleventyExcludeFromCollections: true
       </div>
 
       {%- for t in registrationTypes %}
+      {%- if (s.freeOnly and (t.freeOnly or t.teach)) or (not s.freeOnly and not t.freeOnly) %}
       {%- set p = s.ticketPrice if (t.id == "standard" and s.ticketPrice) else t.price %}
       <div class="trow{% if t.price == 0 %} tfree{% endif %}"
            data-def="def-tix-{{ s.date }}-{{ t.id }}"
@@ -107,6 +108,7 @@ eleventyExcludeFromCollections: true
           <button type="button" class="qbtn" data-step="1" aria-label="one more">+</button>
         </span>
       </div>
+      {%- endif %}
       {%- if t.teach %}
       <div class="teachbox" id="teachBox" hidden>
         <label for="teachWhat">What might you share? A sentence or two is plenty &mdash; we&rsquo;ll follow up by email or have a chat on the day.</label>

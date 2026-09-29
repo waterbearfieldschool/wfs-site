@@ -66,6 +66,7 @@ module.exports = () => fs
       day: fm.day,
       time: fm.time,
       place: fm.place,
+      freeOnly: fm.freeOnly || false,
       project: fm.project || null,
       title: project,
       about: about,

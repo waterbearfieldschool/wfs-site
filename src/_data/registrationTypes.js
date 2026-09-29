@@ -12,4 +12,9 @@ module.exports = [
   // the registration so we can follow it up.
   { id: "teach",     label: "Teach a Future Session", price: 0, teach: true,
     blurb: "Share some skill or idea with us sometime soon." },
+  // Shown only on sessions with `freeOnly: true` in their front matter — a plain
+  // no-cost registration with nothing attached, for days we are not asking
+  // anything for.
+  { id: "free", label: "Free", price: 0, freeOnly: true,
+    blurb: "No cost, nothing owed \u2014 just tell us you're coming." },
 ];

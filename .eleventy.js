@@ -31,6 +31,10 @@ module.exports = function(eleventyConfig) {
       // a proposed workshop has a placeholder date; it must never drift into
       // Recent Field Days just because that date went by
       .filter((item) => !item.data.proposed)
+      // a day can be kept out of Recent Field Days without being deleted:
+      // `hideFromRecent: true` in its front matter. The file, its page and its
+      // place on the category listing all stay put.
+      .filter((item) => !item.data.hideFromRecent)
       .sort((a, b) => b.date - a.date)
   );
 

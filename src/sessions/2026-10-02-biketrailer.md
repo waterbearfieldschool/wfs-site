@@ -6,5 +6,6 @@ workshop: biketrailer
 place: 'Lincoln Park, Somerville'
 capacity: 8
 minToRun: 3
+freeOnly: true
 photos: []
 ---
