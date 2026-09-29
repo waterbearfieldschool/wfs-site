@@ -71,6 +71,9 @@ module.exports = {
     cardText: (data) => data.summary || (bySlug[data.workshop] || {}).blurb || "",
     // the category's own blurb, repeated at the top of the write-up so the page
     // says what the day was about before it says what happened
-    blurb: (data) => (bySlug[data.workshop] || {}).blurb || "",
+    // A session can suppress the repeated category blurb with
+    // `hideBlurb: true` — for write-ups whose own text already covers it.
+    blurb: (data) =>
+      data.hideBlurb ? "" : (bySlug[data.workshop] || {}).blurb || "",
   },
 };

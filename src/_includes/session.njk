@@ -37,7 +37,9 @@
   .prose ul,.prose ol{margin:0 0 12px 22px}
   .prose li{margin:3px 0}
   .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:24px}
+  .gallery figure{margin:0}
   .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block}
+  .gallery figcaption{margin-top:6px;font-size:.84rem;line-height:1.35;color:var(--muted)}
   .foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:.92rem}
   .foot a{color:var(--accent);font-weight:700;text-decoration:none}
   footer{text-align:center;color:var(--muted);font-size:.86rem;padding:26px 20px 34px}
@@ -58,7 +60,7 @@
   {%- if summary %}<p class="summary">{{ summary }}</p>{%- endif %}
 
   {%- if photos and photos.length %}
-  <img class="hero" src="{{ photoDir }}{{ photos[0] }}" alt="{{ heading }}">
+  <img class="hero" src="{{ photoDir }}{{ photos[0] }}" alt="{% if captions and captions[photos[0]] %}{{ captions[photos[0]] }}{% else %}{{ heading }}{% endif %}">
   {%- endif %}
 
   {#- A session file is the listing before the day and the write-up after it.
@@ -73,7 +75,11 @@
   {%- if photos and photos.length > 1 %}
   <div class="gallery">
     {%- for p in photos.slice(1) %}
-    <img src="{{ photoDir }}{{ p }}" alt="" loading="lazy">
+    {%- set cap = captions[p] if captions else null %}
+    <figure>
+      <img src="{{ photoDir }}{{ p }}" alt="{{ cap | default('', true) }}" loading="lazy">
+      {%- if cap %}<figcaption>{{ cap }}</figcaption>{%- endif %}
+    </figure>
     {%- endfor %}
   </div>
   {%- endif %}
