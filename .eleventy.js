@@ -1,6 +1,7 @@
 const fs = require("fs");
 
 module.exports = function(eleventyConfig) {
+  eleventyConfig.addPassthroughCopy({ "src/favicon.ico": "favicon.ico" });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/history": "history" });
   eleventyConfig.addPassthroughCopy({ "src/v6img": "v6img" }); // frozen backup of old homepage

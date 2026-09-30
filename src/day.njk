@@ -11,6 +11,8 @@ eleventyExcludeFromCollections: true
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+{% include "favicon.njk" %}
+
 <title>{{ s.title }} · {{ s.day }} — Waterbear Field School</title>
 <meta name="description" content="{{ s.cardBlurb }}">
 <link rel="canonical" href="{{ site.url }}{{ s.path }}">

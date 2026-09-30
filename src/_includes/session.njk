@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+{% include "favicon.njk" %}
+
 <title>{{ heading }} · {{ day }} — Waterbear Field School</title>
 <meta name="description" content="{{ summary or ('What we did at ' + project + ', ' + day + '.') }}">
 <link rel="canonical" href="{{ site.url }}/s/{{ sessionSlug }}/">
