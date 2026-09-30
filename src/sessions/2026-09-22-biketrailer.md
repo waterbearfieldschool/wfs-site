@@ -28,8 +28,9 @@ about:
     your own.
 materials: null
 summary: >-
-  A second run at the cargo trailer in Lincoln Park — conduit bent, wheels laced
-  on, plywood decked, and hitched to a bike by the end of the morning.
+  Our second bike trailer session was spent adding a plywood platform, and
+  beginning to design a hitch for attaching the trailer to a popular city rental
+  bike.
 photos:
   - 01-riding.jpg
   - 02-tools.jpg
