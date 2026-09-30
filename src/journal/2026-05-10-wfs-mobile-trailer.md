@@ -8,6 +8,7 @@ excerpt: "Installing a window, upgrading the roof, and getting ready for solar â
 draft: false
 foundations:
   - transport
+hideFromRecent: true
 ---
 
 ![The WFS mobile trailer parked outside, side door framing and a freshly cut window opening visible, wood shavings on the pavement](/assets/images/journal/2026-05-10-wfs-mobile-trailer/trailer-in-the-lot.jpg)

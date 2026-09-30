@@ -8,6 +8,7 @@ excerpt: "Picnic-table open science with the UV-254 instrument — making calibr
 draft: false
 foundations:
   - water
+hideFromRecent: true
 ---
 
 ![Mike at an outdoor picnic table covered in cuvettes, the open-source UV-254 instrument, a multimeter, sample bottles, and notebooks; a sunny day along a green-sided building](/assets/images/journal/2026-04-25-uv254-limits-of-detection/uv254-picnic-table.jpg)

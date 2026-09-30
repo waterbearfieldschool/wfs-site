@@ -57,6 +57,8 @@ eleventyExcludeFromCollections: true
   .sec-build{background:#f9ece5;border-color:#f0d5c6} .sec-build .grp{color:#a8471f}
   .sec-meetup{background:#e9f2ec;border-color:#cbe2d4} .sec-meetup .grp{color:#2f6641}
   .cardimg{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#e5e6e0}
+  .sec-projects{background:#eef3f9;border-color:#d3dfee}
+  .sec-projects .grp{color:#2f5a90}
   .sec-journal{background:#eef1f4;border-color:#d6dee5}
   .sec-journal .grp{color:#3f5563}
   .morelink{text-align:center;margin-top:20px}
@@ -210,6 +212,8 @@ eleventyExcludeFromCollections: true
   @media(max-width:480px){.hero{margin-top:14px;padding:0 14px}.hero-card{padding:14px 15px;margin-bottom:12px}.hero-tag{font-size:.94rem;line-height:1.34;margin-bottom:12px}.hero-sub{font-size:.8rem}.hbtn{font-size:.88rem;padding:11px 8px}.hero-cta{gap:8px}}
   .hero-card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 18px;margin:0 auto 14px;max-width:460px;box-shadow:0 4px 14px rgba(0,0,0,.07);text-align:center}
   .hero-card .hero-tag{margin-bottom:0}
+  .hero-news{color:var(--accent-d);font-size:.92rem;line-height:1.38;margin:12px auto 0;max-width:460px}
+  .hero-news a{color:inherit;font-weight:700;text-decoration:underline}
   .hero-sub{margin:8px 0 0;color:var(--muted);font-size:.84rem;font-weight:700;letter-spacing:.01em}
   .hero-cta{display:grid;grid-template-columns:1fr 1fr;gap:9px}
   .hbtn{display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;font-weight:800;font-size:.95rem;line-height:1.2;padding:12px 10px;border-radius:11px;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.10);transition:.15s}
@@ -385,13 +389,15 @@ eleventyExcludeFromCollections: true
   </header>
     <nav class="hdrnav">
     <button class="hbtn-ham" aria-label="Open menu">☰</button>
-    <a class="hbtn-mini" href="#schedule" style="background:#c8891a">Upcoming</a>
-    <a class="hbtn-mini" href="#journal" style="background:#4f6675">Recent</a>
+    <a class="hbtn-mini" href="#schedule" style="background:#c8891a">Field Days</a>
+    <a class="hbtn-mini" href="#projects" style="background:#3b6fb0">Projects</a>
+    <a class="hbtn-mini" href="#journal" style="background:#4f6675">Journal</a>
     <a class="hbtn-mini" href="#about" style="background:#1c6b4a">About</a>
   </nav>
     <nav class="menudrop" id="menuDrop">
-    <a href="#schedule">Upcoming Field Days</a>
-    <a href="#journal">Recent Field Days</a>
+    <a href="#schedule">Field Days</a>
+    <a href="#projects">Projects</a>
+    <a href="#journal">Journal</a>
     <a href="#newsletter">Newsletter</a>
     <a href="#philosophy">Philosophy &amp; Structure</a>
     <a href="#about">About</a>
@@ -427,13 +433,13 @@ eleventyExcludeFromCollections: true
 
   <section class="hero">
     <div class="hero-card">
-      <p class="hero-tag">At <b>Waterbear Field School</b>, we build useful things outdoors, together &mdash; on farms and in parks, near Boston, MA.</p>
-      <p class="hero-sub">All ages 6+ &middot; All skill levels &middot; Sliding scale</p>
+      <p class="hero-tag">At <b>Waterbear Field School</b>, we build useful things outdoors, together.</p>
+      <p class="hero-news">For updates on schedules and projects, you can sign up for our <a href="#newsletter">newsletter</a>.</p>
     </div>
     <div class="hero-cta">
-      <a class="hbtn hbtn-sum" href="#schedule">Upcoming Field Days</a>
-      <a class="hbtn hbtn-work" href="#journal">Recent Field Days</a>
-      <a class="hbtn" href="#newsletter" style="background:#8f7a00">Newsletter</a>
+      <a class="hbtn hbtn-sum" href="#schedule">Field Days</a>
+      <a class="hbtn hbtn-work" href="#projects">Projects</a>
+      <a class="hbtn" href="#journal" style="background:#4f6675">Journal</a>
       <a class="hbtn" href="#about" style="background:#1c6b4a">About</a>
     </div>
   </section>
@@ -442,7 +448,7 @@ eleventyExcludeFromCollections: true
         
 
   <section class="sec sec-august" id="schedule" data-name="Schedule" data-blurb="Upcoming Field Days — free, all welcome.">
-    <h2 class="grp">Upcoming Field Days</h2>
+    <h2 class="grp">Field Days</h2>
     <p class="seclead"><b>All welcome.</b> Field Days are <b>open build sessions</b> and <b>skill-shares</b> for adults and kids 6+ (an adult caregiver needs to accompany kids under 14). Registration covers materials and keeps the day running &mdash; and if the cost would keep you away, every day has a <b>pay-what-you-can</b> registration, no questions asked.</p>
     <p class="seclead" id="leadShort" hidden>Hands-on, outdoors and screen-free &mdash; for adults and kids 6+.</p>
     
@@ -487,20 +493,52 @@ eleventyExcludeFromCollections: true
     <p class="seclead" style="margin-top:14px">Want to teach a session or host one? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:#9a6f14;font-weight:700;text-decoration:underline">Email us</a>.</p>
   </section>
 
-  <section class="sec sec-journal" id="journal" data-name="Recent Field Days" data-blurb="Every Field Day we've run, written up with photos." data-accent="#4f6675" data-tint="#eef1f4" data-bd="#d6dee5">
-    <h2 class="grp">Recent Field Days</h2>
-    {%- if collections.pastSessions.length %}
+  <section class="sec sec-projects" id="projects" data-name="Projects" data-blurb="What we're building, season to season." data-accent="#3b6fb0" data-tint="#eef3f9" data-bd="#d3dfee">
+    <h2 class="grp">Projects</h2>
     <div class="cards">
-      {%- for s in collections.pastSessions %}
-      <article class="card pastday" data-date="{{ s.data.sessionSlug | truncate(10, true, "") }}"{% if not s.data.isPast %} hidden{% endif %}>
+      {%- for p in projectCards %}
+      <article class="card">
+        <img class="cardimg" src="{{ p.img }}" alt="" loading="lazy">
+        <div class="body">
+          <h3>{{ p.title }}</h3>
+          <div class="desc">{{ p.blurb }}</div>
+          {%- if p.url %}
+          <div class="foot"><a class="btn-reg" href="{{ p.url }}">Read &rarr;</a></div>
+          {%- endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </section>
+
+  <section class="sec sec-journal" id="journal" data-name="Journal" data-blurb="Field Day write-ups and project updates, with photos." data-accent="#4f6675" data-tint="#eef1f4" data-bd="#d6dee5">
+    <h2 class="grp">Journal</h2>
+    {%- if collections.journalFeed.length %}
+    <div class="cards">
+      {%- for s in collections.journalFeed %}
+      {%- if "session" in s.data.tags %}
+      <article class="card jcard pastday" data-date="{{ s.data.sessionSlug | truncate(10, true, "") }}"{% if not s.data.isPast %} hidden{% endif %}>
         <img class="cardimg" src="{% if s.data.photos and s.data.photos.length %}{{ s.data.photoDir }}{{ s.data.photos[0] }}{% else %}{{ s.data.img }}{% endif %}" alt="" loading="lazy">
         <div class="body">
-          <h3>{{ s.data.heading }}</h3>
           <div class="when">{{ s.data.day }}{% if s.data.place %} &middot; {{ s.data.place }}{% endif %}</div>
+          <h3>{{ s.data.heading }}</h3>
           <div class="desc">{{ s.data.cardText }}</div>
           <div class="foot"><a class="btn-reg" href="{{ s.url }}">Read &rarr;</a></div>
         </div>
       </article>
+      {%- else %}
+      <article class="card jcard">
+        {%- if s.data.image %}
+        <img class="cardimg" src="{{ s.data.image }}" alt="" loading="lazy">
+        {%- endif %}
+        <div class="body">
+          <div class="when">{{ s.date | journalDay }}{% if s.data.place %} &middot; {{ s.data.place }}{% endif %}</div>
+          <h3>{{ s.data.title }}</h3>
+          <div class="desc">{{ s.data.excerpt }}</div>
+          <div class="foot"><a class="btn-reg" href="{{ s.url }}">Read &rarr;</a></div>
+        </div>
+      </article>
+      {%- endif %}
       {%- endfor %}
     </div>
     {%- else %}
@@ -529,7 +567,7 @@ eleventyExcludeFromCollections: true
     <p class="about-lead">Waterbear Field School is a hands-on, outdoors skill-share for kids and adults.</p>
 
     <h2 class="grp subgrp" id="what-are-field-days">What are Field Days?</h2>
-    <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Every day has a <b>pay-what-you-can</b> registration, no questions asked — registering also reserves your materials and tells us how many to expect. See what&rsquo;s coming up on the <a href="#schedule" style="color:#9a6f14;font-weight:700;text-decoration:underline">schedule</a>. You can also read about recent Field Day and Field School projects in the <a href="#journal" style="color:#4f6675;font-weight:700;text-decoration:underline">Recent Field Days</a>, or find out more about our philosophy and approach in the <a href="#philosophy" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Philosophy &amp; Structure</a> section.</p>
+    <p class="seclead"><b>Field Days</b> are hands-on, outdoors, screen-free skill-shares for adults and kids 6+. Every day is a different mix of skills and topics — from woodworking and fiber arts to plant walks, hikes, and farm salons. Every day has a <b>pay-what-you-can</b> registration, no questions asked — registering also reserves your materials and tells us how many to expect. See what&rsquo;s coming up on the <a href="#schedule" style="color:#9a6f14;font-weight:700;text-decoration:underline">schedule</a>. You can also read about recent Field Day and Field School projects in the <a href="#journal" style="color:#4f6675;font-weight:700;text-decoration:underline">Journal</a>, or find out more about our philosophy and approach in the <a href="#philosophy" style="color:#1c6b4a;font-weight:700;text-decoration:underline">Philosophy &amp; Structure</a> section.</p>
     {# ===== TEMPORARILY HIDDEN 2026-09-26 — to restore, remove the surrounding Nunjucks comment delimiters =====
     <div class="cards">
       {%- for w in workshops %}
@@ -665,17 +703,16 @@ eleventyExcludeFromCollections: true
 <script>{% include "wfs-basket-ui.js" %}</script>
 <script>{% include "wfs-subscribe.js" %}</script>
 <script>
-  // Move Field Days into Recent as their date passes, without waiting for a
+  // Move Field Days into the Journal as their date passes, without waiting for a
   // rebuild. Every session is in the DOM; the build hid the ones that had not
   // happened yet, and this re-decides against the visitor's own clock.
   (function(){
     if(!window.wfsIsPast) return;
-    var shown=0;
     document.querySelectorAll('.pastday').forEach(function(c){
-      var past=window.wfsIsPast(c.dataset.date);
-      c.hidden=!past;
-      if(past) shown++;
+      c.hidden=!window.wfsIsPast(c.dataset.date);
     });
+    // journal posts are always shown; hide the section only if nothing is
+    var shown=document.querySelectorAll('.jcard:not([hidden])').length;
     var sec=document.getElementById('journal');
     if(sec) sec.hidden = shown===0;
   })();

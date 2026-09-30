@@ -12,11 +12,11 @@
 // Two things deliberately do NOT gate a session out of this list:
 //   * `draft: true`  — holds back the write-up page, not the scheduled day. A
 //     future Field Day has no recap yet and must still appear on the schedule.
-//   * `happened`     — only decides whether it shows under Recent Field Days.
+//   * `happened`     — only decides whether it shows in the Journal.
 //
 // `proposed: true` marks a workshop that is still being planned: it renders a
 // shareable page and appears under its month as "Date TBA", but is not
-// registerable and never appears under Recent Field Days.
+// registerable and never appears in the Journal.
 //
 // The date comes from the FILENAME, not the `date:` front-matter field: YAML
 // parses an unquoted date into a Date object, which then drifts by timezone.

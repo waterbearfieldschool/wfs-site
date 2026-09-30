@@ -9,6 +9,7 @@ draft: false
 foundations:
   - communication
   - water
+hideFromRecent: true
 ---
 
 ![System diagram — a Rook ultrasonic sender transmits over LoRa mesh radio to a Heltec V3 receiver, which relays the readings over WiFi to the Bayou cloud store](/assets/images/journal/2026-08-07-mesh-radio-rural-rivers/mesh-radio-system-diagram.jpg)

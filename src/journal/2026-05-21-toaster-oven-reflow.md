@@ -8,6 +8,7 @@ excerpt: "Testing toaster-oven reflow-soldering techniques at Artisans Asylum."
 draft: false
 foundations:
   - fabrication
+hideFromRecent: true
 ---
 
 ![Testing toaster-oven reflow-soldering setup at Artisans Asylum — two ovens and a thermocouple controller on a workbench](/assets/images/journal/2026-05-21-toaster-oven-reflow/reflow-station.jpg)

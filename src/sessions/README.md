@@ -20,7 +20,7 @@ Field Day itself.
 
 **After the day** — set `happened: true`, drop the photo filenames into
 `photos:`, write a line of `summary:` and a couple of paragraphs in the body,
-and remove `draft: true`. It now appears under Recent Field Days with its own
+and remove `draft: true`. It now appears in the Journal with its own
 page at `/s/<filename>/`.
 
 Photos live in `src/assets/images/sessions/<same-name-as-this-file>/`.
@@ -52,7 +52,7 @@ rebuild — touch any file to clear it. Builds and deploys are always correct.
 - The `date:` field is for reading. **The filename is authoritative** — YAML
   turns an unquoted date into a timezone-shifted `Date`.
 - `draft: true` hides the write-up, *not* the Field Day.
-- `happened: false` keeps a cancelled day out of Recent Field Days without
+- `happened: false` keeps a cancelled day out of the Journal without
   deleting the file.
 - Changing `project:` changes the label that `register()` writes to `rsvps` —
   the sync keeps `session_caps` in step, and `wfs-check` fails the deploy if

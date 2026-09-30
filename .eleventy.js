@@ -18,7 +18,7 @@ module.exports = function(eleventyConfig) {
     }
   });
 
-  // Every Field Day, newest first, for the Recent Field Days grid.
+  // Every Field Day, newest first — the Field Day half of the homepage Journal.
   //
   // Deliberately NOT filtered by date here. A static build only knows the date
   // it was built on, so a day that passes before the next deploy would be stuck
@@ -30,14 +30,39 @@ module.exports = function(eleventyConfig) {
     api
       .getFilteredByTag("session")
       // a proposed workshop has a placeholder date; it must never drift into
-      // Recent Field Days just because that date went by
+      // the Journal just because that date went by
       .filter((item) => !item.data.proposed)
-      // a day can be kept out of Recent Field Days without being deleted:
+      // a day can be kept out of the Journal without being deleted:
       // `hideFromRecent: true` in its front matter. The file, its page and its
       // place on the category listing all stay put.
       .filter((item) => !item.data.hideFromRecent)
       .sort((a, b) => b.date - a.date)
   );
+
+  // The homepage Journal: Field Day write-ups plus posts from src/journal/
+  // (project progress, one-off write-ups), newest first. A journal post shows
+  // up here unless it sets `hideFromRecent: true` — the same flag a session
+  // uses — so older Field Notes posts can stay on /journal/ without crowding
+  // the homepage.
+  eleventyConfig.addCollection("journalFeed", (api) => {
+    const days = api
+      .getFilteredByTag("session")
+      .filter((item) => !item.data.proposed)
+      .filter((item) => !item.data.hideFromRecent);
+    const posts = api
+      .getFilteredByTag("journal")
+      .filter((item) => !item.data.hideFromRecent);
+    return days.concat(posts).sort((a, b) => b.date - a.date);
+  });
+
+  // "Fri · Aug 7" — matches the `day:` style Field Days use. UTC, because a
+  // YAML date is midnight UTC and would slip a day in a western timezone.
+  eleventyConfig.addFilter("journalDay", (date) => {
+    const d = new Date(date);
+    const wd = d.toLocaleDateString("en-US", { weekday: "short", timeZone: "UTC" });
+    const md = d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+    return `${wd} · ${md}`;
+  });
 
   // The sessions belonging to one workshop category. Sessions live in
   // src/sessions/*.md and are flattened by _data/sessions.js; workshops.js no

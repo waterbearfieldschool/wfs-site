@@ -8,6 +8,7 @@ excerpt: "Meeting with the Edgewood Sailing School to scope STEM workshops for 2
 draft: false
 foundations:
   - libraries-learning
+hideFromRecent: true
 ---
 
 ![Ben, Alex, and Craig under the Edgewood Yacht Club sign at the end of the dock, marina and partly cloudy sky behind](/assets/images/journal/2026-05-20-sailing-stem-edgewood/at-edgewood-yacht-club.jpg)

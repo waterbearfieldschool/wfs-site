@@ -8,6 +8,7 @@ excerpt: "An Intro to Solar Power workshop with a Girl Scout troop at the West M
 draft: false
 foundations:
   - energy
+hideFromRecent: true
 ---
 
 ![Girl Scouts gathered on a blue tarp outside the West Medford Community Center, working with small solar materials; troop leaders and visitors watching](/assets/images/journal/2026-05-16-girl-scouts-solar/workshop-on-the-tarp.jpg)

@@ -8,6 +8,7 @@ excerpt: "A conversation about the ways kids learn with — and from — other a
 draft: false
 foundations:
   - ecology
+hideFromRecent: true
 ---
 
 ![Two kids and Halé walking with a small herd of goats in a Lexington pasture, stone walls and forest line behind](/assets/images/journal/2026-05-23-goodwin-hill-goats/pasture-with-goats.jpg)

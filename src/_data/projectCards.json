@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Trailers & Carts",
+    "img": "/v6img/pj-trailer.jpg",
+    "blurb": "Bike trailers and hand carts for hauling tools, harvests and kids — built from simple parts, fixable by anyone.",
+    "url": ""
+  },
+  {
+    "title": "Meso-Scale Solar",
+    "img": "/v6img/ws-solar.jpg",
+    "blurb": "Enough solar to power the basics — lights, communication, and some heating and cooling.",
+    "url": ""
+  },
+  {
+    "title": "Off-Grid Radio",
+    "img": "/v6img/jr-meshradio.jpg",
+    "blurb": "Mesh radio and amateur radio techniques for regional communication.",
+    "url": ""
+  },
+  {
+    "title": "Off-Grid Water Treatment",
+    "img": "/v6img/jr-uv254jam.jpg",
+    "blurb": "DIY water filtration and water testing.",
+    "url": ""
+  },
+  {
+    "title": "Paper-Based Pedagogy",
+    "img": "/v6img/ws-zines-press.jpg",
+    "blurb": "Printed worksheets, zines and field guides — learning that happens on paper, away from screens.",
+    "url": ""
+  },
+  {
+    "title": "Food Production",
+    "img": "/v6img/ws-coldframe.jpg",
+    "blurb": "Cold frames, season extension and small-farm tools for growing more food, closer to home.",
+    "url": ""
+  }
+]

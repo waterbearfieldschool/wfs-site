@@ -7,6 +7,7 @@ image: /assets/images/journal/2026-02-21-supercapacitor-battery-model/superbatt-
 excerpt: "Designing a simple supercapacitor circuit that models battery charging and discharging on a fast, observable timescale — and doubles as a crank-powered flashlight for workshops."
 foundations:
   - energy
+hideFromRecent: true
 ---
 
 ![Supercapacitor battery model](/assets/images/journal/2026-02-21-supercapacitor-battery-model/superbatt-v0.1.webp)
