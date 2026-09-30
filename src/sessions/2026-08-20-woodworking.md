@@ -40,6 +40,6 @@ photos:
   - 10-park.jpg
 ---
 
-The lumber came to the park by bike, and by lunchtime it was toolboxes. Measuring,
-sawing, drilling and joining — the four things most hand-tool work is made of —
-learned on something you can carry away the same morning.
+We followed a basic toolbox design from a 1982 “Carpentry for Children” book. Lots
+of fun, and the toolbox was immediately useful as a water bottle carrier at the end
+of the workshop.
