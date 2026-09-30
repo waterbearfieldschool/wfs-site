@@ -42,6 +42,5 @@ photos:
   - 09-wheels.jpg
 ---
 
-Bending conduit is the one real skill in a trailer, and it is mostly a matter of
-leaning on it in the right place. Everything after that is drilling, bolting and
-checking the thing sits square.
+We made the base of [Edge Collective's bike trailer design](https://edgecollective.io/projects/biketrailer/) by bending conduit, drilling
+pipe, and using their dropouts. A nice drilling jig was prototyped, too.
