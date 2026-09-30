@@ -42,6 +42,7 @@ photos:
   - 09-away.jpg
 ---
 
-Two ten-foot lengths of half-inch conduit, a pair of recycled wheels, four laser-cut
-dropouts and a handful of bolts. The test is simple enough: hitch it to a bike and
-ride it across the court.
+For the second bike trailer workshop, we experimented with designs for attaching a
+bike trailer to a rented [Blue Bike](https://bluebikes.com/). It worked for a short
+ride, then wobbled itself apart. Next meetup will focus on making it more robust.
+Looking forward!
