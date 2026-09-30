@@ -140,6 +140,8 @@ eleventyExcludeFromCollections: true
   .grp{font-weight:800;color:var(--accent-d);text-align:center;font-size:1.8rem;margin:26px 0 16px;letter-spacing:-.01em}
   .subgrp{font-size:1.2rem;margin-top:30px}
   .subgrp::after{width:40px;height:2px;opacity:.3}
+  .about-seal{display:block;margin:6px auto -8px;width:118px;height:auto}
+  @media(max-width:480px){.about-seal{width:96px;margin:2px auto -4px}}
   .about-lead{max-width:760px;margin:8px auto 0;text-align:center;color:var(--accent-d);font-size:clamp(1rem,2.4vw,1.18rem);font-weight:600;line-height:1.4}
   .legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:840px;margin:16px auto 0}
   @media(max-width:560px){.legend{grid-template-columns:1fr}}
@@ -425,7 +427,7 @@ eleventyExcludeFromCollections: true
 
   <section class="hero">
     <div class="hero-card">
-      <p class="hero-tag">At <b>Waterbear Field School</b>, we build useful things outdoors, together &mdash; on farms and in parks near Boston, MA.</p>
+      <p class="hero-tag">At <b>Waterbear Field School</b>, we build useful things outdoors, together &mdash; on farms and in parks, near Boston, MA.</p>
       <p class="hero-sub">All ages 6+ &middot; All skill levels &middot; Sliding scale</p>
     </div>
     <div class="hero-cta">
@@ -521,6 +523,8 @@ eleventyExcludeFromCollections: true
   </section>
 
   <section class="sec sec-about" id="about" data-name="About" data-blurb="What we're about — hands-on, screen-free learning on farms near Lincoln, MA." data-accent="#1c6b4a" data-tint="#eef3ee" data-bd="#dbe6de">
+    <img class="about-seal" src="/assets/images/brand/wfs-seal.png"
+         alt="Waterbear Field School" width="512" height="512" loading="lazy">
     <h2 class="grp">About</h2>
     <p class="about-lead">Waterbear Field School is a hands-on, outdoors skill-share for kids and adults.</p>
 
