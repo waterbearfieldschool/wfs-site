@@ -8,6 +8,7 @@ place: 'Umbrello Hay Field, Lincoln, MA'
 capacity: 10
 minToRun: 3
 photos: []
+hideFromRecent: true
 ---
 
 A design review of various cold frame designs — what each one is doing, and why — and then
