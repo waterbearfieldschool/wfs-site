@@ -1,6 +1,6 @@
 ---
 title: "Our Vision"
-meta: "Why Waterbear Field School exists — kids who teach, a teaching farm, and the principles behind real-world things."
+meta: "Why Waterbear Field School exists — everyone learning and teaching, a teaching farm, and the principles behind real-world things."
 permalink: /vision/
 layout: layouts/post.njk
 date: 2026-10-06
@@ -16,13 +16,14 @@ hideDate: true
 
 <div class="vision">
 
-<p class="lede">Kids need a purpose — a sense that they are doing something that matters in the world. At Waterbear Field School, that purpose is close at hand: learning how the real world works, building useful things, and then <b>teaching what they know to someone else.</b></p>
+<p class="lede">People need a purpose — kids especially: a sense that they are doing something that matters in the world. At Waterbear Field School, that purpose is close at hand: learning how the real world works, building useful things, and then <b>teaching what we know to someone else</b> — at every age.</p>
 
 <p class="keyline">We build useful things outdoors, together — and we learn the principles underneath them, so we can swim, and even surf, through times of change rather than be swept along by them.</p>
 
-## Kids who teach
+## Everyone learns, everyone teaches
 
-- **Learn a skill, then teach it.** Children learn a hands-on skill, get qualified in it, and teach it to other kids.
+- **All ages.** Kids, parents, grandparents, farmers, makers — everyone here is both a learner and a teacher.
+- **Learn a skill, then teach it.** Learn a hands-on skill, get qualified in it, and teach it to others — children included.
 - **Resilience skills, mostly analog.** No screens and minimal electronics — the basics of woodworking, growing, water, energy, communication and more.
 - **A steady thread.** An after-school program where teaching is a regular thing, wherever a child goes to school.
 
@@ -85,6 +86,24 @@ We teach **in one place and on the move** — mobile workshops, mobile investiga
 - That is the difference between being swept along by a wave, swimming, and surfing it.
 
 So we don't just teach tips and tricks. We keep **reference texts** close — reading them, and writing new ones.
+
+## Manuals and models, for everyone
+
+What we make isn't just for our own classes. We're writing **manuals** and building **models** that anyone can use:
+
+- **Across a bioregion** — at different scales and in different places, from exurban to urban.
+- **Across climates** — because what works here needs adapting elsewhere, and what works elsewhere may soon be needed here.
+- **Made to be shared** — so others can pick them up, improve them, and teach them in turn.
+
+## Rooted, and ready to move
+
+Adapting to a changing climate isn't only about hunkering down in one place.
+
+- **Citizens of the world.** Connecting with people across geographies, and learning from how they live.
+- **Ready for mobility.** Understanding what moving would take — being flexible, adaptable and prepared.
+- **Hospitality.** Learning to host others who may come to our places — and to be good guests in theirs.
+- **Contributing to a place.** Putting down roots and becoming part of where we live.
+- **Both are our heritage.** Humans have always been rooted *and* mobile. That adaptability is part of our past, and it will be part of our future.
 
 ## Joyful, and beautiful
 
