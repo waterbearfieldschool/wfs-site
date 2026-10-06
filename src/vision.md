@@ -66,9 +66,15 @@ The same depth is there in food growing, forests and forestry, keeping animals, 
 - Mobility, and different ways the future could unfold.
 - Helping young people think about planning, and about how to decide whether to stay or to move.
 
-## Start simple
+## Start with a first sprint
 
-Much of this begins with the workshops farms already run:
+Nobody learns "gardening" or "farming" in one go — there's too much. What we can offer is a short, **enabling journey**: from zero to the first key 20% that makes the other 80% feel possible. Each one ends with something real you made, and a big jump in your sense of agency.
+
+- **Fabrication** — build a simple piece of furniture with basic tools.
+- **Growing** — build a cold frame, or grow your first tomato plants.
+- **Energy** — wire up a small solar system that charges a phone and laptop and keeps a radio running.
+
+Many sprints begin with the workshops farms already run:
 
 - Growing tomatoes, potatoes and tea; flower arranging
 - Saving and sharing seeds; cold-weather growing
