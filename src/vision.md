@@ -74,13 +74,15 @@ The same depth is there in food growing, forests and forestry, keeping animals, 
 
 ## Three dials: time, place and energy
 
-For any topic, we explore the design along three dimensions:
+For any system on the farm — even if we don't go deep — we can ask three sets of questions:
 
-- **Time** — How was this solved in the past? How is it solved now? How might it be solved in the future?
-- **Place** — Today's supply chains are global. What if they were bioregional? What if they were hyperlocal?
-- **Energy** — What if energy were abundant? What if there were no fossil fuels — only electricity, or much less energy overall? What would be available, and where would it come from?
+- **Time** — What were the problems, and their solutions, in the past? (That's history.) What are they now? What will they likely be in the future, for food, water, shelter and everything else we need?
+- **Place** — Hyperlocal, bioregional, global: how does each help or hurt? At what scale should we act, and what does each scale make possible? It might mean working with people outside our bioregion, or thinking about other climates, and access to land, in some circumstances.
+- **Energy** — How much energy does this take? What kind, and where does it come from — in the past, now, and in the future? What if there were abundant energy? What if there were no fossil fuels — only electricity, or much less overall?
 
-Turning these dials against each other gives a grid of scenarios to design for. Climate and social conditions matter too, and we talk about them — but they're the biggest wild cards and the hardest to pin down. Time, place and energy are simpler, and they frame those harder questions. Then, knowing how complex societies are, we aim for the better outcomes.
+Turning these dials against each other gives a grid of scenarios to design for, and generates the lessons. Climate and social conditions matter too, and we talk about them — but they're the biggest wild cards and the hardest to pin down. Time, place and energy are simpler, and they frame those harder questions. Then, knowing how complex societies are, we aim for the better outcomes.
+
+This is one way in. Where other ways turn out to be useful and illuminating, we use those too.
 
 ## Connecting the domains
 
