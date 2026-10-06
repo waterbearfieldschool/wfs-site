@@ -20,6 +20,19 @@ hideDate: true
 
 <p class="keyline">We build useful things outdoors, together — and we learn the principles underneath them, so we can swim, and even surf, through times of change rather than be swept along by them.</p>
 
+## Thriving, whatever comes
+
+- **Resilience** is keeping the functions of life going through a shock — and recovering.
+- **Adaptation** is adjusting when conditions change. Sometimes that keeps things as they are; sometimes it's transformative, and even changes what we want.
+- **Thriving** is the goal. Resilience and adaptation are strategies toward it, depending on where you are and what you're after.
+- Thriving might mean staying, or going, or planning to move if things cross a threshold.
+- Significant change is likely. We take our mission — to thrive in whatever conditions — as seriously as any team takes theirs, with plans in place.
+
+### Off the shelf — and our own shelf
+
+- **Weeks and months:** take proven solutions off the shelf and be ready with them.
+- **Years:** conditions may change too much to rely on what's on the shelf. So we learn the principles well enough to **make our own shelf.**
+
 ## Everyone learns, everyone teaches
 
 - **All ages.** Kids, parents, grandparents, farmers, makers — everyone here is both a learner and a teacher.
