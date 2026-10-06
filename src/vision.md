@@ -40,6 +40,14 @@ hideDate: true
 - **Resilience skills, mostly analog.** No screens and minimal electronics — the basics of woodworking, growing, water, energy, communication and more.
 - **A steady thread.** An after-school program where teaching is a regular thing, wherever a child goes to school.
 
+## Real responsibility
+
+- **Kids need real things to do** — work that matters to someone besides themselves.
+- When every activity is judged by whether it entertains a child or improves them, we raise kids oriented mainly toward themselves. That isn't good for society, and it isn't a very joyful way to live.
+- There's a joy and a calm in taking up interests beyond your own.
+- So alongside their own projects, kids **contribute to something bigger** — helping the farmers who host us, and pitching in when the harvest can't wait.
+- Helping simply because someone needs help — solidarity, comradeship — is a superpower worth passing on.
+
 ## The teaching farm
 
 On a working farm we gather the core of off-grid living in one place, each piece something to build, run, study and teach:
