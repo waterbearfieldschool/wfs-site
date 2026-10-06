@@ -59,6 +59,16 @@ For **food, water, shelter, heating and cooling, growing, communications and cul
 
 The same depth is there in food growing, forests and forestry, keeping animals, the history of wildlife and the use of machinery. **The questions come from the farm.**
 
+## Three dials: time, place and energy
+
+For any topic, we explore the design along three dimensions:
+
+- **Time** — How was this solved in the past? How is it solved now? How might it be solved in the future?
+- **Place** — Today's supply chains are global. What if they were bioregional? What if they were hyperlocal?
+- **Energy** — What if energy were abundant? What if there were no fossil fuels — only electricity, or much less energy overall? What would be available, and where would it come from?
+
+Turning these dials against each other gives a grid of scenarios to design for. Climate and social conditions matter too, and we talk about them — but they're the biggest wild cards and the hardest to pin down. Time, place and energy are simpler, and they frame those harder questions. Then, knowing how complex societies are, we aim for the better outcomes.
+
 ## Connecting the domains
 
 - How rural, suburban and urban places depend on one another.
