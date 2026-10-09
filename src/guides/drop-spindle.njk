@@ -1,0 +1,245 @@
+---
+permalink: "/guides/drop-spindle/"
+layout: false
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% include "favicon.njk" %}
+<title>Spinning Yarn on a Drop Spindle — Waterbear Field School</title>
+<meta name="description" content="A printable, illustrated two-page guide to spinning yarn on a drop spindle, park-and-draft style.">
+<style>
+  :root{--ink:#1d1f1c;--soft:#5b605a;--hair:#c9ccc5;--tint:#f3f4f0}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#fff;color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+  .page{width:8.5in;min-height:11in;margin:0 auto;padding:.5in .55in;position:relative}
+  .page + .page{border-top:1px dashed var(--hair)}
+  header{display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:12px}
+  h1{font-size:25px;margin:0;letter-spacing:.01em}
+  .brand{font:600 11px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+  .lede{font-size:13.5px;line-height:1.45;margin:0 0 12px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .step{border:1.5px solid var(--ink);border-radius:8px;padding:9px 11px 10px;display:flex;flex-direction:column;break-inside:avoid}
+  .step h2{font:700 14px/1.2 system-ui,sans-serif;margin:0 0 6px;display:flex;gap:8px;align-items:center}
+  .num{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;align-items:center;justify-content:center;flex:none}
+  .step svg{display:block;width:100%;height:auto;margin:2px 0 6px}
+  .step p{font-size:12.4px;line-height:1.4;margin:0}
+  .step p + p{margin-top:4px}
+  .wide{grid-column:1 / -1}
+  .box{border:1.5px solid var(--ink);border-radius:8px;padding:9px 12px;background:var(--tint);font-size:12.4px;line-height:1.42}
+  .box h3{font:700 13px/1.2 system-ui,sans-serif;margin:0 0 5px;text-transform:uppercase;letter-spacing:.06em}
+  .box ul{margin:0;padding-left:17px}
+  .box li{margin:2px 0}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  footer{position:absolute;left:.55in;right:.55in;bottom:.35in;font:11px/1.3 system-ui,sans-serif;color:var(--soft);display:flex;justify-content:space-between}
+  svg .l{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  svg .t{fill:none;stroke:var(--ink);stroke-width:1.2;stroke-linecap:round}
+  svg .f{fill:#fff;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+  svg .fill{fill:var(--ink)}
+  svg .wool{fill:#fff;stroke:var(--ink);stroke-width:1.2;stroke-dasharray:2 2.5}
+  svg .lab{font:600 10.5px system-ui,sans-serif;fill:var(--ink)}
+  svg .arrow{fill:none;stroke:var(--ink);stroke-width:1.6;marker-end:url(#ah)}
+  @page{size:letter;margin:0}
+  @media print{.page{margin:0;page-break-after:always}.page + .page{border-top:none}.noprint{display:none}}
+  @media screen and (max-width:8.6in){.page{width:auto;min-height:0;padding:20px 16px 60px}.grid,.two{grid-template-columns:1fr}footer{position:static;margin-top:16px}}
+  .noprint{font:13px system-ui,sans-serif;text-align:center;padding:10px;background:var(--tint)}
+</style>
+</head>
+<body>
+<div class="noprint">Printable guide — use your browser's Print (two letter pages, black &amp; white).</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1d1f1c"/></marker></defs>
+</svg>
+
+<!-- ============ PAGE 1 ============ -->
+<section class="page">
+  <header><h1>Spinning Yarn on a Drop Spindle</h1><span class="brand">Waterbear Field School</span></header>
+  <p class="lede">Spinning is just <b>twist</b> added to <b>loose fibre</b>. The spindle stores the twist; your hands decide how thick the yarn is. We'll use <b>park &amp; draft</b>: spin first, then stop the spindle and draft with both hands. It's the easiest way to learn. Sit in a firm chair without arms.</p>
+
+  <div class="grid">
+    <div class="step">
+      <h2><span class="num">1</span> Know your spindle</h2>
+      <svg viewBox="0 0 300 130" role="img" aria-label="A top-whorl and a bottom-whorl spindle with labelled hook, whorl and shaft">
+        <!-- top whorl -->
+        <path class="l" d="M70 18 q0 -8 7 -8 q6 0 6 6"/>
+        <line class="l" x1="70" y1="18" x2="70" y2="108"/>
+        <ellipse class="f" cx="70" cy="30" rx="34" ry="7"/>
+        <text class="lab" x="90" y="14">hook</text>
+        <text class="lab" x="108" y="34">whorl</text>
+        <text class="lab" x="78" y="90">shaft</text>
+        <text class="lab" x="28" y="128" style="font-weight:400">top-whorl</text>
+        <!-- bottom whorl -->
+        <line class="l" x1="220" y1="10" x2="220" y2="108"/>
+        <path class="l" d="M216 14 l4 -4 l4 4"/>
+        <ellipse class="f" cx="220" cy="100" rx="34" ry="7"/>
+        <text class="lab" x="228" y="16">notch</text>
+        <text class="lab" x="258" y="104">whorl</text>
+        <text class="lab" x="174" y="128" style="font-weight:400">bottom-whorl</text>
+      </svg>
+      <p>The <b>whorl</b> is the weight that keeps it spinning. Either kind works the same way. Always spin it <b>clockwise</b> (seen from above).</p>
+    </div>
+
+    <div class="step">
+      <h2><span class="num">2</span> Pre-draft the fibre</h2>
+      <svg viewBox="0 0 300 130" role="img" aria-label="Two hands gently pulling a strip of fibre apart so it thins and loosens">
+        <path class="wool" d="M20 60 C60 40, 100 44, 150 56 C200 68, 240 72, 282 60 L282 82 C240 92, 200 86, 150 78 C100 70, 60 70, 20 84 Z"/>
+        <path class="f" d="M70 46 q-14 4 -16 22 q2 18 18 22 q14 -2 16 -20 q-2 -20 -18 -24 z"/>
+        <path class="f" d="M222 50 q-16 2 -18 22 q2 18 18 22 q14 -2 16 -20 q-2 -22 -16 -24 z"/>
+        <path class="arrow" d="M44 112 L14 112"/>
+        <path class="arrow" d="M254 112 L286 112"/>
+        <text class="lab" x="118" y="30">thin, airy strip</text>
+      </svg>
+      <p>Split the fibre into finger-thick strips. Hold your hands a hand-width apart and pull <b>gently</b> along each strip until it's light and loose, but still in one piece.</p>
+    </div>
+
+    <div class="step">
+      <h2><span class="num">3</span> Tie on a leader</h2>
+      <svg viewBox="0 0 300 130" role="img" aria-label="A piece of yarn tied to the shaft below the whorl, brought up over the whorl and hooked">
+        <line class="l" x1="110" y1="22" x2="110" y2="124"/>
+        <path class="l" d="M110 22 q0 -8 7 -8 q6 0 6 6"/>
+        <ellipse class="f" cx="110" cy="34" rx="34" ry="7"/>
+        <path class="t" d="M110 50 q10 -3 0 6 q-10 3 0 -6" />
+        <path class="t" d="M112 50 C150 46, 150 38, 142 34 C136 30, 128 26, 123 20 L118 14 C150 16, 170 30, 230 30" />
+        <text class="lab" x="130" y="62">knot below whorl</text>
+        <text class="lab" x="190" y="22">leader (~18 in)</text>
+      </svg>
+      <p>Tie a scrap of yarn (about 18 in) to the shaft <b>just below the whorl</b>. Bring it up over the edge of the whorl and once around the hook (or into the notch). This is the <b>leader</b>.</p>
+    </div>
+
+    <div class="step">
+      <h2><span class="num">4</span> Join fibre to leader</h2>
+      <svg viewBox="0 0 300 130" role="img" aria-label="The fluffed end of the leader overlapping the fibre, held together while the spindle turns">
+        <path class="t" d="M20 66 L120 66"/>
+        <path class="t" d="M120 66 l20 -8 M120 66 l22 -2 M120 66 l22 4 M120 66 l20 10"/>
+        <path class="wool" d="M128 52 C170 46, 230 44, 290 50 L290 84 C230 90, 170 86, 128 80 Z"/>
+        <path class="f" d="M132 48 q-14 6 -14 20 q2 14 16 16 q14 -2 14 -18 q-2 -16 -16 -18 z"/>
+        <text class="lab" x="20" y="56">leader</text>
+        <text class="lab" x="236" y="42">fibre</text>
+        <text class="lab" x="102" y="112">pinch the overlap</text>
+      </svg>
+      <p>Fluff out the end of the leader and lay it over the end of your fibre. Pinch the overlap, give the spindle a clockwise turn, and the twist will grab the two together.</p>
+    </div>
+
+    <div class="step wide">
+      <h2><span class="num">5</span> Spin it</h2>
+      <svg viewBox="0 0 620 120" role="img" aria-label="Rolling the spindle shaft up the thigh with the right hand to set it spinning clockwise">
+        <path class="l" d="M60 96 C120 70, 220 64, 300 70"/>
+        <path class="l" d="M60 112 C120 92, 220 88, 300 92"/>
+        <text class="lab" x="306" y="96" style="font-weight:400">your thigh</text>
+        <line class="l" x1="180" y1="18" x2="200" y2="82" />
+        <ellipse class="f" cx="183" cy="28" rx="24" ry="6" transform="rotate(17 183 28)"/>
+        <path class="arrow" d="M150 104 L250 72"/>
+        <text class="lab" x="256" y="62">roll up the thigh</text>
+        <!-- flick version -->
+        <line class="l" x1="480" y1="10" x2="480" y2="96"/>
+        <ellipse class="f" cx="480" cy="24" rx="30" ry="7"/>
+        <path class="arrow" d="M446 60 A36 12 0 1 0 514 60"/>
+        <text class="lab" x="524" y="50">clockwise</text>
+        <text class="lab" x="436" y="114" style="font-weight:400">or flick the shaft</text>
+      </svg>
+      <p>Let the spindle hang. With your right hand, <b>roll the shaft up your right thigh</b> (or flick it with your fingers) so it turns clockwise. Hold the fibre in your left hand, with the leader running up to your fingers.</p>
+    </div>
+  </div>
+  <footer><span>waterbearfieldschool.org</span><span>1 / 2</span></footer>
+</section>
+
+<!-- ============ PAGE 2 ============ -->
+<section class="page">
+  <header><h1>Park, Draft, Release, Repeat</h1><span class="brand">Waterbear Field School</span></header>
+
+  <div class="grid">
+    <div class="step">
+      <h2><span class="num">6</span> Park it</h2>
+      <svg viewBox="0 0 300 140" role="img" aria-label="The spindle held still between the knees, with twisted yarn above">
+        <path class="l" d="M40 60 C70 64, 110 80, 128 128"/>
+        <path class="l" d="M260 60 C230 64, 190 80, 172 128"/>
+        <text class="lab" x="20" y="54" style="font-weight:400">knee</text>
+        <text class="lab" x="250" y="54" style="font-weight:400">knee</text>
+        <line class="l" x1="150" y1="26" x2="150" y2="136"/>
+        <ellipse class="f" cx="150" cy="38" rx="26" ry="6"/>
+        <path class="t" d="M150 26 L150 4"/>
+        <path class="t" d="M146 8 l8 -3 M146 14 l8 -3 M146 20 l8 -3"/>
+        <text class="lab" x="160" y="16">twist builds up</text>
+      </svg>
+      <p>Before the spindle slows down, <b>catch it between your knees</b> so it can't unwind. The twist waits in the leader.</p>
+    </div>
+
+    <div class="step">
+      <h2><span class="num">7</span> Draft</h2>
+      <svg viewBox="0 0 300 140" role="img" aria-label="Front hand pinching above the twist, back hand pulling fibre upward to make a thin drafting triangle">
+        <line class="t" x1="150" y1="138" x2="150" y2="96"/>
+        <path class="t" d="M146 132 l8 -3 M146 122 l8 -3 M146 112 l8 -3 M146 102 l8 -3"/>
+        <path class="f" d="M134 86 q-12 4 -12 14 q2 10 14 10 q12 -2 14 -12 q-2 -12 -16 -12 z"/>
+        <text class="lab" x="164" y="104">front hand pinches</text>
+        <path class="wool" d="M150 84 L134 40 L166 40 Z"/>
+        <path class="wool" d="M134 40 C130 24, 132 10, 140 4 L160 4 C168 10, 170 24, 166 40 Z"/>
+        <path class="f" d="M140 16 q-14 0 -16 12 q2 12 16 14 q14 0 16 -12 q-2 -14 -16 -14 z"/>
+        <path class="arrow" d="M196 46 L196 12"/>
+        <text class="lab" x="204" y="32">back hand</text>
+        <text class="lab" x="204" y="44">draws back</text>
+        <text class="lab" x="34" y="66">drafting</text>
+        <text class="lab" x="34" y="78">triangle</text>
+      </svg>
+      <p>Pinch just above the twist with your <b>front hand</b>. With your <b>back hand</b>, slowly pull the fibre away, so a thin fan of fibre slides out between your hands. Draw out a few inches.</p>
+    </div>
+
+    <div class="step">
+      <h2><span class="num">8</span> Release the twist</h2>
+      <svg viewBox="0 0 300 140" role="img" aria-label="Front hand slides up and the twist runs up into the thin drafted fibre, making yarn">
+        <line class="t" x1="150" y1="138" x2="150" y2="24"/>
+        <path class="t" d="M146 132 l8 -3 M146 120 l8 -3 M146 108 l8 -3 M146 96 l8 -3 M146 84 l8 -3 M146 72 l8 -3 M146 60 l8 -3 M146 48 l8 -3 M146 36 l8 -3"/>
+        <path class="arrow" d="M184 112 L184 40"/>
+        <text class="lab" x="192" y="80">twist runs up</text>
+        <path class="f" d="M142 8 q-14 0 -16 12 q2 12 16 14 q14 0 16 -12 q-2 -14 -16 -14 z"/>
+        <text class="lab" x="40" y="80">new yarn</text>
+      </svg>
+      <p>Slide your front hand up and let the twist run into the drafted fibre. <b>That's yarn!</b> Keep the twist out of the fibre supply in your back hand. Then spin, park, draft and release again.</p>
+    </div>
+
+    <div class="step">
+      <h2><span class="num">9</span> Wind on</h2>
+      <svg viewBox="0 0 300 140" role="img" aria-label="Yarn wound in a cone on the shaft below the whorl">
+        <line class="l" x1="150" y1="10" x2="150" y2="134"/>
+        <path class="l" d="M150 10 q0 -6 6 -6 q5 0 5 5"/>
+        <ellipse class="f" cx="150" cy="20" rx="30" ry="6"/>
+        <path class="f" d="M150 30 L176 40 L176 66 L150 96 L124 66 L124 40 Z"/>
+        <path class="t" d="M126 46 L174 50 M126 54 L174 58 M128 62 L172 66 M134 72 L166 74 M140 82 L160 84"/>
+        <text class="lab" x="186" y="58">wind into a cone</text>
+        <path class="t" d="M150 30 C170 26, 178 18, 164 12 L158 8"/>
+      </svg>
+      <p>When the spindle nears the floor, unhook the yarn and <b>wind it onto the shaft</b> (under a top whorl, or above a bottom whorl). Keep about 18 in free, re-hook it, and carry on.</p>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="box">
+      <h3>Adding more fibre</h3>
+      <p style="margin:0">When a strip runs out, fluff its last few inches and lay the next strip over them, just like the join in step 4. Let the twist run in. A slightly lumpy join is fine.</p>
+      <h3 style="margin-top:9px">Finishing</h3>
+      <p style="margin:0">Wind the yarn off into a loop (a <b>skein</b>). Soak it in warm water for 15 minutes, squeeze it gently in a towel, and hang it to dry with a light weight on it. This <b>sets the twist</b>.</p>
+    </div>
+    <div class="box">
+      <h3>If something goes wrong</h3>
+      <ul>
+        <li><b>Yarn drifts apart:</b> it needs more twist, or it's too thin. Spin longer before you park.</li>
+        <li><b>Yarn kinks on itself:</b> too much twist. Draft a little more fibre each time.</li>
+        <li><b>Spindle unwinds:</b> you parked too late. Catch it while it's still turning.</li>
+        <li><b>Lumps and thin spots:</b> totally normal. Beginner yarn is "art yarn."</li>
+        <li><b>Spindle drops:</b> that's why it's called a drop spindle. Pick it up and re-join.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box" style="margin-top:12px">
+    <h3>Spinning alpaca</h3>
+    <p style="margin:0">Alpaca is soft and warm, but it's <b>slippery</b>. It has little crimp and no lanolin, so the fibres slide apart more easily than wool. Give it <b>more twist</b> than you think it needs. Draft in <b>short pulls</b>, keeping your hands close together, and spin finer rather than thicker. If it's frustrating at first, practise a few lengths with sheep's wool (Corriedale is a good one), then come back to the alpaca.</p>
+  </div>
+
+  <footer><span>waterbearfieldschool.org/guides/drop-spindle</span><span>2 / 2</span></footer>
+</section>
+</body>
+</html>
