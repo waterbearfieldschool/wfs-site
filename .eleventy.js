@@ -57,6 +57,11 @@ module.exports = function(eleventyConfig) {
 
   // "Fri · Aug 7" — matches the `day:` style Field Days use. UTC, because a
   // YAML date is midnight UTC and would slip a day in a western timezone.
+  // "Oct 15" — short form for the hero slideshow labels.
+  eleventyConfig.addFilter("journalShort", (date) =>
+    new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" })
+  );
+
   eleventyConfig.addFilter("journalDay", (date) => {
     const d = new Date(date);
     const wd = d.toLocaleDateString("en-US", { weekday: "short", timeZone: "UTC" });

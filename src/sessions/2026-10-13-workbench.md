@@ -14,6 +14,7 @@ materials:
     Free to learn! If you'd like to take home the workbench you build, please
     register and expect to pay $25 materials cost on-site.
 photos: []
+hideFromRecent: true
 ---
 
 Build a workbench — a bench you can carry to the work and put away afterwards.

@@ -226,6 +226,7 @@ eleventyExcludeFromCollections: true
   .showcase{display:block;position:relative;max-width:680px;margin:12px auto 0;aspect-ratio:3/2;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.16);text-decoration:none;background:#e9e5da}
   .sc-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .9s ease;text-decoration:none;color:inherit;pointer-events:none}
   .sc-slide.on{opacity:1;pointer-events:auto}
+  .showcase:not(.js) .sc-slide:first-child{opacity:1;pointer-events:auto}
   .sc-label{position:absolute;left:0;right:0;bottom:0;white-space:nowrap;text-align:center;color:#1f241f;font-weight:500;font-size:.9rem;letter-spacing:.01em;padding:6px 16px;background:rgba(255,255,255,.5);backdrop-filter:blur(6px) saturate(1.2);-webkit-backdrop-filter:blur(6px) saturate(1.2);border-top:1px solid rgba(255,255,255,.45)}
   .hero{margin-bottom:20px}
   .hdrnav{display:flex;gap:8px;justify-content:center;align-items:center;max-width:600px;margin:0 auto;max-height:0;overflow-x:auto;overflow-y:hidden;opacity:0;transition:max-height .28s ease,opacity .22s ease,padding .28s ease;padding:0 12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
@@ -407,16 +408,26 @@ eleventyExcludeFromCollections: true
 <div class="wrap">
 
   <div class="herowrap">
-  {#- The hero rotator shows real sessions once any have happened, each slide
-      linking to its own write-up. Until then it falls back to the topic images,
+  {#- The hero rotator shows the Journal — Field Day write-ups and journal posts —
+      each slide linking to its page. Field Days that haven't happened yet are
+      marked with data-date and dropped by the script below against the
+      visitor's clock. Until anything exists it falls back to the topic images,
       so the top of the page is never empty on a fresh install. -#}
-  {%- if collections.pastSessions.length %}
+  {%- if collections.journalFeed.length %}
   <div class="showcase">
-    {%- for s in collections.pastSessions %}
-    <a class="sc-slide{% if loop.first %} on{% endif %}" href="{{ s.url }}"
+    {%- for s in collections.journalFeed %}
+    {%- if "session" in s.data.tags %}{% if s.data.isPast %}
+    <a class="sc-slide" href="{{ s.url }}" data-date="{{ s.data.sessionSlug | truncate(10, true, "") }}"
        style="background-image:url({% if s.data.photos and s.data.photos.length %}{{ s.data.photoDir }}{{ s.data.photos[0] }}{% else %}{{ s.data.img }}{% endif %})">
       <span class="sc-label">{{ s.data.heading }} &middot; {{ s.data.dayShort }}</span>
     </a>
+    {%- endif %}
+    {%- elif s.data.image %}
+    <a class="sc-slide" href="{{ s.url }}"
+       style="background-image:url({{ s.data.image }})">
+      <span class="sc-label">{{ s.data.title }} &middot; {{ s.date | journalShort }}</span>
+    </a>
+    {%- endif %}
     {%- endfor %}
   </div>
   {%- else %}
@@ -650,7 +661,16 @@ eleventyExcludeFromCollections: true
 <script>
 (function(){
   var sc=document.querySelector(".showcase"); if(!sc) return;
-  var sl=sc.querySelectorAll(".sc-slide"); if(sl.length<2) return;
+  // drop Field Days that haven't happened yet (decided against the visitor's clock)
+  var today=new Date(), iso=today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+  sc.querySelectorAll(".sc-slide[data-date]").forEach(function(a){
+    var past=window.wfsIsPast?window.wfsIsPast(a.dataset.date):a.dataset.date<iso;
+    if(!past) a.remove();
+  });
+  sc.classList.add("js");
+  var sl=sc.querySelectorAll(".sc-slide"); if(!sl.length) return;
+  if(!sc.querySelector(".sc-slide.on")) sl[0].classList.add("on");
+  if(sl.length<2) return;
   if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var i=0;
   setInterval(function(){ if(document.hidden) return; sl[i].classList.remove("on"); i=(i+1)%sl.length; sl[i].classList.add("on"); },3400);
