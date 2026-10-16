@@ -467,6 +467,8 @@ eleventyExcludeFromCollections: true
     <div class="daycards">
       {%- set shownMonth = "" %}
       {%- for s in sessions %}
+      {#- a series shows one card, on its last date; its other dates are skipped -#}
+      {%- if not s.series or s.seriesLast %}
       {%- if s.month != shownMonth %}
       <h3 class="monthhead" data-month="{{ s.month }}">{{ s.month }}</h3>
       {%- set shownMonth = s.month %}
@@ -474,15 +476,16 @@ eleventyExcludeFromCollections: true
       <article class="daycard2{% if s.proposed %} proposed{% endif %}" id="day-{{ s.date }}" data-month="{{ s.month }}"{% if s.proposed %} data-proposed="1"{% endif %}>
         <img src="{{ s.img }}" alt="">
         <div class="dc2-main">
-          <a class="dc2-date" href="{{ s.path }}">{% if s.proposed %}Date TBA{% else %}{{ s.day }} · {{ s.time }}{% endif %}</a>
-          <h3><a href="{{ s.path }}">{{ s.title }}</a></h3>
+          {%- set href = s.series.path if s.series else s.path %}
+          <a class="dc2-date" href="{{ href }}">{% if s.proposed %}Date TBA{% elif s.series %}{{ s.series.when }} · {{ s.time }}{% else %}{{ s.day }} · {{ s.time }}{% endif %}</a>
+          <h3><a href="{{ href }}">{{ s.title }}</a></h3>
           <div class="dc2-meta">{{ s.place }}</div>
           <p class="dc2-blurb">{{ s.cardBlurb }}</p>
           <div class="dc2-actions">
             {%- if s.proposed %}
             <a class="btn-plan" href="{{ s.path }}">Being planned &mdash; see the idea</a>
             {%- else %}
-            <a class="btn-reg" href="{{ s.path }}">Register</a>
+            <a class="btn-reg" href="{{ href }}">Register</a>
             {%- endif %}
             <details class="dc2-details"><summary><span class="d-more">More details ▾</span><span class="d-less">Fewer details ▴</span></summary>
               <div class="dc2-more">
@@ -491,13 +494,14 @@ eleventyExcludeFromCollections: true
                   <div><dt>Where</dt><dd>{{ s.location }}<br><span style="color:var(--muted)">{{ s.locationNote }}</span></dd></div>
                   <div><dt>Who</dt><dd>{{ s.forWhom }}</dd></div>
                   <div><dt>Bring</dt><dd>{{ s.bring }}</dd></div>
-                  <div><dt>When</dt><dd>{% if s.proposed %}Date to be announced{% if s.time %} &middot; likely {{ s.time }}{% endif %}{% else %}{{ s.day }} &middot; {{ s.time }}{% endif %}</dd></div>
+                  <div><dt>When</dt><dd>{% if s.proposed %}Date to be announced{% if s.time %} &middot; likely {{ s.time }}{% endif %}{% elif s.series %}{{ s.series.when }} &middot; {{ s.time }}{% else %}{{ s.day }} &middot; {{ s.time }}{% endif %}</dd></div>
                 </dl>
               </div>
             </details>
           </div>
         </div>
       </article>
+      {%- endif %}
       {%- endfor %}
     </div>
     <p class="seclead" style="margin-top:14px">Want to teach a session or host one? <a href="mailto:info@waterbearfieldschool.org?subject=Field%20Days" style="color:#9a6f14;font-weight:700;text-decoration:underline">Email us</a>.</p>

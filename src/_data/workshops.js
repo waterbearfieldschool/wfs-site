@@ -13,6 +13,58 @@
 
 module.exports = [
   {
+    slug: "wednesdays",
+    series: {
+      path: "/waterbear-wednesdays/",
+      when: "Wednesdays in October",
+      unit: "Wednesday",
+    },
+    cartShort: "Waterbear Wednesday",
+    title: "Waterbear Wednesdays",
+    short: "Wednesdays",
+    color: "#7a4f86",
+    img: "/assets/images/series/waterbear-zines.png",
+    blurb: "Wednesday afternoons in October: short hikes on the trails, harvesting acorns, checking on what\u2019s growing at the farm, making zines, and small carpentry projects like building toolboxes.",
+    about: [
+      "Every Wednesday afternoon in October we meet at the farm for a couple of hours of hands-on, outdoor, screen-free time together.",
+      "We\u2019ll go on short hikes on the trails, harvest acorns, check on what\u2019s growing at the farm, make zines, and take on small carpentry projects like building toolboxes."
+    ],
+    forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14).",
+    bring: "Closed\u2011toe shoes and weather\u2011appropriate clothing. Tools and materials are provided.",
+    location: "Hannan Healthy Foods Farm, Lincoln, MA",
+    locationNote: "Exact address sent when you register."
+  },
+  {
+    slug: "offgrid",
+    // A series: several dates, one listing. The schedule shows a single card
+    // for the whole run, and its page (series.path) offers every date at once,
+    // so people can sign up for as many as they like in one checkout. Each
+    // date is still its own session file with its own capacity.
+    series: {
+      path: "/off-grid-fridays/",
+      when: "Fridays in October",
+      unit: "Friday",
+    },
+    cartShort: "Off-Grid Friday",
+    title: "Off-Grid Fridays",
+    short: "Off-Grid",
+    color: "#3f6b2f",
+    img: "/assets/images/sessions/2026-08-19-solar/04-panel.jpg",
+    blurb: "Every Friday in October we meet at a farm to work on real projects that help us depend less on the grid: energy, water, growing, heat and cooling, comms, transport, and clothing.",
+    about: [
+      "Every Friday in October we meet at a farm and work on projects that help farms and other folks transition away from dependence on the grid. We learn the principles by building the real thing, and what we build stays on the farm and gets used.",
+      "Energy \u2014 solar panels, batteries, and charge controllers; assessing energy needs; units; battery chemistries; types of solar controller; debugging with a multimeter.",
+      "Water \u2014 rainwater collection; a handwashing station; a shower with a solar thermal or solar electric water heater; filtering water through gravel, sand, and biochar.",
+      "Growing \u2014 a mobile hoop house \u00e0 la Eliot Coleman; cold frames; bending and cutting pipe; plastic coverings and recycled windows.",
+      "Heat and cooling \u2014 heated jackets and blankets that run on small batteries, such as drill batteries; sizing off-grid heating and cooling; a solar-powered CoolBot.",
+      "Comms, transport, and clothing \u2014 GMRS and LoRa mesh radio; temperature monitoring; an electric wheelbarrow and carts; sewing, and DIY electric blankets."
+    ],
+    forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14).",
+    bring: "Closed\u2011toe shoes and weather\u2011appropriate clothing. Tools and parts are provided.",
+    location: "Hannan Healthy Foods Farm, Lincoln, MA",
+    locationNote: "Exact address sent when you register."
+  },
+  {
     slug: "water",
     cartShort: "Water",
     title: "Working with Water",

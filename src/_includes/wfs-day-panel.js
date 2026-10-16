@@ -110,8 +110,12 @@
       teachWhat.focus();
       return;
     }
-    rows.forEach(function(r){
-      window.wfsBasket.set(r.dataset.pid, qtyOf(r), {
+    // Read every quantity before writing any: each set() announces the basket,
+    // and reflect() then redraws the rows from it — so rows not yet written
+    // would be zeroed before their turn, and only the first choice would stick.
+    var qtys=rows.map(qtyOf);
+    rows.forEach(function(r, i){
+      window.wfsBasket.set(r.dataset.pid, qtys[i], {
         kind:  r.dataset.kind,
         date:  DATE,
         price: parseInt(r.dataset.unit,10)||0,

@@ -88,6 +88,9 @@ module.exports = () => fs
       // gets no session_caps row, so register() would refuse it anyway — but
       // nothing offers to register in the first place.
       proposed: !!fm.proposed,
+      // set when the category is a series (see workshops.js): the schedule
+      // shows one card for the run, on its last date, linking to series.path
+      series: w.series || null,
       // display name for the kit, from materials.label:
       //   "a toolbox" -> "Toolbox", "solar panel + motor kit" -> "Solar panel + motor kit"
       kitName: fm.materials
@@ -125,4 +128,10 @@ module.exports = () => fs
       })(),
     };
   })
-  .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+  .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
+  // mark the last date of each series, which carries the series' one card
+  .map((s, i, all) => {
+    s.seriesLast = !!s.series &&
+      !all.slice(i + 1).some((t) => t.series && t.slug === s.slug);
+    return s;
+  });

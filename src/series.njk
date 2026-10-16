@@ -1,0 +1,146 @@
+---
+pagination:
+  data: seriesList
+  size: 1
+  alias: w
+permalink: "{{ w.series.path }}"
+layout: false
+eleventyExcludeFromCollections: true
+---
+{#- One page for a whole series: every date's registration rows on one page,
+    one "Add to my registrations", one checkout. Each date is still its own
+    session (own capacity, own session_caps row), so register() is unchanged;
+    wfs-series-panel.js just drives several date panels at once. -#}
+{%- set ws = sessions | forWorkshop(w.slug) %}
+{%- set first = ws[0] %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+{% include "favicon.njk" %}
+
+<title>{{ w.title }} · {{ w.series.when }} — Waterbear Field School</title>
+<meta name="description" content="{{ w.blurb }}">
+<link rel="canonical" href="{{ site.url }}{{ w.series.path }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Waterbear Field School">
+<meta property="og:title" content="{{ w.title }} · {{ w.series.when }}">
+<meta property="og:description" content="{{ first.time }} · {{ first.place }} — {{ w.blurb }}">
+<meta property="og:url" content="{{ site.url }}{{ w.series.path }}">
+<meta property="og:image" content="{{ site.url }}{{ first.ogImg }}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:secure_url" content="{{ site.url }}{{ first.ogImg }}">
+<meta property="og:image:alt" content="{{ w.title }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ w.title }} · {{ w.series.when }}">
+<meta name="twitter:description" content="{{ first.time }} · {{ first.place }} — {{ w.blurb }}">
+<meta name="twitter:image" content="{{ site.url }}{{ first.ogImg }}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+<style>{% include "wfs-preview.css" %}
+{% include "wfs-panel.css" %}
+{% include "wfs-basket.css" %}
+
+  .tix + .tix{margin-top:14px}
+  .tix.past{opacity:.55}
+  .tix .tix-head h2{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .tix .tix-head h2 a{color:inherit;text-decoration:none}
+  .tix .tix-head h2 small{font:500 .85rem Inter,system-ui,sans-serif;color:var(--muted)}
+  .teachbox{margin:14px 0 4px;padding:12px 14px;background:#f3f6f3;border:1px solid #dbe6de;border-radius:10px}
+  .teachbox label{display:block;font-size:.86rem;color:var(--muted);line-height:1.4;margin-bottom:7px}
+  .teachbox textarea{width:100%;font:inherit;font-size:.93rem;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);resize:vertical}
+  .teachbox textarea:focus{outline:none;border-color:var(--accent)}
+  .teachmsg{margin-top:7px;font-size:.86rem;font-weight:600;color:#a3402f}
+  .serieslead{margin:22px 0 10px;font-size:1.02rem;font-weight:700;color:var(--ink)}
+</style>
+</head>
+<body>
+  <div class="stickytop">
+    <div class="top">
+      <a class="brand" href="/" style="text-decoration:none">Waterbear Field School<small>Hands-on learning &amp; building, near Lincoln, MA</small></a>
+      <button class="cartbtn" id="cartBtn" hidden>Cart <span class="cnum" id="cartNum">0</span></button>
+    </div>
+  </div>
+
+  <div class="backbar"><a href="/">&larr; All Field Days</a></div>
+
+  <div class="wdetail">
+    <div class="whero">
+      <img src="{{ w.img }}" alt="{{ w.title }}">
+      <div class="wband" style="background:linear-gradient(transparent,{{ w.color }}f2)"><h1>{{ w.title }}</h1></div>
+    </div>
+
+    <p class="wblurb">{{ w.series.when }} · {{ first.time }} · {{ first.place }}</p>
+
+    <div class="wsec">
+      {% for p in w.about %}<p>{{ p }}</p>{% endfor %}
+    </div>
+
+    <p class="serieslead">Choose the {{ w.series.unit }}s you&rsquo;d like to come to &mdash; as many as you like:</p>
+
+    {%- for s in ws %}
+    <div class="tix" data-date="{{ s.date }}" data-title="{{ s.title }}" data-label="{{ s.label }}" data-path="{{ s.path }}">
+      <div class="tix-head">
+        <h2><a href="{{ s.path }}">{{ s.day }}</a> <small>{{ s.time }}</small></h2>
+        <p class="tixcap"></p>
+      </div>
+      {%- for t in registrationTypes %}
+      {%- if (s.freeOnly and (t.freeOnly or t.teach)) or (not s.freeOnly and not t.freeOnly) %}
+      {%- set p = s.ticketPrice if (t.id == "standard" and s.ticketPrice) else t.price %}
+      <div class="trow{% if t.price == 0 %} tfree{% endif %}"
+           data-pid="tix-{{ s.date }}-{{ t.id }}"
+           data-unit="{{ p }}"
+           data-kind="reg"
+           data-line="{{ s.cartName }}"
+           data-sub="{{ t.label }}">
+        <span class="tinfo"><b>{{ t.label }}</b><small>{{ t.blurb }}</small></span>
+        <span class="tprice">{% if p > 0 %}${{ p }}{% else %}Free{% endif %}</span>
+        <span class="qctl">
+          <button type="button" class="qbtn" data-step="-1" aria-label="one fewer">&minus;</button>
+          <output class="qnum">0</output>
+          <button type="button" class="qbtn" data-step="1" aria-label="one more">+</button>
+        </span>
+      </div>
+      {%- endif %}
+      {%- endfor %}
+    </div>
+    {%- endfor %}
+
+    <div class="teachbox" id="teachBox" hidden>
+      <label for="teachWhat">You chose &ldquo;Teach a Future Session&rdquo;. What might you share? A sentence or two is plenty &mdash; we&rsquo;ll follow up by email or have a chat on the day.</label>
+      <textarea id="teachWhat" rows="3" maxlength="600"
+                placeholder="e.g. sourdough from a starter, basic bike repair, mushroom identification&hellip;"></textarea>
+      <p class="teachmsg" id="teachMsg" hidden>Tell us roughly what you&rsquo;d share and we&rsquo;ll take it from there.</p>
+    </div>
+
+    <div class="tixbar">
+      <span class="tixsum" id="tixSum"><b>Nothing selected</b><small>Choose a registration above</small></span>
+      <button class="tixgo" id="tixGo" type="button" disabled>Add to my registrations</button>
+    </div>
+
+    <dl class="dc-facts">
+      <div><dt>When</dt><dd>{{ w.series.when }} &middot; {{ first.time }}</dd></div>
+      <div><dt>Where</dt><dd>{{ w.location }}<br><span class="muted">{{ w.locationNote }}</span></dd></div>
+      <div><dt>Who</dt><dd>{{ w.forWhom }}</dd></div>
+      <div><dt>Bring</dt><dd>{{ w.bring }}</dd></div>
+    </dl>
+
+    <p style="margin:26px 0 0;color:var(--muted)">Want to teach a session, or have a project in mind? <a href="mailto:info@waterbearfieldschool.org?subject={{ w.title | urlencode }}" style="color:{{ w.color }};font-weight:700;text-decoration:underline">Email us</a>.</p>
+
+    <p class="backfoot"><a href="/">&larr; All Field Days</a></p>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  {% include "wfs-basket-defs.njk" %}
+  {% include "wfs-basket-panel.njk" %}
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>{% include "wfs-basket.js" %}</script>
+  <script>{% include "wfs-basket-ui.js" %}</script>
+  <script>window.WFS_SERIES_UNIT={{ w.series.unit | dump | safe }};</script>
+  <script>{% include "wfs-series-panel.js" %}</script>
+</body>
+</html>
