@@ -117,9 +117,21 @@ def main():
     # A proposed workshop has no confirmed date and nothing offers to register
     # for it, so it gets no capacity row. Giving it one would make it look
     # registerable to anything reading the database.
-    want = [{"date": s["date"], "label": s["label"],
-             "capacity": s["capacity"], "min_to_run": s["minToRun"]}
-            for s in sessions() if not s.get("proposed")]
+    by_date = {}
+    for s in sessions():
+        if s.get("proposed"):
+            continue
+        d = s["date"]
+        if d in by_date:
+            by_date[d]["label"] += " / " + s["title"]
+            by_date[d]["capacity"] += s["capacity"]
+            by_date[d]["min_to_run"] = min(by_date[d]["min_to_run"], s["minToRun"])
+        else:
+            by_date[d] = {
+                "date": d, "label": s["label"],
+                "capacity": s["capacity"], "min_to_run": s["minToRun"]
+            }
+    want = list(by_date.values())
 
     changes = []
     for row in want:

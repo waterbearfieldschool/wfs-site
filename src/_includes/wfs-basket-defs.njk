@@ -8,7 +8,7 @@
   {%- for s in sessions %}
   {%- for t in registrationTypes %}{% if t.price > 0 %}
   {%- set p = s.ticketPrice if (t.id == "standard" and s.ticketPrice) else t.price %}
-  <button class="snipcart-add-item" id="def-tix-{{ s.date }}-{{ t.id }}"
+  <button class="snipcart-add-item" id="def-tix-{{ s.date }}-{{ s.slug }}-{{ t.id }}"
     data-item-id="tix-{{ s.date }}-{{ t.id }}"
     data-item-name="{{ s.cartName }} · {{ t.label }}"
     data-item-price="{{ p }}.00"

@@ -13,20 +13,15 @@
 
 module.exports = [
   {
-    slug: "wednesdays",
-    series: {
-      path: "/waterbear-wednesdays/",
-      when: "Wednesdays in October",
-      unit: "Wednesday",
-    },
-    cartShort: "Waterbear Wednesday",
-    title: "Waterbear Wednesdays",
-    short: "Wednesdays",
+    slug: "afterschool",
+    cartShort: "Farm Afterschool",
+    title: "Farm Afterschool",
+    short: "Afterschool",
     color: "#7a4f86",
     img: "/assets/images/series/waterbear-zines.png",
-    blurb: "Wednesday afternoons in October: short hikes on the trails, harvesting acorns, checking on what\u2019s growing at the farm, making zines, and small carpentry projects like building toolboxes.",
+    blurb: "Short hikes on the trails, harvesting acorns, checking on what\u2019s growing at the farm, making zines, and small carpentry projects like building toolboxes.",
     about: [
-      "Every Wednesday afternoon in October we meet at the farm for a couple of hours of hands-on, outdoor, screen-free time together.",
+      "We meet at the farm after school for a couple of hours of hands-on, outdoor, screen-free time together.",
       "We\u2019ll go on short hikes on the trails, harvest acorns, check on what\u2019s growing at the farm, make zines, and take on small carpentry projects like building toolboxes."
     ],
     forWhom: "Adults and kids 6+ (an adult caregiver needs to accompany kids under 14).",

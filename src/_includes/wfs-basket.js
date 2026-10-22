@@ -142,9 +142,9 @@
   // Registration goes through the register() function rather than a direct
   // insert: it re-checks capacity and writes in one locked transaction, so two
   // people can't both take the last spot. One call per day in the basket.
-  // "tix-2026-08-19-standard" -> "standard"
+  // "tix-2026-08-19-standard" or "tix-2026-10-23-offgrid-standard" -> "standard"
   function tierOf(id){
-    var m=/^tix-\d{4}-\d{2}-\d{2}-(.+)$/.exec(id||'');
+    var m=/^tix-\d{4}-\d{2}-\d{2}-(?:[a-z0-9-]+-)?([^-]+)$/.exec(id||'');
     return m ? m[1] : null;
   }
 
@@ -274,7 +274,10 @@
     if(!window.Snipcart || !Snipcart.api){ return {ok:false, error:'Payment is still loading — try again in a moment.'}; }
     var paid=lines().filter(function(l){ return l.price>0; });
     // clear anything stale first, then mirror exactly what's in our basket
-    var wanted={}; paid.forEach(function(l){ wanted[l.id]=l.qty; });
+    var wanted={}; paid.forEach(function(l){
+      var d=defItem('def-'+l.id);
+      if(d) wanted[d.id]=(wanted[d.id]||0)+l.qty;
+    });
     var existing=snipItems();
     for(var i=0;i<existing.length;i++){
       if(!wanted[existing[i].id]){

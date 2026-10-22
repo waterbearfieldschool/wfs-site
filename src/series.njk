@@ -91,7 +91,8 @@ eleventyExcludeFromCollections: true
       {%- if (s.freeOnly and (t.freeOnly or t.teach)) or (not s.freeOnly and not t.freeOnly) %}
       {%- set p = s.ticketPrice if (t.id == "standard" and s.ticketPrice) else t.price %}
       <div class="trow{% if t.price == 0 %} tfree{% endif %}"
-           data-pid="tix-{{ s.date }}-{{ t.id }}"
+           data-def="def-tix-{{ s.date }}-{{ s.slug }}-{{ t.id }}"
+           data-pid="tix-{{ s.date }}-{{ s.slug }}-{{ t.id }}"
            data-unit="{{ p }}"
            data-kind="reg"
            data-line="{{ s.cartName }}"

@@ -78,7 +78,11 @@ def sessions():
     out = subprocess.run([node, "-e", js], cwd=REPO, capture_output=True, text=True)
     if out.returncode != 0:
         die("could not read session data from %s:\n%s" % (REPO, out.stderr.strip()))
-    return {s["date"]: s for s in json.loads(out.stdout)}
+    by_key = {}
+    for s in json.loads(out.stdout):
+        by_key[s["date"]] = s
+        by_key[s["label"]] = s
+    return by_key
 
 
 def addresses():
@@ -120,7 +124,7 @@ def compose(row, sess, addr):
     """Returns (subject, plain_text, html). Labels are bold in the HTML part;
     the plain part keeps the same labels so it reads the same way in a client
     that won't render HTML."""
-    s = sess.get(row.get("session_date"))
+    s = sess.get(row.get("session")) or sess.get(row.get("session_date"))
     if not s:
         return None, None, None, "no session data for %s" % row.get("session_date")
 

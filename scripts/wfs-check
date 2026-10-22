@@ -62,6 +62,16 @@ def main():
     # Proposed workshops are deliberately absent from session_caps — they are
     # being planned, not open. Checking them would report a permanent problem.
     ss = [s for s in ss if not s.get("proposed")]
+    by_date = {}
+    for s in ss:
+        d = s["date"]
+        if d in by_date:
+            by_date[d]["label"] += " / " + s["title"]
+            by_date[d]["capacity"] += s["capacity"]
+            by_date[d]["minToRun"] = min(by_date[d]["minToRun"], s["minToRun"])
+        else:
+            by_date[d] = dict(s)
+    ss = list(by_date.values())
     cc = {c["date"]: c for c in caps(key())}
     problems = []
 

@@ -47,13 +47,13 @@ async function tokenIsGenuine(token: string): Promise<boolean> {
   return false;
 }
 
-/** "tix-2026-08-19-standard" -> { date, tier } */
+/** "tix-2026-08-19-standard" or "tix-2026-10-23-offgrid-standard" -> { date, tier } */
 function parseTix(id: string) {
   if (!id?.startsWith("tix-")) return null;
   const rest = id.slice(4);
   const cut = rest.lastIndexOf("-");
-  if (cut < 0) return null;
-  return { date: rest.slice(0, cut), tier: rest.slice(cut + 1) };
+  if (cut < 10) return null;
+  return { date: rest.slice(0, 10), tier: rest.slice(cut + 1) };
 }
 
 Deno.serve(async (req) => {
