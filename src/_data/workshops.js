@@ -37,7 +37,7 @@ module.exports = [
     // date is still its own session file with its own capacity.
     series: {
       path: "/off-grid-fridays/",
-      when: "Fridays in October",
+      when: "Fridays",
       unit: "Friday",
     },
     cartShort: "Off-Grid Friday",
@@ -45,9 +45,9 @@ module.exports = [
     short: "Off-Grid",
     color: "#3f6b2f",
     img: "/assets/images/sessions/2026-08-19-solar/04-panel.jpg",
-    blurb: "Every Friday in October we meet at a farm to work on real projects that help us depend less on the grid: energy, water, growing, heat and cooling, comms, transport, and clothing.",
+    blurb: "On Fridays we meet at a farm to work on real projects that help us depend less on the grid: energy, water, growing, heat and cooling, comms, transport, and clothing.",
     about: [
-      "Every Friday in October we meet at a farm and work on projects that help farms and other folks transition away from dependence on the grid. We learn the principles by building the real thing, and what we build stays on the farm and gets used.",
+      "On Fridays we meet at a farm and work on projects that help farms and other folks transition away from dependence on the grid. We learn the principles by building the real thing, and what we build stays on the farm and gets used.",
       "Energy \u2014 solar panels, batteries, and charge controllers; assessing energy needs; units; battery chemistries; types of solar controller; debugging with a multimeter.",
       "Water \u2014 rainwater collection; a handwashing station; a shower with a solar thermal or solar electric water heater; filtering water through gravel, sand, and biochar.",
       "Growing \u2014 a mobile hoop house \u00e0 la Eliot Coleman; cold frames; bending and cutting pipe; plastic coverings and recycled windows.",
