@@ -69,7 +69,7 @@ eleventyExcludeFromCollections: true
 
   <div class="wdetail">
     <div class="whero">
-      <img src="{{ w.img }}" alt="{{ w.title }}">
+      <img src="{{ w.img }}"{% if w.imgPos %} style="object-position:{{ w.imgPos }}"{% endif %} alt="{{ w.title }}">
       <div class="wband" style="background:linear-gradient(transparent,{{ w.color }}f2)"><h1>{{ w.title }}</h1></div>
     </div>
 

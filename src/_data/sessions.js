@@ -58,6 +58,8 @@ module.exports = () => fs
       topic: w.title,
       color: w.color,
       img: img,
+      // optional CSS object-position for cropped views of img, e.g. "70% 50%"
+      imgPos: fm.imgPos || w.imgPos || null,
       ogImg:
         "/v6img/og/" +
         img.split("/").pop().replace(/\.[^.]+$/, "") +
@@ -81,7 +83,8 @@ module.exports = () => fs
       materials: fm.materials || null,
       // capacity lives in the database because register() enforces it under a
       // row lock; this is the authored value that wfs-sync-caps pushes there
-      capacity: fm.capacity == null ? 10 : fm.capacity,
+      // default 8: events of 10+ people need special permission at the farm (Oct 2026); 8 leaves room for hosts
+      capacity: fm.capacity == null ? 8 : fm.capacity,
       minToRun: fm.minToRun == null ? 3 : fm.minToRun,
       // A workshop that is being planned: it has a page you can share and a
       // month it is aimed at, but no confirmed date and no registration. It

@@ -4,9 +4,14 @@
 // `ticketPrice` in workshops.js.
 module.exports = [
   { id: "standard",  label: "Standard",          price: 20,
-    blurb: "Covers materials and keeps the day running." },
+    blurb: "One registration covers your household for the day. Add everyone coming below." },
   { id: "supporter", label: "Supporter",         price: 40,
-    blurb: "Covers your spot and quietly pays for someone else's." },
+    blurb: "Covers your household and quietly pays for another family's spot." },
+  // Headcount without a second charge: one paid (or teach) registration covers
+  // a household, and each extra person is a $0 line so the day's capacity,
+  // which register() counts as the sum of all registration lines, stays honest.
+  { id: "household", label: "Each additional person", price: 0,
+    blurb: "Coming together under one registration? Add one for each extra person, adult or child, so we know how many to expect. No extra cost." },
   // No-cost, but not nothing: instead of paying, you offer to lead a session on
   // something you know. The day page asks what, and the answer rides along on
   // the registration so we can follow it up.

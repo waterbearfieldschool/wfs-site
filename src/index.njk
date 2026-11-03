@@ -474,7 +474,7 @@ eleventyExcludeFromCollections: true
       {%- set shownMonth = s.month %}
       {%- endif %}
       <article class="daycard2{% if s.proposed %} proposed{% endif %}" id="day-{{ s.date }}" data-month="{{ s.month }}"{% if s.proposed %} data-proposed="1"{% endif %}>
-        <img src="{{ s.img }}" alt="">
+        <img src="{{ s.img }}"{% if s.imgPos %} style="object-position:{{ s.imgPos }}"{% endif %} alt="">
         <div class="dc2-main">
           {%- set href = s.series.path if s.series else s.path %}
           <a class="dc2-date" href="{{ href }}">{% if s.proposed %}Date TBA{% elif s.series %}{{ s.series.when }} · {{ s.time }}{% else %}{{ s.day }} · {{ s.time }}{% endif %}</a>
