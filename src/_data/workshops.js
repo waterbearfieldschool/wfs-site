@@ -81,35 +81,6 @@ module.exports = [
     locationNote: "Exact address sent when you register."
   },
   {
-    slug: "farmdays",
-    // A series: one listing whose page offers each weekday group. Each session
-    // file is a whole weekday for the season (dated at its first meeting), so
-    // registering for it signs you up for that day every week.
-    // series held back until the per-day / monthly pricing is settled; the
-    // weekday session files are parked in ~/iris/wfs-holding/farmdays-sessions
-    // series: {
-    //   path: "/farm-days/",
-    //   when: "November 2 – December 18, one weekday a week",
-    //   unit: "weekday",
-    // },
-    cartShort: "Winter Farm Days",
-    title: "Winter Farm Days",
-    short: "Farm Days",
-    color: "#5b7a2a",
-    img: "/assets/images/sessions/2026-10-23-afterschool/winter-farm-days.jpg",
-    blurb: "One weekday a week from November 2 to December 18, 10 to 2 at Hannan Healthy Foods: tend a winter lettuce bed, build cold frames, set up a rain barrel, hook up solar, map the farm, and make zines, with lunch cooked together.",
-    about: [
-      "We've just cleared a hoop house at Hannan Healthy Foods to grow lettuce through the winter. From November 2 to December 18, join a weekday group that meets at the farm from 10 to 2 every week for a season of real projects (with Thanksgiving week off on Thursday and Friday). We cook lunch together, and there's an indoor space for cold days.",
-      "You sign up for one weekday for the whole session, so your group can see its projects through: Mondays, Tuesdays, Wednesdays, Thursdays or Fridays. Sign up for more than one if you like.",
-      "Each group takes on its own rain barrel to set up and look after, and its own part of the farm to map. Along the way: caring for the lettuce, light carpentry to build cold frames, hooking up solar panels, rainwater capture and water filtration, setting up an outdoor workshop, and making pamphlets and zines about what we find.",
-      "Not sure yet? Come to a Winter Lettuce Transplanting & Farm Tour day this week and help transplant the lettuce. If you want to be the steward of what you planted, come back and sign up for the season."
-    ],
-    forWhom: "Ages 6 to adult. Kids should be interested in, and ready to be trained on, small hand tools. An adult caregiver needs to accompany kids under 14.",
-    bring: "Closed‑toe shoes, warm layers and weather‑appropriate clothing, and something to share for lunch if you like. Tools and materials are provided.",
-    location: "Hannan Healthy Foods Farm, Lincoln, MA",
-    locationNote: "Exact address sent when you register."
-  },
-  {
     slug: "water",
     cartShort: "Water",
     title: "Working with Water",
