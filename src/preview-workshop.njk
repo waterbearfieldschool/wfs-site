@@ -48,10 +48,10 @@ eleventyExcludeFromCollections: true
 
     {%- set ws = sessions | forWorkshop(w.slug) %}
     <p class="wblurb">{{ w.blurb }}</p>
-    <p style="color:var(--muted);margin:-10px 0 22px;font-size:.92rem"><span id="dayCount">{{ ws | length }}</span> day<span id="dayCountS">{% if ws | length != 1 %}s{% endif %}</span> — each is its own project. Jump to the one you want:</p>
+    <p style="color:var(--muted);margin:-10px 0 22px;font-size:.92rem"><span id="dayCount">{{ ws | length }}</span> day<span id="dayCountS">{% if ws | length != 1 %}s{% endif %}</span>{% if ws | selectattr("project") | length %} — each is its own project{% endif %}. Jump to the one you want:</p>
 
     <div class="daynav">
-      {% for s in ws %}<a href="/w/{{ w.slug }}/{{ s.date }}/" class="daychip" data-date="{{ s.date }}" style="border-color:{{ w.color }}"><span class="pastmark"{% if not s.isPast %} hidden{% endif %}>(Past) </span>{{ s.day }} · {{ s.project or w.title }}</a>{% endfor %}
+      {% for s in ws %}<a href="/w/{{ w.slug }}/{{ s.date }}/" class="daychip" data-date="{{ s.date }}" style="border-color:{{ w.color }}"><span class="pastmark"{% if not s.isPast %} hidden{% endif %}>(Past) </span>{{ s.day }} · {{ s.project or s.time }}</a>{% endfor %}
     </div>
 
     {% for s in ws %}
