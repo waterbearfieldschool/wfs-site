@@ -72,7 +72,7 @@ module.exports = [
     imgPos: "72% 50%",
     blurb: "Help transplant the winter lettuce, tour the farm, and hear what we'll be building this winter. A good way to see if Winter Farm Days are a fit.",
     about: [
-      "We've just cleared a hoop house at Hannan Healthy Foods to grow lettuce through the winter, and our lettuce starts go in this week. Come help transplant them, take a tour of the farm, and hear about the projects we'll be taking on.",
+      "We've just cleared a hoop house at Hannan Healthy Foods to grow lettuce through the winter, and our lettuce starts are going in now. Come help transplant them, take a tour of the farm, and hear about the projects we'll be taking on.",
       "It's a chance to get a feel for Winter Farm Days, coming soon: cold frames, rain barrels, solar, mapping the farm, and zines. And if you'd like to watch the lettuce you transplanted grow, come back for Winter Farm Days and become its steward. Sign-ups open soon, by the day or by the month."
     ],
     forWhom: "Ages 6 to adult. Kids should be interested in, and ready to be trained on, small hand tools. An adult caregiver needs to accompany kids under 14.",
