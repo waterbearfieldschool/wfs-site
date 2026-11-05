@@ -80,7 +80,10 @@ module.exports = [
     location: "Hannan Healthy Foods Farm, Lincoln, MA",
     locationNote: "Exact address sent when you register.",
     emailWho: "Ages 6 to adult. An adult caregiver needs to accompany kids under 14.",
-    emailNote: "One activity will include using simple hand tools to plant crops in a working hoop house, where we'll need to take care not to damage the farmer's already-planted crops. If your kiddo enjoys stomping and chopping and digging too much for this to be plausible (understandable! stomping is fun!), let us know:  we'll have other activities available!"
+    emailNote: [
+      "Some of the planned activities will take place near existing growing crops we should avoid damaging. If you think your kiddo currently enjoys stomping and chopping and digging too much for this to be plausible (understandable! stomping and chopping are fun!), let us know — we'll have other activities available!",
+      "When you arrive, we'll ask you to sign a waiver, as well as a consent form around photos (we sometimes like to post photos of folks from field school events when doing outreach — but you have total control over that, and need to 'opt in' for us to use them.)"
+    ]
   },
   {
     slug: "water",

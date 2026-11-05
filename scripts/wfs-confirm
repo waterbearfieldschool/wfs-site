@@ -175,7 +175,10 @@ def compose(row, sess, addr):
         ("Who it's for",  s.get("emailWho") or s.get("forWhom", "All welcome.")),
         ("Notes",         s.get("emailNote") or ""),
     ]
-    notes = [(k, v) for k, v in notes if str(v).strip()]
+    # a note may be a list of points (workshops.js emailNote: [...])
+    notes = [(k, v) for k, v in notes
+             if (isinstance(v, list) and any(str(x).strip() for x in v))
+             or (not isinstance(v, list) and str(v).strip())]
 
     lead    = "You're registered! Here are the details:"
     closing = ("If you can't make it after all, just reply to this email — "
@@ -193,7 +196,10 @@ def compose(row, sess, addr):
     text += ["  *%s:* %s" % (k, v) for k, v in details]
     text += [""]
     for k, v in notes:
-        text += ["*%s:* %s" % (k, v), ""]
+        if isinstance(v, list):
+            text += ["*%s:*" % k] + ["- %s" % x for x in v if str(x).strip()] + [""]
+        else:
+            text += ["*%s:* %s" % (k, v), ""]
     if ask:
         text += ["*Survey question,* %s" % ask, ""]
     text += ["*Canceling:* %s" % closing, "", "Thanks, and see you there!",
@@ -206,9 +212,15 @@ def compose(row, sess, addr):
     rows_html = "".join(
         '<div style="margin:2px 0"><strong>%s:</strong> %s</div>' % (esc(k), esc(v))
         for k, v in details)
-    notes_html = "".join(
-        '<p style="margin:10px 0"><strong>%s:</strong> %s</p>' % (esc(k), esc(v))
-        for k, v in notes)
+    def note_html(k, v):
+        if isinstance(v, list):
+            items = "".join('<li style="margin:4px 0">%s</li>' % esc(x)
+                            for x in v if str(x).strip())
+            return ('<div style="margin:10px 0"><strong>%s:</strong>'
+                    '<ul style="margin:4px 0 0 0;padding-left:20px">%s</ul></div>'
+                    % (esc(k), items))
+        return '<p style="margin:10px 0"><strong>%s:</strong> %s</p>' % (esc(k), esc(v))
+    notes_html = "".join(note_html(k, v) for k, v in notes)
 
     html = (
         '<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;'
