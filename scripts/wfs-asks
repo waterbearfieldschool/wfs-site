@@ -75,14 +75,16 @@ def show(rows, field, heading, masked):
         who = r.get("name") or "someone"
         addr = mask(r["email"]) if masked else r["email"]
         print("\n  %s  <%s>" % (who, addr))
-        print("  %s · %s" % (r.get("session_date") or "?", r.get("session") or ""))
+        # the key says which event when two share a date
+        print("  %s · %s" % (r.get("session_key") or r.get("session_date") or "?",
+                             r.get("session") or ""))
         print("    " + wrap(r[field].strip(), 72, 4))
 
 
 def main():
     a = sys.argv
     k = key()
-    q = ("rsvps?select=name,email,session,session_date,learn_next,teach_offer,"
+    q = ("rsvps?select=name,email,session,session_date,session_key,learn_next,teach_offer,"
          "created_at&order=created_at.desc")
     if "--since" in a:
         q += "&session_date=gte." + a[a.index("--since") + 1]

@@ -47,7 +47,7 @@ def sessions():
 
 def caps(k):
     req = urllib.request.Request(
-        PROJECT + "/rest/v1/session_caps?select=date,label,capacity,min_to_run",
+        PROJECT + "/rest/v1/session_caps?select=key,date,label,capacity,min_to_run",
         headers={"apikey": k, "Authorization": "Bearer " + k})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
@@ -61,44 +61,45 @@ def main():
     ss = sessions()
     # Proposed workshops are deliberately absent from session_caps — they are
     # being planned, not open. Checking them would report a permanent problem.
+    # One caps row per session, keyed by the session file's name — two events
+    # on one date are two rows, not one merged row.
     ss = [s for s in ss if not s.get("proposed")]
-    by_date = {}
-    for s in ss:
-        d = s["date"]
-        if d in by_date:
-            by_date[d]["label"] += " / " + s["title"]
-            by_date[d]["capacity"] += s["capacity"]
-            by_date[d]["minToRun"] = min(by_date[d]["minToRun"], s["minToRun"])
-        else:
-            by_date[d] = dict(s)
-    ss = list(by_date.values())
-    cc = {c["date"]: c for c in caps(key())}
+    rows = caps(key())
+    cc = {c["key"]: c for c in rows if c.get("key")}
+    legacy = [c for c in rows if not c.get("key")]
     problems = []
 
     for s in ss:
-        c = cc.get(s["date"])
+        c = cc.get(s["key"])
         if not c:
             problems.append(
                 "%s (%s) has no session_caps row — the page will look "
                 "registerable and register() will refuse every attempt"
-                % (s["date"], s["title"]))
+                % (s["key"], s["title"]))
             continue
         # register() writes rsvps.session from session_caps.label, so a drifted
         # label means the roster disagrees with the site about what the day is
         if c["label"] != s["label"]:
             problems.append(
                 "%s label drift:\n      site: %s\n      db:   %s"
-                % (s["date"], s["label"], c["label"]))
+                % (s["key"], s["label"], c["label"]))
+        if c["date"] != s["date"]:
+            problems.append("%s date drift: site %s, db %s"
+                            % (s["key"], s["date"], c["date"]))
 
-    known = {s["date"] for s in ss}
-    for d in sorted(cc):
-        if d not in known:
+    known = {s["key"] for s in ss}
+    for kk in sorted(cc):
+        if kk not in known:
             problems.append("%s is in session_caps but no longer a session — "
-                            "stale row, harmless but confusing" % d)
+                            "stale row, harmless but confusing" % kk)
+    for c in legacy:
+        problems.append("%s row with no key (%s) — written before keys existed; "
+                        "wfs-sync-caps gives it one, or --prune removes it"
+                        % (c["date"], c.get("label")))
 
     if not quiet:
         print("sessions in the site : %d" % len(ss))
-        print("rows in session_caps : %d" % len(cc))
+        print("rows in session_caps : %d" % len(rows))
 
     if problems:
         print("\n%d problem%s:" % (len(problems), "" if len(problems) == 1 else "s"))

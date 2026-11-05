@@ -23,6 +23,10 @@ This talks to the Supabase management API with the personal access token in
   wfs-migrate --apply      run everything pending, in order
   wfs-migrate --mark NAME  record a migration as applied WITHOUT running it,
                            for changes already made by hand
+  wfs-migrate --run FILE   run one SQL file that is NOT a migration (e.g. a
+                           backfill in supabase/oneoff/) and print what its last
+                           statement returns. Not recorded anywhere: those files
+                           are written to be safe to re-run.
 """
 
 import json
@@ -101,6 +105,17 @@ def main():
     args = sys.argv[1:]
     tok = token()
     ensure_table(tok)
+
+    if "--run" in args:
+        path = args[args.index("--run") + 1]
+        if os.path.realpath(os.path.dirname(os.path.abspath(path))) == os.path.realpath(DIR):
+            sys.exit("wfs-migrate: %s is a migration — use --apply, so it is recorded"
+                     % path)
+        sql = open(path, encoding="utf-8").read()
+        print("→ %s" % path)
+        out = run_sql(tok, sql)
+        print(json.dumps(out, indent=2, ensure_ascii=False))
+        return 0
 
     if "--mark" in args:
         name = args[args.index("--mark") + 1]

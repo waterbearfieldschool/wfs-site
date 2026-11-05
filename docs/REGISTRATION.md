@@ -64,11 +64,15 @@ The money columns exist so Supabase alone can answer "what is this person
 owed?" without opening orders in Snipcart one at a time. Before they existed, a
 per-day refund meant manual archaeology.
 
-**`session_caps`** — `date · label · capacity · min_to_run`. Authored in the
-session's markdown file and pushed here by `wfs-sync-caps`, because enforcement
-has to happen somewhere the visitor cannot edit.
+**`session_caps`** — `id · key · date · label · capacity · min_to_run`, one row
+per **event**. `key` is the session file's name without `.md`
+(`2026-11-06-offgrid`), so two events on one date each have their own capacity.
+Authored in the session's markdown file and pushed here by `wfs-sync-caps`,
+because enforcement has to happen somewhere the visitor cannot edit.
+`rsvps.session_key` records which event a registration is for (migration 0012).
 
-**`session_counts`** — a public view: date, capacity, taken, remaining. This is
+**`session_counts`** — a public view, one row per event: key, date, label,
+capacity, taken, remaining. This is
 what draws "10 spots left". Aggregates only, no personal data, safe to read
 anonymously.
 
@@ -83,10 +87,12 @@ Everything goes through one Postgres function, which in order:
 1. refuses a day in the past *(America/New_York, not UTC — `current_date`
    would close registration at 8pm the evening before)*
 2. checks the party size and the email look sane
-3. refuses a duplicate — same email, same day, inside ten minutes
+3. refuses a duplicate — same email, same event, inside ten minutes
 4. rate-limits: 10 per email per hour, 100 overall per hour
-5. takes a **row lock** on the day, counts who's already registered, and
-   refuses if it would overfill
+5. takes a **row lock** on the event (`p_key`), counts who's already
+   registered for it, and refuses if it would overfill. Called without
+   `p_key` it uses the date — but only if exactly one event is on it,
+   otherwise `ambiguous_session`
 6. inserts
 
 Step 5 is the point of the whole design. Counting and inserting happen inside
@@ -96,7 +102,7 @@ edited anyway.
 
 It returns `{ok: true, remaining: n}` or `{ok: false, reason: "..."}` where the
 reason is one of `past`, `bad_party`, `bad_details`, `bad_kits`, `duplicate`,
-`rate_limited`, `too_busy`, `unknown_session`, `full`.
+`rate_limited`, `too_busy`, `unknown_session`, `ambiguous_session`, `full`.
 
 **`p_meta` is a jsonb bag** rather than more arguments. Adding a positional
 argument means dropping and recreating the function, which breaks every caller
@@ -112,7 +118,8 @@ their money and Supabase has no record, silently.
 So Snipcart also POSTs the completed order to a Supabase Edge Function
 (`supabase/functions/snipcart-webhook`), from its own servers, with retries.
 It writes the same registration — unless one already exists for that
-`order_token` and date, in which case it stands down.
+`order_token` and event (session key), in which case it stands down. Snipcart
+item ids carry the key: `tix-<key>-<tier>`, `kit-<key>`.
 
 On a normal order the browser wins and the log says `already-recorded`. **The
 webhook doing nothing is the correct outcome most of the time.** It only earns

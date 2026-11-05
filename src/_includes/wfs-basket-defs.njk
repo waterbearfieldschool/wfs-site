@@ -8,8 +8,8 @@
   {%- for s in sessions %}
   {%- for t in registrationTypes %}{% if t.price > 0 %}
   {%- set p = s.ticketPrice if (t.id == "standard" and s.ticketPrice) else t.price %}
-  <button class="snipcart-add-item" id="def-tix-{{ s.date }}-{{ s.slug }}-{{ t.id }}"
-    data-item-id="tix-{{ s.date }}-{{ t.id }}"
+  <button class="snipcart-add-item" id="def-tix-{{ s.key }}-{{ t.id }}"
+    data-item-id="tix-{{ s.key }}-{{ t.id }}"
     data-item-name="{{ s.cartName }} · {{ t.label }}"
     data-item-price="{{ p }}.00"
     data-item-url="{{ site.url }}/"
@@ -18,8 +18,8 @@
     data-item-quantity="1">tix</button>
   {%- endif %}{% endfor %}
   {%- if s.materials %}
-  <button class="snipcart-add-item" id="def-kit-{{ s.date }}"
-    data-item-id="kit-{{ s.date }}"
+  <button class="snipcart-add-item" id="def-kit-{{ s.key }}"
+    data-item-id="kit-{{ s.key }}"
     data-item-name="{{ s.cartName }} · Take-home kit"
     data-item-price="{{ s.materials.fee }}.00"
     data-item-url="{{ site.url }}/"

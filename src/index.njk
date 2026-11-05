@@ -473,7 +473,7 @@ eleventyExcludeFromCollections: true
       <h3 class="monthhead" data-month="{{ s.month }}">{{ s.month }}</h3>
       {%- set shownMonth = s.month %}
       {%- endif %}
-      <article class="daycard2{% if s.proposed %} proposed{% endif %}" id="day-{{ s.date }}" data-month="{{ s.month }}"{% if s.proposed %} data-proposed="1"{% endif %}>
+      <article class="daycard2{% if s.proposed %} proposed{% endif %}" id="day-{{ s.key }}" data-key="{{ s.key }}" data-date="{{ s.date }}" data-month="{{ s.month }}"{% if s.proposed %} data-proposed="1"{% endif %}>
         <img src="{{ s.img }}"{% if s.imgPos %} style="object-position:{{ s.imgPos }}"{% endif %} alt="">
         <div class="dc2-main">
           {%- set href = s.series.path if s.series else s.path %}
@@ -750,7 +750,7 @@ eleventyExcludeFromCollections: true
       // a proposed workshop carries a placeholder date; hiding it when that
       // date passes would silently delete something still being planned
       if(c.dataset.proposed) return;
-      var d=(c.id||'').replace('day-','');
+      var d=c.dataset.date;
       if(window.wfsIsPast(d)){ c.style.display='none'; hidden++; }
     });
     // a month heading with every day under it gone is a heading over nothing
@@ -782,7 +782,8 @@ eleventyExcludeFromCollections: true
   document.addEventListener('wfs.counts', function(e){
     var counts=e.detail||{};
     document.querySelectorAll('.daycard2').forEach(function(c){
-      var d=(c.id||'').replace('day-',''), row=counts[d];
+      // counts are per session; two cards can share a date
+      var row=counts[c.dataset.key];
       if(!row) return;
       var left=row.remaining;
       var btn=c.querySelector('.btn-reg');
