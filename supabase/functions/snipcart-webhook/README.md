@@ -12,7 +12,9 @@ retries, so the registration lands either way.
 
 It is a **backstop**, not a replacement. The browser write still happens and is
 faster; whichever arrives first wins and the other is skipped, matched on
-`order_token` + `session_date`.
+`order_token` + `session_key` (or `session_date` for a row written before
+session keys existed). Line items are rolled up per event by `items.ts`, which
+also understands the legacy item ids (`tix-DATE-TIER`, `kit-DATE`).
 
 ## Why an Edge Function rather than a Cloudflare Worker
 

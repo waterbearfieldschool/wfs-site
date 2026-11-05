@@ -10,13 +10,17 @@ markdown file in src/sessions/, capacity and all; this pushes what those files
 say into session_caps, using the secret key that only exists on this machine.
 So the enforcement stays server-side while the authoring stays in one file.
 
-It inserts and updates rows for days the site knows about. With --prune it will
-also remove a row whose day no longer exists — but ONLY if nobody registered for
-it. A row with registrations is never touched, because deleting it would orphan
-real people; wfs-check keeps reporting those so you decide by hand.
+One row per session, keyed by the session file's name ("2026-11-06-offgrid"),
+so two events on one date each get their own capacity. It inserts and updates
+rows for sessions the site knows about, and gives a key to any row written
+before keys existed (matched by date and label — see plan_claims). With --prune
+it will also remove a row whose session no longer exists — but ONLY if nobody
+registered for it. A row with registrations is never touched, because deleting
+it would orphan real people; wfs-check keeps reporting those so you decide by
+hand.
 
-Moving a Field Day's date is the common case: the new date needs a row, and the
-old one is left behind.
+Moving a Field Day's date is the common case: the file is renamed, so the new
+key needs a row, and the old one is left behind.
 
   wfs-sync-caps             show what would change, change nothing
   wfs-sync-caps --apply     make the changes
@@ -56,55 +60,112 @@ def sessions():
     return json.loads(out.stdout)
 
 
-def existing(k):
+def _req(k, method, path, body=None, prefer="return=minimal"):
     req = urllib.request.Request(
-        PROJECT + "/rest/v1/session_caps?select=date,label,capacity,min_to_run",
-        headers={"apikey": k, "Authorization": "Bearer " + k})
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            return {c["date"]: c for c in json.loads(r.read().decode() or "[]")}
-    except urllib.error.HTTPError as e:
-        sys.exit("wfs-sync-caps: %s %s" % (e.code, e.read().decode()[:200]))
-
-
-def booked(k):
-    """Dates that have at least one registration. A capacity row for one of
-    these is never removed, whatever the site says."""
-    req = urllib.request.Request(
-        PROJECT + "/rest/v1/rsvps?select=session_date",
-        headers={"apikey": k, "Authorization": "Bearer " + k})
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            return {x["session_date"] for x in json.loads(r.read().decode() or "[]")
-                    if x.get("session_date")}
-    except urllib.error.HTTPError as e:
-        sys.exit("wfs-sync-caps: %s %s" % (e.code, e.read().decode()[:200]))
-
-
-def drop(k, date):
-    req = urllib.request.Request(
-        PROJECT + "/rest/v1/session_caps?date=eq." + date,
-        method="DELETE",
+        PROJECT + "/rest/v1/" + path,
+        data=json.dumps(body).encode() if body is not None else None,
+        method=method,
         headers={"apikey": k, "Authorization": "Bearer " + k,
-                 "Prefer": "return=minimal"})
+                 "Content-Type": "application/json", "Prefer": prefer})
     try:
-        urllib.request.urlopen(req, timeout=30).read()
+        with urllib.request.urlopen(req, timeout=30) as r:
+            raw = r.read().decode()
+            return json.loads(raw) if raw.strip() else []
     except urllib.error.HTTPError as e:
         sys.exit("wfs-sync-caps: %s %s" % (e.code, e.read().decode()[:300]))
+
+
+def existing(k):
+    """Every caps row, keyed or not. Rows written before migration 0012 have no
+    key yet; this script is what gives them one."""
+    return _req(k, "GET",
+                "session_caps?select=id,key,date,label,capacity,min_to_run&order=date,id")
+
+
+def bookings(k):
+    """(keys, unkeyed_dates): which events have registrations, and which dates
+    have a registration not yet tied to an event. A capacity row matching
+    either is never removed, whatever the site says — an unkeyed registration
+    counts against every event on its date, so all of them stay."""
+    rows = _req(k, "GET", "rsvps?select=session_key,session_date")
+    keys = {x["session_key"] for x in rows if x.get("session_key")}
+    dates = {x["session_date"] for x in rows
+             if x.get("session_date") and not x.get("session_key")}
+    return keys, dates
+
+
+def drop(k, row_id):
+    _req(k, "DELETE", "session_caps?id=eq.%s" % row_id)
+
+
+def claim(k, row_id, row):
+    """Give a legacy (key-less) row its key, and bring it up to date."""
+    _req(k, "PATCH", "session_caps?id=eq.%s&key=is.null" % row_id, row)
 
 
 def upsert(k, rows):
-    body = json.dumps(rows).encode()
-    req = urllib.request.Request(
-        PROJECT + "/rest/v1/session_caps?on_conflict=date",
-        data=body, method="POST",
-        headers={"apikey": k, "Authorization": "Bearer " + k,
-                 "Content-Type": "application/json",
-                 "Prefer": "resolution=merge-duplicates,return=minimal"})
-    try:
-        urllib.request.urlopen(req, timeout=30).read()
-    except urllib.error.HTTPError as e:
-        sys.exit("wfs-sync-caps: %s %s" % (e.code, e.read().decode()[:300]))
+    _req(k, "POST", "session_caps?on_conflict=key", rows,
+         prefer="resolution=merge-duplicates,return=minimal")
+
+
+def plan_claims(want, have):
+    """Match each wanted session to an existing key-less row, so the rows that
+    predate keys are taken over rather than duplicated. Per date, in order:
+
+      1. a row whose label is exactly the session's label
+      2. a row whose label starts "<label> / " — the merged row the old sync
+         wrote for two events on one date; the first event takes it over
+      3. the date has exactly one session and one key-less row — a renamed
+         title, which the old sync also matched by date alone
+
+    Returns {session key: caps row id}."""
+    keyed = {c["key"] for c in have if c.get("key")}
+    free = [c for c in have if not c.get("key")]
+    claims, taken = {}, set()
+    todo = [w for w in want if w["key"] not in keyed]
+
+    def pick(test):
+        for w in todo:
+            if w["key"] in claims:
+                continue
+            for c in free:
+                if c["id"] not in taken and c["date"] == w["date"] and test(w, c):
+                    claims[w["key"]] = c["id"]
+                    taken.add(c["id"])
+                    break
+
+    pick(lambda w, c: c.get("label") == w["label"])
+    pick(lambda w, c: (c.get("label") or "").startswith(w["label"] + " / "))
+    per_date = {}
+    for w in want:
+        per_date.setdefault(w["date"], []).append(w)
+    free_per_date = {}
+    for c in free:
+        free_per_date.setdefault(c["date"], []).append(c)
+    for w in todo:
+        if w["key"] in claims:
+            continue
+        fs = [c for c in free_per_date.get(w["date"], []) if c["id"] not in taken]
+        if len(per_date[w["date"]]) == 1 and len(free_per_date.get(w["date"], [])) == 1 and fs:
+            claims[w["key"]] = fs[0]["id"]
+            taken.add(fs[0]["id"])
+    return claims
+
+
+def differs(cur, row):
+    return (cur.get("label") != row["label"]
+            or cur.get("capacity") != row["capacity"]
+            or cur.get("min_to_run") != row["min_to_run"]
+            or cur.get("date") != row["date"])
+
+
+def describe(cur, row):
+    bits = []
+    for f in ("date", "label", "capacity", "min_to_run"):
+        if cur.get(f) != row[f]:
+            bits.append('%s "%s" -> "%s"' % (f, cur.get(f), row[f]) if f == "label"
+                        else "%s %s -> %s" % (f, cur.get(f), row[f]))
+    return "; ".join(bits)
 
 
 def main():
@@ -114,79 +175,81 @@ def main():
 
     k = key()
     have = existing(k)
+    by_key = {c["key"]: c for c in have if c.get("key")}
+    by_id = {c["id"]: c for c in have}
+
+    # One row per EVENT, keyed by the session file's name — two events on one
+    # date are two rows with their own capacity. (The old version merged them
+    # into a single "A / B" row with the capacities summed.)
     # A proposed workshop has no confirmed date and nothing offers to register
     # for it, so it gets no capacity row. Giving it one would make it look
     # registerable to anything reading the database.
-    by_date = {}
-    for s in sessions():
-        if s.get("proposed"):
-            continue
-        d = s["date"]
-        if d in by_date:
-            by_date[d]["label"] += " / " + s["title"]
-            by_date[d]["capacity"] += s["capacity"]
-            by_date[d]["min_to_run"] = min(by_date[d]["min_to_run"], s["minToRun"])
-        else:
-            by_date[d] = {
-                "date": d, "label": s["label"],
-                "capacity": s["capacity"], "min_to_run": s["minToRun"]
-            }
-    want = list(by_date.values())
+    want = [{"key": s["key"], "date": s["date"], "label": s["label"],
+             "capacity": s["capacity"], "min_to_run": s["minToRun"]}
+            for s in sessions() if not s.get("proposed")]
 
-    changes = []
+    claims = plan_claims(want, have)
+
+    changes = []        # (kind, row, cur)
     for row in want:
-        cur = have.get(row["date"])
-        if cur is None:
+        cur = by_key.get(row["key"])
+        if cur is not None:
+            if differs(cur, row):
+                changes.append(("update", row, cur))
+        elif row["key"] in claims:
+            changes.append(("claim", row, by_id[claims[row["key"]]]))
+        else:
             changes.append(("new", row, None))
-        elif (cur.get("label") != row["label"]
-              or cur.get("capacity") != row["capacity"]
-              or cur.get("min_to_run") != row["min_to_run"]):
-            changes.append(("update", row, cur))
 
-    # stale rows: a capacity row whose day the site no longer has. Safe to drop
-    # only when nobody registered for it.
+    # stale rows: a keyed row whose session the site no longer has, or a
+    # key-less row nothing claimed. Safe to drop only when nobody registered.
     stale = []
     if prune:
-        with_people = booked(k)
-        known = {r["date"] for r in want}
-        for d in sorted(set(have) - known):
-            if d in with_people:
-                print("! %s stale, but has registrations — left alone" % d)
+        booked_keys, unkeyed_dates = bookings(k)
+        wanted = {r["key"] for r in want}
+        claimed = set(claims.values())
+        for c in have:
+            if c.get("key") in wanted or c["id"] in claimed:
+                continue
+            name = c.get("key") or "%s (no key) %s" % (c["date"], c.get("label"))
+            if (c.get("key") and c["key"] in booked_keys) or c["date"] in unkeyed_dates:
+                print("! %s stale, but has registrations — left alone" % name)
             else:
-                stale.append(d)
+                stale.append(c)
 
     if not changes and not stale:
         if not quiet:
-            print("session_caps already matches the site (%d days)" % len(want))
+            print("session_caps already matches the site (%d sessions)" % len(want))
         return 0
 
-    if changes:
-        pass
     for kind, row, cur in changes:
         if kind == "new":
             print("+ %s  cap %s  min %s  %s"
-                  % (row["date"], row["capacity"], row["min_to_run"], row["label"]))
+                  % (row["key"], row["capacity"], row["min_to_run"], row["label"]))
+        elif kind == "claim":
+            d = describe(cur, row)
+            print("= %s  keys legacy row %s%s"
+                  % (row["key"], cur["id"], ("; " + d) if d else ""))
         else:
-            bits = []
-            if cur.get("label") != row["label"]:
-                bits.append('label "%s" -> "%s"' % (cur.get("label"), row["label"]))
-            if cur.get("capacity") != row["capacity"]:
-                bits.append("capacity %s -> %s" % (cur.get("capacity"), row["capacity"]))
-            if cur.get("min_to_run") != row["min_to_run"]:
-                bits.append("min_to_run %s -> %s" % (cur.get("min_to_run"), row["min_to_run"]))
-            print("~ %s  %s" % (row["date"], "; ".join(bits)))
+            print("~ %s  %s" % (row["key"], describe(cur, row)))
 
-    for d in stale:
-        print("- %s  no longer a session, no registrations" % d)
+    for c in stale:
+        print("- %s  no longer a session, no registrations"
+              % (c.get("key") or "%s (no key) %s" % (c["date"], c.get("label"))))
 
     if not apply_it:
         print("\n(dry run — nothing changed. Re-run with --apply)")
         return 0
 
-    if changes:
-        upsert(k, [r for _, r, _ in changes])
-    for d in stale:
-        drop(k, d)
+    # claims first: a claimed row then has its key, so nothing below collides
+    for kind, row, cur in changes:
+        if kind == "claim":
+            claim(k, cur["id"], row)
+    rest = [r for kind, r, _ in changes if kind != "claim"]
+    if rest:
+        upsert(k, rest)
+    for c in stale:
+        drop(k, c["id"])
 
     n = len(changes) + len(stale)
     print("\napplied %d change%s" % (n, "" if n == 1 else "s"))

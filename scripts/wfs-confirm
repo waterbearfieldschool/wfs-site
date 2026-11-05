@@ -78,11 +78,23 @@ def sessions():
     out = subprocess.run([node, "-e", js], cwd=REPO, capture_output=True, text=True)
     if out.returncode != 0:
         die("could not read session data from %s:\n%s" % (REPO, out.stderr.strip()))
-    by_key = {}
+    # Looked up by session key first (exact), then label, then date — and the
+    # date only when one event is on it, or two events on one day would both
+    # resolve to whichever came last.
+    out_map = {"key": {}, "label": {}, "date": {}}
+    dates = {}
     for s in json.loads(out.stdout):
-        by_key[s["date"]] = s
-        by_key[s["label"]] = s
-    return by_key
+        out_map["key"][s["key"]] = s
+        out_map["label"][s["label"]] = s
+        dates.setdefault(s["date"], []).append(s)
+    out_map["date"] = {d: ss[0] for d, ss in dates.items() if len(ss) == 1}
+    return out_map
+
+
+def session_for(row, sess):
+    return (sess["key"].get(row.get("session_key") or "")
+            or sess["label"].get(row.get("session") or "")
+            or sess["date"].get(row.get("session_date") or ""))
 
 
 def addresses():
@@ -124,9 +136,10 @@ def compose(row, sess, addr):
     """Returns (subject, plain_text, html). Labels are bold in the HTML part;
     the plain part keeps the same labels so it reads the same way in a client
     that won't render HTML."""
-    s = sess.get(row.get("session")) or sess.get(row.get("session_date"))
+    s = session_for(row, sess)
     if not s:
-        return None, None, None, "no session data for %s" % row.get("session_date")
+        return None, None, None, "no session data for %s" % (
+            row.get("session_key") or row.get("session_date"))
 
     place = addr.get(s["place"]) or addr.get(s["location"]) or {}
     if not place.get("address"):
@@ -262,7 +275,7 @@ def main():
     if test_to:
         sample = {"id": "sample", "name": "Sample Person",
                   "email": test_to, "party_size": 2, "wants_materials": True,
-                  "session_date": sorted(sess)[0]}
+                  "session_key": sorted(sess["key"])[0]}
         subject, text, html, problem = compose(sample, sess, addr)
         if problem:
             die("could not build the sample: %s" % problem)
@@ -285,10 +298,16 @@ def main():
 
     # kit_count only exists once the kit-count migration has run; without it
     # the mailer still works, it just can't print a number
+    # session_key only once 0012-multi-event.sql has; without it rows are
+    # matched by label and date as before
     base = ("rsvps?select=id,name,email,session,session_date,party_size,"
             "wants_materials,learn_next,%screated_at&confirmation_sent_at=is.null"
             "&order=created_at")
-    pending = api(key, "GET", base % "kit_count,", soft=True)
+    pending = api(key, "GET", base % "kit_count,session_key,", soft=True)
+    if pending is None:
+        pending = api(key, "GET", base % "kit_count,", soft=True)
+        if pending is not None:
+            log("note: session_key column not present — matching by label/date")
     if pending is None:
         pending = api(key, "GET", base % "")
         log("note: kit_count column not present — kit numbers unavailable")
@@ -326,7 +345,8 @@ def main():
 
         api(key, "PATCH", "rsvps?id=eq.%s" % row["id"],
             {"confirmation_sent_at": datetime.now(timezone.utc).isoformat()})
-        log("sent id=%s to=%s (%s)" % (row["id"], row["email"], row["session_date"]))
+        log("sent id=%s to=%s (%s)" % (row["id"], row["email"],
+                                       row.get("session_key") or row["session_date"]))
 
 
 if __name__ == "__main__":

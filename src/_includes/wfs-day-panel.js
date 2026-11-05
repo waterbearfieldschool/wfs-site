@@ -6,6 +6,8 @@
   var rows=[].slice.call(panel.querySelectorAll('.trow'));
   var sumEl=document.getElementById('tixSum'), goBtn=document.getElementById('tixGo');
   var TITLE=panel.dataset.title, DATE=panel.dataset.date;
+  // capacity, teach offers and basket lines are per session; two can share DATE
+  var KEY=panel.dataset.key;
 
   function qtyOf(r){ return parseInt(r.querySelector('.qnum').textContent,10)||0; }
   function setQty(r,n){
@@ -16,7 +18,7 @@
   }
 
   /* The teach option asks for something in place of money, so the box appears
-     with the first place chosen and the answer is remembered per day. */
+     with the first place chosen and the answer is remembered per session. */
   var teachRow=panel.querySelector('.trow[data-pid$="-teach"]');
   var teachBox=document.getElementById('teachBox');
   var teachWhat=document.getElementById('teachWhat');
@@ -29,9 +31,9 @@
     if(!want && teachMsg) teachMsg.hidden=true;
   }
   if(teachWhat){
-    teachWhat.value = (window.wfsGetTeach && window.wfsGetTeach(DATE)) || '';
+    teachWhat.value = (window.wfsGetTeach && window.wfsGetTeach(KEY)) || '';
     teachWhat.addEventListener('input', function(){
-      if(window.wfsSetTeach) window.wfsSetTeach(DATE, teachWhat.value);
+      if(window.wfsSetTeach) window.wfsSetTeach(KEY, teachWhat.value);
       if(teachMsg && teachWhat.value.trim()) teachMsg.hidden=true;
     });
   }
@@ -62,7 +64,7 @@
   function regTotal(){ return regRows().reduce(function(n,r){ return n+qtyOf(r); },0); }
 
   function showCapacity(){
-    var left=window.wfsRemaining(DATE);
+    var left=window.wfsRemaining(KEY);
     if(!capEl) return left;
     if(left===null){ capEl.textContent=''; capEl.className='tixcap'; return null; }
     if(left<=0){
@@ -91,7 +93,7 @@
 
     // don't let the page offer more spots than the day has left
     if(step>0 && r.dataset.kind!=='kit'){
-      var left=window.wfsRemaining(DATE);
+      var left=window.wfsRemaining(KEY);
       if(left!==null && regTotal()+1>left){
         window.wfsToast && window.wfsToast(
           left<=0 ? 'This day is full.' : 'Only '+left+' left for this day.');
@@ -117,6 +119,7 @@
     rows.forEach(function(r, i){
       window.wfsBasket.set(r.dataset.pid, qtys[i], {
         kind:  r.dataset.kind,
+        key:   KEY,
         date:  DATE,
         price: parseInt(r.dataset.unit,10)||0,
         name:  r.dataset.line,

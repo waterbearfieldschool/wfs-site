@@ -52,6 +52,11 @@ module.exports = () => fs
     const img = fm.img || w.img;
 
     return {
+      // The session KEY: the filename stem, e.g. "2026-11-06-farmtryout". Unique
+      // per event even when two events share a date, stable across renames of
+      // the title, and the same string the database keys session_caps.key and
+      // rsvps.session_key on. Snipcart item ids are built from it too.
+      key: file.replace(/\.md$/, ""),
       slug: w.slug,
       category: w.title,
       short: w.short || w.title,

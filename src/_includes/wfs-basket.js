@@ -13,7 +13,32 @@
                             'sb_publishable_VjYvl7U-fWJO0st6R6W7gg_ep7SNTn6')
     : null;
 
-  var SESSIONS={ {% for s in sessions %}"{{ s.date }}":{{ s.label | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %} };
+  /* Every session by its KEY — the session file's name, "2026-11-06-farmtryout".
+   * Two events can share a date, so anything that counts, registers or stores
+   * per session is keyed by this; only "has it happened yet" goes by the date. */
+  var SESSIONS={ {% for s in sessions %}{{ s.key | dump | safe }}:{date:"{{ s.date }}",label:{{ s.label | dump | safe }}}{% if not loop.last %},{% endif %}{% endfor %} };
+  window.wfsSessions=function(){ return SESSIONS; };
+  // the one session on a date, or null when there are none or several
+  function soleKeyOn(date){
+    var ks=Object.keys(SESSIONS).filter(function(k){ return SESSIONS[k].date===date; });
+    return ks.length===1 ? ks[0] : null;
+  }
+  /* Which session a basket line belongs to. Lines written by this version
+   * carry it; older ones are worked out from the id ("tix-KEY-TIER",
+   * "kit-KEY"), or failing that from the date if only one event is on it. */
+  function keyOf(l){
+    if(!l) return null;
+    if(l.key) return l.key;
+    var m=/^(?:tix|kit)-(\d{4}-\d{2}-\d{2}-[a-z0-9-]+?)(?:-[^-]+)?$/.exec(l.id||'');
+    if(m){
+      // tix ids end in a tier, kit ids don't; try the longest reading first
+      var whole=(l.id||'').slice(4);
+      if(SESSIONS[whole]) return whole;
+      if(SESSIONS[m[1]]) return m[1];
+    }
+    return soleKeyOn(l.date);
+  }
+  window.wfsKeyOf=keyOf;
   var KEY='wfs.basket.v1', WHO='wfs.who.v1', UPD='wfs.updates.v1', TEACH='wfs.teach.v1', LEARN='wfs.learn.v1';
 
   /* The updates checkbox lives in our drawer, but on the paid path the
@@ -27,18 +52,23 @@
     try{ return localStorage.getItem(UPD)==='1'; }catch(e){ return false; }
   }
 
-  /* What someone offered to teach, keyed by the day they registered for. Kept
+  /* What someone offered to teach, keyed by the session they registered for. Kept
    * out of the basket line so it survives the basket being re-rendered, and so
    * the paid path can still read it after Snipcart has been through the page. */
   function teachAll(){
     try{ return JSON.parse(localStorage.getItem(TEACH)||'{}'); }catch(e){ return {}; }
   }
-  window.wfsSetTeach=function(date, text){
+  window.wfsSetTeach=function(key, text){
     var all=teachAll();
-    if(text && text.trim()) all[date]=text.trim(); else delete all[date];
+    if(text && text.trim()) all[key]=text.trim(); else delete all[key];
     try{ localStorage.setItem(TEACH, JSON.stringify(all)); }catch(e){}
   };
-  window.wfsGetTeach=function(date){ return teachAll()[date] || ''; };
+  // an offer saved by the previous version is under the bare date
+  window.wfsGetTeach=function(key){
+    var all=teachAll();
+    return all[key] || (SESSIONS[key] && soleKeyOn(SESSIONS[key].date)===key
+                        ? all[SESSIONS[key].date] : '') || '';
+  };
 
   /* "What would you like to learn next?" — one answer per order, not per day.
    * Persisted for the same reason as the teach offers: on the paid path the
@@ -73,19 +103,20 @@
    * which counts and inserts atomically under a row lock. A number on a page
    * can always be stale, so the UI treats this as a hint, not a gate.
    */
-  var COUNTS={};
+  var COUNTS={};                         // by session key
   window.wfsCounts=function(){ return COUNTS; };
-  window.wfsRemaining=function(date){
-    var c=COUNTS[date];
+  window.wfsRemaining=function(key){
+    var c=COUNTS[key];
     return c ? c.remaining : null;      // null = unknown, don't block on it
   };
   window.wfsRefreshCounts=async function(){
     if(!sb) return COUNTS;
     try{
-      var r=await sb.from('session_counts').select('date,capacity,taken,remaining,min_to_run');
+      var r=await sb.from('session_counts').select('key,date,capacity,taken,remaining,min_to_run');
       if(r.error){ console.error('[wfs] counts', r.error); return COUNTS; }
       COUNTS={};
-      (r.data||[]).forEach(function(row){ COUNTS[row.date]=row; });
+      // a row with no key predates keys and matches no session on the page
+      (r.data||[]).forEach(function(row){ if(row.key) COUNTS[row.key]=row; });
       document.dispatchEvent(new CustomEvent('wfs.counts', {detail:COUNTS}));
     }catch(e){ console.error('[wfs] counts threw', e); }
     return COUNTS;
@@ -97,6 +128,24 @@
     try{ var b=JSON.parse(localStorage.getItem(KEY)||'{}'); return (b && typeof b==='object') ? b : {}; }
     catch(e){ return {}; }
   }
+  /* A basket saved before session keys: give each line its key, and rename the
+   * old "kit-DATE" ids to "kit-KEY" so they still find their Snipcart product.
+   * A line whose session can't be told (a kit on a two-event date) is dropped
+   * rather than guessed — it would otherwise land on the wrong event. */
+  (function upgrade(){
+    var b=read(), out={}, changed=false;
+    Object.keys(b).forEach(function(id){
+      var l=b[id]; if(!l || typeof l!=='object'){ changed=true; return; }
+      if(l.key){ out[id]=l; return; }
+      l.id=id;
+      var k=keyOf(l); changed=true;
+      if(!k) return;
+      var nid=/^kit-\d{4}-\d{2}-\d{2}$/.test(id) ? 'kit-'+k : id;
+      delete l.id;
+      out[nid]=Object.assign({}, l, {key:k});
+    });
+    if(changed){ try{ localStorage.setItem(KEY, JSON.stringify(out)); }catch(e){} }
+  })();
   function write(b){
     try{ localStorage.setItem(KEY, JSON.stringify(b)); }catch(e){}
     announce();
@@ -108,11 +157,13 @@
     }}));
   }
 
-  // basket is {lineId: {qty, kind, date, label, price, name}}
+  // basket is {lineId: {qty, kind, key, date, label, price, name}}
   function lines(b){
     b=b||read();
     return Object.keys(b).map(function(k){ var l=b[k]; l.id=k; return l; })
-      .sort(function(x,y){ return (x.date+x.kind).localeCompare(y.date+y.kind); });
+      .sort(function(x,y){
+        return ((keyOf(x)||x.date)+x.kind).localeCompare((keyOf(y)||y.date)+y.kind);
+      });
   }
   function count(b){ return lines(b).reduce(function(n,l){ return n+l.qty; },0); }
   function total(b){ return lines(b).reduce(function(n,l){ return n+l.qty*l.price; },0); }
@@ -141,8 +192,9 @@
 
   // Registration goes through the register() function rather than a direct
   // insert: it re-checks capacity and writes in one locked transaction, so two
-  // people can't both take the last spot. One call per day in the basket.
-  // "tix-2026-08-19-standard" or "tix-2026-10-23-offgrid-standard" -> "standard"
+  // people can't both take the last spot. One call per SESSION in the basket —
+  // two events on one day are two calls, each against its own capacity.
+  // "tix-2026-11-06-farmtryout-standard" (or the older "tix-2026-08-19-standard") -> "standard"
   function tierOf(id){
     var m=/^tix-\d{4}-\d{2}-\d{2}-(?:[a-z0-9-]+-)?([^-]+)$/.exec(id||'');
     return m ? m[1] : null;
@@ -153,59 +205,61 @@
     if(wantsUpdates===undefined || wantsUpdates===null) wantsUpdates=storedUpdates();
     if(!sb) return {ok:false, error:'Supabase did not load.'};
 
-    // how many kits per day, not merely whether any
-    var kitCounts={};
+    // how many kits per session, not merely whether any
+    var kitCounts={}, kitAmount={};
     lines().forEach(function(l){
-      if(l.kind==='kit' && l.qty>0) kitCounts[l.date]=(kitCounts[l.date]||0)+l.qty;
+      var k=keyOf(l);
+      if(l.kind==='kit' && l.qty>0 && k){
+        kitCounts[k]=(kitCounts[k]||0)+l.qty;
+        kitAmount[k]=(kitAmount[k]||0)+l.qty*(l.price||0);
+      }
     });
 
-    // per day: headcount, what the registrations cost, and which tier was picked
-    var byDate={}, amount={}, tier={};
+    // per session: headcount, what the registrations cost, which tier was picked
+    var byKey={}, amount={}, tier={}, dateOf={};
     lines().filter(function(l){ return l.kind==='reg'; })
            .forEach(function(l){
-             byDate[l.date]=(byDate[l.date]||0)+l.qty;
-             amount[l.date]=(amount[l.date]||0)+l.qty*(l.price||0);
-             // if several tiers are mixed for one day, record the paid one
+             var k=keyOf(l);
+             if(!k){ console.warn('[wfs] basket line with no session', l); return; }
+             dateOf[k]=(SESSIONS[k] && SESSIONS[k].date) || l.date;
+             byKey[k]=(byKey[k]||0)+l.qty;
+             amount[k]=(amount[k]||0)+l.qty*(l.price||0);
+             // if several tiers are mixed for one session, record the paid one
              var tr=tierOf(l.id);
-             if(tr && (!tier[l.date] || l.price>0)) tier[l.date]=tr;
+             if(tr && (!tier[k] || l.price>0)) tier[k]=tr;
            });
-    var kitAmount={};
-    lines().forEach(function(l){
-      if(l.kind==='kit' && l.qty>0)
-        kitAmount[l.date]=(kitAmount[l.date]||0)+l.qty*(l.price||0);
-    });
 
-    var dates=Object.keys(byDate).sort();
-    if(!dates.length) return {ok:true, placed:[], full:[], failed:[]};
+    var keys=Object.keys(byKey).sort();
+    if(!keys.length) return {ok:true, placed:[], full:[], failed:[], placedKeys:[], placedDates:[]};
 
     var placed=[], full=[], failed=[];
-    for(var i=0;i<dates.length;i++){
-      var d=dates[i];
+    for(var i=0;i<keys.length;i++){
+      var k=keys[i], d=dateOf[k];
       var res;
       try{
         res=await sb.rpc('register', {
-          p_date:d, p_name:name, p_email:email,
-          p_party:byDate[d],
-          p_kit:!!kitCounts[d],
-          p_kits:kitCounts[d]||0,
+          p_key:k, p_date:d, p_name:name, p_email:email,
+          p_party:byKey[k],
+          p_kit:!!kitCounts[k],
+          p_kits:kitCounts[k]||0,
           // mirrored so Supabase alone can answer "what is this person owed?"
           p_meta:{
-            tier:        tier[d] || 'free',
-            amount:      amount[d] || 0,
-            kit_amount:  kitAmount[d] || 0,
+            tier:        tier[k] || 'free',
+            amount:      amount[k] || 0,
+            kit_amount:  kitAmount[k] || 0,
             order_token: orderToken || null,
             updates:     !!wantsUpdates,
-            teach:       window.wfsGetTeach(d) || null,
+            teach:       window.wfsGetTeach(k) || null,
             learn_next:  window.wfsGetLearn() || null
           }
         });
-      }catch(e){ failed.push({date:d, msg:String(e)}); continue; }
+      }catch(e){ failed.push({key:k, date:d, msg:String(e)}); continue; }
 
-      if(res.error){ failed.push({date:d, msg:res.error.message}); continue; }
+      if(res.error){ failed.push({key:k, date:d, msg:res.error.message}); continue; }
       var out=res.data||{};
-      if(out.ok) placed.push({date:d, party:byDate[d]});
-      else if(out.reason==='full') full.push({date:d, remaining:out.remaining});
-      else failed.push({date:d, msg:out.reason||'unknown'});
+      if(out.ok) placed.push({key:k, date:d, party:byKey[k]});
+      else if(out.reason==='full') full.push({key:k, date:d, remaining:out.remaining});
+      else failed.push({key:k, date:d, msg:out.reason||'unknown'});
     }
 
     if(placed.length) rememberWho(name, email);
@@ -225,7 +279,7 @@
     if(placed.length){ try{ localStorage.removeItem(LEARN); }catch(e){} }
     if(placed.length){
       var left=teachAll();
-      placed.forEach(function(p){ delete left[p.date]; });
+      placed.forEach(function(p){ delete left[p.key]; delete left[p.date]; });
       try{ localStorage.setItem(TEACH, JSON.stringify(left)); }catch(e){}
     }
 
@@ -234,7 +288,8 @@
     return {
       ok: placed.length>0 && !full.length && !failed.length,
       placed: placed, full: full, failed: failed,
-      // lines to drop from the basket: the days that actually landed
+      // lines to drop from the basket: the sessions that actually landed
+      placedKeys: placed.map(function(p){ return p.key; }),
       placedDates: placed.map(function(p){ return p.date; })
     };
   };

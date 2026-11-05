@@ -40,7 +40,7 @@
   if(teachWhat){
     // pre-fill from whatever was offered for any of these dates before
     panels.some(function(p){
-      var t=window.wfsGetTeach && window.wfsGetTeach(p.dataset.date);
+      var t=window.wfsGetTeach && window.wfsGetTeach(p.dataset.key);
       if(t){ teachWhat.value=t; return true; }
     });
     teachWhat.addEventListener('input', function(){
@@ -63,10 +63,10 @@
     goBtn.disabled=!regs;
   }
 
-  // capacity is per date; register() re-checks it atomically, this is a hint
+  // capacity is per session (data-key); register() re-checks it atomically, this is a hint
   function showCapacity(){
     panels.forEach(function(p){
-      var left=window.wfsRemaining(p.dataset.date), cap=p.querySelector('.tixcap');
+      var left=window.wfsRemaining(p.dataset.key), cap=p.querySelector('.tixcap');
       if(left===null){ cap.textContent=''; cap.className='tixcap'; return; }
       if(left<=0){ cap.textContent='This '+UNIT+' is full.'; cap.className='tixcap full'; }
       else if(left<=3){ cap.textContent='Only '+left+(left===1?' spot':' spots')+' available.'; cap.className='tixcap low'; }
@@ -84,7 +84,7 @@
       var b=e.target.closest('.qbtn'); if(!b) return;
       var r=b.closest('.trow'), step=parseInt(b.dataset.step,10);
       if(step>0){
-        var left=window.wfsRemaining(p.dataset.date);
+        var left=window.wfsRemaining(p.dataset.key);
         if(left!==null && regTotal(p)+1>left){
           window.wfsToast && window.wfsToast(left<=0 ? 'This '+UNIT+' is full.' : 'Only '+left+' left for this '+UNIT+'.');
           return;
@@ -108,13 +108,14 @@
     // would be zeroed before their turn.
     var plan=panels.map(function(p){ return rowsOf(p).map(qtyOf); });
     panels.forEach(function(p, pi){
-      var date=p.dataset.date;
+      var date=p.dataset.date, key=p.dataset.key;
       rowsOf(p).forEach(function(r, ri){
         if(/-teach$/.test(r.dataset.pid) && plan[pi][ri]>0 && teachWhat && window.wfsSetTeach){
-          window.wfsSetTeach(date, teachWhat.value);
+          window.wfsSetTeach(key, teachWhat.value);
         }
         window.wfsBasket.set(r.dataset.pid, plan[pi][ri], {
           kind:  r.dataset.kind,
+          key:   key,
           date:  date,
           price: parseInt(r.dataset.unit,10)||0,
           name:  r.dataset.line,

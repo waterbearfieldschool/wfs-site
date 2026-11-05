@@ -143,9 +143,10 @@
       render(); return;
     }
 
-    // drop only what actually landed; anything full stays in the basket
-    res.placedDates.forEach(function(d){
-      B.lines().forEach(function(l){ if(l.date===d) B.set(l.id, 0); });
+    // drop only what actually landed; anything full stays in the basket.
+    // By session, not date: the other event that day may be the full one.
+    res.placedKeys.forEach(function(k){
+      B.lines().forEach(function(l){ if(window.wfsKeyOf(l)===k) B.set(l.id, 0); });
     });
 
     var people=res.placed.reduce(function(n,p){ return n+p.party; },0);

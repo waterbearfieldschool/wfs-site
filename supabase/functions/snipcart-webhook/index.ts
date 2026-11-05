@@ -17,6 +17,7 @@
 // Then add the function URL under Snipcart -> Webhooks.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { rollUp } from "./items.ts";
 
 const SNIPCART_SECRET = Deno.env.get("SNIPCART_SECRET") ?? "";
 
@@ -45,15 +46,6 @@ async function tokenIsGenuine(token: string): Promise<boolean> {
     } catch (_) { /* try the other style */ }
   }
   return false;
-}
-
-/** "tix-2026-08-19-standard" or "tix-2026-10-23-offgrid-standard" -> { date, tier } */
-function parseTix(id: string) {
-  if (!id?.startsWith("tix-")) return null;
-  const rest = id.slice(4);
-  const cut = rest.lastIndexOf("-");
-  if (cut < 10) return null;
-  return { date: rest.slice(0, 10), tier: rest.slice(cut + 1) };
 }
 
 Deno.serve(async (req) => {
@@ -86,54 +78,45 @@ Deno.serve(async (req) => {
   const items = order.items ?? [];
   if (!email) return Response.json({ ok: false, reason: "no email on order" });
 
-  // Roll the line items up per day.
-  const byDate: Record<string, {
-    party: number; amount: number; kits: number; kitAmount: number; tier: string;
-  }> = {};
-  const slot = (d: string) =>
-    byDate[d] ??= { party: 0, amount: 0, kits: 0, kitAmount: 0, tier: "free" };
-
-  for (const it of items) {
-    const qty = it.quantity ?? 1;
-    const unit = Number(it.unitPrice ?? it.price ?? 0) || 0;
-    const tix = parseTix(it.id);
-    if (tix) {
-      const s = slot(tix.date);
-      s.party += qty;
-      s.amount += qty * unit;
-      if (unit > 0 || s.tier === "free") s.tier = tix.tier;
-    } else if (it.id?.startsWith("kit-")) {
-      const s = slot(it.id.slice(4));
-      s.kits += qty;
-      s.kitAmount += qty * unit;
-    }
-  }
+  // Roll the line items up per EVENT (session key) — two events can share a
+  // date. Item-id parsing, legacy ids included, lives in items.ts.
+  const slots = rollUp(items);
 
   const results: Record<string, string> = {};
 
-  for (const [date, s] of Object.entries(byDate)) {
-    if (s.party < 1) continue; // kits without a registration: nothing to record
+  for (const s of slots) {
+    const label = s.key ?? s.date;
+    if (s.party < 1) {
+      // kits without a registration: nothing to record. A legacy kit id on a
+      // two-event date lands here too — it can't be told which event it was.
+      if (s.kits > 0) console.warn("kits with no registration", label, s);
+      continue;
+    }
 
-    // Skip if the browser already recorded this order for this day. Without
-    // this, a buyer who stayed on the page would be registered twice.
-    const { data: existing, error: lookupErr } = await supabase
+    // Skip if the browser already recorded this order for this event. Without
+    // this, a buyer who stayed on the page would be registered twice. A row
+    // with no session_key (written before keys existed) is matched by date.
+    let q = supabase
       .from("rsvps")
       .select("id")
       .eq("order_token", orderToken)
-      .eq("session_date", date)
-      .limit(1);
+      .eq("session_date", s.date);
+    if (s.key) q = q.or(`session_key.eq.${s.key},session_key.is.null`);
+    const { data: existing, error: lookupErr } = await q.limit(1);
 
     if (lookupErr) {
-      console.error("lookup failed", date, lookupErr);
-      results[date] = "lookup-failed";
+      console.error("lookup failed", label, lookupErr);
+      results[label] = "lookup-failed";
       continue;
     }
-    if (existing?.length) { results[date] = "already-recorded"; continue; }
+    if (existing?.length) { results[label] = "already-recorded"; continue; }
 
     // Through register(), so capacity is still checked under its row lock and
-    // the rules live in exactly one place.
+    // the rules live in exactly one place. p_key null (a legacy item id) makes
+    // register() use the date, which it only does if one event is on it.
     const { data, error } = await supabase.rpc("register", {
-      p_date: date,
+      p_date: s.date,
+      p_key: s.key,
       p_name: name || "(from order)",
       p_email: email,
       p_party: s.party,
@@ -147,19 +130,21 @@ Deno.serve(async (req) => {
       },
     });
 
-    if (error) { console.error("register failed", date, error); results[date] = "error"; }
+    if (error) { console.error("register failed", label, error); results[label] = "error"; }
     else if (data?.ok) {
-      console.log(`registered ${date} party=${s.party} kits=${s.kits} amount=${s.amount}`);
-      results[date] = "registered";
+      console.log(`registered ${label} party=${s.party} kits=${s.kits} amount=${s.amount}`);
+      results[label] = "registered";
     }
     else {
       // 'duplicate' means the browser beat us by less than ten minutes — fine.
-      console.warn("register refused", date, data);
-      results[date] = data?.reason ?? "refused";
+      // 'ambiguous_session' means a legacy item id on a two-event date: the
+      // money is in Snipcart, the registration needs entering by hand.
+      console.warn("register refused", label, data);
+      results[label] = data?.reason ?? "refused";
     }
   }
 
-  // One line that says what this invocation actually did, per day. "registered"
+  // One line that says what this invocation actually did, per event. "registered"
   // means the backstop earned its keep; "already-recorded" means the browser
   // got there first and this correctly stood down.
   console.log(`order=${orderToken} email=${email} results=${JSON.stringify(results)}`);

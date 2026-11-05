@@ -5,10 +5,11 @@ Anonymous read on rsvps is revoked, so this uses the secret key from
 `pass supabase/wfs-secret`. Nothing here writes.
 
   wfs-roster --today          just today's Field Day — the morning-of view
-  wfs-roster                  everything, grouped by day
+  wfs-roster                  everything, grouped by event (session key)
   wfs-roster --pending        only rows with no confirmation sent yet
   wfs-roster --orphans        only rows with no session_date (legacy/test rows)
-  wfs-roster --day 2026-08-19 one day
+  wfs-roster --day 2026-08-19 one day (every event on it)
+  wfs-roster --day 2026-11-06-offgrid   one event
   wfs-roster --mask           hide email addresses (for sharing a screenshot)
 """
 
@@ -64,42 +65,64 @@ def main():
         day = (datetime.now(timezone.utc) - timedelta(hours=4)).strftime("%Y-%m-%d")
 
     k = key()
-    # confirmation_sent_at only exists once wfs-confirmation-email.sql has run
-    cols = ("id,name,email,session,session_date,party_size,wants_materials,"
-            "kit_count,tier,amount_paid,kit_amount,confirmation_sent_at,created_at")
+    # confirmation_sent_at only exists once wfs-confirmation-email.sql has run;
+    # session_key only once 0012-multi-event.sql has
+    cols = ("id,name,email,session,session_date,session_key,party_size,"
+            "wants_materials,kit_count,tier,amount_paid,kit_amount,"
+            "confirmation_sent_at,created_at")
     rows = get(k, "rsvps?select=%s&order=created_at" % cols, soft=True)
     have_confirm = rows is not None
     if not have_confirm:
         cols = "id,name,email,session,session_date,party_size,wants_materials,created_at"
         rows = get(k, "rsvps?select=%s&order=created_at" % cols)
-        print("note: confirmation_sent_at column not added yet "
-              "(run wfs-confirmation-email.sql) — confirmation status unknown")
-    caps = {c["date"]: c for c in get(k, "session_counts?select=date,capacity,taken,remaining")}
+        print("note: newer columns missing (confirmation_sent_at / session_key) — "
+              "has 0012-multi-event.sql been applied?")
+    # one row per EVENT; several can share a date
+    counts = get(k, "session_counts?select=key,date,label,capacity,taken,remaining",
+                 soft=True) or []
+    caps = {c["key"]: c for c in counts if c.get("key")}
+    per_date = defaultdict(list)
+    for c in counts:
+        per_date[c["date"]].append(c)
 
     if pending:
         rows = [r for r in rows if not r.get("confirmation_sent_at")]
     if orphans:
         rows = [r for r in rows if not r.get("session_date")]
     if day:
-        rows = [r for r in rows if r.get("session_date") == day]
+        # --day takes a date (every event that day) or a session key (one event)
+        rows = [r for r in rows
+                if r.get("session_date") == day or r.get("session_key") == day]
 
     if not rows:
         print("no matching registrations")
         return
 
+    def group_of(r):
+        if r.get("session_key"):
+            return r["session_key"]
+        d = r.get("session_date")
+        if not d:
+            return "(no session_date — legacy row)"
+        # not yet keyed: if the date has one event, it is that one
+        ks = [c["key"] for c in per_date.get(d, []) if c.get("key")]
+        if len(per_date.get(d, [])) == 1 and ks:
+            return ks[0]
+        return d + " (no session key — which event?)"
+
     groups = defaultdict(list)
     for r in rows:
-        groups[r.get("session_date") or "(no session_date — legacy row)"].append(r)
+        groups[group_of(r)].append(r)
 
     total_people = 0
-    for date in sorted(groups, key=str):
-        rs = groups[date]
-        head = str(date)
-        cap = caps.get(date)
+    for g in sorted(groups, key=str):
+        rs = groups[g]
+        head = str(g)
+        cap = caps.get(g)
         if cap:
             head += "   %d of %d taken, %d left" % (cap["taken"], cap["capacity"], cap["remaining"])
-        else:
-            head += "   (not in session_caps — register() would refuse this day)"
+        elif "(" not in g:
+            head += "   (not in session_caps — register() would refuse this)"
         print("\n" + head)
         same = len({r.get("session") for r in rs}) == 1
         if same:
