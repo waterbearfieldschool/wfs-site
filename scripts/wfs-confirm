@@ -159,10 +159,12 @@ def compose(row, sess, addr):
 
     notes = [
         ("What to bring", s.get("bring", "Just yourself.")),
-        ("Who it's for",  s.get("forWhom", "All welcome.")),
+        ("Who it's for",  s.get("emailWho") or s.get("forWhom", "All welcome.")),
+        ("Notes",         s.get("emailNote") or ""),
     ]
+    notes = [(k, v) for k, v in notes if str(v).strip()]
 
-    lead    = "You're registered. Here are the details, including the exact address:"
+    lead    = "You're registered! Here are the details:"
     closing = ("If you can't make it after all, just reply to this email — "
                "we'll free up your spot for someone else.")
 
@@ -170,16 +172,18 @@ def compose(row, sess, addr):
     # comes back decides what gets scheduled next, so it is worth two chances.
     ask = None
     if not (row.get("learn_next") or "").strip():
-        ask = ("One question, if you have a moment: what would you like to learn "
-               "next? Anything at all — we plan around these. Just reply.")
+        ask = ("if you have a moment (you can just reply to this email briefly): "
+               "what would you like to learn next? Anything at all — we plan our "
+               "workshops around these responses.")
 
     text = ["Hi %s," % first, "", lead, ""]
     text += ["  *%s:* %s" % (k, v) for k, v in details]
     text += [""]
-    text += ["*%s:* %s" % (k, v) for k, v in notes]
+    for k, v in notes:
+        text += ["*%s:* %s" % (k, v), ""]
     if ask:
-        text += ["", ask]
-    text += ["", closing, "", "See you there,",
+        text += ["*Survey question,* %s" % ask, ""]
+    text += ["*Canceling:* %s" % closing, "", "Thanks, and see you there!",
              "Waterbear Field School", "waterbearfieldschool.org"]
     text = "\n".join(text)
 
@@ -190,7 +194,7 @@ def compose(row, sess, addr):
         '<div style="margin:2px 0"><strong>%s:</strong> %s</div>' % (esc(k), esc(v))
         for k, v in details)
     notes_html = "".join(
-        '<div style="margin:6px 0"><strong>%s:</strong> %s</div>' % (esc(k), esc(v))
+        '<p style="margin:10px 0"><strong>%s:</strong> %s</p>' % (esc(k), esc(v))
         for k, v in notes)
 
     html = (
@@ -201,13 +205,13 @@ def compose(row, sess, addr):
         '<div style="margin:16px 0 16px 16px">%s</div>'
         '%s'
         '%s'
-        '<p>%s</p>'
-        '<p>See you there,<br>Waterbear Field School<br>'
+        '<p><strong>Canceling:</strong> %s</p>'
+        '<p>Thanks, and see you there!<br>Waterbear Field School<br>'
         '<a href="https://waterbearfieldschool.org">waterbearfieldschool.org</a></p>'
         '</div>'
     ) % (esc(first), esc(lead), rows_html, notes_html,
          ('<p style="margin-top:16px;padding:12px 14px;background:#f3f6f3;'
-          'border-radius:8px">%s</p>' % esc(ask)) if ask else '',
+          'border-radius:8px"><strong>Survey question,</strong> %s</p>' % esc(ask)) if ask else '',
          esc(closing))
 
     return subject, text, html, None

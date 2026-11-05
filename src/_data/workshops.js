@@ -78,7 +78,9 @@ module.exports = [
     forWhom: "Ages 6 to adult. Kids should be interested in, and ready to be trained on, small hand tools. An adult caregiver needs to accompany kids under 14.",
     bring: "Closed‑toe shoes, warm layers and weather‑appropriate clothing. Tools and materials are provided.",
     location: "Hannan Healthy Foods Farm, Lincoln, MA",
-    locationNote: "Exact address sent when you register."
+    locationNote: "Exact address sent when you register.",
+    emailWho: "Ages 6 to adult. An adult caregiver needs to accompany kids under 14.",
+    emailNote: "One activity will include using simple hand tools to plant crops in a working hoop house, where we'll need to take care not to damage the farmer's already-planted crops. If your kiddo enjoys stomping and chopping and digging too much for this to be plausible (understandable! stomping is fun!), we'll have other activities available."
   },
   {
     slug: "water",

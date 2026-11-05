@@ -75,6 +75,10 @@ module.exports = () => fs
       cardBlurb: (fm.about && fm.about[0]) || w.blurb,
       forWhom: fm.forWhom || w.forWhom,
       bring: fm.bring || w.bring,
+      // confirmation-email-only text (scripts/wfs-confirm): a shorter "who it's for"
+      // and a per-workshop note; both optional
+      emailWho: fm.emailWho || w.emailWho || null,
+      emailNote: fm.emailNote || w.emailNote || null,
       location: fm.location || w.location,
       locationNote: fm.locationNote || w.locationNote,
       // value stored in the rsvps.session column, and matched against
