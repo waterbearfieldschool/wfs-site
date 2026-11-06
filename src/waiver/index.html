@@ -1,0 +1,329 @@
+---
+permalink: /waiver/
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Waterbear Field School — Participant Waiver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1f241f;--bg:#f7f7f2;--muted:#6b7168;--accent:#1c4d3a;--accent-d:#123526;--sun:#e0a92b;--line:#e5e6e0;--warn:#a8531f}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+  header{background:var(--accent-d);color:#fff;text-align:center;padding:16px 20px 12px;border-bottom:3px solid var(--sun)}
+  header h1{font-size:1.15rem} header p{font-size:.8rem;color:#c7d3c9;margin-top:3px}
+  .wrap{max-width:760px;margin:0 auto;padding:18px 16px 80px}
+  .draft{background:#fff4e0;border:1px solid #f0d49c;color:#7a4a10;border-radius:10px;padding:10px 14px;font-size:.82rem;margin-bottom:14px}
+  .event{background:#fff;border:2px solid var(--accent);border-radius:12px;padding:12px 16px;margin-bottom:16px;display:none}
+  .event b{color:var(--accent-d)}
+  .tools{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:4px 0 18px}
+  .btn{background:#fff;border:1.5px solid var(--accent);color:var(--accent);font:inherit;font-weight:700;font-size:.88rem;padding:9px 15px;border-radius:9px;cursor:pointer;text-decoration:none}
+  .btn.primary{background:var(--accent);color:#fff}
+  h2{color:var(--accent-d);font-size:1.05rem;margin:22px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+  h3{font-size:.95rem;margin:14px 0 4px;color:var(--accent-d)}
+  .legal p,.legal li{font-size:.9rem;margin:0 0 9px}
+  .legal ul{padding-left:20px;margin-bottom:9px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin:10px 0}
+  label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin:8px 0 3px}
+  input[type=text],input[type=email],input[type=tel],textarea,select{width:100%;padding:10px 12px;border:1px solid #d6d8d0;border-radius:9px;font:inherit;font-size:.95rem;background:#fff}
+  textarea{min-height:60px;resize:vertical}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  .check{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;font-weight:500;color:var(--ink);margin:10px 0}
+  .check input{margin-top:4px;width:18px;height:18px;flex:none;accent-color:var(--accent)}
+  .person{border:1px dashed #cfd2c8;border-radius:10px;padding:10px 12px;margin:8px 0;position:relative}
+  .person .x{position:absolute;top:6px;right:8px;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer}
+  .person .grid{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+  .radio{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+  .radio label{display:flex;gap:8px;align-items:flex-start;font-weight:500;color:var(--ink);font-size:.9rem;margin:0}
+  .radio input{margin-top:4px;accent-color:var(--accent)}
+  .sigpad{border:1px solid #d6d8d0;border-radius:9px;background:#fff;width:100%;height:150px;touch-action:none;display:block}
+  .sigbar{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-top:4px}
+  .sigbar button{background:none;border:none;color:var(--accent);font-weight:700;cursor:pointer;font-size:.8rem}
+  .submit{width:100%;background:var(--accent);color:#fff;border:none;font:inherit;font-weight:800;font-size:1rem;padding:14px;border-radius:11px;cursor:pointer;margin-top:14px}
+  .submit:disabled{opacity:.5;cursor:default}
+  #err{color:#8a3b2a;font-weight:600;font-size:.9rem;margin-top:10px;display:none}
+  #done{display:none;text-align:center;padding:30px 10px}
+  #done h2{border:none;font-size:1.4rem}
+  .muted{color:var(--muted);font-size:.85rem}
+  .print-only{display:none}
+
+  /* ---------- PAPER VERSION ---------- */
+  @media print{
+    @page{size:letter;margin:.55in .6in}
+    body{background:#fff;font-size:10pt;line-height:1.35}
+    header{background:none;color:#000;border-bottom:2px solid #000;padding:0 0 6px;text-align:left}
+    header p{color:#333}
+    .wrap{max-width:none;padding:0}
+    .screen-only,.draft,.tools,.event,#done{display:none!important}
+    .print-only{display:block}
+    h2{color:#000;border-bottom:1px solid #000;font-size:11pt;margin:12px 0 6px;break-after:avoid}
+    h3{color:#000}
+    .legal{columns:2;column-gap:.3in}
+    .legal h2{font-size:9.5pt;margin:7px 0 3px}
+    .legal p,.legal li{font-size:8.3pt;margin-bottom:4px;line-height:1.3}
+    .legal ul{padding-left:14px;margin-bottom:4px}
+    .card{border:none;padding:0;margin:4px 0}
+    .pline{display:flex;gap:14px;margin:12px 0 0}
+    .pline span{flex:1;border-bottom:1px solid #000;font-size:8pt;color:#333;padding-top:24px}
+    .pline span i{font-style:normal;display:block;transform:translateY(14px)}
+    .pline{margin-bottom:22px}
+    table.ptab{width:100%;border-collapse:collapse;margin-top:6px}
+    table.ptab th,table.ptab td{border:1px solid #000;padding:4px 6px;font-size:8.5pt;text-align:left;height:32px}
+    .box{display:inline-block;width:11px;height:11px;border:1px solid #000;margin-right:6px;vertical-align:-1px}
+    .pchk{font-size:9.5pt;margin:5px 0}
+    .sigblock{break-inside:avoid;margin-top:8px}
+    .pagebreak{break-before:page}
+    .office{border:1px solid #000;padding:6px 8px;font-size:8.5pt;margin-top:14px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Waterbear Field School</h1>
+  <p>Participant Waiver, Release &amp; Consent — good for 12 months of Waterbear activities</p>
+</header>
+
+<div class="wrap">
+  <div class="draft screen-only"><b>PROTOTYPE — not yet reviewed by an attorney.</b> Adapted from the Conservation United sample waiver. Please don't rely on it until it has been reviewed.</div>
+
+  <div class="event screen-only" id="eventBox">Registering for: <b id="eventName"></b><br><span class="muted" id="eventWhen"></span></div>
+
+  <div class="tools screen-only">
+    <button class="btn" onclick="window.print()">🖨 Print a paper copy</button>
+    <a class="btn" href="#sign">✍️ Skip to signing</a>
+  </div>
+
+  <!-- ===================== LEGAL TEXT (shared by screen + paper) ===================== -->
+  <div class="legal">
+    <h2>1. Who and what this covers</h2>
+    <p>This agreement is between the person signing below ("<b>I</b>", "<b>me</b>") and <b>Donald Blair dba Waterbear Field School</b> ("<b>Waterbear</b>"). It covers me and every participant I list on this form, including any minor for whom I am the parent or legal guardian ("<b>Participants</b>").</p>
+    <p>"<b>Activities</b>" means any Waterbear session, workshop, field day, or meetup, and anything incidental to taking part in one. That includes farm chores, tours, building projects, and arriving at, leaving, and moving around the sites where these take place.</p>
+    <p>"<b>Released Parties</b>" means Waterbear and its owners, instructors, volunteers, and agents, <b>and</b> the owners and operators of any site that hosts an Activity, along with their families, employees, and agents. This includes <b>Hannan Healthy Foods</b> (Lincoln, MA) and its owners.</p>
+
+    <h2>2. The risks I understand</h2>
+    <p>Activities take place outdoors and on working farms. They involve real risks, including <b>serious injury and, rarely, death</b>. Examples:</p>
+    <ul>
+      <li>hand tools and power tools, sharp objects, stakes, wire, lumber, and building materials;</li>
+      <li>uneven ground, mud, holes, slips, trips, falls, and lifting or carrying;</li>
+      <li>farm equipment and vehicles, structures and hoop houses, and water (tanks, barrels, ponds);</li>
+      <li>insects (including stings and ticks and the diseases they carry), plants, soil, compost, animals, and allergens;</li>
+      <li>weather: sun, heat, cold, wind, rain, and fading daylight;</li>
+      <li>the actions of other participants, and the limits of first aid at a rural site.</li>
+    </ul>
+    <p>I take part voluntarily, and I <b>accept these risks</b> for myself and the Participants I list.</p>
+
+    <h2>3. Safety commitments</h2>
+    <ul>
+      <li>Participants will follow the instructions of Waterbear staff and the farm hosts, and will stay out of any area marked off-limits.</li>
+      <li>Participants will wear closed-toe shoes and weather-appropriate clothing.</li>
+      <li>Children under 14 must have a parent, guardian, or caregiver adult on site for the whole Activity. That adult is responsible for supervising them.</li>
+      <li>I will tell Waterbear about any medical condition, allergy, or limitation that could affect a Participant's safety. To my knowledge, each Participant is healthy enough to take part.</li>
+    </ul>
+
+    <h2>4. Release of liability and promise not to sue</h2>
+    <p>In return for being allowed to take part in the Activities, I, for myself, the Participants, and our families, heirs, estates, and assigns, <b>release, and agree not to sue, the Released Parties</b> for any present or future claim for property damage, personal injury, or wrongful death arising from the Activities, <b>including claims caused by the ordinary negligence of the Released Parties</b>. This release does not cover gross negligence or willful or reckless misconduct.</p>
+    <p>To the extent the law allows, I also agree to indemnify and hold harmless the Released Parties from claims arising from a Participant's participation, including claims brought on a minor Participant's behalf.</p>
+
+    <h2>5. Insurance and medical care</h2>
+    <p>Waterbear carries liability insurance and a limited participant accident medical policy. That coverage has deductibles and limits and may not cover every expense. Participants' own health insurance is responsible first. Nothing in this section limits the release above.</p>
+    <p>If a Participant needs medical attention and I cannot be reached, I authorize Waterbear staff to give first aid and to arrange emergency medical treatment and transport. I accept responsibility for the cost of that care.</p>
+
+    <h2>6. Photos and media <span style="font-weight:500">(your choice — this does not affect participation)</span></h2>
+    <p>Waterbear sometimes takes photos and video at Activities to share on its website, in newsletters, and on social media. Below, I choose whether Participants may appear. If I say yes, I grant Waterbear permission to use those images without payment, and I understand Waterbear will not publish children's full names. I can withdraw this permission for future uses at any time by emailing Waterbear.</p>
+
+    <h2>7. The fine print</h2>
+    <p>This agreement is governed by Massachusetts law. It is meant to be as broad as Massachusetts law permits. If any part is found invalid, the rest stays in force. It is valid for <b>12 months</b> from the date signed and covers all Waterbear Activities during that time. Signing electronically, by typing my name and/or drawing my signature, has the same effect as signing on paper.</p>
+    <p><b>I have read this agreement. I understand that by signing it I am giving up legal rights and remedies, including on behalf of the minors I list, and I sign it freely.</b> I am at least 18 years old, and I am the parent or legal guardian of each minor Participant I list.</p>
+  </div>
+
+  <!-- ===================== PAPER FORM ===================== -->
+  <div class="print-only pagebreak">
+    <p style="font-size:8.5pt;margin-bottom:4px">Page 2 of 2 — please return both pages. Waterbear Field School participant waiver (good for 12 months).</p>
+    <h2>Signer (adult, 18+)</h2>
+    <div class="pline"><span><i>Full name</i></span><span><i>Email</i></span></div>
+    <div class="pline"><span><i>Phone</i></span><span><i>Mailing address</i></span></div>
+    <h2>Participants (include yourself if you're taking part)</h2>
+    <table class="ptab">
+      <tr><th style="width:36%">Name</th><th style="width:12%">Age (or "adult")</th><th>Allergies / medical / other notes</th></tr>
+      <tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr>
+    </table>
+    <h2>Emergency contact (not attending)</h2>
+    <div class="pline"><span><i>Name</i></span><span><i>Relationship</i></span><span><i>Phone</i></span></div>
+    <h2>Photos &amp; media (pick one)</h2>
+    <div class="pchk"><span class="box"></span>Yes, photos and video of the Participants may be used</div>
+    <div class="pchk"><span class="box"></span>Yes, but no photos where children's faces can be identified</div>
+    <div class="pchk"><span class="box"></span>No photos or video of the Participants, please</div>
+    <div class="pchk" style="margin-top:8px"><span class="box"></span>Add me to the Waterbear newsletter (optional)</div>
+    <div class="sigblock">
+      <h2>Signature</h2>
+      <div class="pchk"><span class="box"></span>I am the parent or legal guardian of every minor listed above.</div>
+      <div class="pline"><span style="flex:2"><i>Signature</i></span><span><i>Date</i></span></div>
+      <div class="pline"><span><i>Printed name</i></span><span><i>Activity / date (if registering for one)</i></span></div>
+      <div class="office">Office use: received by ______ on ______ · entered online ☐ · waiver v2026-10-a</div>
+    </div>
+  </div>
+
+  <!-- ===================== ONLINE FORM ===================== -->
+  <form id="f" class="screen-only" autocomplete="on" novalidate>
+    <h2 id="sign">Signer (adult, 18+)</h2>
+    <div class="card">
+      <div class="row">
+        <div><label for="sname">Full name *</label><input type="text" id="sname" required autocomplete="name"></div>
+        <div><label for="semail">Email *</label><input type="email" id="semail" required autocomplete="email"></div>
+      </div>
+      <div class="row">
+        <div><label for="sphone">Phone *</label><input type="tel" id="sphone" required autocomplete="tel"></div>
+        <div><label for="saddr">Mailing address</label><input type="text" id="saddr" autocomplete="street-address"></div>
+      </div>
+    </div>
+
+    <h2>Participants</h2>
+    <div class="card">
+      <label class="check"><input type="checkbox" id="selfToo" checked> I'm taking part too (not just dropping in)</label>
+      <div id="people"></div>
+      <button type="button" class="btn" id="addKid">+ Add a child / another participant</button>
+      <p class="muted" style="margin-top:8px">Other adults coming along each sign their own waiver.</p>
+    </div>
+
+    <h2>Emergency contact <span style="font-weight:500;font-size:.85rem">(someone not attending)</span></h2>
+    <div class="card">
+      <div class="row">
+        <div><label for="ename">Name *</label><input type="text" id="ename" required></div>
+        <div><label for="erel">Relationship *</label><input type="text" id="erel" required></div>
+      </div>
+      <label for="ephone">Phone *</label><input type="tel" id="ephone" required>
+    </div>
+
+    <h2>Photos &amp; media</h2>
+    <div class="card">
+      <div class="radio">
+        <label><input type="radio" name="photo" value="yes"> Yes, photos and video of the Participants may be used</label>
+        <label><input type="radio" name="photo" value="no_faces"> Yes, but no photos where children's faces can be identified</label>
+        <label><input type="radio" name="photo" value="no"> No photos or video of the Participants, please</label>
+      </div>
+      <label class="check" style="margin-top:12px"><input type="checkbox" id="news"> Add me to the Waterbear newsletter (optional)</label>
+    </div>
+
+    <h2>Sign</h2>
+    <div class="card">
+      <label class="check" id="guardRow"><input type="checkbox" id="guardian"> I am the parent or legal guardian of every minor listed above.</label>
+      <label class="check"><input type="checkbox" id="agree"> I have read the whole agreement above, I understand I am giving up legal rights, and I agree to it.</label>
+      <label for="typed">Type your full name as your signature *</label>
+      <input type="text" id="typed" required>
+      <label>Draw your signature (optional, finger or mouse)</label>
+      <canvas class="sigpad" id="pad"></canvas>
+      <div class="sigbar"><span id="today"></span><button type="button" id="clearPad">clear</button></div>
+      <button type="submit" class="submit" id="go">Sign waiver<span id="goEvent"></span></button>
+      <div id="err"></div>
+    </div>
+  </form>
+
+  <div id="done" class="screen-only">
+    <h2>✅ Thank you, you're all set</h2>
+    <p id="doneMsg">Your waiver is on file for the next 12 months.</p>
+    <p class="muted" style="margin-top:10px">Questions? Just reply to any Waterbear email.</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SB_URL = 'https://jhgcnqmzbphzpxgtojti.supabase.co';
+const SB_KEY = 'sb_publishable_VjYvl7U-fWJO0st6R6W7gg_ep7SNTn6';
+const WAIVER_VERSION = 'v2026-10-a';
+const EVENTS = {
+  'hhf-2026-10-22': { name: 'Farm Field Day at Hannan Healthy Foods', when: 'Thursday, October 22 · 3:30 pm · Lincoln, MA' }
+};
+const $ = id => document.getElementById(id);
+let sb = null; try { sb = supabase.createClient(SB_URL, SB_KEY); } catch (e) {}
+
+// --- event context (?event=slug) ---
+const eventSlug = new URLSearchParams(location.search).get('event');
+const ev = EVENTS[eventSlug];
+if (ev) {
+  $('eventBox').style.display = 'block'; $('eventName').textContent = ev.name; $('eventWhen').textContent = ev.when;
+  $('goEvent').textContent = ' & register';
+}
+$('today').textContent = 'Date: ' + new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+
+// --- participants ---
+function addPerson() {
+  const d = document.createElement('div'); d.className = 'person';
+  d.innerHTML = `<button type="button" class="x" title="remove">×</button>
+    <div class="grid"><div><label>Name *</label><input type="text" class="pname" required></div>
+    <div><label>Age *</label><input type="text" class="page" inputmode="numeric" placeholder="e.g. 8" required></div></div>
+    <label>Allergies / medical / anything we should know</label><input type="text" class="pmed">`;
+  d.querySelector('.x').onclick = () => { d.remove(); syncGuard(); };
+  d.querySelector('.page').oninput = syncGuard;
+  $('people').appendChild(d); syncGuard();
+}
+$('addKid').onclick = addPerson;
+addPerson();
+function hasMinor() { return [...document.querySelectorAll('.page')].some(i => { const n = parseInt(i.value, 10); return !isNaN(n) && n < 18; }); }
+function syncGuard() { $('guardRow').style.opacity = hasMinor() ? 1 : .55; }
+
+// --- signature pad ---
+const pad = $('pad'), ctx = pad.getContext('2d'); let drawing = false, inked = false;
+function sizePad() {
+  const r = pad.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+  pad.width = r.width * dpr; pad.height = r.height * dpr; ctx.scale(dpr, dpr);
+  ctx.lineWidth = 2.2; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#123526'; inked = false;
+}
+sizePad(); window.addEventListener('resize', sizePad);
+const pt = e => { const r = pad.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+pad.addEventListener('pointerdown', e => { drawing = true; pad.setPointerCapture(e.pointerId); ctx.beginPath(); ctx.moveTo(...pt(e)); });
+pad.addEventListener('pointermove', e => { if (!drawing) return; ctx.lineTo(...pt(e)); ctx.stroke(); inked = true; });
+['pointerup', 'pointercancel'].forEach(t => pad.addEventListener(t, () => drawing = false));
+$('clearPad').onclick = () => { ctx.clearRect(0, 0, pad.width, pad.height); inked = false; };
+
+// --- submit ---
+function fail(msg) { const e = $('err'); e.textContent = msg; e.style.display = 'block'; }
+$('f').addEventListener('submit', async e => {
+  e.preventDefault(); $('err').style.display = 'none';
+  const v = id => $(id).value.trim();
+  const people = [...document.querySelectorAll('.person')].map(p => ({
+    name: p.querySelector('.pname').value.trim(), age: p.querySelector('.page').value.trim(), medical: p.querySelector('.pmed').value.trim()
+  })).filter(p => p.name || p.age);
+  if ($('selfToo').checked) people.unshift({ name: v('sname'), age: 'adult', medical: '' });
+  const photo = (document.querySelector('input[name=photo]:checked') || {}).value;
+
+  if (!v('sname') || !v('semail') || !v('sphone')) return fail('Please fill in your name, email, and phone.');
+  if (!/^\S+@\S+\.\S+$/.test(v('semail'))) return fail('That email address doesn\'t look right.');
+  if (!people.length) return fail('Please list at least one participant (or tick "I\'m taking part too").');
+  if (people.some(p => !p.name || !p.age)) return fail('Each participant needs a name and age.');
+  if (!v('ename') || !v('erel') || !v('ephone')) return fail('Please add an emergency contact.');
+  if (!photo) return fail('Please choose a photo option.');
+  if (hasMinor() && !$('guardian').checked) return fail('Please confirm you are the parent or legal guardian of the minors listed.');
+  if (!$('agree').checked) return fail('Please tick the box confirming you have read and agree to the waiver.');
+  if (v('typed').toLowerCase().replace(/\s+/g, ' ') !== v('sname').toLowerCase().replace(/\s+/g, ' ')) return fail('Your typed signature should match your full name above.');
+
+  const row = {
+    event: eventSlug || null, waiver_version: WAIVER_VERSION,
+    signer_name: v('sname'), signer_email: v('semail'), signer_phone: v('sphone'), signer_address: v('saddr') || null,
+    participants: people,
+    emergency_name: v('ename'), emergency_relation: v('erel'), emergency_phone: v('ephone'),
+    photo_consent: photo, newsletter: $('news').checked,
+    is_guardian: $('guardian').checked, agreed: true,
+    signature_typed: v('typed'), signature_png: inked ? pad.toDataURL('image/png') : null,
+    user_agent: navigator.userAgent.slice(0, 300)
+  };
+  const btn = $('go'); btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    if (!sb) throw new Error('offline');
+    const { error } = await sb.from('waivers').insert(row);
+    if (error) throw error;
+    $('f').style.display = 'none'; $('done').style.display = 'block';
+    if (ev) $('doneMsg').innerHTML = `You're registered for <b>${ev.name}</b> (${ev.when}), and your waiver is on file for the next 12 months. See you there!`;
+    window.scrollTo(0, 0);
+  } catch (err) {
+    console.error(err); btn.disabled = false; btn.textContent = 'Sign waiver' + (ev ? ' & register' : '');
+    fail('Sorry, we couldn\'t save that just now. Please try again, or print a paper copy and bring it with you.');
+  }
+});
+</script>
+</body>
+</html>

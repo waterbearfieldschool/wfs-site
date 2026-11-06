@@ -22,6 +22,13 @@
   var name  = document.getElementById('subName');
   var btn   = document.getElementById('subBtn');
   var msg   = document.getElementById('subMsg');
+  var trap  = document.getElementById('subWebsite');
+  // Bot filter, two cheap signals: a hidden field people never see (bots fill
+  // every input), and how long the page was open before submitting (bots post
+  // in well under a second). Either one gets a fake "you're on the list" and no
+  // signup — telling a bot it failed only teaches it to try again. Both values
+  // also go to subscribe(), which applies the same rules server-side.
+  var opened = Date.now();
 
   function say(text, kind) {
     msg.textContent = text;
@@ -43,6 +50,14 @@
       return;
     }
 
+    var hp = trap ? (trap.value || '') : '';
+    var ms = Date.now() - opened;
+    if (hp || ms < 3000) {
+      form.reset();
+      say('You’re on the list — we’ll write when new Field Days go up.', 'good');
+      return;
+    }
+
     btn.disabled = true;
     var was = btn.textContent;
     btn.textContent = 'Signing up…';
@@ -50,7 +65,7 @@
     sb.rpc('subscribe', {
       p_email: addr,
       p_name: (name.value || '').trim() || null,
-      p_meta: { source: 'homepage' }
+      p_meta: { source: 'homepage', hp: hp, ms: ms }
     }).then(function (res) {
       btn.disabled = false;
       btn.textContent = was;
