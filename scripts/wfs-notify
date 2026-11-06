@@ -27,6 +27,8 @@ from datetime import datetime, timedelta, timezone
 from importlib.machinery import SourceFileLoader
 from zoneinfo import ZoneInfo
 
+sys.dont_write_bytecode = True   # loading wfs-confirm must not rewrite its tracked .pyc
+
 HERE = os.path.dirname(os.path.realpath(__file__))
 wc = SourceFileLoader("wfs_confirm", os.path.join(HERE, "wfs-confirm")).load_module()
 
