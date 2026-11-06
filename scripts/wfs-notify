@@ -1,0 +1,258 @@
+#!/usr/bin/env python3
+"""wfs-notify — tell Don about registrations, by email.
+
+Two modes, both sent to NOTIFY_TO from info@ (same msmtp setup as wfs-confirm):
+
+  wfs-notify               one email per NEW registration (run from cron every
+                           few minutes, after wfs-confirm). Also warns once if a
+                           registration has gone 15+ minutes without its
+                           confirmation email — the failure that left Rosa's
+                           unsent for a day (no address configured).
+  wfs-notify --digest      a daily summary: sign-ups in the last 24 hours, plus
+                           the roster for every event in the next 3 days.
+  --digest --at-7am       same, but only when it is 7am in America/New_York
+                           (for an hourly cron line)
+  --dry-run                print what would be sent; send nothing, remember nothing
+  --init                   mark every existing registration as already notified
+                           (run once, so switching this on doesn't send a backlog)
+
+State (which ids have been notified / warned) lives in ~/.cache/iris/wfs-notify.json.
+Reuses wfs-confirm's helpers (secret key, session data, Supabase API, msmtp).
+"""
+
+import json
+import os
+import sys
+from datetime import datetime, timedelta, timezone
+from importlib.machinery import SourceFileLoader
+from zoneinfo import ZoneInfo
+
+HERE = os.path.dirname(os.path.realpath(__file__))
+wc = SourceFileLoader("wfs_confirm", os.path.join(HERE, "wfs-confirm")).load_module()
+
+NOTIFY_TO = os.environ.get("WFS_NOTIFY_TO", "don@waterbearfieldschool.org")
+STATE = os.path.expanduser("~/.cache/iris/wfs-notify.json")
+LOG = os.path.expanduser("~/iris/logs/wfs-notify.log")
+TZ = ZoneInfo("America/New_York")
+STUCK_AFTER = timedelta(minutes=15)
+
+
+def log(msg):
+    line = "%s  %s" % (datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ"), msg)
+    print(line)
+    try:
+        os.makedirs(os.path.dirname(LOG), exist_ok=True)
+        with open(LOG, "a") as f:
+            f.write(line + "\n")
+    except OSError:
+        pass
+
+
+def load_state():
+    try:
+        with open(STATE) as f:
+            s = json.load(f)
+    except (OSError, ValueError):
+        s = {}
+    s.setdefault("notified", [])
+    s.setdefault("warned", [])
+    return s
+
+
+def save_state(s):
+    os.makedirs(os.path.dirname(STATE), exist_ok=True)
+    tmp = STATE + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(s, f)
+    os.replace(tmp, STATE)
+
+
+def parse_ts(ts):
+    return datetime.fromisoformat(ts.replace("Z", "+00:00")) if ts else None
+
+
+def local(ts):
+    d = parse_ts(ts)
+    return d.astimezone(TZ).strftime("%a %b %-d, %-I:%M %p") if d else "?"
+
+
+def money(row):
+    amt = float(row.get("amount_paid") or 0)
+    tier = row.get("tier") or "free"
+    return ("$%g %s" % (amt, tier)) if amt else tier
+
+
+def fetch_rows(key, since):
+    cols = ("id,name,email,session,session_date,session_key,party_size,tier,amount_paid,"
+            "kit_count,teach_offer,learn_next,confirmation_sent_at,created_at")
+    path = "rsvps?select=%s&created_at=gte.%s&order=created_at" % (cols, since.strftime("%Y-%m-%dT%H:%M:%SZ"))
+    return wc.api(key, "GET", path) or []
+
+
+def fetch_counts(key):
+    rows = wc.api(key, "GET", "session_counts?select=key,date,label,capacity,taken,remaining",
+                  soft=True) or []
+    return {r["key"]: r for r in rows if r.get("key")}
+
+
+def event_name(row, sess):
+    s = wc.session_for(row, sess)
+    if s:
+        return "%s · %s · %s" % (s["day"], s["title"], s["time"]), s
+    return (row.get("session") or row.get("session_date") or "?"), None
+
+
+def row_lines(row):
+    out = ["  %s <%s>" % (row.get("name") or "(no name)", row.get("email") or "?"),
+           "  %s %s · %s" % (row.get("party_size") or 1,
+                             "person" if (row.get("party_size") or 1) == 1 else "people",
+                             money(row))]
+    if row.get("kit_count"):
+        out.append("  kits: %s" % row["kit_count"])
+    if (row.get("teach_offer") or "").strip():
+        out.append("  offers to teach: %s" % row["teach_offer"].strip())
+    if (row.get("learn_next") or "").strip():
+        out.append("  wants to learn next: %s" % row["learn_next"].strip())
+    return out
+
+
+def per_registration(dry):
+    key = wc.secret_key()
+    sess = wc.sessions()
+    state = load_state()
+    now = datetime.now(timezone.utc)
+    rows = fetch_rows(key, now - timedelta(days=14))
+    counts = fetch_counts(key)
+    changed = False
+
+    for row in rows:
+        rid = row["id"]
+        name, s = event_name(row, sess)
+        total = counts.get(row.get("session_key") or "")
+        tally = ("%s of %s taken, %s left" % (total["taken"], total["capacity"], total["remaining"])
+                 if total else "")
+
+        if rid not in state["notified"]:
+            confirmed = "sent" if row.get("confirmation_sent_at") else "not sent yet"
+            subject = "New registration: %s · %s (%s)" % (
+                row.get("name") or "?", (s or {}).get("dayShort") or row.get("session_date") or "",
+                money(row))
+            text = "\n".join(
+                ["New registration for %s" % name, ""] + row_lines(row) +
+                ["", "Registered: %s" % local(row.get("created_at")),
+                 "Confirmation email: %s" % confirmed] +
+                (["Event total: %s" % tally] if tally else []))
+            if dry:
+                print("\n--- %s\n%s" % (subject, text))
+            else:
+                err = wc.send(NOTIFY_TO, subject, text, None)
+                if err:
+                    log("notify FAILED id=%s: %s" % (rid, err))
+                    continue
+                log("notified id=%s" % rid)
+                state["notified"].append(rid)
+                changed = True
+
+        created = parse_ts(row.get("created_at"))
+        stuck = (not row.get("confirmation_sent_at") and created
+                 and now - created > STUCK_AFTER)
+        if stuck and rid not in state["warned"]:
+            subject = "⚠ Confirmation NOT sent: %s · %s" % (
+                row.get("name") or "?", row.get("session_date") or "")
+            text = "\n".join(
+                ["A registration has gone %d+ minutes without its confirmation email." % (
+                    STUCK_AFTER.seconds // 60), "", "Event: %s" % name] + row_lines(row) +
+                ["", "Registered: %s" % local(row.get("created_at")), "",
+                 "Check ~/iris/logs/wfs-confirm.log for the reason (e.g. no address "
+                 "configured for the venue, or no session data for the date)."])
+            if dry:
+                print("\n--- %s\n%s" % (subject, text))
+            else:
+                err = wc.send(NOTIFY_TO, subject, text, None)
+                if err:
+                    log("warn FAILED id=%s: %s" % (rid, err))
+                    continue
+                log("warned id=%s (no confirmation)" % rid)
+                state["warned"].append(rid)
+                changed = True
+
+    if changed and not dry:
+        save_state(state)
+
+
+def digest(dry):
+    key = wc.secret_key()
+    sess = wc.sessions()
+    now = datetime.now(timezone.utc)
+    today = now.astimezone(TZ).date()
+    horizon = today + timedelta(days=3)
+    rows = fetch_rows(key, now - timedelta(days=120))
+    counts = fetch_counts(key)
+
+    new = [r for r in rows if parse_ts(r["created_at"]) > now - timedelta(hours=24)]
+    lines = ["Waterbear Field School — daily registrations, %s" % today.strftime("%a %b %-d"), ""]
+
+    lines.append("NEW IN THE LAST 24 HOURS (%d)" % len(new))
+    if not new:
+        lines.append("  none")
+    for r in new:
+        name, _ = event_name(r, sess)
+        lines.append("• %s — %s" % (name, local(r.get("created_at"))))
+        lines += row_lines(r)
+    lines.append("")
+
+    lines.append("COMING UP (next 3 days)")
+    upcoming = sorted(
+        (s for s in sess["key"].values()
+         if today.isoformat() <= s["date"] <= horizon.isoformat() and not s.get("proposed")),
+        key=lambda s: (s["date"], s["time"]))
+    if not upcoming:
+        lines.append("  nothing scheduled")
+    for s in upcoming:
+        c = counts.get(s["key"])
+        tally = ("%s of %s taken" % (c["taken"], c["capacity"])) if c else "no capacity row!"
+        lines.append("")
+        lines.append("• %s · %s · %s — %s" % (s["day"], s["title"], s["time"], tally))
+        roster = [r for r in rows if r.get("session_key") == s["key"]]
+        if not roster:
+            lines.append("  (no sign-ups yet)")
+        for r in roster:
+            flag = "" if r.get("confirmation_sent_at") else "  ⚠ confirmation not sent"
+            lines.append("  %s <%s> · %s · %s%s" % (
+                r.get("name") or "?", r.get("email") or "?", r.get("party_size") or 1,
+                money(r), flag))
+
+    text = "\n".join(lines)
+    subject = "WFS daily: %d new · %s" % (
+        len(new), ", ".join("%s %s" % (s["dayShort"], (counts.get(s["key"]) or {}).get("taken", "?"))
+                            for s in upcoming) or "nothing upcoming")
+    if dry:
+        print("--- %s\n%s" % (subject, text))
+        return
+    err = wc.send(NOTIFY_TO, subject, text, None)
+    log("digest %s" % ("FAILED: " + err if err else "sent"))
+
+
+def init():
+    key = wc.secret_key()
+    rows = fetch_rows(key, datetime.now(timezone.utc) - timedelta(days=3650))
+    state = load_state()
+    ids = {r["id"] for r in rows}
+    state["notified"] = sorted(set(state["notified"]) | ids)
+    state["warned"] = sorted(set(state["warned"]) | {r["id"] for r in rows if not r.get("confirmation_sent_at")})
+    save_state(state)
+    log("init: marked %d existing registrations as notified" % len(ids))
+
+
+if __name__ == "__main__":
+    dry = "--dry-run" in sys.argv
+    if "--init" in sys.argv:
+        init()
+    elif "--digest" in sys.argv:
+        # cron runs this hourly; --at-7am makes it fire only at 7am Eastern, so
+        # the time stays right across both US and UK daylight-saving changes
+        if "--at-7am" in sys.argv and datetime.now(TZ).hour != 7:
+            sys.exit(0)
+        digest(dry)
+    else:
+        per_registration(dry)
