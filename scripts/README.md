@@ -124,7 +124,7 @@ it isn't sure about.
 ## `update-meshcore-nodes.sh`
 
 Refreshes the static MeshCore node snapshot used by the **Mesh Network Path**
-card on `/hhf/`.
+card on `/hhf-mesh/`.
 
 The card tries the live MeshCore map API first, but that API's CORS policy
 blocks every origin except `localhost:8080` and `map.meshcore.dev` — so in
@@ -143,7 +143,7 @@ file changed and you're preparing a deploy.
 
 **Change the region or radius:** edit the `CENTER_LAT`, `CENTER_LON`, and
 `RADIUS_KM` constants at the top of the script. Keep them in sync with the
-hardcoded `mp-center` / `mp-radius` values in `src/hhf/hhf.njk`.
+hardcoded `mp-center` / `mp-radius` values in `src/hhf-mesh/hhf.njk`.
 
 **Dependencies:** `bash`, `curl`, `python3`, and `git` (no non-stdlib
 Python packages).

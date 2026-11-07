@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Refresh the static MeshCore node snapshot used by /hhf/.
+# Refresh the static MeshCore node snapshot used by /hhf-mesh/.
 #
 # The HHF dashboard loads this file first for an instant render, then
 # tries to refresh from the live API. Re-run this occasionally (or before
@@ -11,7 +11,7 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$REPO_ROOT/src/assets/data/meshcore-nodes-cached.json"
 
-# Region matches the defaults hardcoded into /hhf/ (center + radius).
+# Region matches the defaults hardcoded into /hhf-mesh/ (center + radius).
 CENTER_LAT=42.4
 CENTER_LON=-71.25
 RADIUS_KM=40
